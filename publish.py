@@ -4,6 +4,12 @@
     ./publish.py                 check figures, then build dist/
     ./publish.py --check         check figures only
     ./publish.py --out DIR       build into DIR instead of dist/
+    ./publish.py --site          also build docs/, the github.io copy
+
+dist/ is what is published as the two Claude artifacts. docs/ is the same pair
+for hvram1.github.io/sanatana-pitch: the pitch as index.html, each page given the
+document skeleton the artifact service would otherwise add, and the two pages'
+links to each other pointed at the github.io copies instead of the private artifacts.
 
 dist/pitch.html   the pitch, with src/images/* inlined as data URIs, so it is
                   one self-contained file (publish it as the page itself)
@@ -140,6 +146,34 @@ def _printed(text, pattern):
     return f'page prints {m.group(1)}' if m else 'pattern not found on the page'
 
 
+PITCH_URL = 'https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE'
+ASK_URL = 'https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx'
+SKELETON = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
+
+
+def build_site(dist, out):
+    """docs/ for GitHub Pages, from an already-built dist/."""
+    os.makedirs(out, exist_ok=True)
+
+    def page(name, links):
+        body = open(os.path.join(dist, name), encoding='utf8').read()
+        for url, local in links:
+            if url not in body:
+                raise SystemExit(f'{name}: expected a link to {url}; the cross-link rewrite is stale')
+            body = body.replace(url, local)
+        head, sep, rest = body.partition('<style>')
+        # <title>, font links and <style> go in <head>; everything after the first </style> is the body
+        style_end = rest.index('</style>') + len('</style>')
+        return SKELETON + head + sep + rest[:style_end] + '\n</head><body>\n' + rest[style_end:].lstrip('\n') + '</body></html>\n'
+
+    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html')]))
+    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './')]))
+    open(os.path.join(out, 'asks.json'), 'w', encoding='utf8').write(open(os.path.join(dist, 'asks.json'), encoding='utf8').read())
+    open(os.path.join(out, '.nojekyll'), 'w').close()
+    print(f'built {out}: index.html (the pitch), ask.html, asks.json, .nojekyll')
+
+
 def build(out):
     os.makedirs(out, exist_ok=True)
     html = open(os.path.join(SRC, 'pitch.html'), encoding='utf8').read()
@@ -161,6 +195,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--check', action='store_true', help='check figures only, build nothing')
     ap.add_argument('--out', default=os.path.join(HERE, 'dist'))
+    ap.add_argument('--site', action='store_true', help='also build docs/ for hvram1.github.io/sanatana-pitch')
     a = ap.parse_args()
     print('figures:')
     bad = check()
@@ -169,6 +204,8 @@ def main():
         return 1
     if not a.check:
         build(a.out)
+        if a.site:
+            build_site(a.out, os.path.join(HERE, 'docs'))
     return 0
 
 

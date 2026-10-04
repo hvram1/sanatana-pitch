@@ -8,8 +8,8 @@ CSR officers. Both are published as private Claude artifacts and shared by link.
 | The pitch | `src/pitch.html` + `src/images/` | https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE |
 | The funding page | `src/ask.html` + `src/asks.json` | https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx |
 
-**This repo is the master.** Edit here, run `./publish.py`, then republish
-`dist/` to the same URLs. Never edit an artifact without updating this copy. A
+**This repo is the master.** Edit here, run `./publish.py --site`, republish
+`dist/` to the same URLs, and commit `docs/`. Never edit an artifact without updating this copy. A
 republish changes the page for everyone who already has the link, on their next load.
 
 ## Publishing
@@ -37,8 +37,20 @@ local source are printed as UNCHECKED, with where they come from. That is not a 
 Note: "493,992 verses in one index" is index.db's occurrence count. Distinct
 verses (the `verse` table) number 488,149.
 
-## Not for GitHub Pages
+## Two copies: the artifacts and github.io
 
-The repo is private, and the pages stay private artifacts. A github.io page would
-be public and searchable, and these pages carry draft prices, beta figures and
-the trustees' names.
+The same two pages are served in two places, and both are kept for now:
+
+| | pitch | funding page | who can see it |
+|---|---|---|---|
+| Claude artifacts | J3XQ… | RHAx… | only the people each link is shared with |
+| GitHub Pages | https://hvram1.github.io/sanatana-pitch/ | …/sanatana-pitch/ask.html | anyone; the pages are public and can be indexed |
+
+`./publish.py --site` builds both: `dist/` for the artifacts, `docs/` for Pages
+(served from `main`, folder `/docs`). `docs/` is committed and `dist/` is not.
+In `docs/`, the two pages link to each other's github.io copy, because the
+artifact links are private. Rebuild and commit `docs/` whenever you republish
+the artifacts, or the two copies drift apart.
+
+The github.io copy is public, so it shows the draft prices, the beta figures and
+the trustees' names to anyone.
