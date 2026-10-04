@@ -199,38 +199,51 @@
     },
     {
       "id": "audio",
-      "title": "Commission a Purāṇa recitation that is addressable from the first day",
+      "title": "Commission a whole Purāṇa as an upanyāsa, addressable from the first day",
       "deva": "पुराणश्रवणकोशः",
-      "change": "A senior upanyāsakar records a Purāṇa so that every verse can be played at its own address. We begin with one adhyāya to prove the method, then a 30-hour series.",
+      "change": "A senior upanyāsakar expounds a whole Purāṇa over about a year, recorded so that every verse can be played at its own address. Priced here for a Purāṇa of average length, about 19,500 verses; a longer or shorter one scales with it, at about {per_1000_verses} for every 1,000 verses. We begin with one adhyāya to prove the method.",
       "meter": {
         "now": 8391,
-        "target": 12391,
+        "target": 22991,
         "unit": "Purāṇa verses you can hear at their own address",
-        "note": "About 4,000 more, if the series does what the Adhyātma Rāmāyaṇa's 14 recordings did."
+        "note": "About 14,600 more, if three verses in four are reached, as in the Virāṭa Parva."
       },
-      "months": 4,
+      "months": 12,
       "basis": [
         {
-          "say": "Honorarium, {qty} hours at {rate}",
-          "qty": 30,
+          "say": "The hours come from our own series: the Kārtika Māhātmya's 1,817 verses took 25 hours of upanyāsa and the Virāṭa Parva's 2,262 took 30, about 74 verses an hour. So about 264 hours for the whole Purāṇa."
+        },
+        {
+          "say": "Honorarium to the upanyāsakar, about {qty} hours at {rate}",
+          "qty": 264,
           "rate": "recitation_hour",
           "suffix": " (the trust sets this figure)"
         },
         {
-          "say": "Recording, {qty} hours at {rate}",
-          "qty": 30,
+          "say": "Recording, about {qty} hours at {rate}",
+          "qty": 264,
           "rate": "recording_hour"
         },
         {
           "say": "Turning it into a verse-addressable edition, {qty} hours at ₹49",
-          "qty": 30,
+          "qty": 264,
           "rate": "edition_audio_hour",
           "suffix": " (measured)"
         },
         {
-          "say": "A senior vidvān checking every verse by ear, about {qty} hours at {rate}",
-          "qty": 10,
+          "say": "Junior vidvāns checking every verse by ear, about {qty} hours (twice the recording) at {rate}",
+          "qty": 528,
+          "rate": "junior_hour"
+        },
+        {
+          "say": "Senior vidvāns settling what the juniors are unsure of, about {qty} hours at {rate}",
+          "qty": 26,
           "rate": "senior_hour"
+        },
+        {
+          "say": "{qty} engineer-months to build and publish the atlas as the series goes",
+          "qty": 6,
+          "rate": "engineer_month"
         }
       ],
       "proof": {
@@ -240,7 +253,8 @@
       "paper": {
         "label": "Purāṇa Audio Project proposal",
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-audio.html"
-      }
+      },
+      "verses": 19512
     },
     {
       "id": "tbta-audio",

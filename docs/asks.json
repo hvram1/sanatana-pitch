@@ -118,16 +118,16 @@
     },
     {
       "id": "audio",
-      "title": "Commission a Purāṇa recitation that is addressable from the first day",
+      "title": "Commission a whole Purāṇa as an upanyāsa, addressable from the first day",
       "deva": "पुराणश्रवणकोशः",
-      "change": "A senior upanyāsakar records a Purāṇa so that every verse can be played at its own address. We begin with one adhyāya to prove the method, then a 30-hour series.",
+      "change": "A senior upanyāsakar expounds a whole Purāṇa over about a year, recorded so that every verse can be played at its own address. Priced here for a Purāṇa of average length, about 19,500 verses; a longer or shorter one scales with it, at about ₹1.87 lakh for every 1,000 verses. We begin with one adhyāya to prove the method.",
       "meter": {
         "now": 8391,
-        "target": 12391,
+        "target": 22991,
         "unit": "Purāṇa verses you can hear at their own address",
-        "note": "About 4,000 more, if the series does what the Adhyātma Rāmāyaṇa's 14 recordings did."
+        "note": "About 14,600 more, if three verses in four are reached, as in the Virāṭa Parva."
       },
-      "months": 4,
+      "months": 12,
       "proof": {
         "label": "Kārtika Māhātmya, 1,094 verses already on the clock",
         "url": "https://hvram1.github.io/purana-atlas/kartika-atlas.html#1.30"
@@ -137,12 +137,15 @@
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-audio.html"
       },
       "basis": [
-        "Honorarium, 30 hours at ₹5,000 an hour: ₹1.5 lakh (the trust sets this figure)",
-        "Recording, 30 hours at ₹2,000 an hour: ₹0.6 lakh",
-        "Turning it into a verse-addressable edition, 30 hours at ₹49: ₹1,470 (measured)",
-        "A senior vidvān checking every verse by ear, about 10 hours at ₹5,000 an hour: ₹0.5 lakh"
+        "The hours come from our own series: the Kārtika Māhātmya's 1,817 verses took 25 hours of upanyāsa and the Virāṭa Parva's 2,262 took 30, about 74 verses an hour. So about 264 hours for the whole Purāṇa.",
+        "Honorarium to the upanyāsakar, about 264 hours at ₹5,000 an hour: ₹13.2 lakh (the trust sets this figure)",
+        "Recording, about 264 hours at ₹2,000 an hour: ₹5.28 lakh",
+        "Turning it into a verse-addressable edition, 264 hours at ₹49: ₹0.13 lakh (measured)",
+        "Junior vidvāns checking every verse by ear, about 528 hours (twice the recording) at ₹2,500 an hour: ₹13.2 lakh",
+        "Senior vidvāns settling what the juniors are unsure of, about 26 hours at ₹5,000 an hour: ₹1.3 lakh",
+        "6 engineer-months to build and publish the atlas as the series goes: ₹3.6 lakh"
       ],
-      "cost_lakh": 2.5
+      "cost_lakh": 36.5
     },
     {
       "id": "tbta-audio",

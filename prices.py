@@ -70,6 +70,8 @@ def price(src):
     pub['asks'] = [priced(a) for a in src['asks']]
     pub['program'] = priced(src['program'])
     for a in pub['asks']:
+        if 'verses' in a:
+            a['change'] = a['change'].replace('{per_1000_verses}', money(a['cost_lakh'] * LAKH / a.pop('verses') * 1000))
         m = a.get('meter', {})
         if '{per_10k_verses}' in m.get('note', ''):
             m['note'] = m['note'].replace('{per_10k_verses}', money(a['cost_lakh'] * LAKH / m['target'] * 10_000))
