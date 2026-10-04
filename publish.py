@@ -30,6 +30,8 @@ import re
 import sqlite3
 import sys
 
+import prices
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'src')
 PROJECTS = os.path.dirname(HERE)
@@ -185,9 +187,12 @@ def build(out):
 
     html, n = re.subn(r'src="(images/[^"]+\.jpg)"', inline, html)
     open(os.path.join(out, 'pitch.html'), 'w', encoding='utf8').write(html)
-    for name in ('ask.html', 'asks.json'):
-        open(os.path.join(out, name), 'w', encoding='utf8').write(open(os.path.join(SRC, name), encoding='utf8').read())
-    json.load(open(os.path.join(out, 'asks.json'), encoding='utf8'))
+    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(open(os.path.join(SRC, 'ask.html'), encoding='utf8').read())
+    # src/asks.json holds quantities and rates; the page reads the priced version
+    pub = prices.published(os.path.join(SRC, 'asks.json'))
+    json.dump(pub, open(os.path.join(out, 'asks.json'), 'w', encoding='utf8'), ensure_ascii=False, indent=2)
+    total = sum(a['cost_lakh'] for a in pub['asks'])
+    print('prices: ' + ', '.join(f"{a['id']} {a['cost_lakh']:g}" for a in pub['asks']) + f'; total {total:g} lakh; programme {pub["program"]["cost_lakh"]:g} lakh a year')
     print(f'built {out}: pitch.html ({n} images inlined, {os.path.getsize(os.path.join(out, "pitch.html")):,} bytes), ask.html, asks.json')
 
 

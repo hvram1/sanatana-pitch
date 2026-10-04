@@ -4,7 +4,7 @@
   "rates": [
     {
       "label": "Engineer",
-      "value": "₹1.5 lakh a month"
+      "value": "₹60,000 a month"
     },
     {
       "label": "Senior scholar",
@@ -31,17 +31,17 @@
         "unit": "of Kane's footnotes located",
         "note": "The four smṛtis account for up to 850 more."
       },
-      "cost_lakh": 3,
       "months": 4,
-      "basis": [
-        "1 engineer-month to source, structure and index the four texts: ₹1.5 lakh",
-        "About 70 hours of a senior scholar checking the matches: ₹1.05 lakh",
-        "Choosing and verifying the editions: ₹0.45 lakh"
-      ],
       "proof": {
         "label": "Kane's History of Dharmaśāstra, with 611 footnotes already located",
         "url": "https://hvram1.github.io/historyofdharmasastra/"
-      }
+      },
+      "basis": [
+        "1 engineer-month to source, structure and index the four texts: ₹0.6 lakh",
+        "About 70 hours of a senior scholar checking the matches: ₹1.05 lakh",
+        "Choosing and verifying the editions: ₹0.45 lakh"
+      ],
+      "cost_lakh": 2.0
     },
     {
       "id": "harivamsa",
@@ -54,13 +54,7 @@
         "unit": "Harivaṃśa verses with their names indexed",
         "note": "Up to 4,034 headwords. No Purāṇa has such an index today."
       },
-      "cost_lakh": 11,
       "months": 9,
-      "basis": [
-        "About 500 reader-hours by five pāṭhaśālā students: ₹2 lakh",
-        "About 300 senior hours writing and reviewing entries: ₹4.5 lakh",
-        "3 engineer-months for the reading tool and review queue: ₹4.5 lakh"
-      ],
       "proof": {
         "label": "The Mahābhārata's 13,772 named entities, from Sorensen's index",
         "url": "https://sanatana.in/mahabharata/entity/characters"
@@ -68,7 +62,13 @@
       "paper": {
         "label": "Purāṇa Nāma-Kośa proposal",
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-nama-kosa.html"
-      }
+      },
+      "basis": [
+        "About 500 reader-hours by five pāṭhaśālā students: ₹2 lakh",
+        "About 300 senior hours writing and reviewing entries: ₹4.5 lakh",
+        "3 engineer-months for the reading tool and review queue: ₹1.8 lakh"
+      ],
+      "cost_lakh": 8.5
     },
     {
       "id": "namakosa",
@@ -79,16 +79,9 @@
         "now": 0,
         "target": 351225,
         "unit": "Mahāpurāṇa verses with their names indexed",
-        "note": "No index of names exists for any of them. About ₹4.8 lakh per 10,000 verses, so a single Purāṇa can be sponsored on its own."
+        "note": "No index of names exists for any of them. About ₹4.36 lakh per 10,000 verses, so a single Purāṇa can be sponsored on its own."
       },
-      "cost_lakh": 169,
       "months": 36,
-      "basis": [
-        "About 10,900 reader-hours by pāṭhaśālā cohorts, at the pilot's rate: ₹43.6 lakh",
-        "About 6,540 senior hours writing and reviewing entries, at the pilot's rate: ₹98.1 lakh",
-        "Half an engineer for 3 years to run the reading tool and publish each Purāṇa: ₹27 lakh",
-        "This is an upper figure. It assumes no saving over the pilot, though the proposal expects reading to get cheaper text by text."
-      ],
       "proof": {
         "label": "The Mahābhārata's 13,772 named entities, from Sorensen's index",
         "url": "https://sanatana.in/mahabharata/entity/characters"
@@ -96,7 +89,14 @@
       "paper": {
         "label": "Purāṇa Nāma-Kośa proposal",
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-nama-kosa.html"
-      }
+      },
+      "basis": [
+        "About 10,900 reader-hours by pāṭhaśālā cohorts, at the pilot's rate: ₹43.6 lakh",
+        "About 6,540 senior hours writing and reviewing entries, at the pilot's rate: ₹98.1 lakh",
+        "Half an engineer for 3 years to run the reading tool and publish each Purāṇa: ₹10.8 lakh",
+        "This is an upper figure. It assumes no saving over the pilot, though the proposal expects reading to get cheaper text by text."
+      ],
+      "cost_lakh": 153
     },
     {
       "id": "audio",
@@ -109,14 +109,7 @@
         "unit": "Purāṇa verses you can hear at their own address",
         "note": "About 4,000 more, if the series does what the Adhyātma Rāmāyaṇa's 14 recordings did."
       },
-      "cost_lakh": 2.5,
       "months": 4,
-      "basis": [
-        "Honorarium, 30 hours at ₹5,000 an hour: ₹1.5 lakh (the trust sets this figure)",
-        "Recording, 30 hours at ₹2,000 an hour: ₹0.6 lakh",
-        "Turning it into a verse-addressable edition, 30 hours at ₹49: ₹1,470 (measured)",
-        "Listening checks by ear: ₹0.385 lakh"
-      ],
       "proof": {
         "label": "Kārtika Māhātmya, 1,094 verses already on the clock",
         "url": "https://hvram1.github.io/purana-atlas/kartika-atlas.html#1.30"
@@ -124,7 +117,14 @@
       "paper": {
         "label": "Purāṇa Audio Project proposal",
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-audio.html"
-      }
+      },
+      "basis": [
+        "Honorarium, 30 hours at ₹5,000 an hour: ₹1.5 lakh (the trust sets this figure)",
+        "Recording, 30 hours at ₹2,000 an hour: ₹0.6 lakh",
+        "Turning it into a verse-addressable edition, 30 hours at ₹49: ₹1,470 (measured)",
+        "Listening checks by ear: ₹0.39 lakh"
+      ],
+      "cost_lakh": 2.5
     },
     {
       "id": "tbta-audio",
@@ -137,19 +137,19 @@
         "unit": "hours of Kṛṣṇa Yajurveda chant with the text following word by word",
         "note": "About 59 hours: 43 for the Brāhmaṇa and 16 for the Āraṇyaka. This is estimated from the length of their text against the Saṃhitā's, and the recording will measure it."
       },
-      "cost_lakh": 6.5,
       "months": 6,
-      "basis": [
-        "Honorarium for the vidvāns, about 59 hours at ₹5,000 an hour: ₹2.95 lakh (the trust sets this figure)",
-        "Recording, about 59 hours at ₹2,000 an hour: ₹1.18 lakh",
-        "1 engineer-month to align every word to the recording and publish it: ₹1.5 lakh",
-        "About 59 hours of a senior scholar checking the alignment by ear: ₹0.89 lakh",
-        "The text with svaras is already prepared, so nothing is charged for it."
-      ],
       "proof": {
         "label": "The Saṃhitā today: the text follows the chant word by word (beta)",
         "url": "https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/"
-      }
+      },
+      "basis": [
+        "Honorarium for the vidvāns, about 59 hours at ₹5,000 an hour: ₹2.95 lakh (the trust sets this figure)",
+        "Recording, about 59 hours at ₹2,000 an hour: ₹1.18 lakh",
+        "1 engineer-month to align every word to the recording and publish it: ₹0.6 lakh",
+        "About 59 hours of a senior scholar checking the alignment by ear: ₹0.89 lakh",
+        "The text with svaras is already prepared, so nothing is charged for it."
+      ],
+      "cost_lakh": 5.5
     },
     {
       "id": "commentary",
@@ -162,17 +162,17 @@
         "unit": "dharmaśāstra volumes transcribed and online",
         "note": "The Smṛtimuktāphalam's seven volumes are the precedent. They are online in beta, still being proofread."
       },
-      "cost_lakh": 3,
       "months": 6,
-      "basis": [
-        "OCR of 1,000 pages, Sanskrit with a regional language: ₹0.05 lakh",
-        "Proofreading at ₹150 a page: ₹1.5 lakh",
-        "1 engineer-month to index, cross-link and publish: ₹1.45 lakh"
-      ],
       "proof": {
         "label": "The Smṛtimuktāphalam, seven volumes, Sanskrit with Tamil",
         "url": "https://hvram1.github.io/smp/"
-      }
+      },
+      "basis": [
+        "OCR of 1,000 pages, Sanskrit with a regional language: ₹5,000",
+        "Proofreading at ₹150 a page: ₹1.5 lakh",
+        "1 engineer-month to index, cross-link and publish: ₹0.6 lakh"
+      ],
+      "cost_lakh": 2.0
     },
     {
       "id": "bhashyas",
@@ -185,19 +185,19 @@
         "unit": "Saṃhitā anuvākas with both bhāṣyas beside the text",
         "note": "Then Bhaṭṭa Bhāskara on the Brāhmaṇa and Āraṇyaka: 2,611 scanned pages, none on the site yet."
       },
-      "cost_lakh": 11,
       "months": 9,
+      "proof": {
+        "label": "Both bhāṣyas beside the Saṃhitā, kāṇḍas 1 to 3 (beta)",
+        "url": "https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/"
+      },
       "basis": [
         "OCR of 2,611 scanned pages of Bhaṭṭa Bhāskara: ₹0.13 lakh",
         "Proofreading those pages at ₹150 a page: ₹3.92 lakh",
         "Proofreading about 600 typed pages for Saṃhitā kāṇḍas 4 to 7 at ₹150 a page: ₹0.9 lakh. A source for Sāyaṇa on kāṇḍas 5 and 7 still has to be found.",
         "About 100 hours of a senior scholar reviewing the text: ₹1.5 lakh",
-        "3 engineer-months to structure each bhāṣya by anuvāka, tie it to the text and publish: ₹4.5 lakh"
+        "3 engineer-months to structure each bhāṣya by anuvāka, tie it to the text and publish: ₹1.8 lakh"
       ],
-      "proof": {
-        "label": "Both bhāṣyas beside the Saṃhitā, kāṇḍas 1 to 3 (beta)",
-        "url": "https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/"
-      }
+      "cost_lakh": 8.0
     },
     {
       "id": "abhyasa",
@@ -210,27 +210,27 @@
         "unit": "pāṭhaśālās using it",
         "note": "First it must pass our planted-error test: catch known mistakes in a recorded line."
       },
-      "cost_lakh": 25,
       "months": 12,
-      "basis": [
-        "1 engineer for 12 months: ₹18 lakh",
-        "The ācārya's recordings of saṃhitā, krama and jaṭā: ₹2 lakh",
-        "Pilot coordination and devices for pāṭhaśālās: ₹5 lakh"
-      ],
       "proof": {
         "label": "Svarānugamī on the Yajurveda: the text follows the chant word by word",
         "url": "https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/"
-      }
+      },
+      "basis": [
+        "1 engineer for 12 months: ₹7.2 lakh",
+        "The ācārya's recordings of saṃhitā, krama and jaṭā: ₹2 lakh",
+        "Pilot coordination and devices for pāṭhaśālās: ₹5 lakh"
+      ],
+      "cost_lakh": 14.0
     }
   ],
   "program": {
     "title": "Or carry the team for a year",
-    "cost_lakh": 45,
     "change": "Engineering, scholar honoraria and hosting for twelve months, spent on the results above in the order the trust sets, so the work does not wait for each line to be funded.",
     "basis": [
-      "2 engineers for 12 months: ₹36 lakh",
+      "2 engineers for 12 months: ₹14.4 lakh",
       "Scholar honoraria across projects: ₹7 lakh",
       "Hosting and audio storage: ₹2 lakh"
-    ]
+    ],
+    "cost_lakh": 23.5
   }
 }
