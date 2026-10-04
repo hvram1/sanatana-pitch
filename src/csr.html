@@ -1,0 +1,189 @@
+<title>Sanatana Sampatti for CSR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a letter to a CSR head, then the three things their committee checks:
+   is the trust an eligible agency, which Schedule VII item each result falls
+   under, and what the company receives. Prices come from asks.json. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6; --gold:#a86a00; --gold-soft:#fbf1dc; --ok:#2e6b3a; --ok-soft:#e5f2e7;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615; --ok:#7fd08f; --ok-soft:#1c2b20;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615; --ok:#7fd08f; --ok-soft:#1c2b20;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;padding-inline:20px;padding-block:0 64px}
+.wrap{max-width:960px;margin:0 auto}
+.col{max-width:720px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.85rem;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+header.hero{padding-block:48px 24px;display:grid;gap:18px}
+header.hero h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:700;letter-spacing:-.01em;max-width:24ch}
+.letter{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:26px 28px;display:grid;gap:14px;box-shadow:var(--shadow);max-width:760px}
+.letter p{max-width:44rem}
+.sign{font-family:var(--f-display);font-style:italic}
+section{padding-block:40px 8px;display:grid;gap:18px}
+.section-intro{display:grid;gap:8px}
+.section-intro p{color:var(--muted);max-width:44rem}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.price{font-family:var(--f-display);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.item{display:inline-block;font-family:var(--f-mono);font-size:.75rem;background:var(--accent-soft);color:var(--accent);border-radius:4px;padding:1px 7px;margin:0 4px 4px 0;white-space:nowrap}
+.met{color:var(--ok);font-weight:600}
+.met::before{content:"✓ ";}
+.todo{color:var(--gold);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;display:grid;gap:6px;align-content:start}
+.card p{font-size:.95rem}
+.note{background:var(--gold-soft);border-radius:8px;padding:14px 16px;font-size:.93rem;max-width:46rem}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;padding:10px 16px;border-radius:6px;background:var(--accent);color:var(--surface)}
+.go{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.contact{font-family:var(--f-mono);user-select:all}
+ol.sources{margin:0;padding-left:20px;display:grid;gap:4px;font-size:.88rem;color:var(--muted)}
+@media (max-width:760px){.cards{grid-template-columns:minmax(0,1fr)}.letter{padding:20px}}
+@media (max-width:520px){body{font-size:16px;padding-inline:16px}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">Sanatana Sampatti Foundation · for heads of CSR</span>
+  <h1>Your CSR budget can carry India's textual heritage</h1>
+</header>
+
+<div class="letter">
+  <p>Dear CSR Head,</p>
+  <p>Sanatana Sampatti Foundation is a registered public trust that puts India's foundational texts, their commentaries and recordings of their recitation on the web, free, in a form anyone can read, search, cite and listen to. Nine of our sites are open today.</p>
+  <p>We are writing because this work falls squarely within Schedule VII of the Companies Act, 2013. Item (v) names the <i>protection of national heritage, art and culture</i> and <i>setting up public libraries</i>, and item (ii) names <i>promoting education</i>. Every result we ask you to fund is one of these: a text published as an open edition, a recitation recorded so that every verse can be heard at its own address, or a tutor for pāṭhaśālā students.</p>
+  <p>The trust is registered under section 12A and approved under section 80G of the Income-tax Act, and has worked in this field since June 2022, so it meets the conditions the CSR Rules set for an implementing agency. The work is cultural and educational: we fund no worship, ritual or place of worship. Below are the eligibility conditions with our status against each, the Schedule VII item for each result, and what your company receives for its reporting.</p>
+  <p>Each result can be funded on its own, and the larger ones run as ongoing projects of up to three years. We would welcome a conversation with your CSR committee.</p>
+  <p class="sign">For the trustees, Sanatana Sampatti Foundation</p>
+</div>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">Eligibility</span>
+    <h2>An eligible implementing agency</h2>
+    <p>The Companies (CSR Policy) Rules, 2014, Rule 4(1), as amended in 2021, allow a company to spend through a registered public trust that meets these conditions.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Condition (Rule 4(1))</th><th>Sanatana Sampatti Foundation</th></tr></thead>
+    <tbody>
+      <tr><td>A registered public trust</td><td><span class="met">Registered public trust, Srirangapatna</span></td></tr>
+      <tr><td>Registered under section 12A of the Income-tax Act</td><td><span class="met">Approved on Form 10AB</span></td></tr>
+      <tr><td>Approved under section 80G of the Income-tax Act</td><td><span class="met">Approved</span></td></tr>
+      <tr><td>An established track record of at least three years in similar activities</td><td><span class="met">Working since June 2022; nine public sites</span></td></tr>
+      <tr><td>Registered with the Central Government on Form CSR-1</td><td id="csr1"><span class="todo">CSR registration number: to be added</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small col">Registrations under the Income-tax Act, 1961 carry over under the Income-tax Act, 2025, in force from 1 April 2026.</p>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">Schedule VII</span>
+    <h2>Which item each result falls under</h2>
+    <p>Each line is a result on our funding page, with its price and time. The prices are the team's estimates; each line on the funding page shows how its price is made up. The final classification is for your CSR committee.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Result</th><th>Schedule VII</th><th>Price</th></tr></thead>
+    <tbody id="map"><tr><td colspan="3" class="small">Loading the results…</td></tr></tbody>
+  </table></div>
+  <p class="small col">Item (v): protection of national heritage, art and culture, including works of art; setting up public libraries; promotion and development of traditional arts. Item (ii): promoting education, including special education and employment-enhancing vocational skills.</p>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">Heritage and education</span>
+    <h2>What is funded, and what is not</h2>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>Funded</h3><p>Transcribing, proofreading and publishing texts and commentaries as free editions; recording recitations and making every verse addressable; indexing names and places; paying the vidvāns, scholars and pāṭhaśālā students who do this work; a chanting tutor for students.</p></div>
+    <div class="card"><h3>Not funded</h3><p>Worship, ritual or religious observance, places of worship, and any benefit restricted to one community. Everything published is open to all, without charge.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">For your reporting</span>
+    <h2>What your company receives</h2>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>A project agreement</h3><p>One result per agreement, with milestones, a budget by line, and the period. A result longer than a year runs as an ongoing project of up to three years.</p></div>
+    <div class="card"><h3>Utilisation certificates</h3><p>For each financial year, certified by a chartered accountant, so the spend can be reported in your annual CSR report.</p></div>
+    <div class="card"><h3>Progress you can check yourself</h3><p>Each result has a meter that the sites print themselves: verses indexed, hours recorded, pages published. Your committee can see progress without asking us.</p></div>
+    <div class="card"><h3>Impact assessment</h3><p>Where a project needs an independent impact assessment, we give the assessor full access to the work, the data and the people.</p></div>
+  </div>
+  <div class="note"><b>On tax.</b> CSR spending is not a deductible business expense (Explanation 2 to section 37(1) of the Income-tax Act, 1961). Whether a CSR contribution can also be deducted under section 80G is disputed, and we do not rely on it. Contributions made beyond a company's CSR obligation are deductible under section 80G in the usual way.</div>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">Next step</span>
+    <h2>Talk to us</h2>
+    <p>Write to <span class="contact">secretary@sanatanasampatti.in</span>. We will send the trust's registration certificates, its CSR-1 registration, audited accounts and a draft project agreement for the result your committee chooses.</p>
+  </div>
+  <div class="go">
+    <a class="btn" href="https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx" target="_blank" rel="noopener">See every result and its price →</a>
+    <a href="https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE" target="_blank" rel="noopener">Read the full pitch</a>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Sources</span>
+  <ol class="sources">
+    <li>Companies Act, 2013, section 135 and Schedule VII (items (ii) and (v)).</li>
+    <li>Companies (Corporate Social Responsibility Policy) Rules, 2014, Rule 4(1) and Form CSR-1, as amended by the Amendment Rules of 22 January 2021 and of 2025.</li>
+    <li>Ministry of Corporate Affairs, FAQs on CSR, General Circular 14/2021 of 25 August 2021.</li>
+    <li>Income-tax Act, 1961, section 37(1), Explanation 2; Income-tax Act, 2025.</li>
+  </ol>
+</section>
+</div>
+
+<script>
+(function(){
+  // The Schedule VII item for each result on the funding page, keyed by its id in asks.json.
+  const ITEMS = {
+    smritis:      [['v','heritage and culture'],['v','public library']],
+    harivamsa:    [['v','heritage and culture'],['ii','education: pāṭhaśālā students']],
+    namakosa:     [['v','heritage and culture'],['ii','education: pāṭhaśālā students']],
+    audio:        [['v','art and culture: an oral tradition']],
+    'tbta-audio': [['v','art and culture: an oral tradition']],
+    commentary:   [['v','heritage and culture'],['v','public library']],
+    bhashyas:     [['v','heritage and culture'],['v','public library']],
+    abhyasa:      [['ii','promoting education']],
+  };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const lakh = n => n >= 100 ? '₹' + (Math.round(n)/100).toFixed(2).replace(/\.?0+$/,'') + ' crore' : '₹' + (Number.isInteger(n) ? n : n.toFixed(1)) + ' lakh';
+  const items = id => (ITEMS[id] || []).map(([n, what]) => `<span class="item">(${n}) ${esc(what)}</span>`).join('');
+  fetch('asks.json', {cache:'no-store'}).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => {
+      const rows = (d.asks || []).map(a => `<tr><td>${esc(a.title)}</td><td>${items(a.id) || '<span class="small">to be classified</span>'}</td><td class="price">${lakh(a.cost_lakh)}<br><span class="small">${a.months} months</span></td></tr>`);
+      if (d.program) rows.push(`<tr><td>${esc(d.program.title)}</td><td><span class="item">(v) heritage and culture</span><span class="item">(ii) education</span></td><td class="price">${lakh(d.program.cost_lakh)}<br><span class="small">a year</span></td></tr>`);
+      document.getElementById('map').innerHTML = rows.join('');
+    })
+    .catch(() => { document.getElementById('map').innerHTML = '<tr><td colspan="3">The list of results could not be loaded. Write to secretary@sanatanasampatti.in.</td></tr>'; });
+})();
+</script>

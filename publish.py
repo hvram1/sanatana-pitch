@@ -205,9 +205,10 @@ def build_site(dist, out):
 
     open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html')]))
     open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './')]))
+    open(os.path.join(out, 'csr.html'), 'w', encoding='utf8').write(page('csr.html', [(ASK_URL, 'ask.html'), (PITCH_URL, './')]))
     open(os.path.join(out, 'asks.json'), 'w', encoding='utf8').write(open(os.path.join(dist, 'asks.json'), encoding='utf8').read())
     open(os.path.join(out, '.nojekyll'), 'w').close()
-    print(f'built {out}: index.html (the pitch), ask.html, asks.json, .nojekyll')
+    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll')
 
 
 def build(out):
@@ -221,13 +222,14 @@ def build(out):
 
     html, n = re.subn(r'src="(images/[^"]+\.jpg)"', inline, html)
     open(os.path.join(out, 'pitch.html'), 'w', encoding='utf8').write(html)
-    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(open(os.path.join(SRC, 'ask.html'), encoding='utf8').read())
+    for name in ('ask.html', 'csr.html'):
+        open(os.path.join(out, name), 'w', encoding='utf8').write(open(os.path.join(SRC, name), encoding='utf8').read())
     # src/asks.json holds quantities and rates; the page reads the priced version
     pub = prices.published(os.path.join(SRC, 'asks.json'))
     json.dump(pub, open(os.path.join(out, 'asks.json'), 'w', encoding='utf8'), ensure_ascii=False, indent=2)
     total = sum(a['cost_lakh'] for a in pub['asks'])
     print('prices: ' + ', '.join(f"{a['id']} {a['cost_lakh']:g}" for a in pub['asks']) + f'; total {total:g} lakh; programme {pub["program"]["cost_lakh"]:g} lakh a year')
-    print(f'built {out}: pitch.html ({n} images inlined, {os.path.getsize(os.path.join(out, "pitch.html")):,} bytes), ask.html, asks.json')
+    print(f'built {out}: pitch.html ({n} images inlined, {os.path.getsize(os.path.join(out, "pitch.html")):,} bytes), ask.html, csr.html, asks.json')
 
 
 def main():
