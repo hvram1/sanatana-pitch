@@ -184,6 +184,7 @@ def _printed(text, pattern):
 
 PITCH_URL = 'https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE'
 ASK_URL = 'https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx'
+CSR_URL = 'https://claude.ai/artifact/BYGH7ZaAMHHuFrhFU7WrJ7'
 SKELETON = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
 
@@ -203,8 +204,8 @@ def build_site(dist, out):
         style_end = rest.index('</style>') + len('</style>')
         return SKELETON + head + sep + rest[:style_end] + '\n</head><body>\n' + rest[style_end:].lstrip('\n') + '</body></html>\n'
 
-    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html')]))
-    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './')]))
+    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html'), (CSR_URL, 'csr.html')]))
+    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './'), (CSR_URL, 'csr.html')]))
     open(os.path.join(out, 'csr.html'), 'w', encoding='utf8').write(page('csr.html', [(ASK_URL, 'ask.html'), (PITCH_URL, './')]))
     open(os.path.join(out, 'asks.json'), 'w', encoding='utf8').write(open(os.path.join(dist, 'asks.json'), encoding='utf8').read())
     open(os.path.join(out, '.nojekyll'), 'w').close()

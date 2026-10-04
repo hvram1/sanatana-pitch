@@ -7,6 +7,7 @@ CSR officers. Both are published as private Claude artifacts and shared by link.
 |---|---|---|
 | The pitch | `src/pitch.html` + `src/images/` | https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE |
 | The funding page | `src/ask.html` + `src/asks.json` | https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx |
+| For heads of CSR | `src/csr.html` + `src/asks.json` | https://claude.ai/artifact/BYGH7ZaAMHHuFrhFU7WrJ7 |
 
 **This repo is the master.** Edit here, run `./publish.py --site`, republish
 `dist/` to the same URLs, and commit `docs/`. Never edit an artifact without updating this copy. A
