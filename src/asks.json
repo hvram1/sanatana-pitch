@@ -4,7 +4,7 @@
   "rates": [
     {
       "id": "vidvan_month",
-      "label": "Vidvān (senior scholar)",
+      "label": "Vidvān retained by the month",
       "rupees": 100000,
       "per": "a month",
       "strip": true,
@@ -12,11 +12,32 @@
     },
     {
       "id": "junior_month",
-      "label": "Junior scholar or pāṭhaśālā student",
+      "label": "Junior scholar retained by the month",
       "rupees": 75000,
       "per": "a month",
       "strip": true,
       "show": "₹40,000 to ₹75,000 a month, priced at ₹75,000"
+    },
+    {
+      "id": "senior_hour",
+      "label": "Senior vidvān, consulted by the hour",
+      "rupees": 5000,
+      "per": "an hour",
+      "strip": true
+    },
+    {
+      "id": "junior_hour",
+      "label": "Junior vidvān, by the hour",
+      "rupees": 500,
+      "per": "an hour",
+      "strip": true
+    },
+    {
+      "id": "student_hour",
+      "label": "Pāṭhaśālā student",
+      "rupees": 400,
+      "per": "an hour",
+      "strip": true
     },
     {
       "id": "recitation_hour",
@@ -98,19 +119,27 @@
       "months": 9,
       "basis": [
         {
-          "say": "Five pāṭhaśālā scholars for 9 months, reading every verse for its names",
-          "qty": 45,
-          "rate": "junior_month"
+          "say": "1 senior vidvān, 10 hours a month for 9 months, at {rate}",
+          "qty": 90,
+          "rate": "senior_hour"
         },
         {
-          "say": "A vidvān for {qty} months, writing and reviewing the entries",
-          "qty": 9,
-          "rate": "vidvan_month"
+          "say": "5 junior vidvāns, 25 hours a month each for 9 months, at {rate}",
+          "qty": 1125,
+          "rate": "junior_hour"
+        },
+        {
+          "say": "2 pāṭhaśālā students, 40 hours a month each for 9 months, at {rate}",
+          "qty": 720,
+          "rate": "student_hour"
         },
         {
           "say": "{qty} engineer-months for the reading tool and review queue",
           "qty": 3,
           "rate": "engineer_month"
+        },
+        {
+          "say": "The team is the full Nāma-Kośa's, scaled to the pilot's pace of about 1,800 verses a month."
         }
       ],
       "proof": {
@@ -136,14 +165,19 @@
       "months": 36,
       "basis": [
         {
-          "say": "27 pāṭhaśālā scholars for 3 years, at the pilot's pace",
-          "qty": 972,
-          "rate": "junior_month"
+          "say": "5 senior vidvāns, 10 hours a month each for 3 years, at {rate}",
+          "qty": 1800,
+          "rate": "senior_hour"
         },
         {
-          "say": "6 vidvāns for 3 years, writing and reviewing entries, one to every five readers as in the pilot",
-          "qty": 216,
-          "rate": "vidvan_month"
+          "say": "25 junior vidvāns, 25 hours a month each for 3 years, at {rate}",
+          "qty": 22500,
+          "rate": "junior_hour"
+        },
+        {
+          "say": "10 pāṭhaśālā students, 40 hours a month each for 3 years, at {rate}",
+          "qty": 14400,
+          "rate": "student_hour"
         },
         {
           "say": "Half an engineer for 3 years to run the reading tool and publish each Purāṇa",
@@ -151,7 +185,7 @@
           "rate": "engineer_month"
         },
         {
-          "say": "This is an upper figure. It assumes no saving over the pilot, though the proposal expects reading to get cheaper text by text."
+          "say": "The Harivaṃśa pilot will measure the real pace, and the team will be set from it."
         }
       ],
       "proof": {
@@ -194,9 +228,9 @@
           "suffix": " (measured)"
         },
         {
-          "say": "A vidvān for {qty} month, checking every verse by ear",
-          "qty": 1,
-          "rate": "vidvan_month"
+          "say": "A senior vidvān checking every verse by ear, about {qty} hours at {rate}",
+          "qty": 10,
+          "rate": "senior_hour"
         }
       ],
       "proof": {

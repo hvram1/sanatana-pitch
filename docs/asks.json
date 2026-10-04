@@ -3,12 +3,24 @@
   "status": "Scholars and vidvāns are retained by the month, at the top of each range. Each line shows what it is based on.",
   "rates": [
     {
-      "label": "Vidvān (senior scholar)",
+      "label": "Vidvān retained by the month",
       "value": "₹75,000 to ₹1 lakh a month, priced at ₹1 lakh"
     },
     {
-      "label": "Junior scholar or pāṭhaśālā student",
+      "label": "Junior scholar retained by the month",
       "value": "₹40,000 to ₹75,000 a month, priced at ₹75,000"
+    },
+    {
+      "label": "Senior vidvān, consulted by the hour",
+      "value": "₹5,000 an hour"
+    },
+    {
+      "label": "Junior vidvān, by the hour",
+      "value": "₹500 an hour"
+    },
+    {
+      "label": "Pāṭhaśālā student",
+      "value": "₹400 an hour"
     },
     {
       "label": "Vidvāns reciting for a recording",
@@ -67,11 +79,13 @@
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-nama-kosa.html"
       },
       "basis": [
-        "Five pāṭhaśālā scholars for 9 months, reading every verse for its names: ₹33.75 lakh",
-        "A vidvān for 9 months, writing and reviewing the entries: ₹9 lakh",
-        "3 engineer-months for the reading tool and review queue: ₹1.8 lakh"
+        "1 senior vidvān, 10 hours a month for 9 months, at ₹5,000 an hour: ₹4.5 lakh",
+        "5 junior vidvāns, 25 hours a month each for 9 months, at ₹500 an hour: ₹5.62 lakh",
+        "2 pāṭhaśālā students, 40 hours a month each for 9 months, at ₹400 an hour: ₹2.88 lakh",
+        "3 engineer-months for the reading tool and review queue: ₹1.8 lakh",
+        "The team is the full Nāma-Kośa's, scaled to the pilot's pace of about 1,800 verses a month."
       ],
-      "cost_lakh": 44.5
+      "cost_lakh": 15.0
     },
     {
       "id": "namakosa",
@@ -82,7 +96,7 @@
         "now": 0,
         "target": 351225,
         "unit": "Mahāpurāṇa verses with their names indexed",
-        "note": "No index of names exists for any of them. About ₹27.22 lakh per 10,000 verses, so a single Purāṇa can be sponsored on its own."
+        "note": "No index of names exists for any of them. About ₹7.72 lakh per 10,000 verses, so a single Purāṇa can be sponsored on its own."
       },
       "months": 36,
       "proof": {
@@ -94,12 +108,13 @@
         "url": "https://hvram1.github.io/purana-atlas/docs/purana-nama-kosa.html"
       },
       "basis": [
-        "27 pāṭhaśālā scholars for 3 years, at the pilot's pace: ₹7.29 crore",
-        "6 vidvāns for 3 years, writing and reviewing entries, one to every five readers as in the pilot: ₹2.16 crore",
+        "5 senior vidvāns, 10 hours a month each for 3 years, at ₹5,000 an hour: ₹90 lakh",
+        "25 junior vidvāns, 25 hours a month each for 3 years, at ₹500 an hour: ₹1.125 crore",
+        "10 pāṭhaśālā students, 40 hours a month each for 3 years, at ₹400 an hour: ₹57.6 lakh",
         "Half an engineer for 3 years to run the reading tool and publish each Purāṇa: ₹10.8 lakh",
-        "This is an upper figure. It assumes no saving over the pilot, though the proposal expects reading to get cheaper text by text."
+        "The Harivaṃśa pilot will measure the real pace, and the team will be set from it."
       ],
-      "cost_lakh": 956
+      "cost_lakh": 271
     },
     {
       "id": "audio",
@@ -125,9 +140,9 @@
         "Honorarium, 30 hours at ₹5,000 an hour: ₹1.5 lakh (the trust sets this figure)",
         "Recording, 30 hours at ₹2,000 an hour: ₹0.6 lakh",
         "Turning it into a verse-addressable edition, 30 hours at ₹49: ₹1,470 (measured)",
-        "A vidvān for 1 month, checking every verse by ear: ₹1 lakh"
+        "A senior vidvān checking every verse by ear, about 10 hours at ₹5,000 an hour: ₹0.5 lakh"
       ],
-      "cost_lakh": 3.0
+      "cost_lakh": 2.5
     },
     {
       "id": "tbta-audio",
