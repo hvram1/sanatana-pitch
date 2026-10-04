@@ -1,0 +1,793 @@
+<title>Sanatana Sampatti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a reading column with a full-width tour of live sites; each site is a
+   screenshot beside "try this", so a trustee can click straight into the work. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6; --live:#a86a00; --live-soft:#fbf1dc;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --live:#f0b44a; --live-soft:#2e2615;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --live:#f0b44a; --live-soft:#2e2615;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-inline:20px;padding-block:0 64px}
+.wrap{max-width:1080px;margin:0 auto}
+.col{max-width:720px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h2{font-size:1.9rem;font-weight:600}
+h3{font-size:1.3rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.deva{font-family:var(--f-deva)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);
+  border-bottom:1px solid var(--rule);margin-inline:-20px;padding:10px 20px}
+nav.top .wrap{display:flex;gap:6px 18px;flex-wrap:wrap;align-items:center}
+nav.top b{font-family:var(--f-display);font-size:1.05rem;margin-right:auto}
+nav.top a{font-size:.9rem;text-decoration:none;color:var(--muted)}
+nav.top a:hover{color:var(--accent)}
+
+/* hero */
+header.hero{padding-block:56px 40px;display:grid;gap:18px}
+header.hero h1{font-size:clamp(2.3rem,6vw,3.6rem);font-weight:700;letter-spacing:-.01em}
+header.hero h1 .deva{display:block;font-size:.5em;font-weight:400;color:var(--muted);margin-top:6px}
+.lede{font-size:1.2rem;max-width:44rem}
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-top:10px}
+.figures div{background:var(--surface);padding:14px 16px;display:grid;gap:2px}
+.figures .n{font-family:var(--f-display);font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums}
+.figures .l{font-size:.85rem;color:var(--muted);line-height:1.35}
+
+section{padding-block:48px 8px;display:grid;gap:22px}
+.section-intro{display:grid;gap:10px}
+.section-intro p{color:var(--muted);max-width:44rem}
+
+/* tour */
+.site{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start;
+  background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
+.site:nth-of-type(even) .shot{order:2}
+.shot{margin:0;display:grid;gap:8px}
+.shot a{display:block;border-radius:8px;overflow:hidden;border:1px solid var(--rule);line-height:0}
+.shot img{width:100%;height:auto;display:block}
+.shot figcaption{font-size:.8rem;color:var(--muted)}
+.site-body{display:grid;gap:14px;min-width:0}
+.site-head{display:grid;gap:6px}
+.status{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--live);background:var(--live-soft);padding:3px 8px;border-radius:4px;justify-self:start}
+.status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.status.design{color:var(--accent);background:var(--accent-soft)}
+.status.beta{color:var(--muted);background:transparent;border:1px dashed var(--muted)}
+.beta-tag{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--muted);border-radius:3px;padding:0 4px;margin-left:4px;white-space:nowrap}
+.url{font-family:var(--f-mono);font-size:.82rem;word-break:break-all}
+.try{background:var(--accent-soft);border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.try .eyebrow{color:var(--accent)}
+.try p{font-size:.98rem}
+.facts{display:grid;gap:6px;margin:0;padding:0;list-style:none;font-size:.95rem}
+.facts li{padding-left:16px;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:var(--rule)}
+.go{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 14px;border-radius:6px;
+  background:var(--accent);color:var(--surface)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--rule)}
+.btn:hover{filter:brightness(1.08)}
+
+/* links diagram */
+.chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;align-items:stretch}
+.node{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;display:grid;gap:4px;align-content:start}
+.node b{font-family:var(--f-display);font-size:1.05rem}
+.node span{font-size:.85rem;color:var(--muted);line-height:1.4}
+.edge{display:grid;place-items:center;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);text-align:center;padding:6px}
+.chain-row{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr) 92px minmax(0,1fr) 92px minmax(0,1fr);align-items:center}
+.edge i{display:block;font-style:normal;font-size:1.1rem;color:var(--accent)}
+
+/* portfolio */
+.portfolio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pcol{display:grid;gap:8px;align-content:start;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px}
+.pcol ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.93rem}
+
+/* problems */
+.problems{display:grid;gap:0;border-top:1px solid var(--rule)}
+.prob{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding-block:20px;border-bottom:1px solid var(--rule)}
+.prob .num{font-family:var(--f-display);font-size:1.6rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prob-body{display:grid;gap:8px;min-width:0}
+.prob-body p{max-width:46rem}
+.now{font-size:.95rem;border-left:3px solid var(--live);padding-left:12px;max-width:46rem}
+.now b{color:var(--live)}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.92rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+td.upd{color:var(--live)}
+
+/* layers + tiers */
+.layers{display:grid;gap:8px}
+.layer{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 16px}
+.layer b{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);padding-top:3px}
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tier{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:20px;display:grid;gap:10px;align-content:start}
+.tier .price{font-family:var(--f-display);font-size:1.6rem;font-weight:700}
+.tier .price small{font-size:.9rem;font-weight:400;color:var(--muted)}
+.tier h4{margin:6px 0 0;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.tier ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.92rem}
+.tier p{font-size:.95rem}
+.reasons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.reason{display:grid;gap:6px}
+.gaps{margin:0;padding-left:20px;display:grid;gap:8px;max-width:46rem}
+footer{padding-block:56px 0;display:grid;gap:12px;text-align:left}
+footer .close{font-family:var(--f-display);font-size:1.6rem;line-height:1.35;max-width:36rem}
+.small{font-size:.85rem;color:var(--muted)}
+
+.group{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:14px;padding-top:18px}
+.group h3{font-size:1.05rem;font-family:var(--f-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.group::after{content:"";height:1px;background:var(--rule)}
+.reach{border-collapse:collapse;width:100%;min-width:0;font-size:.85rem}
+.reach td{padding:3px 0;border:0;font-weight:400;white-space:normal}
+.reach td.p{width:52px;text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.reach td.b{padding-left:10px;width:42%}
+.reach .bar{height:6px;border-radius:3px;background:var(--accent-soft);overflow:hidden}
+.reach .bar i{display:block;height:100%;background:var(--accent)}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.treebox{overflow:auto;border:1px solid var(--rule);border-radius:10px;background:#fff;max-height:640px}
+.treebox img{max-width:none;width:5400px;height:auto;display:block}
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.person{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:4px;align-content:start}
+.person b{font-family:var(--f-display);font-size:1.1rem}
+.person span{font-size:.9rem;color:var(--muted)}
+.contact{font-family:var(--f-mono);user-select:all}
+.docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.doc{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:20px;display:grid;gap:10px;align-content:start}
+.doc.lead{grid-column:1/-1;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;border-color:var(--accent);box-shadow:var(--shadow)}
+.doc .kind{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.doc h3{font-size:1.25rem}
+.doc.lead h3{font-size:1.6rem}
+.doc p{font-size:.95rem}
+.doc .big{font-family:var(--f-display);font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.doc .big small{display:block;font-family:var(--f-body);font-size:.85rem;font-weight:400;color:var(--muted)}
+.five{margin:0;padding-left:20px;display:grid;gap:6px;font-size:.95rem}
+.example{background:var(--live-soft);border-radius:8px;padding:14px 16px;display:grid;gap:10px;align-content:start;font-size:.93rem}
+.example .eyebrow{color:var(--live)}
+.askcta{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.btn.big{font-size:1.05rem;padding:12px 20px}
+.fundcard{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:26px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;box-shadow:var(--shadow)}
+.fundcard ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.navask{font-weight:600;color:var(--accent)!important}
+.research .prob-body h3 .tag{display:inline-block;margin-left:8px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:4px;vertical-align:middle}
+.tried{width:100%;min-width:0;font-size:.88rem;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+.tried td{padding:6px 10px;white-space:normal;font-weight:400}
+.tried td:first-child{font-weight:600}
+.tried td.r{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.offer{background:var(--accent-soft);border-radius:8px;padding:12px 14px;display:grid;gap:6px;max-width:46rem}
+.offer .eyebrow{color:var(--accent)}
+.offer ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:.93rem}
+.done{font-size:.95rem;border-left:3px solid var(--accent);padding-left:12px;max-width:46rem}
+@media (max-width:860px){
+  .fundcard{grid-template-columns:minmax(0,1fr)}
+  .docs{grid-template-columns:minmax(0,1fr)}
+  .doc.lead{grid-template-columns:minmax(0,1fr)}
+  .who{grid-template-columns:minmax(0,1fr)}
+  .pair{grid-template-columns:minmax(0,1fr)}
+  .site{grid-template-columns:minmax(0,1fr);padding:18px}
+  .site:nth-of-type(even) .shot{order:0}
+  .portfolio,.tiers{grid-template-columns:minmax(0,1fr)}
+  .chain-row{grid-template-columns:minmax(0,1fr)}
+  .edge{padding:4px}
+  .edge i{transform:rotate(90deg)}
+  .reasons{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  body{font-size:16px;padding-inline:16px}
+  nav.top{margin-inline:-16px;padding-inline:16px}
+  nav.top a{font-size:.82rem}
+  .prob{grid-template-columns:minmax(0,1fr);gap:4px}
+  .layer{grid-template-columns:minmax(0,1fr);gap:2px}
+  .figures div:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<nav class="top"><div class="wrap">
+  <b>Sanatana Sampatti</b>
+  <a href="#tour">The sites</a>
+  <a href="#connected">How they connect</a>
+  <a href="#problems">Open problems</a>
+  <a href="#corpus">Corpus</a>
+  <a href="#papers">The thinking</a>
+  <a href="#who">Who we are</a>
+  <a href="#funding">Funding</a>
+  <a class="navask" href="https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx" target="_blank" rel="noopener">Fund this ↗</a>
+</div></nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">For trustees, funders and CSR officers</span>
+  <h1>Sanatana Sampatti<span class="deva">सनातनसम्पत्तिः</span></h1>
+  <p class="lede"><b>We put the foundational texts of Sanātana Dharma, their commentaries, and recordings of their recitation on the web, in a form anyone can read, cite, search and listen to.</b></p>
+  <p class="lede">Most "preserve our heritage" projects are PDF dumps with search. Ours are working sites, and
+  every one below can be opened today. Six of the nine are public betas: they work, but their text,
+  links and figures are still going through verification and cleanup before we call them published
+  editions. Each one links to a page we chose to show the work at its best, so you can click through
+  and judge for yourself.</p>
+  <div class="figures">
+    <div><span class="n">9</span><span class="l">sites you can open today, six of them in beta</span></div>
+    <div><span class="n">8,391</span><span class="l">purāṇa verses tied to the second they are chanted</span></div>
+    <div><span class="n">1,023</span><span class="l">Ṛgveda sūktas where the text follows the chant word by word</span></div>
+    <div><span class="n">13,772</span><span class="l">Mahābhārata names, each with its own card</span></div>
+    <div><span class="n">493,992</span><span class="l">verses in one index that every site checks against</span></div>
+  </div>
+  <div class="askcta"><a class="btn big" href="https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx" target="_blank" rel="noopener">See what you can fund →</a><span class="small">Eight specific results, each with its price, its time and a meter of where it stands.</span></div>
+</header>
+
+<section id="tour">
+  <div class="section-intro col">
+    <span class="eyebrow">Section I · The tour</span>
+    <h2>Nine sites to open, and one in design</h2>
+    <p>The sites are grouped by tradition. Each card names one thing to try, which takes about 30 seconds. Sites marked <b>beta</b> are open to everyone but not final: the text and links are still being checked, and their figures may change. The screenshots were taken on 3 October 2026.</p>
+  </div>
+
+  <div class="group"><h3>Veda</h3></div>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/" target="_blank" rel="noopener"><img src="images/01-yajurveda-ts-1-1-1.jpg" alt="Svarānugamī overlay on Taittirīya Saṃhitā 1.1.1, with the phrase being chanted highlighted and the current word in gold"></a>
+      <figcaption>TS 1.1.1, six seconds in. The phrase being chanted is lit, and the current word is in gold.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status beta">Beta · under verification</span>
+        <h3>Kṛṣṇa Yajurveda: Svarānugamī</h3>
+        <span class="url">hvram1.github.io/yajurveda.sanatana.in</span>
+      </div>
+      <p>The Taittirīya Saṃhitā with the ācārya's recording. Svarānugamī means "follows the svara": as the chant plays, the text moves with it, phrase by phrase and word by word.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open TS 1.1.1, press the <span class="deva">स्वरानुगामी</span> button, then play. Watch the words light up as they are chanted.</p></div>
+      <ul class="facts">
+        <li>Timings come from forced alignment, a method that matches the known text to the audio directly.</li>
+        <li>The same alignment showed that one recording had been cut in the wrong place. We found the error by measurement, not by complaint.</li>
+        <li>Every passage has a "Report Timing Issue" button, so listeners can correct us.</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/" target="_blank" rel="noopener">Open TS 1.1.1</a>
+        <a class="btn ghost" href="https://hvram1.github.io/yajurveda.sanatana.in/" target="_blank" rel="noopener">Site home</a></div>
+    </div>
+  </article>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://hvram1.github.io/rigveda.sanatana.in/sukta/10/129/" target="_blank" rel="noopener"><img src="images/02-rigveda-10-129.jpg" alt="Svarānugamī overlay on Ṛgveda 10.129, the Nāsadīya sūkta, with the current word highlighted"></a>
+      <figcaption>Ṛgveda 10.129, the Nāsadīya sūkta. Five seconds in, the second word is lit.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status beta">Beta · under verification</span>
+        <h3>Ṛgveda: Svarānugamī with Sāyaṇa</h3>
+        <span class="url">hvram1.github.io/rigveda.sanatana.in</span>
+      </div>
+      <p>All ~10,552 ṛks, tagged by Ṛṣi, Devatā and Chandas, with Sāyaṇa's bhāṣya. 1,023 sūktas now carry the time each word starts, so the text keeps pace with the chant.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open the Nāsadīya sūkta (10.129), press <span class="deva">स्वरानुगामी</span>, then play. The sūkta of creation, followed word by word.</p></div>
+      <ul class="facts">
+        <li>The earlier timings came from an off-the-shelf tool (Aeneas). We measured them, found them wrong in places, and replaced them with our own forced alignment: 10,475 ṛks re-timed against their own audio.</li>
+        <li>The check also found 163 ṛks with no usable timing at all, now rebuilt, and five sūktas whose audio files were cut half a verse late, now re-cut.</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://hvram1.github.io/rigveda.sanatana.in/sukta/10/129/" target="_blank" rel="noopener">Open Ṛgveda 10.129</a>
+        <a class="btn ghost" href="https://hvram1.github.io/rigveda.sanatana.in/" target="_blank" rel="noopener">Site home</a></div>
+    </div>
+  </article>
+
+  <div class="group"><h3>Itihāsa and Purāṇa</h3></div>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://sanatana.in/mahabharata/listing/parva/bhishmaparva?page=3&amp;id=P06_U03_A025_S001" target="_blank" rel="noopener"><img src="images/03-mahabharata-bhishma.jpg" alt="Bhagavad Gītā 1.1 on the Mahābhārata site, with Nīlakaṇṭha's commentary below each verse"></a>
+      <figcaption>Bhagavad Gītā 1.1 and 1.2 in the Bhīṣmaparva. Below each verse is Nīlakaṇṭha's Bhāratabhāvadīpa.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status">Live</span>
+        <h3>Mahābhārata with Nīlakaṇṭha, and the Harivaṃśa</h3>
+        <span class="url">sanatana.in/mahabharata</span>
+      </div>
+      <p>The whole Mahābhārata, with the Harivaṃśa as its nineteenth parva, organised by parva, upaparva and adhyāya. Every verse carries Nīlakaṇṭha Caturdhara's commentary, the Bhāratabhāvadīpa. Nīlakaṇṭha compared manuscripts from many regions in the 17th century, which makes his text the first critical edition of the epic.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open the Bhagavad Gītā and read Nīlakaṇṭha on <span class="deva">धर्मक्षेत्रे कुरुक्षेत्रे</span>. Then open the characters page and search for any name in Devanāgarī, IAST or English.</p></div>
+      <ul class="facts">
+        <li><span class="mono">101</span> upaparvans, and the Harivaṃśa in its three parts: Harivaṃśa, Viṣṇu and Bhaviṣya parvas.</li>
+        <li><span class="mono">13,772</span> characters and places from Sorensen's <i>Index to the Names in the Mahābhārata</i>, each with a card.</li>
+        <li>Facts, saṃvādas, ākhyānas and stotras, a war timeline and a map of places.</li>
+        <li>The scanned Chitrashala volumes are linked for checking, and readers can report errors from any verse.</li>
+      </ul>
+      <figure class="shot">
+        <a href="https://sanatana.in/mahabharata/entity/characters" target="_blank" rel="noopener"><img src="images/04-mahabharata-characters.jpg" alt="The Mahābhārata characters page, listing Tier 1 characters such as Abhimanyu, Arjuna, Bhīma and Bhīṣma"></a>
+        <figcaption>The characters page: 13,772 entries, searchable in three scripts.</figcaption>
+      </figure>
+      <div class="go"><a class="btn" href="https://sanatana.in/mahabharata/listing/parva/bhishmaparva?page=3&amp;id=P06_U03_A025_S001" target="_blank" rel="noopener">Open the Gītā</a>
+        <a class="btn ghost" href="https://sanatana.in/mahabharata/listing/parva/harivamsha?page=1&amp;id=P19_U01" target="_blank" rel="noopener">Harivaṃśa</a>
+        <a class="btn ghost" href="https://sanatana.in/mahabharata/application/views/Mbh_feature_Showcase.html" target="_blank" rel="noopener">Guided tour</a></div>
+    </div>
+  </article>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://hvram1.github.io/purana-atlas/kartika-atlas.html#1.30" target="_blank" rel="noopener"><img src="images/05-purana-atlas-kartika.jpg" alt="Kārtika Māsa Māhātmya atlas, verse 1.30, with three reciter lanes and their timestamps"></a>
+      <figcaption>Kārtika Māhātmya 1.30, heard in three series by two upanyāsakars. Every chip is a recording and a timestamp.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status beta">Beta · under verification</span>
+        <h3>Purāṇa Atlas</h3>
+        <span class="url">hvram1.github.io/purana-atlas</span>
+      </div>
+      <p>An upanyāsam is a discourse in Tamil, Telugu or English in which the speaker chants Sanskrit verses without warning. The atlas finds each verse in the recording and ties it to the exact second it is chanted. Click a verse and you hear it.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open Kārtika 1.30 and click a timestamp in any lane. Then try another lane and hear a different reciter chant the same verse.</p></div>
+      <ul class="facts">
+        <li><span class="mono">8,391</span> of <span class="mono">12,499</span> verses placed on the clock, from <span class="mono">182</span> recordings. How much of each text the recordings reach:</li>
+      </ul>
+      <table class="reach"><tr><td>Adhyātma Rāmāyaṇa <span class="small mono">4,000 of 4,309</span></td><td class="p">92.8%</td><td class="b"><div class="bar"><i style="width:92.8%"></i></div></td></tr><tr><td>Varāha <span class="small mono">234 of 313</span></td><td class="p">74.8%</td><td class="b"><div class="bar"><i style="width:74.8%"></i></div></td></tr><tr><td>Virāṭa Parva <span class="small mono">1,687 of 2,262</span></td><td class="p">74.6%</td><td class="b"><div class="bar"><i style="width:74.6%"></i></div></td></tr><tr><td>Śānti Parva (ch. 41–47) <span class="small mono">139 of 227</span></td><td class="p">61.2%</td><td class="b"><div class="bar"><i style="width:61.2%"></i></div></td></tr><tr><td>Kārtika Māhātmya <span class="small mono">1,094 of 1,817</span></td><td class="p">60.2%</td><td class="b"><div class="bar"><i style="width:60.2%"></i></div></td></tr><tr><td>Garuḍa <span class="small mono">239 of 452</span></td><td class="p">52.9%</td><td class="b"><div class="bar"><i style="width:52.9%"></i></div></td></tr><tr><td>Vaiśākha Māhātmya <span class="small mono">810 of 1,759</span></td><td class="p">46.0%</td><td class="b"><div class="bar"><i style="width:46.0%"></i></div></td></tr><tr><td>Viṣṇu <span class="small mono">154 of 338</span></td><td class="p">45.6%</td><td class="b"><div class="bar"><i style="width:45.6%"></i></div></td></tr><tr><td>Māgha Māhātmya <span class="small mono">34 of 1,022</span></td><td class="p">3.3%</td><td class="b"><div class="bar"><i style="width:3.3%"></i></div></td></tr></table>
+      <ul class="facts">
+        <li>A Śrāddha atlas over the Smṛtimuktāphalam: 208 recordings, 41.8 hours.</li>
+        <li>Two texts have no printed edition at all. For those, the site sets two reciters against each other (Tulākāverī) or indexes the recording itself (Śrāvaṇa).</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://hvram1.github.io/purana-atlas/kartika-atlas.html#1.30" target="_blank" rel="noopener">Open Kārtika 1.30</a>
+        <a class="btn ghost" href="https://hvram1.github.io/purana-atlas/" target="_blank" rel="noopener">All atlases</a></div>
+    </div>
+  </article>
+
+  <div class="group"><h3>Dharmaśāstra</h3></div>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://hvram1.github.io/historyofdharmasastra/vol-4/chapter-xi-t%C4%ABrthay%C4%81tr%C4%81-pilgrimages-to-holy-places.html" target="_blank" rel="noopener"><img src="images/06-kane-tirthayatra.jpg" alt="History of Dharmaśāstra, Volume IV chapter XI on Tīrthayātrā, with the synopsis open and its play button"></a>
+      <figcaption>Volume IV, Chapter XI, Tīrthayātrā. The synopsis is open, with its play button, and the texts Kane cites are listed on the left.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status beta">Beta · under verification</span>
+        <h3>Kane's History of Dharmaśāstra</h3>
+        <span class="url">hvram1.github.io/historyofdharmasastra</span>
+      </div>
+      <p>P. V. Kane's five volumes, in eight parts, as a reading edition. Every paragraph and footnote has its own address. There is a glossary, a timeline and subject indexes, and each section has a spoken synopsis.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open the Tīrthayātrā chapter, expand "Kane's Synopsis" and press play to hear the chapter summarised in about a minute.</p></div>
+      <ul class="facts">
+        <li><span class="mono">171</span> spoken synopses across the book.</li>
+        <li><span class="mono">611</span> footnotes now show where the verse they quote is found. We find each one by matching Kane's own Sanskrit words, never his page numbers.</li>
+        <li>Paragraph addresses let other sites cite a sentence, not just a file. The SMP edition below does exactly that.</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://hvram1.github.io/historyofdharmasastra/vol-4/chapter-xi-t%C4%ABrthay%C4%81tr%C4%81-pilgrimages-to-holy-places.html" target="_blank" rel="noopener">Open Tīrthayātrā</a>
+        <a class="btn ghost" href="https://hvram1.github.io/historyofdharmasastra/" target="_blank" rel="noopener">Site home</a></div>
+    </div>
+  </article>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://hvram1.github.io/smp/smp6.html#SMP:V6:Q0394" target="_blank" rel="noopener"><img src="images/07-smp-quotation.jpg" alt="Smṛtimuktāphalam, Śrāddhakāṇḍa: a Sanskrit quotation with its Tamil rendering and a link to the paragraph in Kane where the same words appear"></a>
+      <figcaption>A verse in the Śrāddhakāṇḍa, its Tamil rendering, and at the foot the line "Kane prints this at vol-1-part-1 · 45-pulastya".</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status beta">Beta · under verification</span>
+        <h3>Smṛtimuktāphalam, with the Tamil</h3>
+        <span class="url">hvram1.github.io/smp</span>
+      </div>
+      <p>Vaidyanātha Dīkṣita's digest of dharmaśāstra, in its Tamil edition, in seven kāṇḍas. The Sanskrit mūla sits beside the Tamil rendering, and the book's own contents list is the index. Every authority it quotes is searchable: Manu, Yājñavalkya, Devala and 127 more in the Śrāddhakāṇḍa alone.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open the linked quotation and follow "Kane prints this" at its foot. It lands on the exact paragraph in Kane where the same words appear.</p></div>
+      <ul class="facts">
+        <li><span class="mono">103</span> links from the digest into Kane, across 50 chapters. Each one is checked on every rebuild.</li>
+        <li><span class="mono">69</span> places where Kane mentions the digest now open the edition.</li>
+        <li>Transcribed from scans published by svradhakrishnasastri.in, with thanks.</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://hvram1.github.io/smp/smp6.html#SMP:V6:Q0394" target="_blank" rel="noopener">Open the quotation</a>
+        <a class="btn ghost" href="https://hvram1.github.io/smp/" target="_blank" rel="noopener">All seven kāṇḍas</a></div>
+    </div>
+  </article>
+
+  <div class="group"><h3>Vedānta</h3></div>
+
+  <article class="site">
+    <figure class="shot">
+      <div class="pair">
+        <a href="https://advaitabharati.sanatanasampatti.in/display/bhashya/Isha?lang=en" target="_blank" rel="noopener"><img src="images/08-advaitabharati-isha-en.jpg" alt="Śaṅkara's Īśāvāsya bhāṣya with its English translation"></a>
+        <a href="https://advaitabharati.sanatanasampatti.in/display/bhashya/Isha?lang=ta" target="_blank" rel="noopener"><img src="images/09-advaitabharati-isha-ta.jpg" alt="The same passage of the Īśāvāsya bhāṣya with its Tamil translation"></a>
+      </div>
+      <figcaption>The opening of Śaṅkara's Īśāvāsya bhāṣya: English on the left, Tamil on the right. Each Sanskrit passage sits above its translation.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status">Live</span>
+        <h3>Advaita Bhāratī</h3>
+        <span class="url">advaitabharati.sanatanasampatti.in</span>
+      </div>
+      <p>Śaṅkara's commentaries on the Prasthānatraya, the ten principal Upaniṣads, the Bhagavad Gītā and the Brahmasūtra, with translations into Indian languages. Reading the bhāṣya needs deep Sanskrit; reading it beside an authoritative translation opens it to everyone else.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open the Īśāvāsya bhāṣya in English, then switch the language to Tamil. The same Sanskrit passage now sits above the Tamil.</p></div>
+      <ul class="facts">
+        <li><span class="mono">14</span> bhāṣyas: eleven on the Upaniṣads (Kena in both its pada and vākya bhāṣyas), the Gītā and the Brahmasūtra.</li>
+        <li>Built in the same way as Sringeri's advaitasharada.sringeri.net, so the two can be read together.</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://advaitabharati.sanatanasampatti.in/display/bhashya/Isha?lang=en" target="_blank" rel="noopener">Īśāvāsya in English</a>
+        <a class="btn" href="https://advaitabharati.sanatanasampatti.in/display/bhashya/Isha?lang=ta" target="_blank" rel="noopener">in Tamil</a>
+        <a class="btn ghost" href="https://advaitabharati.sanatanasampatti.in/Works" target="_blank" rel="noopener">All works</a></div>
+    </div>
+  </article>
+
+  <article class="site">
+    <figure class="shot">
+      <a href="https://advaitadhara.sanatana.in/profile/acharya/0026" target="_blank" rel="noopener"><img src="images/10-advaitadhara-profile.jpg" alt="Advaitadhārā profile of Śaṅkara Bhagavatpāda, 788–820 A.D., with his lineage, introduction and works"></a>
+      <figcaption>The profile of Śaṅkara Bhagavatpāda: dates, place in the lineage, an introduction, and his works with the editions they are printed in.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status">Live</span>
+        <h3>Advaitadhārā</h3>
+        <span class="url">advaitadhara.sanatana.in</span>
+      </div>
+      <p>The guru-śiṣya paramparā of Advaita as a family tree, from Nārāyaṇa through Vyāsa, Gauḍapāda and Śaṅkara to the ācāryas of later centuries. Each name opens a profile with dates, an introduction and the works that ācārya wrote. A companion catalogue lists Advaita literature by prasthāna.</p>
+      <div class="try"><span class="eyebrow">Try this</span>
+        <p>Open the lineage, follow the line to Śaṅkara, and click his name to see his works. Toggle between Devanāgarī and Roman script.</p></div>
+      <ul class="facts">
+        <li><span class="mono">220</span> names in the paramparā.</li>
+        <li>The same data prints as a wall chart for exhibitions; the full tree is below.</li>
+      </ul>
+      <div class="go"><a class="btn" href="https://advaitadhara.sanatana.in/Lineage" target="_blank" rel="noopener">Open the lineage</a>
+        <a class="btn ghost" href="https://advaitadhara.sanatana.in/profile/acharya/0026" target="_blank" rel="noopener">Śaṅkara's profile</a>
+        <a class="btn ghost" href="https://advaitadhara.sanatana.in/Works" target="_blank" rel="noopener">Works</a></div>
+    </div>
+  </article>
+
+  <figure class="shot">
+    <div class="treebox" tabindex="0" aria-label="The Advaita paramparā tree; scroll sideways to follow it"><img src="images/11-advaita-lineage-tree.jpg" alt="The full Advaita guru-śiṣya paramparā as a printed tree, from Nārāyaṇa on the left to recent ācāryas on the right, coloured by branch"></div>
+    <figcaption>The whole paramparā as printed for display, coloured by branch. Scroll sideways to follow it from Nārāyaṇa on the left.</figcaption>
+  </figure>
+
+  <div class="group"><h3>Practice</h3></div>
+
+  <article class="site">
+    <figure class="shot">
+      <img src="images/12-abhyasa-results-mock.jpg" alt="Design mock of the Vedic Abhyāsa results view: a Chamaka Ghanam line with three syllables marked higher or lower, and the verdict 3 places to fix">
+      <figcaption>Design mock. The verdicts shown are invented, to show the layout: three syllables to fix, each marked higher or lower.</figcaption>
+    </figure>
+    <div class="site-body">
+      <div class="site-head">
+        <span class="status design">In design</span>
+        <h3>Vedic Abhyāsa</h3>
+        <span class="url">Not yet public</span>
+      </div>
+      <p>A chanting practice tool. The student chants a line, and the app compares it with the ācārya's recording syllable by syllable. It shows which svaras went higher or lower than they should, and lets the student hear the difference.</p>
+      <ul class="facts">
+        <li>Śrī Rudram and Chamakam in all four pāṭhas (saṃhitā, krama, jaṭā, ghana). That is 1,468 ghana lines for Rudram and 1,182 for Chamakam, with the ācārya's ghana class already labelled.</li>
+        <li>We judge it with planted errors. A line is recorded with known mistakes, and the tool must catch them. It is not yet accurate enough to publish, and reaching that bar is one of the results on the funding page.</li>
+      </ul>
+      <figure class="shot">
+        <img src="images/13-abhyasa-home.jpg" alt="Vedic Abhyāsa demo home: Śrī Rudram and Chamakam, each in saṃhitā, krama, jaṭā and ghana">
+        <figcaption>The demo's text list: four pāṭhas for each text, with the ācārya's ghana recordings in place.</figcaption>
+      </figure>
+    </div>
+  </article>
+</section>
+
+<section id="connected">
+  <div class="section-intro col">
+    <span class="eyebrow">Section II · Why one team can do this much</span>
+    <h2>The sites cite each other</h2>
+    <p>They are not separate projects. They share one verse index, and the links between them are checked automatically every time a site is refreshed, so a broken link is caught before it reaches the public.</p>
+  </div>
+  <div class="chain-row">
+    <div class="node"><b>Purāṇa Atlas</b><span>a chanted verse, found in the recording</span></div>
+    <div class="edge"><i>→</i>matched by its words</div>
+    <div class="node"><b>One verse index</b><span>493,992 verses: purāṇas, Mahābhārata, Veda, Advaita</span></div>
+    <div class="edge"><i>→</i>Kane's footnotes matched by text</div>
+    <div class="node"><b>History of Dharmaśāstra</b><span>611 footnotes located, at paragraph level</span></div>
+    <div class="edge"><i>⇄</i>103 links in, 69 back</div>
+    <div class="node"><b>Smṛtimuktāphalam</b><span>Sanskrit with Tamil, seven kāṇḍas</span></div>
+  </div>
+  <p class="col small">Adding a corpus to the index improves every site at once: the same text that lets the atlas recognise a chanted verse also lets Kane's footnotes find it.</p>
+</section>
+
+<section id="portfolio">
+  <div class="section-intro col">
+    <span class="eyebrow">Section III · The portfolio</span>
+    <h2>Open today, building, and partnered</h2>
+  </div>
+  <div class="portfolio">
+    <div class="pcol"><span class="status">Open today</span>
+      <ul>
+        <li><a href="https://hvram1.github.io/yajurveda.sanatana.in/" target="_blank" rel="noopener">Kṛṣṇa Yajurveda</a>, with the OCR pipeline <span class="beta-tag">beta</span></li>
+        <li><a href="https://hvram1.github.io/rigveda.sanatana.in/" target="_blank" rel="noopener">Ṛgveda</a>, with Sāyaṇa <span class="beta-tag">beta</span></li>
+        <li><a href="https://sanatana.in/mahabharata" target="_blank" rel="noopener">Mahābhārata</a>, with Nīlakaṇṭha and the Harivaṃśa</li>
+        <li><a href="https://hvram1.github.io/purana-atlas/" target="_blank" rel="noopener">Purāṇa Atlas</a> <span class="beta-tag">beta</span></li>
+        <li><a href="https://hvram1.github.io/historyofdharmasastra/" target="_blank" rel="noopener">History of Dharmaśāstra</a> <span class="beta-tag">beta</span></li>
+        <li><a href="https://hvram1.github.io/smp/" target="_blank" rel="noopener">Smṛtimuktāphalam</a> <span class="beta-tag">beta</span></li>
+        <li><a href="https://advaitabharati.sanatanasampatti.in/Works" target="_blank" rel="noopener">Advaita Bhāratī</a></li>
+        <li><a href="https://advaitadhara.sanatana.in/Lineage" target="_blank" rel="noopener">Advaitadhārā</a></li>
+        <li><a href="https://hvram1.github.io/jagadguru-anugraha-bhashanam/" target="_blank" rel="noopener">Jagadguru Anugraha Bhāṣaṇam</a> <span class="beta-tag">beta</span></li>
+      </ul></div>
+    <div class="pcol"><span class="status design">In development</span>
+      <ul>
+        <li>Vedic Abhyāsa, chanting practice</li>
+        <li>Sanatana.in, the umbrella portal, under the guidance of the Jagadguru of Sringeri</li>
+        <li>Ākārabhāratī: 20th-century Indic thought in Indian languages, digitised from books and journals (Kannada pilot)</li>
+      </ul></div>
+    <div class="pcol"><span class="eyebrow">Partners</span>
+      <ul>
+        <li><b>Sringeri Śāradā Pīṭham</b>: advaitasharada.sringeri.net, Ādi Śaṅkara's works.</li>
+        <li><b>Jaiminīya Sāmaveda</b>, with Sri Sekhar Narayanaswamy: Sāma Saṃhitā, Āraṇya Gānam and curated collections. We mentor and give technical support.</li>
+      </ul></div>
+  </div>
+</section>
+
+<section id="problems" class="research">
+  <div class="section-intro col">
+    <span class="eyebrow">Section IV · Open problems, for collaboration</span>
+    <h2>Four open problems we are working on, and would like to work on with others</h2>
+    <p>These are research problems, not bugs. Each is specific to Indic texts and recordings, there is no commercial pull to solve it, and we have measured where today's methods stop. We are working on all four, and we would welcome collaborators: a university lab, a research group or individual researchers who want to work on them alongside us. The measurements are our own, taken in September and October 2026.</p>
+  </div>
+  <div class="problems">
+    <div class="prob"><span class="num">1</span><div class="prob-body">
+      <h3>A "Shazam" for Vedic chant <span class="tag">audio</span></h3>
+      <p>Hold a phone up to anyone chanting the Veda and be told which mantra it is, in about 15 seconds, on the phone itself, with no cloud speech service. The chanter can be anyone, not only the people in our own recordings.</p>
+      <p>The text side is solved. Ten seconds of correctly heard chant names its place in the Taittirīya Saṃhitā or the Ṛgveda about 97% of the time. The difficulty is hearing the chant: turning a new chanter's voice into something that matches the text. We tried five approaches on the same clips:</p>
+      <div class="tablewrap" style="border:0;background:none"><table class="tried">
+        <tr><td>Audio fingerprints (how Shazam works)</td><td class="r">140 / 140</td><td>the same recording, even after a phone-call chain and added noise</td></tr>
+        <tr><td></td><td class="r">0 / 104</td><td>the same text, a different chanter. Fingerprints recognise recordings, not mantras.</td></tr>
+        <tr><td>Speech model hears letters, then text search</td><td class="r">36 / 39</td><td>right answers on one clear voice</td></tr>
+        <tr><td></td><td class="r">29 / 40</td><td>clips of a group chanting the whole Rudram in which it heard almost nothing</td></tr>
+        <tr><td>Best music "cover-song" model (2025)</td><td class="r">21 / 104</td><td>chance is about 7. A chant by another voice looks almost unrelated to it.</td></tr>
+      </table></div>
+      <p>Two more approaches, which compare the sound shapes directly, sit between these. The four approaches other than fingerprints all work on the clear voice and all fail on the group recording. Four different matchers failing on one recording means the fault is in what the model hears, not in the matching. We do not yet know why it hears some recordings and not others. It is not the number of voices: a two-voice Ṛgveda recording decodes cleanly and a two-voice Rudram does not.</p>
+      <div class="offer"><span class="eyebrow">What we bring to a collaboration</span><ul>
+        <li>1,504 lines of Śrī Rudram ghana, each aligned to the second, from two chanters, plus a group recording of the whole Rudram</li>
+        <li>61.5 hours of Yajurveda and 42 hours of Ṛgveda, aligned word by word to the text</li>
+        <li>The fixed test clips, the scripts for all five approaches, and their results</li>
+      </ul></div>
+      <p class="done"><b>The goal:</b> a 15-second clip of a chanter who is in none of our recordings is named correctly, on a laptop CPU or a phone, and the system says "I don't know" rather than guess.</p>
+    </div></div>
+    <div class="prob"><span class="num">2</span><div class="prob-body">
+      <h3>Hearing a student's svara mistakes <span class="tag">audio</span></h3>
+      <p>A pāṭhaśālā student chants a line, and the tool says which syllables went high or low against the ācārya. Pitch tools are built for singing a melody. A Vedic svara is an accent on one syllable, relative to its neighbours, and the ācārya's reference is often two chanters in unison, which a standard pitch tracker cannot follow.</p>
+      <div class="tablewrap" style="border:0;background:none"><table class="tried">
+        <tr><td>Our first prototype, on the ācārya's own recording</td><td class="r">6 / 26</td><td>syllables where its reading agreed with the text</td></tr>
+        <tr><td>Current method, mistakes planted in a recorded line</td><td class="r">100% · 75%</td><td>raised and lowered svaras caught; median timing error 0.04 s</td></tr>
+        <tr><td>Lines longer than eight syllables</td><td class="r">not measured</td><td>the median Chamaka line is 18 syllables, the longest 42</td></tr>
+      </table></div>
+      <p>The planted-error test is a good start, but it was measured on one student recording with short lines and artificial mistakes. Real students make real mistakes on long lines, and nobody has yet shown a method that catches them.</p>
+      <div class="offer"><span class="eyebrow">What we bring to a collaboration</span><ul>
+        <li>Recordings of Śrī Rudram and Chamakam, with 1,504 Rudram lines and 685 Chamakam lines aligned to the second</li>
+        <li>A tool that turns any recorded take into test material, with known mistakes planted in it</li>
+        <li>The methods tried so far and their scores</li>
+      </ul></div>
+      <p class="done"><b>The goal:</b> on a phone, in real students' recordings, flag the syllables an ācārya would correct, and leave alone the ones an ācārya would not.</p>
+    </div></div>
+    <div class="prob"><span class="num">3</span><div class="prob-body">
+      <h3>Hearing every verse in a mixed-language discourse <span class="tag">audio</span></h3>
+      <p>In an upanyāsa the speaker moves from Tamil to chanted Sanskrit and back, sometimes in mid-sentence. Speech models transcribe each language well on its own, but where the speaker switches they can silently drop whole stretches, and nothing in their output says so.</p>
+      <div class="tablewrap" style="border:0;background:none"><table class="tried">
+        <tr><td>Virāṭa Parva</td><td class="r">290 verses</td><td>never written down by the transcription pass</td></tr>
+        <tr><td>One Kārtika discourse</td><td class="r">4 min 27 s</td><td>of alternating Sanskrit and Tamil with no transcript at all, including the hymn a listener asked for</td></tr>
+        <tr><td>Across 454 recordings</td><td class="r">3,557 verses</td><td>expected and missing, in 707 stretches totalling 21.7 hours</td></tr>
+        <tr><td>Placing the known text straight into those stretches</td><td class="r">1,076 / 5,525</td><td>half-verses that pass both of our checks</td></tr>
+      </table></div>
+      <p>When we know which text is being chanted, we can place it directly into the audio. When we do not, or when the speaker paraphrases, we cannot. Language identification does not find the gaps either: in two of three stretches a listener confirmed as chant, it labelled the audio "mixed" rather than Sanskrit.</p>
+      <div class="offer"><span class="eyebrow">What we bring to a collaboration</span><ul>
+        <li>190 discourses in Tamil, Sanskrit and English, with their transcripts timed to the second</li>
+        <li>An independent language-identification pass over all of them, and the list of missing stretches with their times</li>
+        <li>Placements a listener has confirmed by ear, to test against</li>
+      </ul></div>
+      <p class="done"><b>The goal:</b> a transcript of a mixed Tamil–Sanskrit discourse that misses no chanted verse, checked against the audio rather than against the model's own output.</p>
+    </div></div>
+    <div class="prob"><span class="num">4</span><div class="prob-body">
+      <h3>Find the moment someone remembers <span class="tag">search</span></h3>
+      <p>People remember a discourse by its story, not by its words: <i>"the verse the devas chanted after Jalandhara was killed."</i> They ask in Tamil, English or Sanskrit, and they are usually a little wrong. In that case the hymn is to the Ādiśaktis, not to Śiva. The answer should be the recording, playing at the right second.</p>
+      <p>The material is ready. 190 recorded discourses have 32,200 transcribed sentences, and every one is timed to the second by forced alignment. 19,545 of them are the speaker's own Tamil explanation. We tested four ways of searching it on 13 questions with known answers, plus 3 questions whose answer is not in the recordings:</p>
+      <div class="tablewrap" style="border:0;background:none"><table class="tried">
+        <tr><td>Finding the right chapter</td><td class="r">10–11 / 13</td><td>mostly solved, by a language model reading the chapter headings or the text</td></tr>
+        <tr><td>Playing the right moment first</td><td class="r">8 / 13</td><td>best result, from searching by meaning across languages</td></tr>
+        <tr><td>Saying "not here" when it is not</td><td class="r">0 / 3</td><td>that same search always answers. No score threshold separates right answers from wrong ones.</td></tr>
+      </table></div>
+      <p>The two kinds of search fail on different questions. Meaning-based search crosses languages but misses names written in another script. Sound-based matching catches names like Jalandhara, जलन्धर and ஜலந்தரன் as one word, but cannot connect "seeds" to बीजानि. And some answers were never transcribed at all, which is problem 3.</p>
+      <div class="offer"><span class="eyebrow">What we bring to a collaboration</span><ul>
+        <li>The timed transcripts of 190 discourses: Tamil, Sanskrit and English, with the source text each one expounds</li>
+        <li>A test set of 36 remembered-context questions across six series, with answers written as times, plus the scoring harness</li>
+        <li>The four searches and their scores, so a new idea can be compared on the same footing</li>
+      </ul></div>
+      <p class="done"><b>The goal:</b> a question asked in any of the three languages starts the right recording within 30 seconds of the answer, and returns nothing for a question the recordings do not answer.</p>
+    </div></div>
+  </div>
+  <div class="col" style="display:grid;gap:8px">
+    <h3>Already solved, and in use</h3>
+    <ul class="gaps">
+      <li><b>Citations found by their words, not their numbers.</b> 611 of Kane's footnotes are located by matching the Sanskrit he quotes against 493,992 verses. A shuffled control finds none.</li>
+      <li><b>The text follows the chant.</b> Our own forced alignment gives word timing on 1,023 Ṛgveda sūktas, and it found recordings cut in the wrong place on both Veda sites.</li>
+      <li><b>No model is asked what time it is.</b> In the Purāṇa Atlas the model supplies only the words. Every timestamp comes from the audio itself or from a person who listened.</li>
+      <li><b>OCR that keeps svara marks and conjuncts,</b> used for the Yajurveda and for seven volumes of mixed Sanskrit and Tamil in the Smṛtimuktāphalam.</li>
+    </ul>
+  </div>
+  <p class="col">If any of these problems interests you or your group, write to <span class="contact">secretary@sanatanasampatti.in</span> and we can talk about how to work on it together.</p>
+</section>
+
+<section id="corpus">
+  <div class="section-intro col">
+    <span class="eyebrow">Section V · The substrate</span>
+    <h2>The corpus underneath</h2>
+    <p>Every public page rests on months of cleaning, structuring and alignment that never shows up in a screenshot. Paying for that work pays for the foundation every other layer depends on. Where a corpus has a public site, the state links to it.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Corpus</th><th>Scope</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td>18 Mahāpurāṇas</td><td>All 18 accessible</td><td><a href="https://hvram1.github.io/purana-atlas/" target="_blank" rel="noopener">9 atlases in beta</a>; 8,391 verses on the clock from 182 recordings</td></tr>
+      <tr><td>Ṛgveda + Sāyaṇa</td><td>~10,552 ṛks</td><td><a href="https://hvram1.github.io/rigveda.sanatana.in/" target="_blank" rel="noopener">Beta</a>: tagged by Ṛṣi, Devatā and Chandas; word timing on 1,023 sūktas</td></tr>
+      <tr><td>Kṛṣṇa Yajurveda + bhāṣyas</td><td>Saṃhitā; Bhaṭṭa Bhāskara and Sāyaṇa on kāṇḍas 1–3</td><td><a href="https://hvram1.github.io/yajurveda.sanatana.in/" target="_blank" rel="noopener">Beta</a>: cleaned and aligned; Svarānugamī timed by forced alignment</td></tr>
+      <tr><td>Prasthānatraya + bhāṣyas</td><td>Upaniṣads, Brahmasūtra, Gītā + Śaṅkara</td><td><a href="https://advaitabharati.sanatanasampatti.in/Works" target="_blank" rel="noopener">Live</a>: 14 bhāṣyas with English and Tamil</td></tr>
+      <tr><td>Mahābhārata</td><td>94,000+ verses, 19 books</td><td><a href="https://sanatana.in/mahabharata" target="_blank" rel="noopener">Live</a>: with Nīlakaṇṭha's commentary; 13,772 named entities</td></tr>
+      <tr><td>Harivaṃśa</td><td>16,100 verses</td><td><a href="https://sanatana.in/mahabharata/listing/parva/harivamsha?page=1&amp;id=P19_U01" target="_blank" rel="noopener">Live</a> as the Mahābhārata's 19th parva; 80% with English</td></tr>
+      <tr><td>Kane, <i>History of Dharmaśāstra</i></td><td>30,520 references</td><td><a href="https://hvram1.github.io/historyofdharmasastra/" target="_blank" rel="noopener">Beta</a>; 611 footnotes located by matching the words; 171 spoken synopses</td></tr>
+      <tr><td>Smṛtimuktāphalam</td><td>7 kāṇḍas, Sanskrit + Tamil</td><td><a href="https://hvram1.github.io/smp/" target="_blank" rel="noopener">Beta</a>: indexed, cross-linked to Kane</td></tr>
+      <tr><td>Advaita paramparā</td><td>220 ācāryas and their works</td><td><a href="https://advaitadhara.sanatana.in/Lineage" target="_blank" rel="noopener">Live</a>: lineage, profiles, works catalogue</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="method">
+  <div class="section-intro col">
+    <span class="eyebrow">Section VI · The reusable stack</span>
+    <h2>Same four layers, every tradition</h2>
+  </div>
+  <div class="layers">
+    <div class="layer"><b>1 · Source</b><span>The canonical text in a trusted form, never copied from unvetted sources.</span></div>
+    <div class="layer"><b>2 · Structure</b><span>Verse, chapter and parva mapping, page indices, citation graphs.</span></div>
+    <div class="layer"><b>3 · References</b><span>Entity cards and cross-links, with every correction written down.</span></div>
+    <div class="layer"><b>4 · Lens</b><span>A reading edition, an atlas, a practice tool, each suited to its text.</span></div>
+  </div>
+  <p class="col small">Each project lowers the cost of the next. A rupee spent on one corpus does not stay there: it shows up in every site that reads the shared index.</p>
+</section>
+
+<section id="papers">
+  <div class="section-intro col">
+    <span class="eyebrow">Section VII · What you would be funding</span>
+    <h2>The thinking behind the sites</h2>
+    <p>The sites are the visible part. These four documents say what problem they solve, what is proposed next, and how the machinery is built. Start with the first: it is the clearest statement of why this work matters.</p>
+  </div>
+  <div class="docs">
+    <article class="doc lead">
+      <div style="display:grid;gap:12px;align-content:start;min-width:0">
+        <span class="kind">Problem statement</span>
+        <h3>How the Index Gets Made</h3>
+        <p>A story can be retold accurately for a century and still lose the one thing that makes it checkable: its address in the text. This note sets out what is missing between the wikis, which give stories without addresses, and machine aggregation, which gives addresses without judgement.</p>
+        <ol class="five">
+          <li>Retelling keeps the story and loses the address.</li>
+          <li>Machines supply addresses at scale, but cannot tell one sense of a name from another.</li>
+          <li>The missing step is trained reading, recorded as signed decisions.</li>
+          <li>That reading can be coursework: studying a verse closely is the same act as ruling on it.</li>
+          <li>Where a recording exists, the finished citation plays.</li>
+        </ol>
+        <div class="go"><a class="btn" href="https://hvram1.github.io/purana-atlas/docs/purana-scholar-workbench.html" target="_blank" rel="noopener">Read the problem statement</a></div>
+      </div>
+      <div class="example">
+        <span class="eyebrow">The example it opens with</span>
+        <p>A well-known encyclopaedia tells how Satyabhāmā was reborn as Kṛṣṇa's queen, "through her purity of life, austerities and devotion to Viṣṇu". It cites no Purāṇa, no chapter and no verse.</p>
+        <p>The passage stands at Kārtika Māsa Māhātmya 13. Its Sanskrit heading gives the cause as <span class="deva">कार्तिकव्रतपुण्येन</span>, by the merit of the Kārtika observance. In a text written to glorify that one observance, the retelling has dissolved it into general piety.</p>
+        <p>Without the verse address, nobody could see that this had happened. On the Purāṇa Atlas the verse has an address and a recording that plays it.</p>
+      </div>
+    </article>
+    <article class="doc">
+      <span class="kind">Proposal</span>
+      <h3>Purāṇa Audio Project</h3>
+      <p>Commission recitation of the Purāṇas that can be addressed verse by verse from the moment it is recorded. The atlases are the working proof.</p>
+      <p class="big">351,225<small>verses of the eighteen Mahāpurāṇas whose text we hold in full, none yet reachable by ear at its own address</small></p>
+      <div class="go"><a class="btn ghost" href="https://hvram1.github.io/purana-atlas/docs/purana-audio.html" target="_blank" rel="noopener">Read the proposal</a></div>
+    </article>
+    <article class="doc">
+      <span class="kind">Proposal</span>
+      <h3>Purāṇa Nāma-Kośa</h3>
+      <p>A scholar-verified index of the names, peoples and places of the Purāṇas, starting with the Harivaṃśa. The Mahābhārata has had such an index since Sorensen in 1904; the Purāṇas have none.</p>
+      <p class="big">367,324<small>verses in the Harivaṃśa and the eighteen Mahāpurāṇas with no index of names at all</small></p>
+      <div class="go"><a class="btn ghost" href="https://hvram1.github.io/purana-atlas/docs/purana-nama-kosa.html" target="_blank" rel="noopener">Read the proposal</a></div>
+    </article>
+    <article class="doc">
+      <span class="kind">Design document</span>
+      <h3>Four Subsystems, One Queue</h3>
+      <p>How recordings, texts, scanned books and publication become one system: machines take work from a shared queue, every result is checked by a different machine than the one that produced it, and the human ear is a worker like any other.</p>
+      <p class="big">1.88× → 1.02–1.10×<small>transcription cost per hour of audio, after forced alignment removed a second model pass</small></p>
+      <div class="go"><a class="btn ghost" href="https://claude.ai/artifact/JjPgGawcd2nDn4ejhFXnwK" target="_blank" rel="noopener">Read the design</a></div>
+    </article>
+  </div>
+</section>
+
+<section id="who">
+  <div class="section-intro col">
+    <span class="eyebrow">Who we are</span>
+    <h2>Sanatana Sampatti Foundation</h2>
+    <p>A registered trust in Srirangapatna, founded in June 2022 to preserve, maintain and give access to India's traditional knowledge systems, and the foundations of Sanātana Dharma in particular. Sanatana.in is developed under the guidance of the Jagadguru Śaṅkarācārya of the Dakṣiṇāmnāya Śrī Śāradā Pīṭham, Sringeri. Donations qualify for tax deduction under section 80G of the Income Tax Act.</p>
+  </div>
+  <div class="who">
+    <div class="person"><span class="eyebrow">Trustee</span><b>Dr. C. S. Yogananda</b><span>Abhinava Shankaralaya, Mysuru</span></div>
+    <div class="person"><span class="eyebrow">Trustee</span><b>Veda Brahmashree Bhanuprakasha Sharma</b><span>Shashwathi Dharmika Kriya Samithi, Srirangapatna</span></div>
+    <div class="person"><span class="eyebrow">Trustee</span><b>Sri Harihara Vinayakram</b><span>Bengaluru</span></div>
+  </div>
+  <p class="col">Write to <span class="contact">secretary@sanatanasampatti.in</span>, or visit sanatanasampatti.in.</p>
+</section>
+
+<section id="funding">
+  <div class="section-intro col">
+    <span class="eyebrow">Section VIII · What funding buys</span>
+    <h2>Fund a result, not a tier</h2>
+  </div>
+  <div class="fundcard">
+    <div style="display:grid;gap:12px;min-width:0">
+      <p>Each of the eight lines on the funding page is something specific that does not exist today, with its price, how long it takes, and a meter of where it stands:</p>
+      <ul>
+        <li>The four core smṛtis brought into the index, so Kane's footnotes can find their verses</li>
+        <li>A pilot index of names for the Harivaṃśa, the first for any Purāṇic text</li>
+        <li>The Purāṇa Nāma-Kośa: the same index for all eighteen Mahāpurāṇas, one Purāṇa at a time</li>
+        <li>A Purāṇa recitation commissioned to be addressable verse by verse from the first day</li>
+        <li>The Taittirīya Brāhmaṇa and Āraṇyaka recorded, with the text following the chant</li>
+        <li>An out-of-print smṛti commentary published as an edition</li>
+        <li>Sāyaṇa's and Bhaṭṭa Bhāskara's Yajurveda bhāṣyas cleaned up and published</li>
+        <li>Vedic Abhyāsa released and piloted in pāṭhaśālās</li>
+      </ul>
+      <p class="small">Sponsors are thanked on a sponsors' page, reached by one link from each funded result. No name is printed on a verse.</p>
+    </div>
+    <a class="btn big" href="https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx" target="_blank" rel="noopener">See prices and fund →</a>
+  </div>
+</section>
+
+<section id="why">
+  <div class="section-intro col">
+    <span class="eyebrow">Section IX · Why this, over other CSR options</span>
+    <h2>Four reasons</h2>
+  </div>
+  <div class="reasons">
+    <div class="reason"><h3>Permanent</h3><p>This is lasting infrastructure for the textual heritage of Sanātana Dharma. It will outlive any single funder.</p></div>
+    <div class="reason"><h3>Auditable</h3><p>Every figure on this page comes from the sites' own builds, and most can be checked by clicking. The atlases show what they did not reach, as well as what they did.</p></div>
+    <div class="reason"><h3>On the national agenda</h3><p>It fits Bhārat-Vidyā, Indian Knowledge Systems and language preservation.</p></div>
+    <div class="reason"><h3>Attributable</h3><p>Named series, visible attribution and scholar validation, rather than a logo on a banner.</p></div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="section-intro col">
+    <span class="eyebrow">Section X · Not yet covered</span>
+    <h2>What we have not done</h2>
+    <p>Naming the gaps makes this a scoped purchase rather than a sales pitch.</p>
+  </div>
+  <ul class="gaps">
+    <li><b>The core smṛtis.</b> Manu, Yājñavalkya, Āpastamba and Gautama are not in our index, so Kane's most-cited works cannot yet be located. This is the first result on the funding page.</li>
+    <li><b>Sāmaveda.</b> The Jaiminīya śākhā is in partner collaboration. Other śākhās and seven-svara analysis remain open.</li>
+    <li><b>Atharvaveda audio.</b> Recordings barely exist outside specialist circles.</li>
+    <li><b>Āgamas.</b> 277 Śaiva, 77 Śākta and 108 Vaiṣṇava, and none are systematically digitised.</li>
+    <li><b>Darśanas beyond Advaita.</b> Nyāya, Vaiśeṣika, Sāṅkhya, Yoga and Mīmāṃsā are all under-served.</li>
+  </ul>
+</section>
+
+<footer>
+  <p class="close">Nine sites open today. One shared index. The work continues regardless; with you, it becomes an institution.</p>
+  <p><a class="btn big" href="https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx" target="_blank" rel="noopener">See what you can fund →</a></p>
+  <p class="mono">sanatanasampatti.in</p>
+  <p class="small">Figures as each site printed them on 3 October 2026; the beta sites' figures may change as verification continues. Contact us for a working session; an audit is available on request.</p>
+</footer>
+
+</div>

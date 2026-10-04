@@ -1,0 +1,230 @@
+<title>Sanatana Sampatti Vidyādāna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the ask first. An epigraph and one total, then a menu of fundable results,
+   each with a meter of where it stands; proof and the team come after. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6; --gold:#a86a00; --gold-soft:#fbf1dc;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;padding-inline:20px;padding-block:0 64px}
+.wrap{max-width:1080px;margin:0 auto}
+.col{max-width:720px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h2{font-size:1.8rem;font-weight:600}
+h3{font-size:1.3rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.deva{font-family:var(--f-deva)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.85rem;color:var(--muted)}
+
+header.hero{padding-block:48px 28px;display:grid;gap:22px}
+.epigraph{display:grid;gap:6px;border-left:3px solid var(--gold);padding-left:16px;max-width:44rem}
+.epigraph .deva{font-size:1.25rem;line-height:1.7}
+.epigraph .tr{font-family:var(--f-display);font-style:italic;color:var(--muted)}
+.epigraph .src{font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+header.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-.01em;max-width:22ch}
+.lede{font-size:1.15rem;max-width:44rem}
+.total{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline}
+.total .n{font-family:var(--f-display);font-size:2.6rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent)}
+
+section{padding-block:40px 8px;display:grid;gap:20px}
+.section-intro{display:grid;gap:10px}
+.section-intro p{color:var(--muted);max-width:44rem}
+
+.menu{display:grid;gap:16px}
+.ask{background:var(--surface);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:0}
+.ask-main{padding:22px 24px;display:grid;gap:12px;min-width:0}
+.ask-side{padding:22px 20px;border-left:1px solid var(--rule);display:grid;gap:4px;align-content:start;background:var(--accent-soft);border-radius:0 12px 12px 0}
+.ask-side .price{font-family:var(--f-display);font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.ask-side .time{font-size:.9rem;color:var(--muted)}
+.ask-head{display:grid;gap:4px}
+.ask-head .deva{color:var(--gold);font-size:.95rem}
+.meter{display:grid;gap:6px}
+.meter-row{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;flex-wrap:wrap}
+.meter-row b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:5px;background:var(--rule);overflow:hidden;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:5px}
+.bar u{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(45deg,var(--gold) 0 6px,transparent 6px 10px);opacity:.55;text-decoration:none}
+.meter .note{font-size:.85rem;color:var(--muted)}
+details{font-size:.92rem}
+summary{cursor:pointer;color:var(--accent);font-weight:600}
+details ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+.links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92rem}
+.links a::after{content:" ↗"}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:18px;height:8px;border-radius:4px;margin-right:6px;vertical-align:middle;background:var(--accent)}
+.legend span.f::before{background:repeating-linear-gradient(45deg,var(--gold) 0 6px,transparent 6px 10px);opacity:.7}
+
+.program{background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:start}
+.program .price{font-family:var(--f-display);font-size:2.2rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent);white-space:nowrap}
+
+.thanks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.thanks div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:6px;align-content:start}
+.thanks b{font-family:var(--f-display);font-size:1.1rem}
+.thanks p{font-size:.93rem}
+.mock{font-family:var(--f-mono);font-size:.8rem;border:1px dashed var(--rule);border-radius:6px;padding:8px 10px;color:var(--muted)}
+.mock a{color:var(--gold)}
+
+.rates{display:flex;flex-wrap:wrap;gap:8px}
+.rates span{font-size:.85rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:4px 10px}
+.proofgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.proofgrid a{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;text-decoration:none;color:var(--ink);display:grid;gap:2px}
+.proofgrid a b{font-family:var(--f-display)}
+.proofgrid a span{font-size:.82rem;color:var(--muted)}
+.contact{font-family:var(--f-mono);user-select:all}
+.err{background:var(--gold-soft);border-radius:8px;padding:14px;color:var(--ink)}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;padding:10px 16px;border-radius:6px;background:var(--accent);color:var(--surface)}
+
+@media (max-width:860px){
+  .ask{grid-template-columns:minmax(0,1fr)}
+  .ask-side{border-left:0;border-top:1px solid var(--rule);border-radius:0 0 12px 12px;grid-template-columns:auto 1fr;align-items:baseline;gap:4px 14px}
+  .thanks,.proofgrid{grid-template-columns:minmax(0,1fr)}
+  .program{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){body{font-size:16px;padding-inline:16px}.ask-main{padding:18px}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">Sanatana Sampatti Foundation · an invitation to fund</span>
+  <div class="epigraph">
+    <span class="deva">सिद्धान्तानां प्रदानेन मोक्षमाप्नोत्यसंशयम् ।<br>विद्यादानमवाप्नोति प्रदानात्पुस्तकस्य तु ॥</span>
+    <span class="tr">"To give a book is to give knowledge itself."</span>
+    <span class="src">Agni Purāṇa 211.61 · found in our own verse index</span>
+  </div>
+  <h1>Fund one result, or fund them all.</h1>
+  <p class="lede">Each line below is something specific that does not exist today, with its price, its time, and a meter showing where it stands. Every one is the kind of work we have already built, so you can click through and see it working before you decide.</p>
+  <div class="total"><span class="n" id="total">…</span><span id="total-label" class="small">for all the results below · each can be funded on its own</span></div>
+</header>
+
+<section id="menu-sec">
+  <div class="legend"><span>where it stands today</span><span class="f">what your funding adds</span></div>
+  <div class="menu" id="menu"><p class="small">Loading the list…</p></div>
+  <div id="program"></div>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">How we thank you</span>
+    <h2>Your name stays off the verse, and one click away from it</h2>
+    <p>The texts belong to the tradition, so no sponsor's name is printed on a verse, a chapter or a recording. Each result you fund instead carries one small link to the sponsors' page, where you are thanked by name.</p>
+  </div>
+  <div class="thanks">
+    <div><b>On every page you funded</b><p>A single line at the foot of the chapter or text:</p><span class="mock">This edition was sponsored · <a>see sponsors</a></span></div>
+    <div><b>On the sponsors' page</b><p>Your name, what you funded, when, and links to each result. Anonymous if you prefer.</p></div>
+    <div><b>In the meter</b><p>The figure on this page moves as the work is done, and it is printed by the sites themselves. You can check progress without asking us.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">Why you can trust the prices</span>
+    <h2>One figure is measured; the rest use these rates</h2>
+    <p>Turning a recording into an edition you can play verse by verse costs ₹49 an hour of audio. That is measured on 93 hours of real recordings, not estimated. Almost all of the cost of this work is people: engineers, scholars and readers. We priced every line with these rates.</p>
+  </div>
+  <div class="rates" id="rates"></div>
+  <p class="small" id="updated"></p>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">What we have already built</span>
+    <h2>Nine sites you can open today</h2>
+    <p>Six of them are public betas, still going through verification and cleanup; they are marked below. The full tour, with screenshots and the thinking behind each, is in <a href="https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE" target="_blank" rel="noopener">the Sanatana Sampatti pitch</a>.</p>
+  </div>
+  <div class="proofgrid">
+    <a href="https://hvram1.github.io/yajurveda.sanatana.in/" target="_blank" rel="noopener"><b>Kṛṣṇa Yajurveda</b><span>The text follows the chant · beta</span></a>
+    <a href="https://hvram1.github.io/rigveda.sanatana.in/" target="_blank" rel="noopener"><b>Ṛgveda</b><span>Word timing on 1,023 sūktas · beta</span></a>
+    <a href="https://sanatana.in/mahabharata" target="_blank" rel="noopener"><b>Mahābhārata</b><span>With Nīlakaṇṭha and the Harivaṃśa</span></a>
+    <a href="https://hvram1.github.io/purana-atlas/" target="_blank" rel="noopener"><b>Purāṇa Atlas</b><span>8,391 verses on the clock · beta</span></a>
+    <a href="https://hvram1.github.io/historyofdharmasastra/" target="_blank" rel="noopener"><b>History of Dharmaśāstra</b><span>Kane, with 171 spoken synopses · beta</span></a>
+    <a href="https://hvram1.github.io/smp/" target="_blank" rel="noopener"><b>Smṛtimuktāphalam</b><span>Sanskrit with Tamil · beta</span></a>
+    <a href="https://advaitabharati.sanatanasampatti.in/Works" target="_blank" rel="noopener"><b>Advaita Bhāratī</b><span>Śaṅkara's bhāṣyas in English and Tamil</span></a>
+    <a href="https://advaitadhara.sanatana.in/Lineage" target="_blank" rel="noopener"><b>Advaitadhārā</b><span>The paramparā and its works</span></a>
+    <a href="https://hvram1.github.io/jagadguru-anugraha-bhashanam/" target="_blank" rel="noopener"><b>Jagadguru Anugraha Bhāṣaṇam</b><span>Quotations in the Jagadgurus' talks, named · beta</span></a>
+  </div>
+</section>
+
+<section>
+  <div class="section-intro col">
+    <span class="eyebrow">Who we are</span>
+    <h2>Sanatana Sampatti Foundation</h2>
+    <p>A registered trust in Srirangapatna, founded in June 2022. Trustees: Dr. C. S. Yogananda, Veda Brahmashree Bhanuprakasha Sharma and Sri Harihara Vinayakram. Sanatana.in is developed under the guidance of the Jagadguru Śaṅkarācārya of Sringeri. Donations qualify for deduction under section 80G of the Income Tax Act.</p>
+  </div>
+  <p>To fund a line, or to talk it through, write to <span class="contact">secretary@sanatanasampatti.in</span>.</p>
+</section>
+</div>
+
+<script>
+(function(){
+  const fmt = n => n.toLocaleString('en-US');
+  const lakh = n => n >= 100 ? '₹' + (Math.round(n)/100).toFixed(2).replace(/\.?0+$/,'') + ' crore' : '₹' + (Number.isInteger(n) ? n : n.toFixed(1)) + ' lakh';
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function link(o){ return o ? `<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.label)}</a>` : ''; }
+
+  function render(d){
+    const asks = d.asks || [];
+    const total = asks.reduce((s,a) => s + (a.cost_lakh||0), 0);
+    document.getElementById('total').textContent = lakh(total);
+    document.getElementById('total-label').textContent =
+      `for all ${asks.length} results below · each can be funded on its own`;
+
+    document.getElementById('menu').innerHTML = asks.map(a => {
+      const m = a.meter || {};
+      const max = Math.max(m.target||0, m.now||0, 1);
+      const nowPct = 100 * (m.now||0) / max, tgtPct = 100 * (m.target||0) / max;
+      return `<article class="ask" id="${esc(a.id)}">
+        <div class="ask-main">
+          <div class="ask-head">${a.deva ? `<span class="deva">${esc(a.deva)}</span>` : ''}<h3>${esc(a.title)}</h3></div>
+          <p>${esc(a.change)}</p>
+          ${m.unit ? `<div class="meter">
+            <div class="meter-row"><span>${esc(m.unit)}</span><span><b>${fmt(m.now||0)}</b> today → <b>${fmt(m.target||0)}</b></span></div>
+            <div class="bar" role="img" aria-label="${fmt(m.now||0)} today, ${fmt(m.target||0)} when funded"><u style="width:${tgtPct}%"></u><i style="width:${nowPct}%"></i></div>
+            ${m.note ? `<span class="note">${esc(m.note)}</span>` : ''}
+          </div>` : ''}
+          <details><summary>How the price is made up</summary><ul>${(a.basis||[]).map(b => `<li>${esc(b)}</li>`).join('')}</ul></details>
+          <div class="links">${link(a.proof)}${link(a.paper)}</div>
+        </div>
+        <div class="ask-side"><span class="price">${lakh(a.cost_lakh)}</span><span class="time">${a.months} months</span></div>
+      </article>`;
+    }).join('');
+
+    const p = d.program;
+    document.getElementById('program').innerHTML = p ? `<div class="program">
+      <div style="display:grid;gap:8px;min-width:0"><h3>${esc(p.title)}</h3><p>${esc(p.change)}</p>
+        <details><summary>How the price is made up</summary><ul>${(p.basis||[]).map(b => `<li>${esc(b)}</li>`).join('')}</ul></details></div>
+      <span class="price">${lakh(p.cost_lakh)}<span class="small"> a year</span></span></div>` : '';
+
+    document.getElementById('rates').innerHTML = (d.rates||[]).map(r => `<span><b>${esc(r.label)}</b>: ${esc(r.value)}</span>`).join('');
+    document.getElementById('updated').textContent = `${d.status||''} Last updated ${d.updated||''}.`;
+  }
+
+  fetch('asks.json', {cache:'no-store'}).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch(() => { document.getElementById('menu').innerHTML =
+      '<p class="err">The list of results could not be loaded. Reload the page; if it persists, write to secretary@sanatanasampatti.in.</p>';
+      document.getElementById('total').textContent = '—'; });
+})();
+</script>
