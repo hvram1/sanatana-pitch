@@ -16,7 +16,7 @@
     },
     {
       "label": "Junior vidvān, by the hour",
-      "value": "₹500 an hour"
+      "value": "₹2,500 an hour"
     },
     {
       "label": "Pāṭhaśālā student",
@@ -80,12 +80,12 @@
       },
       "basis": [
         "1 senior vidvān, 10 hours a month for 9 months, at ₹5,000 an hour: ₹4.5 lakh",
-        "5 junior vidvāns, 25 hours a month each for 9 months, at ₹500 an hour: ₹5.62 lakh",
+        "5 junior vidvāns, 25 hours a month each for 9 months, at ₹2,500 an hour: ₹28.12 lakh",
         "2 pāṭhaśālā students, 40 hours a month each for 9 months, at ₹400 an hour: ₹2.88 lakh",
         "3 engineer-months for the reading tool and review queue: ₹1.8 lakh",
         "The team is the full Nāma-Kośa's, scaled to the pilot's pace of about 1,800 verses a month."
       ],
-      "cost_lakh": 15.0
+      "cost_lakh": 37.5
     },
     {
       "id": "namakosa",
@@ -96,7 +96,7 @@
         "now": 0,
         "target": 351225,
         "unit": "Mahāpurāṇa verses with their names indexed",
-        "note": "No index of names exists for any of them. About ₹7.72 lakh per 10,000 verses, so a single Purāṇa can be sponsored on its own."
+        "note": "No index of names exists for any of them. About ₹20.53 lakh per 10,000 verses, so a single Purāṇa can be sponsored on its own."
       },
       "months": 36,
       "proof": {
@@ -109,12 +109,12 @@
       },
       "basis": [
         "5 senior vidvāns, 10 hours a month each for 3 years, at ₹5,000 an hour: ₹90 lakh",
-        "25 junior vidvāns, 25 hours a month each for 3 years, at ₹500 an hour: ₹1.125 crore",
+        "25 junior vidvāns, 25 hours a month each for 3 years, at ₹2,500 an hour: ₹5.625 crore",
         "10 pāṭhaśālā students, 40 hours a month each for 3 years, at ₹400 an hour: ₹57.6 lakh",
         "Half an engineer for 3 years to run the reading tool and publish each Purāṇa: ₹10.8 lakh",
         "The Harivaṃśa pilot will measure the real pace, and the team will be set from it."
       ],
-      "cost_lakh": 271
+      "cost_lakh": 721
     },
     {
       "id": "audio",

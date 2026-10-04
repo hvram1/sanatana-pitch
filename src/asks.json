@@ -28,7 +28,7 @@
     {
       "id": "junior_hour",
       "label": "Junior vidvān, by the hour",
-      "rupees": 500,
+      "rupees": 2500,
       "per": "an hour",
       "strip": true
     },
