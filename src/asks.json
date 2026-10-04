@@ -1,7 +1,31 @@
 {
   "updated": "2026-10-04",
-  "status": "Estimates by the team. Each line shows what it is based on.",
+  "status": "Scholars and vidvāns are retained by the month, at the top of each range. Each line shows what it is based on.",
   "rates": [
+    {
+      "id": "vidvan_month",
+      "label": "Vidvān (senior scholar)",
+      "rupees": 100000,
+      "per": "a month",
+      "strip": true,
+      "show": "₹75,000 to ₹1 lakh a month, priced at ₹1 lakh"
+    },
+    {
+      "id": "junior_month",
+      "label": "Junior scholar or pāṭhaśālā student",
+      "rupees": 75000,
+      "per": "a month",
+      "strip": true,
+      "show": "₹40,000 to ₹75,000 a month, priced at ₹75,000"
+    },
+    {
+      "id": "recitation_hour",
+      "label": "Vidvāns reciting for a recording",
+      "rupees": 5000,
+      "per": "an hour",
+      "strip": true,
+      "show": "₹5,000 an hour of recitation"
+    },
     {
       "id": "engineer_month",
       "label": "Engineer",
@@ -10,36 +34,10 @@
       "strip": true
     },
     {
-      "id": "vidvan_hour",
-      "label": "Senior scholar",
-      "rupees": 1500,
-      "per": "an hour",
-      "strip": true
-    },
-    {
-      "id": "junior_hour",
-      "label": "Pāṭhaśālā student reader",
-      "rupees": 400,
-      "per": "an hour",
-      "strip": true
-    },
-    {
-      "id": "recitation_hour",
-      "label": "Vidvāns reciting for a recording",
-      "rupees": 5000,
-      "per": "an hour"
-    },
-    {
       "id": "recording_hour",
       "label": "Recording",
       "rupees": 2000,
       "per": "an hour"
-    },
-    {
-      "id": "proof_page",
-      "label": "Proofreading",
-      "rupees": 150,
-      "per": "a page"
     },
     {
       "id": "ocr_page",
@@ -71,18 +69,14 @@
       "months": 4,
       "basis": [
         {
+          "say": "A vidvān for {qty} months, choosing the editions and checking every match",
+          "qty": 4,
+          "rate": "vidvan_month"
+        },
+        {
           "say": "1 engineer-month to source, structure and index the four texts",
           "qty": 1,
           "rate": "engineer_month"
-        },
-        {
-          "say": "About {qty} hours of a senior scholar checking the matches",
-          "qty": 70,
-          "rate": "vidvan_hour"
-        },
-        {
-          "say": "Choosing and verifying the editions",
-          "rupees": 45000
         }
       ],
       "proof": {
@@ -104,14 +98,14 @@
       "months": 9,
       "basis": [
         {
-          "say": "About {qty} reader-hours by five pāṭhaśālā students",
-          "qty": 500,
-          "rate": "junior_hour"
+          "say": "Five pāṭhaśālā scholars for 9 months, reading every verse for its names",
+          "qty": 45,
+          "rate": "junior_month"
         },
         {
-          "say": "About {qty} senior hours writing and reviewing entries",
-          "qty": 300,
-          "rate": "vidvan_hour"
+          "say": "A vidvān for {qty} months, writing and reviewing the entries",
+          "qty": 9,
+          "rate": "vidvan_month"
         },
         {
           "say": "{qty} engineer-months for the reading tool and review queue",
@@ -142,14 +136,14 @@
       "months": 36,
       "basis": [
         {
-          "say": "About {qty} reader-hours by pāṭhaśālā cohorts, at the pilot's rate",
-          "qty": 10900,
-          "rate": "junior_hour"
+          "say": "27 pāṭhaśālā scholars for 3 years, at the pilot's pace",
+          "qty": 972,
+          "rate": "junior_month"
         },
         {
-          "say": "About {qty} senior hours writing and reviewing entries, at the pilot's rate",
-          "qty": 6540,
-          "rate": "vidvan_hour"
+          "say": "6 vidvāns for 3 years, writing and reviewing entries, one to every five readers as in the pilot",
+          "qty": 216,
+          "rate": "vidvan_month"
         },
         {
           "say": "Half an engineer for 3 years to run the reading tool and publish each Purāṇa",
@@ -200,8 +194,9 @@
           "suffix": " (measured)"
         },
         {
-          "say": "Listening checks by ear",
-          "rupees": 38500
+          "say": "A vidvān for {qty} month, checking every verse by ear",
+          "qty": 1,
+          "rate": "vidvan_month"
         }
       ],
       "proof": {
@@ -238,14 +233,14 @@
           "rate": "recording_hour"
         },
         {
+          "say": "A vidvān for {qty} months, checking the alignment by ear",
+          "qty": 2,
+          "rate": "vidvan_month"
+        },
+        {
           "say": "1 engineer-month to align every word to the recording and publish it",
           "qty": 1,
           "rate": "engineer_month"
-        },
-        {
-          "say": "About {qty} hours of a senior scholar checking the alignment by ear",
-          "qty": 59,
-          "rate": "vidvan_hour"
         },
         {
           "say": "The text with svaras is already prepared, so nothing is charged for it."
@@ -275,9 +270,14 @@
           "rate": "ocr_page"
         },
         {
-          "say": "Proofreading at {rate}",
-          "qty": 1000,
-          "rate": "proof_page"
+          "say": "A junior scholar for {qty} months, proofreading about 200 pages a month",
+          "qty": 5,
+          "rate": "junior_month"
+        },
+        {
+          "say": "A vidvān for {qty} month, reviewing the proofread text",
+          "qty": 1,
+          "rate": "vidvan_month"
         },
         {
           "say": "1 engineer-month to index, cross-link and publish",
@@ -309,20 +309,15 @@
           "rate": "ocr_page"
         },
         {
-          "say": "Proofreading those pages at {rate}",
-          "qty": 2611,
-          "rate": "proof_page"
-        },
-        {
-          "say": "Proofreading about {qty} typed pages for Saṃhitā kāṇḍas 4 to 7 at {rate}",
-          "qty": 600,
-          "rate": "proof_page",
+          "say": "Two junior scholars for 8 months, proofreading about 3,200 pages at 200 pages a month each",
+          "qty": 16,
+          "rate": "junior_month",
           "suffix": ". A source for Sāyaṇa on kāṇḍas 5 and 7 still has to be found."
         },
         {
-          "say": "About {qty} hours of a senior scholar reviewing the text",
-          "qty": 100,
-          "rate": "vidvan_hour"
+          "say": "A vidvān for {qty} months, reviewing both bhāṣyas",
+          "qty": 9,
+          "rate": "vidvan_month"
         },
         {
           "say": "{qty} engineer-months to structure each bhāṣya by anuvāka, tie it to the text and publish",
@@ -370,16 +365,22 @@
   ],
   "program": {
     "title": "Or carry the team for a year",
-    "change": "Engineering, scholar honoraria and hosting for twelve months, spent on the results above in the order the trust sets, so the work does not wait for each line to be funded.",
+    "change": "Vidvāns, junior scholars, engineering and hosting for twelve months, spent on the results above in the order the trust sets, so the work does not wait for each line to be funded.",
     "basis": [
+      {
+        "say": "A vidvān for 12 months, across the projects",
+        "qty": 12,
+        "rate": "vidvan_month"
+      },
+      {
+        "say": "Two junior scholars for 12 months, across the projects",
+        "qty": 24,
+        "rate": "junior_month"
+      },
       {
         "say": "2 engineers for 12 months",
         "qty": 24,
         "rate": "engineer_month"
-      },
-      {
-        "say": "Scholar honoraria across projects",
-        "rupees": 700000
       },
       {
         "say": "Hosting and audio storage",
