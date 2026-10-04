@@ -59,6 +59,34 @@ def atlas_count():
     return len(atlas_stats())
 
 
+def substrate(name):
+    return json.load(open(p('purana-atlas', 'data', f'{name}_atlas_substrate.json')))
+
+
+def virata_verses():
+    return len(substrate('virata')['text'])
+
+
+def virata_named_verses():
+    return len(substrate('virata')['ann'])
+
+
+def virata_cards():
+    return len(substrate('virata')['cards'])
+
+
+def kichaka_verses():
+    # Kīcaka the senāpati; his card's "Appears in this parva" counts these
+    return sum(1 for v in substrate('virata')['ann'].values() if any(a.get('id') == 'inm:5744' for a in v))
+
+
+PURANA_ATLASES = ('adhyatma', 'garuda', 'kartika', 'magha', 'vaishakha', 'varaha', 'vishnu')
+
+
+def purana_atlases_without_cards():
+    return sum(1 for n in PURANA_ATLASES if not substrate(n)['cards'])
+
+
 def index_occurrences():
     # The pitch's "verses in one index" is index.db's occurrence count;
     # distinct verses (the verse table) are fewer.
@@ -99,6 +127,12 @@ CHECKS = [
     ('pitch.html', '<span class="n">{}</span><span class="l">Ṛgveda sūktas', 'rigveda.sanatana.in sync files with word starts', rv_suktas_with_word_timing),
     ('pitch.html', 'word timing on {} sūktas', 'rigveda.sanatana.in sync files with word starts', rv_suktas_with_word_timing),
     ('pitch.html', '~{} ṛks', 'rigveda.sanatana.in sync/summary.json total_verses', rv_riks),
+    ('pitch.html', '{} of its 2,262 verses link to the names', 'virata substrate, verses with names', virata_named_verses),
+    ('pitch.html', 'of its {} verses link', 'virata substrate, verses', virata_verses),
+    ('pitch.html', 'through {} cards drawn from', 'virata substrate, cards', virata_cards),
+    ('pitch.html', 'Kīcaka appears in {}.', 'virata substrate, verses naming inm:5744', kichaka_verses),
+    ('pitch.html', 'lists the {} verses that name him', 'virata substrate, verses naming inm:5744', kichaka_verses),
+    ('pitch.html', 'so all {} Purāṇa atlases have no name cards', 'purana-atlas substrates with no cards', purana_atlases_without_cards),
     ('pitch.html', '{} spoken synopses', 'historyofdharmasastra audio/synopsis mp3 files', kane_synopses),
     ('ask.html', '<span>{} verses on the clock', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:audio', '{}', 'purana-atlas stats.json, sum of reached', atlas_reached),
