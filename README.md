@@ -35,8 +35,10 @@ site's sync files, and the Kane synopsis audio. These repos are expected beside
 this one in `~/projects`. A wrong number stops the build. Figures without a
 local source are printed as UNCHECKED, with where they come from. That is not a pass.
 
-Note: "493,992 verses in one index" is index.db's occurrence count. Distinct
-verses (the `verse` table) number 488,149.
+Note: "513,887 verses in one index" is index.db's occurrence count. Distinct
+verses (the `verse` table) number 507,977. The Kane line's "493,992 verses" is
+the index as it was when the footnotes were matched, before the Vālmīki
+Rāmāyaṇa was added (6 October 2026); it is not checked against the index now.
 
 ## Two copies: the artifacts and github.io
 

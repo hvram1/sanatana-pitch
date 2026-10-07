@@ -112,6 +112,74 @@ def kane_synopses():
     return len(files)
 
 
+def _rv_riks():
+    riks = []
+    for f in glob.glob(p('rigveda.sanatana.in', 'src', 'data', '[0-9][0-9][0-9]', '**', '*.json'), recursive=True):
+        x = json.load(open(f, encoding='utf8'))
+        riks += [r for r in (x if isinstance(x, list) else [x]) if isinstance(r, dict) and 'attribute' in r]
+    if not riks:
+        raise FileNotFoundError('rigveda.sanatana.in/src/data/NNN')
+    return riks
+
+
+def rv_attribute(kind):
+    """How many distinct ṛṣis, devatās or chandas the site has a page for."""
+    return lambda: len({r['attribute'][kind] for r in _rv_riks()})
+
+
+def rv_riks_by(kind, value):
+    return lambda: sum(1 for r in _rv_riks() if r['attribute'][kind] == value)
+
+
+def rv_riks_with_sayana():
+    return sum(1 for r in _rv_riks() if (r.get('sayanaBhashya') or '').strip())
+
+
+def rv_samanapada():
+    return len(json.load(open(p('rigveda.sanatana.in', 'src', 'data', 'samanapada_list.json'), encoding='utf8')))
+
+
+def rv_aitareya_adhyayas():
+    return json.load(open(p('rigveda.sanatana.in', 'src', 'data', 'aitareya-brahmana.json'), encoding='utf8'))['totalAdhyayas']
+
+
+def yv_ts_panchasats_with_pada():
+    files = glob.glob(p('yajurveda.sanatana.in', 'src', 'data', '0[1-7]', '*', '*', '*.json'))
+    if not files:
+        raise FileNotFoundError('yajurveda.sanatana.in/src/data/0N')
+    return sum(1 for f in files if (json.load(open(f, encoding='utf8')).get('pada') or '').strip())
+
+
+def yv_panchasats(text):
+    """Pañcāśats (units with their text) of the Brāhmaṇa ('tb') or Āraṇyaka ('ta')."""
+    def count():
+        files = glob.glob(p('yajurveda.sanatana.in', 'src', 'data', text, '**', '*.json'), recursive=True)
+        if not files:
+            raise FileNotFoundError(f'yajurveda.sanatana.in/src/data/{text}')
+        n = 0
+        def walk(x):
+            nonlocal n
+            if isinstance(x, dict):
+                n += 'samhita' in x
+                for v in x.values():
+                    walk(v)
+            elif isinstance(x, list):
+                for v in x:
+                    walk(v)
+        for f in files:
+            walk(json.load(open(f, encoding='utf8')))
+        return n
+    return count
+
+
+def ab_bhashyas():
+    """Works on the Advaita Bhāratī site: one data file each in the redesign."""
+    files = glob.glob(p('advaitabharati.sanatanasampatti.in', 'src', 'data', '*.json'))
+    if not files:
+        raise FileNotFoundError('advaitabharati.sanatanasampatti.in/src/data')
+    return len(files)
+
+
 def asks_meter(ask_id):
     asks = json.load(open(os.path.join(SRC, 'asks.json'), encoding='utf8'))['asks']
     return next(a for a in asks if a['id'] == ask_id)['meter']['now']
@@ -134,6 +202,18 @@ CHECKS = [
     ('pitch.html', 'lists the {} verses that name him', 'virata substrate, verses naming inm:5744', kichaka_verses),
     ('pitch.html', 'so all {} Purāṇa atlases have no name cards', 'purana-atlas substrates with no cards', purana_atlases_without_cards),
     ('pitch.html', '{} spoken synopses', 'historyofdharmasastra audio/synopsis mp3 files', kane_synopses),
+    ('pitch.html', 'All <span class="mono">{}</span> ṛks, each with Sāyaṇa', 'rigveda.sanatana.in ṛks with sayanaBhashya', rv_riks_with_sayana),
+    ('pitch.html', 'each of the <span class="mono">{}</span> ṛṣis', 'rigveda.sanatana.in distinct attribute.rishi', rv_attribute('rishi')),
+    ('pitch.html', '<span class="mono">{}</span> devatās and', 'rigveda.sanatana.in distinct attribute.devata', rv_attribute('devata')),
+    ('pitch.html', '<span class="mono">{}</span> chandas has a page', 'rigveda.sanatana.in distinct attribute.chandas', rv_attribute('chandas')),
+    ('pitch.html', 'all <span class="mono">{}</span> of his ṛks', 'rigveda.sanatana.in ṛks with rishi वसिष्ठः', rv_riks_by('rishi', 'वसिष्ठः')),
+    ('pitch.html', 'the <span class="mono">{}</span> samānapada mantras', 'rigveda.sanatana.in samanapada_list.json', rv_samanapada),
+    ('pitch.html', 'the first <span class="mono">{}</span> adhyāyas of the Aitareya', 'rigveda.sanatana.in aitareya-brahmana.json totalAdhyayas', rv_aitareya_adhyayas),
+    ('pitch.html', 'All <span class="mono">{}</span> pañcāśats of the Saṃhitā carry their padapāṭha', 'yajurveda.sanatana.in TS pañcāśats with pada', yv_ts_panchasats_with_pada),
+    ('pitch.html', 'Brāhmaṇa (<span class="mono">{}</span> pañcāśats)', 'yajurveda.sanatana.in tb units with text', yv_panchasats('tb')),
+    ('pitch.html', 'Āraṇyaka (<span class="mono">{}</span>)', 'yajurveda.sanatana.in ta units with text', yv_panchasats('ta')),
+    ('pitch.html', '<span class="mono">{}</span> bhāṣyas: eleven on the Upaniṣads', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
+    ('pitch.html', 'Live</a>: {} bhāṣyas with Tamil', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
     ('ask.html', '<span>{} verses on the clock', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:audio', '{}', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('ask.html', 'Word timing on {} sūktas', 'rigveda.sanatana.in sync files with word starts', rv_suktas_with_word_timing),
