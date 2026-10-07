@@ -342,9 +342,9 @@
       "id": "bhashyas",
       "title": "Clean up and publish the Yajurveda bhāṣyas",
       "deva": "सायणभाष्यम् · भट्टभास्करभाष्यम्",
-      "change": "Sāyaṇa's and Bhaṭṭa Bhāskara's commentaries on the Taittirīya Saṃhitā are beside the text for kāṇḍas 1 to 3 only. For kāṇḍas 4 to 7 they exist as typed files with gaps, and Bhaṭṭa Bhāskara on the Brāhmaṇa and Āraṇyaka exists only as scanned pages. Each is proofread, checked by a scholar, tied to its anuvāka and published beside the text.",
+      "change": "Sāyaṇa's and Bhaṭṭa Bhāskara's commentaries on the Taittirīya Saṃhitā are beside the text for kāṇḍas 1, 2, 3 and 6. For kāṇḍas 4, 5 and 7 they exist as typed files with gaps, and Bhaṭṭa Bhāskara on the Brāhmaṇa and Āraṇyaka exists only as scanned pages. Each is proofread, checked by a scholar, tied to its anuvāka and published beside the text.",
       "meter": {
-        "now": 275,
+        "now": 303,
         "target": 651,
         "unit": "Saṃhitā anuvākas with both bhāṣyas beside the text",
         "note": "Then Bhaṭṭa Bhāskara on the Brāhmaṇa and Āraṇyaka: 2,611 scanned pages, none on the site yet."
@@ -374,7 +374,7 @@
         }
       ],
       "proof": {
-        "label": "Both bhāṣyas beside the Saṃhitā, kāṇḍas 1 to 3 (beta)",
+        "label": "Both bhāṣyas beside the Saṃhitā, kāṇḍas 1, 2, 3 and 6 (beta)",
         "url": "https://hvram1.github.io/yajurveda.sanatana.in/ts/anuvaka/1/1/1/"
       }
     },

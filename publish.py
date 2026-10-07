@@ -172,6 +172,21 @@ def yv_panchasats(text):
     return count
 
 
+def yv_anuvakas_with_both_bhashyas():
+    """Saṃhitā anuvākas with both Sāyaṇa and Bhaṭṭa Bhāskara beside the text,
+    in the kāṇḍas the site counts as done (1, 2, 3, 6; 4, 5, 7 are in progress)."""
+    both = {}
+    files = glob.glob(p('yajurveda.sanatana.in', 'src', 'data', '0[1-7]', '*', '*', '*.json'))
+    if not files:
+        raise FileNotFoundError('yajurveda.sanatana.in/src/data/0N')
+    for f in files:
+        k, pr, a = f.split(os.sep)[-4:-1]
+        d = json.load(open(f, encoding='utf8'))
+        s, b = both.get((k, pr, a), (False, False))
+        both[(k, pr, a)] = (s or bool((d.get('sayanaBhashya') or '').strip()), b or bool((d.get('bhattaBhashya') or '').strip()))
+    return sum(1 for (k, _, _), (s, b) in both.items() if s and b and k in ('01', '02', '03', '06'))
+
+
 def ab_bhashyas():
     """Works on the Advaita Bhāratī site: one data file each in the redesign."""
     files = glob.glob(p('advaitabharati.sanatanasampatti.in', 'src', 'data', '*.json'))
@@ -216,6 +231,7 @@ CHECKS = [
     ('pitch.html', 'Live</a>: {} bhāṣyas with Tamil', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
     ('ask.html', '<span>{} verses on the clock', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:audio', '{}', 'purana-atlas stats.json, sum of reached', atlas_reached),
+    ('asks.json:bhashyas', '{}', 'yajurveda.sanatana.in anuvākas with both bhāṣyas, kāṇḍas 1, 2, 3, 6', yv_anuvakas_with_both_bhashyas),
     ('ask.html', 'Word timing on {} sūktas', 'rigveda.sanatana.in sync files with word starts', rv_suktas_with_word_timing),
     ('ask.html', 'Kane, with {} spoken synopses', 'historyofdharmasastra audio/synopsis mp3 files', kane_synopses),
 ]
