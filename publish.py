@@ -228,7 +228,7 @@ CHECKS = [
     ('pitch.html', 'Brāhmaṇa (<span class="mono">{}</span> pañcāśats)', 'yajurveda.sanatana.in tb units with text', yv_panchasats('tb')),
     ('pitch.html', 'Āraṇyaka (<span class="mono">{}</span>)', 'yajurveda.sanatana.in ta units with text', yv_panchasats('ta')),
     ('pitch.html', '<span class="mono">{}</span> bhāṣyas: eleven on the Upaniṣads', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
-    ('pitch.html', 'Live</a>: {} bhāṣyas with Tamil', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
+    ('pitch.html', 'Beta</a>: {} bhāṣyas with Tamil', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
     ('ask.html', '<span>{} verses on the clock', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:audio', '{}', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:bhashyas', '{}', 'yajurveda.sanatana.in anuvākas with both bhāṣyas, kāṇḍas 1, 2, 3, 6', yv_anuvakas_with_both_bhashyas),
