@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Handful of People</title>
+<meta name="description" content="How a handful of scholars, with Claude Code in the team, are carrying Sanātana Dharma's texts, commentaries and recitation into the digital age.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Tamil:wght@400&family=Noto+Sans+Grantha&display=swap">
+<style>
+/* Five moments, each something to hear, drag or watch: the chant, the printed
+   page becoming the chanted page, the conversations, seven weeks, the decision
+   that stays with the scholars. Type and colour follow the pitch. */
+:root{
+  --bg:#f3f1ea; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#dcd8cc;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6; --gold:#a86a00; --gold-soft:#fbf1dc;
+  --night:#0f1320; --night-2:#161b2b; --night-ink:#ece8dc; --night-muted:#8f96a8; --lamp:#f0b44a;
+  --term:#0d1117; --term-ink:#d7dae0; --term-muted:#7d8590; --term-you:#f0b44a; --term-claude:#9aa6ff;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 10px 30px rgba(27,33,48,.08);
+  --f-display:"Spectral",Georgia,serif;
+  --f-body:"Source Sans 3","Noto Sans Tamil","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.3); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:19px;line-height:1.6}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+.deva{font-family:var(--f-deva)}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.inner{max-width:1080px;margin:0 auto;width:100%}
+section{padding:96px 16px}
+.big{font-family:var(--f-display);font-size:clamp(1.8rem,4.2vw,3rem);line-height:1.18;font-weight:600}
+.mid{font-family:var(--f-display);font-size:clamp(1.25rem,2.4vw,1.6rem);line-height:1.35}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* 1 · the chant */
+.night{background:var(--night);color:var(--night-ink)}
+.night .eyebrow{color:var(--night-muted)}
+#chant{min-height:100vh;display:grid;align-content:center;gap:40px}
+#chant .grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:48px;align-items:center}
+#chant .lead{display:grid;gap:20px}
+#chant .lead .mid{color:var(--night-ink)}
+.player{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;border:1px solid #262c3d}
+.player iframe,.player #yt{position:absolute;inset:0;width:100%;height:100%;border:0}
+.playbtn{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:12px;background:radial-gradient(circle at 50% 45%,#1d2335,#0b0e17);color:var(--night-ink);border:0;cursor:pointer;font:inherit;z-index:2}
+.playbtn span{display:grid;place-items:center;width:78px;height:78px;border-radius:50%;background:var(--lamp);color:#1b1405;font-size:1.8rem;padding-left:6px;box-shadow:0 0 0 0 rgba(240,180,74,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 22px rgba(240,180,74,0)}100%{box-shadow:0 0 0 0 rgba(240,180,74,0)}}
+@media (prefers-reduced-motion:reduce){.playbtn span{animation:none}}
+.playbtn small{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;color:var(--night-muted)}
+.verses{display:grid;gap:14px;margin-top:18px}
+.verse .ref{font-family:var(--f-mono);font-size:.7rem;color:var(--night-muted);letter-spacing:.08em}
+.hemi{font-family:var(--f-deva);font-size:1.4rem;line-height:1.6;color:#454c60;transition:color .35s ease,text-shadow .35s ease}
+.hemi.done{color:#a9a495}
+.hemi.lit{color:var(--lamp);text-shadow:0 0 22px rgba(240,180,74,.4)}
+.clock{font-family:var(--f-mono);font-size:.78rem;color:var(--night-muted);display:flex;gap:14px;margin-top:10px}
+.clock b{color:var(--night-ink);font-weight:500}
+.fallback{font-size:.9rem;color:var(--night-muted)}
+.fallback a{color:var(--lamp)}
+.turn{border-top:1px solid #262c3d;padding-top:36px;display:grid;gap:10px}
+.turn .big{color:var(--night-ink)}
+.turn p.sub{color:var(--night-muted)}
+
+/* 2 · then and now */
+#then .head{display:grid;gap:16px;max-width:44rem;margin-bottom:36px}
+.compare{position:relative;aspect-ratio:700/680;max-width:760px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--rule);background:#fff;touch-action:pan-y;user-select:none}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.compare .now{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
+.compare .bar{position:absolute;top:0;bottom:0;left:var(--x,50%);width:3px;margin-left:-1.5px;background:var(--lamp);box-shadow:0 0 12px rgba(0,0,0,.35)}
+.compare .knob{position:absolute;top:50%;left:var(--x,50%);width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:var(--lamp);color:#1b1405;display:grid;place-items:center;font-size:1rem;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.compare .tag{position:absolute;top:14px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;padding:4px 9px;border-radius:4px;background:rgba(15,19,32,.82);color:#ece8dc}
+.compare .tag.l{left:14px}.compare .tag.r{right:14px}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.compare:focus-within{outline:3px solid var(--accent);outline-offset:3px}
+.cap{font-size:.85rem;color:var(--muted);text-align:center;margin-top:14px}
+#then .after{max-width:44rem;margin:44px auto 0;display:grid;gap:16px}
+
+/* 3 · the conversations */
+#talk{background:var(--night-2);color:var(--night-ink)}
+#talk .head{display:grid;gap:16px;max-width:44rem;margin-bottom:48px}
+#talk .head .mid{color:var(--night-muted)}
+.convos{display:grid;gap:56px}
+.convo{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;align-items:start}
+.convo .role{position:sticky;top:24px;display:grid;gap:6px}
+.convo .role b{font-family:var(--f-display);font-size:1.5rem;font-weight:600;color:var(--night-ink)}
+.convo .role span{font-size:.9rem;color:var(--night-muted)}
+.term{background:var(--term);border:1px solid #232a3a;border-radius:10px;box-shadow:0 16px 40px rgba(0,0,0,.35);overflow:hidden}
+.term .bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid #1f2633}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:#2c3446}
+.term .bar em{margin-left:8px;font-family:var(--f-mono);font-style:normal;font-size:.7rem;color:var(--term-muted)}
+.msg{padding:16px 18px;font-size:1rem;line-height:1.6;display:grid;gap:10px;color:var(--term-ink)}
+.msg + .msg{border-top:1px solid #1a2030}
+.who{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.msg.you .who{color:var(--term-you)}
+.msg.claude .who{color:var(--term-claude)}
+.msg.you p{font-family:var(--f-mono);font-size:.92rem;color:#f3e7cf}
+.msg.claude p{color:var(--term-ink)}
+.msg.claude b{color:#fff}
+.msg code{font-family:var(--f-mono);font-size:.85em;color:#c9d1ff}
+.msg .hl{background:rgba(154,166,255,.16);color:#fff;border-radius:3px;padding:0 3px}
+.msg table{justify-self:start;border-collapse:collapse;font-family:var(--f-mono);font-size:.82rem}
+.msg td{padding:3px 14px 3px 0;color:var(--term-muted)}
+.msg td.bad{color:#ff9b8f}.msg td.ok{color:#8fd19e}
+.msg.claude ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.more{margin-top:64px;display:grid;gap:20px;border-top:1px solid #262c3d;padding-top:40px}
+.more .mid{color:var(--night-ink)}
+.roles-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.roles-grid .r{display:grid;gap:6px;align-content:start;padding:16px 18px;border:1px solid #2a3145;border-radius:10px;background:rgba(255,255,255,.02);color:var(--night-ink);text-decoration:none}
+.roles-grid a.r:hover{border-color:var(--term-claude)}
+.roles-grid a.r b::after{content:" ↗";color:var(--term-claude);font-weight:400}
+.roles-grid b{font-family:var(--f-display);font-size:1.15rem;font-weight:600}
+.roles-grid span{font-size:.92rem;color:var(--night-muted);line-height:1.5}
+.more-end{font-family:var(--f-display);font-style:italic;color:var(--night-muted)}
+.note-src{font-size:.8rem;color:var(--night-muted);margin-top:40px}
+
+/* 4 · seven weeks */
+#weeks .head{display:grid;gap:16px;max-width:44rem;margin-bottom:40px}
+.lanes{display:grid;gap:8px;position:relative}
+.lane{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:center}
+.lane span{font-size:.92rem;text-align:right;color:var(--ink)}
+.track{position:relative;height:22px;background:repeating-linear-gradient(90deg,var(--rule) 0 1px,transparent 1px calc(100%/7))}
+.track i{position:absolute;top:3px;bottom:3px;border-radius:4px;background:var(--accent);left:var(--a);width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.lanes.in .track i{width:max(var(--w),6px)}
+.weeksx{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;margin-top:10px}
+.weeksx div{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.wk-note{font-size:.85rem;color:var(--muted);margin-top:22px;max-width:44rem}
+
+/* ten months */
+.months{margin:0;display:grid;gap:14px}
+.mrow{display:grid;grid-template-columns:190px repeat(10,minmax(0,1fr));gap:10px;align-items:end}
+.mrow .lab{align-self:center;display:grid;gap:2px;padding-right:6px}
+.mrow .lab b{font-family:var(--f-display);font-size:1.1rem;font-weight:600}
+.mrow .lab span{font-size:.8rem;color:var(--muted);line-height:1.3}
+.mrow .cell{height:150px;padding-top:24px;display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid var(--rule)}
+.mrow .cell i{display:block;width:70%;position:relative;font-style:normal;border-radius:3px 3px 0 0;height:0;transition:height 1.4s cubic-bezier(.2,.7,.2,1)}
+.months.in .mrow .cell i{height:max(var(--h),1px)}
+#row-prompts .cell i{background:var(--accent)}
+#row-commits .cell i{background:var(--gold)}
+.mrow .cell i b{position:absolute;left:-12px;right:-12px;bottom:100%;margin-bottom:4px;text-align:center;font-family:var(--f-mono);font-size:.76rem;font-weight:500;color:var(--ink)}
+.mrow .cell.none{background:repeating-linear-gradient(45deg,transparent 0 6px,color-mix(in srgb,var(--rule) 60%,transparent) 6px 8px);border-radius:3px 3px 0 0;height:40px;align-self:end}
+.mrow .cell.part i{opacity:.75}
+.mrow.ratio .cell{height:auto;border:0;font-family:var(--f-mono);font-size:.9rem;color:var(--accent);font-weight:500;padding:8px 0}
+.mrow.ratio .cell.hi{font-size:1.15rem}
+.mrow.axis .cell{height:auto;border:0;font-family:var(--f-mono);font-size:.75rem;color:var(--ink)}
+.months figcaption{font-size:.85rem;color:var(--muted);max-width:44rem}
+
+/* 5 · what did not change */
+#decide{background:var(--surface)}
+#decide .wrap{max-width:52rem;margin:0 auto;display:grid;gap:30px}
+.chain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.chain div{border:1px solid var(--rule);border-radius:10px;padding:18px;display:grid;gap:4px;background:var(--bg)}
+.chain b{font-family:var(--f-display);font-size:1.2rem}
+.chain span{font-size:.9rem;color:var(--muted)}
+.chain div.last{border:2px solid var(--gold);background:var(--gold-soft)}
+.quote{font-family:var(--f-display);font-style:italic;font-size:clamp(1.4rem,3vw,2rem);line-height:1.3;border-left:4px solid var(--gold);padding-left:20px}
+.quote small{display:block;font-style:normal;font-family:var(--f-body);font-size:.95rem;color:var(--muted);margin-top:10px;line-height:1.5}
+
+/* 6 · the handful grows */
+#grows{background:var(--bg)}
+#grows .wrap{max-width:52rem;margin:0 auto;display:grid;gap:26px}
+.jsv{margin:6px 0;display:grid;gap:10px}
+.jsv .printed{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
+.jsv .printed img{width:100%;height:auto;display:block}
+.jsv figcaption{font-size:.85rem;color:var(--muted)}
+.jsv .uni{display:grid;gap:10px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;margin-top:10px;box-shadow:var(--shadow)}
+.jsv .uni div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline}
+.jsv .lbl{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.jsv .deva{font-size:1.3rem;line-height:1.6}
+.jsv .gran{font-family:"Noto Sans Grantha",serif;font-size:1.3rem;line-height:1.7}
+.sekhar{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 22px;box-shadow:var(--shadow)}
+.sekhar .n{display:grid;gap:2px;max-width:16rem}
+.sekhar .n b{font-family:var(--f-display);font-size:3rem;line-height:1;color:var(--accent)}
+.sekhar .n span{font-size:.9rem;color:var(--muted)}
+.sekhar .links-col{display:grid;gap:8px}
+@media (max-width:860px){.sekhar{grid-template-columns:minmax(0,1fr)}}
+.site-link{font-family:var(--f-mono);font-size:.95rem;text-decoration:none}
+@media (max-width:860px){.jsv .uni div{grid-template-columns:minmax(0,1fr);gap:2px}}
+
+/* close */
+#close{min-height:90vh;display:grid;align-content:center}
+#close .wrap{max-width:46rem;margin:0 auto;display:grid;gap:26px}
+#close .big{color:var(--night-ink)}
+#close p{color:var(--night-ink)}
+#close .quiet{color:var(--night-muted);font-size:.95rem}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;padding:11px 18px;border-radius:6px;background:var(--lamp);color:#1b1405}
+.btn.ghost{background:transparent;color:var(--night-ink);border:1px solid #39405a}
+footer{background:var(--night);color:var(--night-muted);padding:0 16px 48px;text-align:center;font-size:.82rem}
+
+@media (max-width:860px){
+  .mrow{grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}
+  .mrow .lab{grid-column:1/-1;margin-top:18px}
+  .mrow.axis .lab{display:none}
+  .mrow .cell{height:120px;padding-top:20px}
+  .mrow .cell i{width:80%}
+  .mrow .cell i b{font-size:.6rem;left:-8px;right:-8px}
+  .mrow.ratio .cell,.mrow.ratio .cell.hi{font-size:.75rem}
+  .mrow.axis .cell{font-size:.62rem}
+  .mrow.axis .p{display:none}
+  body{font-size:17px}
+  section{padding:64px 16px}
+  #chant .grid{grid-template-columns:minmax(0,1fr);gap:28px}
+  .convo{grid-template-columns:minmax(0,1fr);gap:12px}
+  .roles-grid{grid-template-columns:minmax(0,1fr)}
+  .convo .role{position:static}
+  .lane,.weeksx{grid-template-columns:minmax(0,1fr);gap:4px}
+  .lane span{text-align:left;font-size:.85rem}
+  .chain{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- 1 · The chant -->
+<section class="night" id="chant">
+  <div class="inner grid">
+    <div class="lead reveal">
+      <span class="eyebrow">Kārtika Māhātmya · a discourse in Tamil</span>
+      <p class="mid">A teacher is explaining the Kārtika Māhātmya in Tamil.</p>
+      <p class="mid">Then, without warning, the verse itself, chanted.</p>
+    </div>
+    <div class="stage reveal">
+      <div class="player">
+        <div id="yt"></div>
+        <button class="playbtn" id="play" type="button" aria-label="Play the discourse"><span>▶</span><small>PRESS PLAY · WATCH THE VERSE</small></button>
+      </div>
+      <div class="verses" id="verses" aria-live="polite"></div>
+      <div class="clock"><span>in the recording <b id="t">25:53</b></span><span id="state"></span></div>
+      <p class="fallback" id="fallback" hidden>The player could not load here. <a id="ytlink" target="_blank" rel="noopener">Listen on YouTube from 25:55</a>.</p>
+    </div>
+  </div>
+  <div class="inner turn reveal">
+    <p class="big">This was built by a handful of people.</p>
+    <p class="sub">8,391 Purāṇa verses can be heard like this now, each at the second it is chanted, from 182 recordings.</p>
+  </div>
+</section>
+
+<!-- 2 · Then and now -->
+<section id="then">
+  <div class="inner">
+    <div class="head">
+      <span class="eyebrow reveal">The handful</span>
+      <p class="big reveal">Every living tradition is carried by a few people at a time.</p>
+      <p class="reveal">A vidvān who knows the text by heart. A few students. A reciter whose voice the others learned from. Someone who keeps the files. For years, what the digital age gave them was this: the book, scanned.</p>
+    </div>
+    <div class="compare reveal" id="compare" style="--x:58%">
+      <img src="images/ts-1-1-1-printed.jpg" alt="Taittirīya Saṃhitā 1.1.1 as a scanned printed page">
+      <img class="now" src="images/01-yajurveda-ts-1-1-1.jpg" alt="The same mantra on the Yajurveda site, with the phrase being chanted lit and the current word in gold">
+      <span class="tag l">THE SAME MANTRA, CHANTED</span><span class="tag r">THE BOOK, SCANNED</span>
+      <div class="bar"></div><div class="knob" aria-hidden="true">⇆</div>
+      <input type="range" min="0" max="100" value="58" aria-label="Drag to compare the scanned page with the chanted page">
+    </div>
+    <p class="cap">Taittirīya Saṃhitā 1.1.1, <span class="deva">इषे त्वोर्जे त्वा</span>. Drag across.</p>
+    <div class="after">
+      <p class="reveal">A scan holds the words. It cannot hold the chant, the commentary beside the verse, or the teacher's voice. To hold those, a handful of people would need a team: an engineer, an editor, a designer, an analyst. A small tradition has never had one.</p>
+      <p class="mid reveal">This year, one joined us. Claude Code.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · The conversations -->
+<section id="talk">
+  <div class="inner">
+    <div class="head">
+      <span class="eyebrow reveal">In the team</span>
+      <p class="big reveal">What it is like to work with it.</p>
+      <p class="mid reveal">Seven moments from our sessions, in the words we actually typed. Our messages are shown as written; Claude's are excerpts.</p>
+    </div>
+    <div class="convos">
+
+      <div class="convo reveal">
+        <div class="role"><b>The engineer</b><span>who finds what no one reported</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>yajurveda · 17 september</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>how did u figure out the audio was corrupted and how were you able to recut . that seems a mystery to me</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p><b>Chanting speed is steady, so text length predicts audio length.</b> I counted, for all 648 anuvākas, the text characters per second of audio. The typical value is 7.4.</p>
+            <table><tr><td>anuvāka</td><td>audio</td><td>chars / s</td></tr><tr><td>A06</td><td>232 s</td><td class="ok">8.5</td></tr><tr><td>A07</td><td>7 s</td><td class="bad">85.6</td></tr><tr><td>A08</td><td>81 s</td><td class="bad">13.7</td></tr><tr><td>A09</td><td>161 s</td><td class="bad">3.4</td></tr><tr><td>A07–A13 together</td><td>798 s</td><td class="ok">6.9</td></tr></table>
+            <p>Each file on its own was wrong, but all seven together had the right amount of audio. So nothing was missing; the cuts <i>between</i> them were misplaced.</p>
+            <p><span class="hl">None of the new cuts has been heard. Listening to the start of 1.7.8 and 1.7.13 on the local page would confirm them.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="convo reveal">
+        <div class="role"><b>The editor</b><span>who checks a typed text against two witnesses</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>mahābhārata with nīlakaṇṭha · 29 september</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>I am looking at the mahabaharata report "https://sanatana.in/mahabharata/mail/report" as a list of spell check errors reported by users. I wanted to check if the usage of @../mahabharata/deploy can be used to if these can caught by comparing to the other shlokas like MN Dutt or Critical Edition or the Southern Edition etc. Is that something we can check</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p><b>Yes, partly.</b> For about a third of the reports, comparing against another edition finds the same error, and usually suggests the correction too. I ran all 650 reports through a quick check and haven't changed anything in either repo.</p>
+          </div>
+          <div class="msg you"><span class="who">Trustee</span><p>I think it is worth doing it. I want to create for the 18 parvas a script that can possibly identify spell errors ? Is that what you are suggesting</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p>Yes, that's what I'm suggesting, and it's built: <code>mbh_src/qa/witness_check.py</code> checks all 18 parvas in about 3 minutes and flagged <b>4,837</b> likely errors. It isn't a general spell checker. It flags a word only where the Critical Edition and MN Dutt read it the same way and the XML differs by a letter or two.</p>
+            <p><b>How good it is, measured against your editors' own fixes.</b> … It flagged <b>42 of the 101</b> corrections made since. <span class="hl">In 40 of those 42, the two editions' reading is exactly what the editor typed.</span></p>
+            <p>Of 40 random flags from today's XML, about 25 are real typos, for example</p><p class="deva" style="font-size:1.05rem">धुर्वेद → धनुर्वेद · मत्रयन्ति → मन्त्रयन्ति · वेदपरागः → वेदपारगः · महारजो → महाराजो</p>
+            <p>The rest are mostly genuine variant readings that the editions happen to share. In at least one (<span class="deva">कोऽन्वेष</span>), the XML is the correct one.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="convo reveal">
+        <div class="role"><b>The scholar's apprentice</b><span>who traces a citation to the verse, not the page</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>kane and the smṛtimuktāphalam · 17 september</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>It is also prudent to do the forward linking. There are about 46 references from Kane to the SMP. Please do link them. I have created the remote repository also.</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p>49 strict mentions in Kane's chapters (your ~46), 69 across the whole book including the bibliography and derived pages …</p>
+            <p><b>What SMP links to Kane</b> … a concordance of passages printed <i>verbatim</i> in both — 407 rows reaching 117 chapters …</p>
+            <p>Two things I refused to link, both measured:</p>
+            <ul>
+              <li><b>A bare <span class="deva">मुक्ताफल</span></b> is Vopadeva's <i>Muktāphala</i>, which Hemādri commented on — <span class="hl">a different book entirely.</span> Ten occurrences.</li>
+              <li><b>Kane's page numbers.</b> He puts Ṛgveda I.154.5 at "āhnika p. 390"; <span class="hl">that verse occurs exactly once in the whole edition, printed on p. 231</span> of the āhnika uttarabhāga.</li>
+            </ul>
+            <p>So his page stays in the text and the link goes to the kāṇḍa …</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="convo reveal">
+        <div class="role"><b>The scientist</b><span>who turns memory into evidence</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>kārtika māhātmya, chapter 22 · 27 september</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>but there needs to be a better way to verify . I was able to identify 22.19 since I knew from memory . The other 22.17 etc. I knew it was a chant but was not able to say conclusively it was 22.17</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p>So for 22.17 and 22.22 the answer no longer depends on memory: of every hemistich in the chapter, their own text fits that audio best, by a wide margin. <span class="hl">That's the claim you couldn't make by ear, and it now rests on a measurement.</span></p>
+            <p>Anything left over goes to you as a read-along. The span plays with the text highlighted word by word, so you're checking whether the words match what you hear, not recalling which verse it is.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="convo reveal">
+        <div class="role"><b>The colleague</b><span>who takes direction</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>a "Shazam" for Vedic chant · 3 october</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>There is no point in building A . What is the use ? There is no audience. The value is in building B.</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p>Agreed. A only serves people already on the sites. B's open question is how good the recogniser has to be. <span class="hl">I can measure that from the text alone, so I'm doing that before anyone builds a recogniser.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="convo reveal">
+        <div class="role"><b>The analyst</b><span>who shapes the work around the people doing it</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>reviewing the mahābhārata findings · 30 september</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>we were looknig at the @qa/findings and had produced a html artefact. There are 2 ways to go about it. We could have somebody review the artefact by looking at the "corrected" / "not an erpr" . But that will require fixing a lot of javascript stuff. (e.g.) I keep clicknig on the Corrected button and the count just increases . The other option is to raise 5357 PR's against the mbh_src and somebody could apporve or reject . Does that make sense at all ?</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p>It makes sense to ask, but I'd advise against 5,357 PRs. Fixing the review page is the smaller job.</p>
+            <ul>
+              <li><b>Rejections get lost.</b> Closing a PR as "not an error" leaves that decision in GitHub's history … so the witness pass doesn't raise the same finding again next run.</li>
+              <li><b>Many proposed fixes point the wrong way.</b> … For example, the very first finding would "correct" <span class="deva">कुलपतेर्द्वादशवार्षिके</span> to <span class="deva">कुलपतेर्दादशवार्षिक</span>. A PR presents the reference reading as the fix, which pushes reviewers toward merging bad changes.</li>
+              <li><b>Reviewers see less.</b> A PR diff shows one changed line. It doesn't show the witness IDs, the CE and Dutt readings side by side, or the tier, all of which the review page can show.</li>
+            </ul>
+            <p><b>Sort by tier.</b> Show <code>both</code> (CE and Dutt agree) first, since those are the likeliest real errors.</p>
+          </div>
+          <div class="msg you"><span class="who">Trustee</span><p>i am saying people can do both . Some do online and some want to do on phone and email the stuff.</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p><b>Design for touch.</b> Big Corrected / Not an error buttons, the two readings stacked on top of each other, and nothing that needs a mouse. The online and offline versions will share one codebase, one decision format and one merge-and-apply script.</p>
+            <p><span class="hl">Which reviewer should I build and test with first: an online one, or someone on a phone using email?</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="convo reveal">
+        <div class="role"><b>The one who knows the texts</b><span>when we wonder aloud</span></div>
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i><em>a curiosity · 6 october</em></div>
+          <div class="msg you"><span class="who">Trustee</span><p>On a different note today is Indra Ekadasi. Vaisampayanar chants about Ekadashi of every month. Can you check if this is present. and if so then we can link to that too. This is just a curiosity</p></div>
+          <div class="msg claude"><span class="who">Claude Code</span>
+            <p>Yes, it's there, but not yet in a form we can link to. It's part 10 of his Mahālaya series … The text it maps to: Padma Purāṇa, Uttarakhaṇḍa, chapter 58. <span class="hl">Chapters 34–63 of the Uttarakhaṇḍa are a complete yearly Ekādaśī cycle, one chapter per Ekādaśī</span> … 11 of his Ekādaśī talks are each matched to their own chapter of that cycle.</p>
+            <p>Ekādaśī comes twice a month. With 30 chapters, two speakers, and a date the audience already marks, it could become a regular rhythm.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="note-src">Dates are from 2026. The trustee's messages are verbatim, typos included.</p>
+    <div class="more reveal">
+      <p class="mid">Other roles it has filled</p>
+      <div class="roles-grid">
+        <a class="r" href="https://hvram1.github.io/rigveda.sanatana.in/" target="_blank" rel="noopener"><b>UI/UX designer</b><span>The Ṛgveda site's navigation: read by maṇḍala and sūkta or by aṣṭaka, or gathered by ṛṣi, devatā or chandas.</span></a>
+        <a class="r" href="https://hvram1.github.io/advaitabharati.sanatanasampatti.in/isha/1/" target="_blank" rel="noopener"><b>Unicode expert</b><span>Sanskrit moved between Devanāgarī, Tamil and Grantha scripts, with ² ³ ⁴ marking the aspirated and voiced consonants, as Tamil books print them.</span></a>
+        <div class="r"><b>Proofreader</b><span>The Prolegomena's OCR proofread against the scans: mechanical errors fixed in bulk, the rest listed for a person to judge.</span></div>
+        <div class="r"><b>Tester</b><span>Test suites that open the sites on a phone and check that each deep link lands where it should.</span></div>
+        <div class="r"><b>Writer</b><span>Essays on measurement, including one that audits a figure it had to retract.</span></div>
+        <div class="r"><b>Release manager</b><span>Building, checking and publishing the sites to GitHub Pages, and the recordings to Cloudflare.</span></div>
+      </div>
+      <p class="more-end">…and more, as the work goes on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Ten months -->
+<section id="weeks">
+  <div class="inner">
+    <div class="head">
+      <span class="eyebrow reveal">Ten months</span>
+      <p class="big reveal">January to October.</p>
+      <p class="reveal">We have worked with Claude Code since the start of the year. Much of that work stayed private until it was ready to show: we kept working through the summer, and the scholars kept typing the Mahābhārata and its commentary by hand, but little of it was published. From August it went public, and fast.</p>
+      <p class="reveal">Familiarity shows in another number. In April it took about 42 prompts to Claude Code for each piece of work we published. By September it took about 4.</p>
+    </div>
+    <figure class="months reveal" id="months" aria-label="Per month in 2026: prompts to Claude Code, commits published, and prompts for each published commit">
+      <div class="mrow" id="row-prompts"></div>
+      <div class="mrow" id="row-commits"></div>
+      <div class="mrow ratio" id="row-ratio"></div>
+      <div class="mrow axis" id="row-axis"></div>
+      <figcaption>2026, by month. Prompts are the messages typed to Claude Code on the projects, from its history on this machine, which begins in March; January and February were worked on another machine. Commits are the trustee's, across the project repositories. October counts its first eight days.</figcaption>
+    </figure>
+    <div class="head" style="margin-top:72px">
+      <span class="eyebrow reveal">The last seven weeks, up close</span>
+      <p class="mid reveal">20 August to 8 October: thirteen pieces of work, side by side.</p>
+    </div>
+    <div class="lanes reveal" id="lanes"></div>
+    <div class="weeksx"><span></span><div><span>20 Aug</span><span>3 Sep</span><span>17 Sep</span><span>1 Oct</span><span>8 Oct</span></div></div>
+    <p class="wk-note">Each bar runs from the first to the last day of work in the project's history. Many rest on groundwork laid earlier in the year.</p>
+  </div>
+</section>
+
+<!-- 5 · What did not change -->
+<section id="decide">
+  <div class="wrap">
+    <span class="eyebrow reveal">What did not change</span>
+    <p class="big reveal">The scholars decide.</p>
+    <div class="chain reveal">
+      <div><b>Gemini reads</b><span>the printed page</span></div>
+      <div><b>Claude Code proposes</b><span>the correction, the link, the timing</span></div>
+      <div class="last"><b>A person decides</b><span>accepts it, or switches it off</span></div>
+    </div>
+    <p class="quote reveal">"I want to verify every verse and not trust numbers at all."<small>The trustee, when Kane's citations were being linked to the texts they quote, 17 September.</small></p>
+    <p class="quote reveal">"Do you have a character you like?"<small>How we will invite pāṭhaśālā students to tie names to verses. A student reads, and a vidvān validates. The meaning of a text follows the tradition and its teachers, not a model.</small></p>
+    <p class="mid reveal">Claude Code makes a scholar's judgement go further. It does not take its place.</p>
+  </div>
+</section>
+
+<!-- 6 · The handful grows -->
+<section id="grows">
+  <div class="wrap">
+    <span class="eyebrow reveal">The handful grows</span>
+    <p class="big reveal">The story we are proudest of.</p>
+    <p class="reveal">The only edition of the Jaiminīya Sāmaveda was set in a proprietary font. On a computer, its pages were pictures of text: they could not be searched, copied or corrected.</p>
+    <figure class="jsv reveal">
+      <div class="printed"><img src="images/jsv-printed-line.png" alt="One line of the Jaiminīya Sāmaveda as printed in the proprietary font, with its svara notation beneath"></div>
+      <figcaption>As printed: a picture of text, its svara notation set beneath.</figcaption>
+      <div class="uni">
+        <div><span class="lbl">Devanāgarī</span><p class="deva">वि श्पो(त्य) हा(त) इ(श) । पार्क्त ना(टि) आभि भू(कि) त र(क्यच) न्ना(क) राः(च) ।</p></div>
+        <div><span class="lbl">Grantha</span><p class="gran">𑌵𑌿 𑌶𑍍𑌪𑍋 𑌹𑌾 𑌇 । 𑌪𑌾𑌰𑍍𑌕𑍍𑌤 𑌨𑌾 𑌆𑌭𑌿 𑌭𑍂 𑌤 𑌰 𑌨𑍍𑌨𑌾 𑌰𑌾𑌃 ।</p></div>
+      </div>
+      <figcaption>The same line as text: in Devanāgarī with each svara in its place, and in Grantha. Tamil and Malayalam are made from it too.</figcaption>
+    </figure>
+    <p class="reveal">We began there, with Claude Code: the font decoded character by character, and the text brought out in Devanāgarī, Grantha, Tamil and Malayalam. A vidvān and the Veda pāṭhaśālā in Palakkad proofread it svara by svara, filing their corrections as GitHub issues, 369 of them. We delivered an alpha version.</p>
+    <p class="mid reveal">Then something better happened. Sri Sekhar Narayanaswamy, who lives there, saw what these tools made possible. He learned them, took the work over, and maintains it today.</p>
+    <div class="sekhar reveal">
+      <div class="n"><b>436</b><span>commits of his own since September 2025, the latest this morning</span></div>
+      <div class="links-col">
+        <a class="site-link" href="https://sekharnarayanaswamy-del.github.io/jaimineeyasamavedam/" target="_blank" rel="noopener">The digital repository he maintains ↗</a>
+        <a class="site-link" href="https://github.com/sekharnarayanaswamy-del/jaimineeyasamavedam" target="_blank" rel="noopener">His work, commit by commit ↗</a>
+      </div>
+    </div>
+    <p class="quote reveal">That is the effect we hope for most.<small>Not that a tool does the work, but that it makes the work easy enough to learn: someone new joins the handful, and the tradition continues.</small></p>
+  </div>
+</section>
+
+<!-- Close -->
+<section class="night" id="close">
+  <div class="wrap">
+    <p class="big reveal">There are thousands of handfuls like ours.</p>
+    <p class="reveal">In maṭhas and pāṭhaśālās, in families of reciters, in every language of India. Each one is keeping a text, or a way of chanting it, alive.</p>
+    <p class="reveal">Somewhere today a teacher is explaining a Purāṇa, and partway through will chant a verse. That verse deserves its address.</p>
+    <div class="links reveal">
+      <a class="btn" href="https://hvram1.github.io/sanatana-pitch/" target="_blank" rel="noopener">Open the sites</a>
+      <a class="btn ghost" href="https://hvram1.github.io/sanatana-pitch/ask.html" target="_blank" rel="noopener">What we would build next</a>
+    </div>
+  </div>
+</section>
+<footer>Sanatana Sampatti Foundation, Srirangapatna · secretary@sanatanasampatti.in</footer>
+
+<script>
+(function(){
+  // The chant: Musiri's Kārtika discourse, part 3 (kmm-03). Each half-verse lights
+  // at the second the Purāṇa Atlas has it chanted (data/kartika_4lang.json).
+  const VIDEO = '4KXkq6aoM9M', START = 1553, END = 1600;
+  const HEMIS = [
+    {ref:'1.30', s:1561.18, txt:'तानि दानानि दत्तानि गृह्णंति विधिवत्सुराः ।'},
+    {ref:'1.30', s:1567.34, txt:'यत्किंच दत्तं विप्रेंद्र तपश्चैव तथा कृतम् ॥'},
+    {ref:'1.31', s:1571.44, txt:'तदक्षय्यफलं प्रोक्तं विष्णुना प्रभविष्णुना ।'},
+    {ref:'1.31', s:1575.46, txt:'पापानां मोक्षणं चैव कार्तिके मासि शस्यते ॥'},
+  ];
+  const NEXT_AT = 1595.0;
+  const vbox = document.getElementById('verses'), byRef = {};
+  HEMIS.forEach(h => {
+    if(!byRef[h.ref]){ const v = document.createElement('div'); v.className = 'verse';
+      v.innerHTML = '<span class="ref">KĀRTIKA MĀHĀTMYA ' + h.ref + '</span>'; vbox.appendChild(v); byRef[h.ref] = v; }
+    const line = document.createElement('div'); line.className = 'hemi'; line.textContent = h.txt; h.el = line; byRef[h.ref].appendChild(line);
+  });
+  const mmss = s => Math.floor(s/60) + ':' + String(Math.floor(s%60)).padStart(2,'0');
+  const tEl = document.getElementById('t'), stEl = document.getElementById('state');
+  function paint(now){
+    tEl.textContent = mmss(now);
+    let cur = -1;
+    HEMIS.forEach((h,i) => { const end = i+1 < HEMIS.length ? HEMIS[i+1].s : NEXT_AT; if(now >= h.s && now < end) cur = i; });
+    HEMIS.forEach((h,i) => { h.el.classList.toggle('lit', i === cur); h.el.classList.toggle('done', cur > i || now >= NEXT_AT); });
+    stEl.textContent = cur >= 0 ? 'chanted · ' + HEMIS[cur].ref : '';
+  }
+  const link = 'https://www.youtube.com/watch?v=' + VIDEO + '&t=' + Math.floor(START + 2) + 's';
+  document.getElementById('ytlink').href = link;
+  let player = null, timer = null, ready = false;
+  const fail = () => { document.getElementById('fallback').hidden = false; };
+  window.onYouTubeIframeAPIReady = function(){
+    try{
+      player = new YT.Player('yt', {videoId: VIDEO, playerVars: {start: START, end: END, rel: 0, playsinline: 1, modestbranding: 1},
+        events: {onReady: () => { ready = true; }, onError: fail,
+          onStateChange: e => { clearInterval(timer); if(e.data === YT.PlayerState.PLAYING) timer = setInterval(() => paint(player.getCurrentTime()), 100); }}});
+    }catch(e){ fail(); }
+  };
+  const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.onerror = fail; document.head.appendChild(s);
+  document.getElementById('play').addEventListener('click', function(){
+    if(ready && player){ this.remove(); player.seekTo(START, true); player.playVideo(); }
+    else window.open(link, '_blank', 'noopener');
+  });
+  paint(START);
+
+  // Then and now: drag the divider
+  const cmp = document.getElementById('compare'), rng = cmp.querySelector('input');
+  rng.addEventListener('input', () => cmp.style.setProperty('--x', rng.value + '%'));
+
+  // Ten months: prompts to Claude Code (its history on this machine, from March),
+  // commits published (git), and prompts for each published commit.
+  const M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'];
+  const PROMPTS = [null,null,250,590,76,47,364,861,628,232];
+  const COMMITS = [16,4,19,14,0,0,0,69,153,45];
+  const row = (id, label, sub, cells) => { document.getElementById(id).innerHTML =
+    `<div class="lab"><b>${label}</b><span>${sub}</span></div>` + cells.join(''); };
+  const bars = (vals, max) => vals.map((v,i) => v === null
+    ? '<div class="cell none" title="worked on another machine; no record here"></div>'
+    : `<div class="cell${i===9?' part':''}"><i style="--h:${(100*v/max).toFixed(1)}%">${v ? '<b>'+v+'</b>' : ''}</i></div>`);
+  row('row-prompts', 'Working with Claude Code', 'prompts on the projects', bars(PROMPTS, 861));
+  row('row-commits', 'Published', 'commits', bars(COMMITS, 160));
+  row('row-ratio', 'Prompts per commit', 'lower is more done per prompt', PROMPTS.map((p,i) =>
+    `<div class="cell${i===3||i===8?' hi':''}">${p && COMMITS[i] ? Math.round(p / COMMITS[i]) : '·'}</div>`));
+  row('row-axis', '', '', M.map((m,i) => `<div class="cell">${m}${i===9?'<span class="p"> 1–8</span>':''}</div>`));
+
+  // Seven weeks: first and last day of work in each project's history, 2026
+  const D0 = Date.UTC(2026,7,20), D1 = Date.UTC(2026,9,8), span = D1 - D0;
+  const d = s => { const [m,dd] = s.split('-').map(Number); return Date.UTC(2026, m-1, dd); };
+  const LANES = [
+    ['Purāṇa atlases', '08-20', '09-21'],
+    ['Finding the verse in the recording', '08-22', '10-04'],
+    ['One verse index, 513,887 verses', '08-22', '10-06'],
+    ['Jagadguru Anugraha Bhāṣaṇam', '09-11', '09-11'],
+    ['Prolegomena, proofread', '09-12', '09-15'],
+    ['Smṛtimuktāphalam edition', '09-14', '09-17'],
+    ['Kane, linked by the verse', '09-17', '09-17'],
+    ['Ṛgveda, 10,475 ṛks re-timed', '09-19', '09-19'],
+    ['Vedic Abhyāsa, the svara tutor', '09-19', '10-02'],
+    ['Mahābhārata, typos found by two editions', '09-29', '09-30'],
+    ['Vālmīki Rāmāyaṇa', '10-04', '10-06'],
+    ['The pitch and the funding page', '10-04', '10-08'],
+    ['Advaita Bhāratī, redesigned', '10-06', '10-07'],
+  ];
+  document.getElementById('lanes').innerHTML = LANES.map(([name,a,b]) => {
+    const left = 100 * (d(a) - D0) / span, width = 100 * (d(b) - d(a) + 864e5) / span;
+    return `<div class="lane"><span>${name}</span><div class="track"><i style="--a:${left.toFixed(2)}%;--w:${width.toFixed(2)}%"></i></div></div>`;
+  }).join('');
+
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .15}) : null;
+  document.querySelectorAll('.reveal').forEach(el => io ? io.observe(el) : el.classList.add('in'));
+})();
+</script>
+</body>
+</html>

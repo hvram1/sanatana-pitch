@@ -27,6 +27,7 @@ import glob
 import json
 import os
 import re
+import shutil
 import sqlite3
 import sys
 
@@ -305,7 +306,11 @@ def build_site(dist, out):
     open(os.path.join(out, 'csr.html'), 'w', encoding='utf8').write(page('csr.html', [(ASK_URL, 'ask.html'), (PITCH_URL, './')]))
     open(os.path.join(out, 'asks.json'), 'w', encoding='utf8').write(open(os.path.join(dist, 'asks.json'), encoding='utf8').read())
     open(os.path.join(out, '.nojekyll'), 'w').close()
-    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll')
+    # the showcase for Anthropic, served at /showcase/: the page and its images only, not its notes
+    show = os.path.join(out, 'showcase')
+    shutil.rmtree(show, ignore_errors=True)
+    shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
+    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/')
 
 
 def build(out):

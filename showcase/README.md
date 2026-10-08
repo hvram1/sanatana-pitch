@@ -5,6 +5,10 @@ the team, are carrying the tradition's texts, commentaries and recitation into
 the digital age. It is the third front, separate from the funder pitch (`src/`)
 and the strategy work.
 
+Published at https://hvram1.github.io/sanatana-pitch/showcase/: `./publish.py --site`
+copies `index.html` and `images/` into `docs/showcase/` (the `.md` notes stay here).
+To view it locally:
+
     cd showcase && python3 -m http.server 8765      # then open http://localhost:8765
 
 Serve it rather than opening the file: the opening plays a YouTube recording,

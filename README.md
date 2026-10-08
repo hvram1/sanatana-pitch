@@ -58,6 +58,10 @@ The same two pages are served in two places, and both are kept for now:
 | Claude artifacts | J3XQ… | RHAx… | only the people each link is shared with |
 | GitHub Pages | https://hvram1.github.io/sanatana-pitch/ | …/sanatana-pitch/ask.html | anyone; the pages are public and can be indexed |
 
+The showcase for Anthropic (`showcase/`) is served there too, at
+https://hvram1.github.io/sanatana-pitch/showcase/: `--site` copies its page and
+images (not its notes) into `docs/showcase/`.
+
 `./publish.py --site` builds both: `dist/` for the artifacts, `docs/` for Pages
 (served from `main`, folder `/docs`). `docs/` is committed and `dist/` is not.
 In `docs/`, the two pages link to each other's github.io copy, because the
