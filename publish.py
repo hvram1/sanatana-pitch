@@ -335,6 +335,8 @@ def main():
     ap.add_argument('--out', default=os.path.join(HERE, 'dist'))
     ap.add_argument('--site', action='store_true', help='also build docs/ for hvram1.github.io/sanatana-pitch')
     a = ap.parse_args()
+    import coverage_map
+    coverage_map.main()
     print('figures:')
     bad = check()
     if bad:

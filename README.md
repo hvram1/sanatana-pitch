@@ -27,6 +27,15 @@ The Artifact tool only accepts supporting files from the session's working
 directory or scratchpad, so when publishing from another repo's session, copy
 `dist/ask.html` and `dist/asks.json` there first.
 
+## The coverage map
+
+The map of the tradition in the pitch's Section III is drawn by `coverage_map.py`
+from the data at its top: each branch, its state (live, beta, with a partner,
+under way, not yet) and the page it links to. `publish.py` redraws it on every
+build, between the `coverage-map` markers in `src/pitch.html`; edit the data, not
+the SVG. A dark branch with a result on the funding page links to that result
+(`#namakosa`), and the funding page scrolls to it once its list has loaded.
+
 ## The figure check
 
 Every number the pages print that has a local source is checked against it:

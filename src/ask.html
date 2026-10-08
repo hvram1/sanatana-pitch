@@ -223,7 +223,12 @@ details ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
   }
 
   fetch('asks.json', {cache:'no-store'}).then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(render)
+    .then(d => {
+      render(d);
+      // the list is built after loading, so a link to one result (#namakosa) is followed here
+      const el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if(el) el.scrollIntoView();
+    })
     .catch(() => { document.getElementById('menu').innerHTML =
       '<p class="err">The list of results could not be loaded. Reload the page; if it persists, write to secretary@sanatanasampatti.in.</p>';
       document.getElementById('total').textContent = '—'; });
