@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="fd" viewBox="0 0 1490 670" role="img" aria-label="How a decision becomes the published kośa, with the reader’s name">
+<title>How a decision becomes the published kośa, with the reader’s name</title>
+<style>
+.fd{font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif}
+.fd .bg{fill:var(--surface,#fff)}
+.fd .band{fill:var(--band,#eceef2)}
+.fd .lane{font-family:"Spectral",Georgia,serif;font-size:15px;font-weight:600;fill:var(--ink,#1b2130)}
+.fd .stg{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;fill:var(--muted,#5b6474)}
+.fd .grid{stroke:var(--rule,#d9dde5);stroke-width:1;stroke-dasharray:2 4}
+.fd .nb{fill:var(--surface,#fff);stroke:var(--rule,#cfd4dd);stroke-width:1.2}
+.fd .L-agent .nb{stroke:var(--accent,#2f3a8f);stroke-width:1.6}
+.fd .L-student .nb{stroke:var(--leaf,#2f6f55);stroke-width:1.6}
+.fd .L-out .nb{stroke:var(--muted,#5b6474);stroke-dasharray:4 3}
+.fd .gate .nb{fill:var(--gold-soft,#fbf1dc);stroke:var(--gold,#a86a00);stroke-width:2}
+.fd .num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;font-weight:500;fill:var(--accent,#2f3a8f)}
+.fd .L-student .num{fill:var(--leaf,#2f6f55)} .fd .gate .num{fill:var(--gold,#a86a00)} .fd .L-out .num{fill:var(--muted,#5b6474)}
+.fd .who{font-size:12px;font-weight:700;fill:var(--ink,#1b2130)}
+.fd .tx{font-size:11.5px;fill:var(--muted,#5b6474)}
+.fd .ed{stroke:var(--muted,#5b6474);stroke-width:1.5;fill:none;stroke-linejoin:round}
+.fd .ed.hum{stroke:var(--gold,#a86a00)}
+.fd .ah{fill:var(--muted,#5b6474)} .fd .ah.hum{fill:var(--gold,#a86a00)}
+.fd .el{font-size:11px;font-style:italic;fill:var(--ink,#1b2130);paint-order:stroke;stroke:var(--surface,#fff);stroke-width:5px;stroke-linejoin:round}
+.fd .gm{fill:var(--gold,#a86a00)}
+@media (prefers-color-scheme:dark){svg.fd:root{--surface:#1a1f2b;--band:#202535;--rule:#39405a;--ink:#e6e8ee;--muted:#9aa3b5;--accent:#9aa6ff;--leaf:#7fcca8;--gold:#f0b44a;--gold-soft:#2e2615}}
+</style>
+<defs><marker id="a-credit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0 0 L10 5 L0 10 z"/></marker>
+<marker id="h-credit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah hum" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+<rect class="bg" width="1490" height="670" rx="12"/>
+<text class="stg" x="213.0" y="36" text-anchor="middle">DECIDE</text>
+<text class="stg" x="407.0" y="36" text-anchor="middle">SIGN</text>
+<line class="grid" x1="310" y1="46" x2="310" y2="662"/>
+<text class="stg" x="601.0" y="36" text-anchor="middle">LOG</text>
+<line class="grid" x1="504" y1="46" x2="504" y2="662"/>
+<text class="stg" x="795.0" y="36" text-anchor="middle">BUILD</text>
+<line class="grid" x1="698" y1="46" x2="698" y2="662"/>
+<text class="stg" x="989.0" y="36" text-anchor="middle">VERIFY</text>
+<line class="grid" x1="892" y1="46" x2="892" y2="662"/>
+<text class="stg" x="1183.0" y="36" text-anchor="middle">PUBLISHED</text>
+<line class="grid" x1="1086" y1="46" x2="1086" y2="662"/>
+<text class="stg" x="1377.0" y="36" text-anchor="middle">TOLD</text>
+<line class="grid" x1="1280" y1="46" x2="1280" y2="662"/>
+<rect class="band" x="10" y="58" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="113.0">Student</text>
+<rect class="band" x="10" y="166" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="221.0">Vidvān</text>
+<rect class="band" x="10" y="274" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="329.0">Agents</text>
+<rect class="band" x="10" y="382" width="1470" height="272" rx="8"/>
+<text class="lane" x="22" y="523.0">On the sites</text>
+<path class="ed hum" d="M282 108 L310 108 L310 216 L338 216" marker-end="url(#h-credit)"/>
+<path class="ed hum" d="M476 216 L504 216 L504 324 L532 324" marker-end="url(#h-credit)"/>
+<path class="ed" d="M670 324 L726 324" marker-end="url(#a-credit)"/>
+<path class="ed" d="M864 324 L920 324" marker-end="url(#a-credit)"/>
+<path class="ed" d="M1058 324 L1076 324 L1076 432 L1114 432" marker-end="url(#a-credit)"/>
+<path class="ed" d="M1058 324 L1076 324 L1076 518 L1114 518" marker-end="url(#a-credit)"/>
+<path class="ed" d="M1058 324 L1076 324 L1076 604 L1114 604" marker-end="url(#a-credit)"/>
+<path class="ed" d="M1058 324 L1308 324" marker-end="url(#a-credit)"/>
+<g class="L-student gate"><rect class="nb" x="144.0" y="72.0" width="138" height="72" rx="9"/>
+<path class="gm" d="M270.0 126.0 l6 6 l-6 6 l-6 -6 z"/>
+<text class="num" x="153.0" y="88.0">1</text><text class="who" x="166.0" y="88.0">Student</text>
+<text class="tx" x="153.0" y="105.0">decides on the</text>
+<text class="tx" x="153.0" y="119.0">phone; reader and</text>
+<text class="tx" x="153.0" y="133.0">time saved</text>
+</g>
+<g class="L-senior gate"><rect class="nb" x="338.0" y="180.0" width="138" height="72" rx="9"/>
+<path class="gm" d="M464.0 234.0 l6 6 l-6 6 l-6 -6 z"/>
+<text class="num" x="347.0" y="196.0">2</text><text class="who" x="360.0" y="196.0">Vidvān</text>
+<text class="tx" x="347.0" y="213.0">signs; adds name and</text>
+<text class="tx" x="347.0" y="227.0">date</text>
+</g>
+<g class="L-agent"><rect class="nb" x="532.0" y="288.0" width="138" height="72" rx="9"/>
+<text class="num" x="541.0" y="304.0">3</text><text class="who" x="554.0" y="304.0">Publisher</text>
+<text class="tx" x="541.0" y="321.0">appends one ledger</text>
+<text class="tx" x="541.0" y="335.0">line; never</text>
+<text class="tx" x="541.0" y="349.0">overwrites</text>
+</g>
+<g class="L-agent"><rect class="nb" x="726.0" y="288.0" width="138" height="72" rx="9"/>
+<text class="num" x="735.0" y="304.0">4</text><text class="who" x="748.0" y="304.0">Nightly build</text>
+<text class="tx" x="735.0" y="321.0">loads rulings with</text>
+<text class="tx" x="735.0" y="335.0">reader and ruler</text>
+</g>
+<g class="L-agent"><rect class="nb" x="920.0" y="288.0" width="138" height="72" rx="9"/>
+<text class="num" x="929.0" y="304.0">5</text><text class="who" x="942.0" y="304.0">Verify</text>
+<text class="tx" x="929.0" y="321.0">refuses credit on an</text>
+<text class="tx" x="929.0" y="335.0">unsigned decision</text>
+</g>
+<g class="L-out"><rect class="nb" x="1114.0" y="396.0" width="138" height="72" rx="9"/>
+<text class="num" x="1123.0" y="412.0">6</text><text class="who" x="1136.0" y="412.0">On the verse</text>
+<text class="tx" x="1123.0" y="429.0">tap the name: read</text>
+<text class="tx" x="1123.0" y="443.0">by, ruled by</text>
+</g>
+<g class="L-out"><rect class="nb" x="1114.0" y="482.0" width="138" height="72" rx="9"/>
+<text class="num" x="1123.0" y="498.0">7</text><text class="who" x="1136.0" y="498.0">On the card</text>
+<text class="tx" x="1123.0" y="515.0">signed grade,</text>
+<text class="tx" x="1123.0" y="529.0">readers listed</text>
+</g>
+<g class="L-out"><rect class="nb" x="1114.0" y="568.0" width="138" height="72" rx="9"/>
+<text class="num" x="1123.0" y="584.0">8</text><text class="who" x="1136.0" y="584.0">Readers’ page</text>
+<text class="tx" x="1123.0" y="601.0">by name, never by</text>
+<text class="tx" x="1123.0" y="615.0">count</text>
+</g>
+<g class="L-agent"><rect class="nb" x="1308.0" y="288.0" width="138" height="72" rx="9"/>
+<text class="num" x="1317.0" y="304.0">9</text><text class="who" x="1330.0" y="304.0">Notifier</text>
+<text class="tx" x="1317.0" y="321.0">WhatsApp: your</text>
+<text class="tx" x="1317.0" y="335.0">verses are live</text>
+</g>
+</svg>

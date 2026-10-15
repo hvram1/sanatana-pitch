@@ -286,6 +286,14 @@ SKELETON = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
 
 
+def skeleton(body):
+    """An artifact page (<title>, font links, <style>, body) as a whole HTML document."""
+    head, sep, rest = body.partition('<style>')
+    # <title>, font links and <style> go in <head>; everything after the first </style> is the body
+    style_end = rest.index('</style>') + len('</style>')
+    return SKELETON + head + sep + rest[:style_end] + '\n</head><body>\n' + rest[style_end:].lstrip('\n') + '</body></html>\n'
+
+
 def build_site(dist, out):
     """docs/ for GitHub Pages, from an already-built dist/."""
     os.makedirs(out, exist_ok=True)
@@ -296,10 +304,7 @@ def build_site(dist, out):
             if url not in body:
                 raise SystemExit(f'{name}: expected a link to {url}; the cross-link rewrite is stale')
             body = body.replace(url, local)
-        head, sep, rest = body.partition('<style>')
-        # <title>, font links and <style> go in <head>; everything after the first </style> is the body
-        style_end = rest.index('</style>') + len('</style>')
-        return SKELETON + head + sep + rest[:style_end] + '\n</head><body>\n' + rest[style_end:].lstrip('\n') + '</body></html>\n'
+        return skeleton(body)
 
     open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html'), (CSR_URL, 'csr.html')]))
     open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './'), (CSR_URL, 'csr.html')]))
@@ -310,7 +315,19 @@ def build_site(dist, out):
     show = os.path.join(out, 'showcase')
     shutil.rmtree(show, ignore_errors=True)
     shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
-    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/')
+    build_namakosa(out)
+    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/, namakosa/')
+
+
+def build_namakosa(out):
+    """The Nāma-Kośa loop, served at /namakosa/: the page wrapped like the pitch, its SVGs beside it."""
+    loop = os.path.join(out, 'namakosa')
+    shutil.rmtree(loop, ignore_errors=True)
+    os.makedirs(loop)
+    src = os.path.join(HERE, 'namakosa')
+    open(os.path.join(loop, 'index.html'), 'w', encoding='utf8').write(skeleton(open(os.path.join(src, 'index.html'), encoding='utf8').read()))
+    for svg in glob.glob(os.path.join(src, '*.svg')):
+        shutil.copy(svg, loop)
 
 
 def build(out):

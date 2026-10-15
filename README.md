@@ -62,6 +62,11 @@ The showcase for Anthropic (`showcase/`) is served there too, at
 https://hvram1.github.io/sanatana-pitch/showcase/: `--site` copies its page and
 images (not its notes) into `docs/showcase/`.
 
+The Nāma-Kośa loop (`namakosa/`), the agent workflow for the Purāṇa Nāma-Kośa
+with vidvāns and students in the loop, is served at
+https://hvram1.github.io/sanatana-pitch/namakosa/: `--site` wraps its page and
+copies its SVGs into `docs/namakosa/`.
+
 `./publish.py --site` builds both: `dist/` for the artifacts, `docs/` for Pages
 (served from `main`, folder `/docs`). `docs/` is committed and `dist/` is not.
 In `docs/`, the two pages link to each other's github.io copy, because the
