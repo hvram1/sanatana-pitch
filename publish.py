@@ -175,7 +175,9 @@ def yv_panchasats(text):
 
 def yv_anuvakas_with_both_bhashyas():
     """Saṃhitā anuvākas with both Sāyaṇa and Bhaṭṭa Bhāskara beside the text,
-    in the kāṇḍas the site counts as done (1, 2, 3, 6; 4, 5, 7 are in progress)."""
+    in the kāṇḍas the site counts as done (1, 2, 3, 6; 4, 5, 7 are in progress).
+    An anuvāka under a joint Sāyaṇa commentary has it: since 8 October the text
+    sits once, on the head anuvāka, and each member's page links to it."""
     both = {}
     files = glob.glob(p('yajurveda.sanatana.in', 'src', 'data', '0[1-7]', '*', '*', '*.json'))
     if not files:
@@ -184,7 +186,8 @@ def yv_anuvakas_with_both_bhashyas():
         k, pr, a = f.split(os.sep)[-4:-1]
         d = json.load(open(f, encoding='utf8'))
         s, b = both.get((k, pr, a), (False, False))
-        both[(k, pr, a)] = (s or bool((d.get('sayanaBhashya') or '').strip()), b or bool((d.get('bhattaBhashya') or '').strip()))
+        sayana = bool((d.get('sayanaBhashya') or '').strip()) or (d.get('sayanaGrade') == 'joint' and bool(d.get('sayanaJoint')))
+        both[(k, pr, a)] = (s or sayana, b or bool((d.get('bhattaBhashya') or '').strip()))
     return sum(1 for (k, _, _), (s, b) in both.items() if s and b and k in ('01', '02', '03', '06'))
 
 
