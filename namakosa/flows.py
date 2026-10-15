@@ -1,9 +1,9 @@
-# Workflow diagrams for the Nāma-Kośa loop: swimlanes (who) by stages (when),
+# The workflow diagram for the Nāma-Kośa loop: swimlanes (who) by stages (when),
 # arrows for the real branches. Human decisions are gold; agents are indigo.
 from xml.sax.saxutils import escape as x
 import textwrap
-STAGES0=STAGES=['Arrives','Discover','Prepared','Read','Ruled','Published','Told']
-LANES0=LANES=[('out','Outside'),('agent','Agents'),('student','Students'),('junior','Junior vidvāns'),('senior','Senior vidvān')]
+STAGES0=STAGES=['Request','Check','Prepare','Read','Decide','Publish','Thank']
+LANES0=LANES=[('out','Others'),('agent','Agents'),('student','Students'),('junior','Junior vidvāns'),('senior','Senior vidvān')]
 LW, CW, NW, NH, GAP = 116, 194, 138, 72, 14
 STYLE='''<style>
 .fd{font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif}
@@ -94,56 +94,19 @@ def build(name, title, nodes, edges, stages=None, lanes=None):
   open(f'flow-{name}.svg','w').write('\n'.join(o))
 
 R=False; G=True
-build('request','Light a character: Yayāti',{
- 'r1':('out',0,'Student or vote','Yayāti is chosen',R),
- 'r2':('agent',0,'Intake','one item for his whole circle',R),
- 'r3':('agent',1,'Discoverer','sorts known, unchecked and missing',R),
- 'r4':('junior',1,'Junior vidvān','confirms known links from a list',G),
- 'r5':('agent',2,'Candidate finder','522 Purāṇa candidates, sorted',R),
- 'r6':('agent',2,'Dispatcher','batches by chapter, two readers',R),
+build('request','One request, from a student\u2019s question to their name on the verse',{
+ 'r1':('out',0,'Student','asks about Yayāti',R),
+ 'r2':('agent',0,'Agent','opens one job for his family',R),
+ 'r3':('agent',1,'Agent','checks what the index already has',R),
+ 'r4':('junior',1,'Junior vidvān','ticks or strikes the 36 known links',G),
+ 'r5':('agent',2,'Agent','finds 522 Purāṇa verses and sorts them',R),
+ 'r6':('agent',2,'Agent','makes batches, two readers each',R),
  'r7':('student',3,'Two students','is this our Yayāti? verse by verse',G),
- 'r8':('agent',3,'Comparer','agree, or escalate with a dossier',R),
- 'r9':('junior',4,'Junior vidvān','confirms, groups by telling',G),
- 'r10':('senior',4,'Senior vidvān','only the hard ones: Śibi, dauhitra',G),
- 'r11':('agent',5,'Publisher','ledger, nightly build, card lights',R),
- 'r12':('agent',6,'Notifier','credits readers, tells voters',R),
- 'r13':('out',6,'Upanyāsakars','invited to make the capsule',R)},
+ 'r8':('agent',3,'Agent','reminds, then compares the answers',R),
+ 'r9':('junior',4,'Junior vidvān','confirms where they agree; signs',G),
+ 'r10':('senior',4,'Senior vidvān','decides the hard ones; signs',G),
+ 'r11':('agent',5,'Agent','records who read and who signed; rebuilds the site',R),
+ 'r12':('agent',6,'Agent','tells each student their verses are live',R),
+ 'r13':('out',6,'Upanyāsakar','invited to tell the story',R)},
  [('r1','r2'),('r2','r3'),('r3','r4','known'),('r3','r5','missing'),('r5','r6'),('r6','r7'),('r7','r8'),('r8','r9','agree'),('r8','r10','differ'),
-  ('r4','r9','confirmed'),('r9','r11'),('r10','r11'),('r11','r12'),('r12','r13')])
-build('correction','Catch a wrong link: Parīkṣit',{
- 'c1':('agent',0,'Reviewer','wrong Parīkṣit for Bhāgavata 1.18',R),
- 'c2':('agent',1,'Discoverer','right one exists: Parikṣit, 46 verses',R),
- 'c3':('agent',2,'Dossier','both claimants side by side',R),
- 'c4':('student',3,'Students','which Parīkṣit is each verse?',G),
- 'c5':('junior',4,'Junior vidvān','signs; old link superseded',G),
- 'c6':('agent',3,'Reviewer','Āstīka or Bṛhaspati? flags it',R),
- 'c7':('junior',4,'Junior vidvān','two sources: both stand',G),
- 'c8':('agent',5,'Publisher','ledger, nightly build',R),
- 'c9':('agent',6,'Reporter','proposes the vowel-length fold',R)},
- [('c1','c2'),('c2','c3'),('c3','c4','read',-12),('c4','c5','',-12),('c5','c8'),('c3','c6','2nd flag',12),('c6','c7','',12),('c7','c8'),('c8','c9')])
-build('link','Open a door: Kaśyapa and the burnt tree',{
- 'l1':('agent',0,'Heading reader','Garuḍa Ā.3: the burnt tree',R),
- 'l2':('agent',1,'Discoverer','ten Kāśyapas; 264 unread hits',R),
- 'l3':('agent',2,'Dossier','three tellings side by side',R),
- 'l4':('senior',4,'Senior vidvān','same Kaśyapa, or not?',G),
- 'l5':('agent',5,'Publisher','the Garuḍa door opens',R),
- 'l6':('out',0,'Recording','a Bhāgavata saptāha uploaded',R),
- 'l7':('agent',2,'Aligner','verses placed on the clock',R),
- 'l8':('student',3,'Student','listens, confirms onsets',G),
- 'l9':('agent',6,'Request builder','drafts asks for unheard verses',R),
- 'l10':('out',6,'Upanyāsakar','offered the unheard verses',R)},
- [('l1','l2'),('l2','l3','',-14),('l3','l4'),('l4','l5','if the same',12),('l6','l7','',14),('l7','l8'),('l8','l5','',-14),('l5','l9'),('l9','l10')])
-
-build('credit','How a decision becomes the published kośa, with the reader’s name',{
- 'k1':('student',0,'Student','decides on the phone; reader and time saved',G),
- 'k2':('senior',1,'Vidvān','signs; adds name and date',G),
- 'k3':('agent',2,'Publisher','appends one ledger line; never overwrites',R),
- 'k4':('agent',3,'Nightly build','loads rulings with reader and ruler',R),
- 'k5':('agent',4,'Verify','refuses credit on an unsigned decision',R),
- 'k6':('out',5,'On the verse','tap the name: read by, ruled by',R),
- 'k7':('out',5,'On the card','signed grade, readers listed',R),
- 'k8':('out',5,'Readers’ page','by name, never by count',R),
- 'k9':('agent',6,'Notifier','WhatsApp: your verses are live',R)},
- [('k1','k2'),('k2','k3'),('k3','k4'),('k4','k5'),('k5','k6','',-10),('k5','k7','',-10),('k5','k8','',-10),('k5','k9','',10)],
- stages=['Decide','Sign','Log','Build','Verify','Published','Told'],
- lanes=[('student','Student'),('senior','Vidvān'),('agent','Agents'),('out','On the sites')])
+  ('r4','r9','checked'),('r9','r11'),('r10','r11'),('r11','r12'),('r12','r13')])

@@ -170,267 +170,217 @@ ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
 .rd{display:grid;gap:1px;border-left:3px solid var(--leaf);padding-left:10px;font-size:.9rem}
 .rd span{color:var(--muted)}
 @media (max-width:900px){.cr-grid{grid-template-columns:minmax(0,1fr)}}
+/* The use case first: one request followed through seven steps, each marked
+   as an agent's work or a person's decision; the build details close the page. */
+.journey{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:52rem;counter-reset:j}
+.journey > li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;position:relative;padding-bottom:28px}
+.journey > li::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--rule)}
+.journey > li:last-child::before{display:none}
+.journey .mk{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:500;font-size:1rem;background:var(--accent-soft);color:var(--accent);border:2px solid var(--accent)}
+.journey .j-person .mk{background:var(--gold-soft);color:var(--gold);border-color:var(--gold);border-radius:10px;transform:rotate(45deg)}
+.journey .j-person .mk span{transform:rotate(-45deg)}
+.journey .jb{display:grid;gap:10px;min-width:0;padding-top:4px}
+.journey h3{font-size:1.3rem}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:3px}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.tag.p{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+.out{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.93rem;display:grid;gap:4px}
+.j-person .out{border-left-color:var(--gold)}
+.out b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.out ul{margin:0;padding-left:18px;display:grid;gap:2px}
+.why{font-size:.93rem;color:var(--muted)}
+.switch{display:inline-flex;justify-self:start;border:1px solid var(--rule);border-radius:999px;padding:3px;background:var(--surface);gap:2px}
+.switch button{font:inherit;font-size:.92rem;font-weight:600;border:0;background:none;color:var(--muted);padding:6px 16px;border-radius:999px;cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.mapcap{max-width:52rem}
+.journey details{font-size:.93rem}
+.journey summary{cursor:pointer;color:var(--accent);font-weight:600}
+.appendix{border-top:2px solid var(--rule);margin-top:24px}
 </style>
 
 <div class="wrap">
 <header class="hero">
-  <span class="eyebrow">Purāṇa Nāma-Kośa · <span class="deva">पुराणनामकोशः</span> · a working sketch</span>
-  <h1>One story, followed from the Mahābhārata into the Purāṇas</h1>
-  <p class="lede">Say "Yayāti", and agents light up everyone tied to him: his gurus, his queens, his sons, his daughter, and Pūru's line down to Parīkṣit and Janamejaya. From there, two doors lead into the Purāṇas. This page shows that map, then what happens to it as work arrives. Agents run the loop. Students, junior vidvāns and a senior vidvān make every judgement.</p>
+  <span class="eyebrow">Purāṇa Nāma-Kośa · <span class="deva">पुराणनामकोशः</span> · how it gets built</span>
+  <h1>Agents do the legwork. Scholars decide.</h1>
+  <p class="lede">The Nāma-Kośa will be an index of every person and place in the eighteen Purāṇas, each tied to the verses that name them. Building it means careful reading of 351,225 verses. This page follows one request from start to finish, to show which parts software agents can take on and where a person has to decide.</p>
   <div class="rule">
-    <div><b>Agents may</b><span>light up a circle of people, find candidate verses, build dossiers, assign and chase work, compare readers, rebuild the site, and tell people what changed.</span></div>
-    <div class="h"><b>Only a person may</b><span>say who a name stands for in a verse, merge or split an identity, decide that two tellings differ, write an entry, or sign.</span></div>
+    <div><b>Agents do</b><span>the searching, sorting and preparing; handing out reading; reminders; comparing answers; rebuilding the website; telling people what changed.</span></div>
+    <div class="h"><b>People decide</b><span>who a name in a verse refers to; whether two people are the same; whether two tellings differ. A vidvān signs every entry, and nothing reaches the website before that.</span></div>
   </div>
-  <div class="builds"><b>This builds on the Scholar Workbench.</b> Its design, written in August, already settles the log, the roles, the dossier, the nightly build and the rules for credit: <a href="https://hvram1.github.io/purana-atlas/docs/purana-scholar-workbench.html" target="_blank" rel="noopener">How the index gets made</a> (published), and the fuller design note at <code>dharmasastra-gcp/workbench/docs/DESIGN-scholar-workbench-2026-08-21.md</code>. This page adds one layer: agents that run the coordination the note says no software settles. Where the two differ, the note wins.</div>
 </header>
 
-<section id="map">
+<section id="change">
   <div class="intro">
-    <span class="eyebrow">1 · The map · Arc 2 of Mūla on Stage</span>
-    <h2>Yayāti's world, and two doors into the Purāṇas</h2>
-    <p>The relations come from Sørensen's index, already in the corpus as <i>son of</i>, <i>spouse of</i>, <i>daughter of</i>. So the agent does not guess who belongs together; it reads it. The badges show where the same people stand in the Bhāgavata and the Garuḍa Purāṇa, found by reading the chapter headings of the Śrī Śāradā Pīṭham text.</p>
+    <span class="eyebrow">The request</span>
+    <h2>A student asks about Yayāti</h2>
+    <p>A pāṭhaśālā student is asked: "Is there a character whose story you would like to tell?" The answer is Yayāti, the king who traded his old age for his son's youth. He matters well beyond his own story: his son Pūru's line leads to the Kauravas, the Pāṇḍavas and Parīkṣit, and his story is told again in the Bhāgavata and other Purāṇas.</p>
+    <p>Here is his family as our index holds it today. Switch to <i>After</i> to see what it should look like once the work is done. The rest of the page is how it gets from one to the other.</p>
   </div>
-  <div class="mapbox" id="mapbox" data-svg="yayati-map.svg" data-alt="Family tree of Yayāti and Pūru's line, with the Purāṇa doors"><img src="yayati-map.svg" alt="Family tree of Yayāti, his gurus, queens, sons and daughter Mādhavī, Pūru's line to Parīkṣit and Janamejaya, with badges marking chapters of the Bhāgavata and the Garuḍa Purāṇa"></div>
-  <div class="maplinks small"><a href="yayati-map.svg" target="_blank" rel="noopener">Open the map on its own</a><span>Its source is <code>namakosa/map.py</code> in the pitch repository.</span></div>
-  <div class="doors">
-    <div class="door bh"><h3>Door 1 · the Bhāgavata, through Parīkṣit</h3><p>The whole of Arcs 1 and 2 in one Purāṇa: Yayāti in 9.18–19, Pūru's line in 9.20 and 9.22, the curse in 1.18, Śuka's coming in 1.19, and the snake sacrifice in 12.6. The frame mirrors the epic's: the father hears the Bhāgavata waiting for Takṣaka; the son hears the Mahābhārata at the sacrifice held to avenge him.</p></div>
-    <div class="door gp"><h3>Door 2 · the Garuḍa Purāṇa, through Garuḍa</h3><p>Not a retelling of the wager. Kadrū appears once, Āstīka and the sacrifice not at all. Garuḍa is the one who tells this Purāṇa (Ācārakāṇḍa 2). But Ācārakāṇḍa 3 is headed <span class="deva">यच्छ्रवणात् कश्यपो दग्धं वृक्षमजीवयत्</span>: by hearing it, Kaśyapa revived a burnt tree. That is the tree Takṣaka burns on his way to Parīkṣit. Both doors meet at his death.</p></div>
+  <div class="switch" role="group" aria-label="Show the map as it is today or after the work">
+    <button type="button" data-map="today" aria-pressed="true">Today</button>
+    <button type="button" data-map="after" aria-pressed="false">After the work</button>
   </div>
-  <p class="small">Counts on the map are string matches, not people: पूरु also matches पूरुष, and गरुड matches every mention of Viṣṇu's mount. Chapter numbers for the Mahābhārata are the plan's working references, from Dutt.</p>
+  <div class="mapbox" id="mapbox"><img src="map-today.svg" alt="Yayāti's family in the index today"></div>
+  <p class="mapcap small" id="mapcap"></p>
 </section>
 
-<section id="discover">
+<section id="journey">
   <div class="intro">
-    <span class="eyebrow">2 · Discover before reading</span>
-    <h2>Much of Yayāti's circle is already there. None of it is ruled.</h2>
-    <p class="small">This is the dossier of the design note's §6, made per circle instead of per headword: the graded shortlist, the corpus's own chapter headings, who else stands where he stands, and the frontier where evidence stops.</p>
-    <p>Every item starts with a look at what the index already holds, so no one rereads a verse that is settled, and no one trusts a link just because it exists. This is what that look finds today for the 27 people on the map (the Kauravas and Pāṇḍavas are groups), measured in the corpus database.</p>
+    <span class="eyebrow">What happens next</span>
+    <h2>Seven steps, three of them decided by people</h2>
+    <p>Round markers are work an agent does by itself. Diamonds are where the work stops and waits for a person.</p>
   </div>
-  <div class="piles">
-    <div class="pile ok"><span class="eyebrow">confirmed</span><span class="big">0</span><p>Scholar-adjudicated rulings on anyone in the circle. The index holds 308 such rulings in all (616 rows, each a +1 on the person who stands and a −1 on the rival), none of them here yet.</p></div>
-    <div class="pile mid"><span class="eyebrow">known, not checked</span><span class="big">36</span><p>Pairs of people on the map already linked by a recorded relation, from Sørensen. Yayāti alone has 220 verse-level citations from the Gītā Press index and 178 verses resolved through Dutt's translation. A junior vidvān can confirm these from a list.</p></div>
-    <div class="pile gap"><span class="eyebrow">missing or misfiled</span><span class="big">~477</span><p>Purāṇa verses containing Yayāti's name. The scan linked none of them to him. Only this pile needs fresh reading.</p></div>
-  </div>
-  <div class="note">
-    <h3>What "already there" hides</h3>
-    <ul class="plain">
-      <li><b>Wrong people of the same name.</b> Janamejaya has 11 homonyms and Mādhavī has 6. Three of the 36 relations join the wrong ones: a Janamejaya who is "son of Kuru", another who is "son of Pūru", and a Mādhavī who is a Janamejaya's wife.</li>
-      <li><b>Parsing slips.</b> One recorded relation makes Devayānī the daughter of Vṛṣaparvan, read out of Sørensen's prose. She is Śukra's daughter.</li>
-      <li><b>Hits filed under the wrong entry.</b> Yayāti's Purāṇa hits went to <i>Yayātipatana</i>, a place, and to <i>the Yayāti episode</i>. Fourteen Bhāgavata hits for देवयान went to <i>Devayāna</i>, the path of the gods; some may be Devayānī in an inflected form.</li>
-      <li><b>Different spellings.</b> Śantanu is under <i>Śāntanu</i> in Sørensen, and under षन्तनु among the 2,074 Harivaṃśa names already drafted for the pilot.</li>
-    </ul>
-  </div>
-</section>
-
-<section id="twice">
-  <div class="intro">
-    <span class="eyebrow">3 · Parīkṣit, told twice</span>
-    <h2>The same king and the same curse, in two tellings</h2>
-    <p>Both tellings belong to the tradition, so the card shows each beside the other and never calls one "not in the original". Highlighted rows are where they differ. Each line is to be checked by a vidvān before it is shown.</p>
-  </div>
-  <div class="tscroll"><table class="twice">
-    <thead><tr><th></th><th>Mahābhārata, told to Janamejaya</th><th>Bhāgavata, told to Parīkṣit</th></tr></thead>
-    <tbody>
-      <tr><th>The curse</th><td>Out hunting, he hangs a dead snake on the silent sage Śamīka. Śamīka's son Śṛṅgin curses him to die by Takṣaka within seven days.<span class="ref">Ādi 40–44</span></td><td>The same insult, and the same curse: <span class="deva">तक्षकः सप्तमेऽहनि दङ्क्ष्यति</span>.<span class="ref">1.18, verse 37</span></td></tr>
-      <tr class="diff"><th>The seven days</th><td>He shuts himself in a palace raised on a single pillar, guarded by physicians and mantras.<span class="ref">Ādi 40–44</span></td><td>He gives up the kingdom and sits fasting on the bank of the Gaṅgā. Śuka arrives and tells him the Bhāgavata.<span class="ref">1.19, verse 7; 12.6.10</span></td></tr>
-      <tr><th>Kāśyapa</th><td>The healer, on his way to save the king, revives a tree Takṣaka has burnt. Takṣaka pays him to turn back.<span class="ref">Ādi 40–44</span></td><td>Takṣaka meets Kāśyapa on the road and turns him back with wealth: <span class="deva">ददर्श पथि काश्यपम्</span>.<span class="ref">12.6.11–12</span></td></tr>
-      <tr class="diff"><th>The death</th><td>Takṣaka hides as a tiny insect in fruit that nāgas, disguised as ascetics, bring to the king.<span class="ref">Ādi 40–44</span></td><td>Takṣaka comes disguised as a brāhmaṇa. The king, already <span class="deva">ब्रह्मभूत</span>, has said he does not fear death.<span class="ref">12.6.5, 12.6.12–13</span></td></tr>
-      <tr class="diff"><th>The sacrifice stops</th><td>Āstīka, a boy, asks the king for a boon and halts it.<span class="ref">Ādi 54–58</span></td><td>Takṣaka hides with Indra. Bṛhaspati, Kaca's father on the map, persuades the king to stop.<span class="ref">12.6.16–28</span></td></tr>
-      <tr><th>Who hears what</th><td>Vaiśampāyana tells the whole epic to Janamejaya.<span class="ref">Ādi 59–60</span></td><td>Śuka tells the Bhāgavata to Parīkṣit, in his last seven days.<span class="ref">1.19</span></td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section id="flows">
-  <div class="intro">
-    <span class="eyebrow">4 · What happens to this map</span>
-    <h2>Three kinds of work, each a real case from it</h2>
-    <p>Lighting Yayāti's circle is a request. The scan has already made a mistake on Parīkṣit, which is a correction. The Garuḍa Purāṇa's burnt tree is a link waiting to be ruled. Pick one to see who does what.</p>
-  </div>
-  <div class="tabs" role="group" aria-label="Choose a flow">
-    <button type="button" data-flow="request" aria-pressed="true">Light a character <small>Yayāti</small></button>
-    <button type="button" data-flow="correction" aria-pressed="false">Catch a wrong link <small>Parīkṣit</small></button>
-    <button type="button" data-flow="link" aria-pressed="false">Open a door <small>Kaśyapa and the burnt tree</small></button>
-  </div>
-  <p class="example" id="example"></p>
-  <div class="legend"><span>a person's judgement: the only places the work waits for a decision</span></div>
-  <div class="mapbox flowbox" id="board" aria-live="polite"></div>
-  <p class="small">Read left to right. Rows are who acts; columns are where the work is. Gold boxes with a diamond are a person's decision; arrows show where the work branches and joins.</p>
-  <div class="detail">
-    <details class="allsteps"><summary>Every step in full</summary><ol class="steps" id="steps"></ol></details>
-    <div class="note" id="note"></div>
-  </div>
-  <div class="listpanel" id="list">
-    <div class="intro">
-      <span class="eyebrow">Where the students' list comes from · measured on the Purāṇa texts</span>
-      <h3>Step 7 reads what steps 3, 5 and 6 prepare</h3>
-    </div>
-    <ol class="plain">
-      <li><b>Discover (3) supplies the Mahābhārata verses.</b> Nobody searches for them: 220 verse-level Gītā Press citations, 67 Sørensen chapter citations and 178 Dutt-resolved verses are already in the index. They go to the junior vidvān as a list to confirm (4), not to the students.</li>
-      <li><b>The candidate finder (5) searches the Purāṇas.</b> The existing scan filed Yayāti's Purāṇa hits under a place, so it searches the Śāradā Pīṭham text afresh for every inflection of the stem ययात-, for his epithet नाहुष / नहुषात्मज (Sørensen records Nāhuṣa as the same person), and for place names built on his name, kept apart.</li>
-      <li><b>The dispatcher (6) cuts batches by chapter.</b> Verses come in order, with the chapter heading on top and the neighbouring verses beside each one, so 9.18 is read as a story. A few known-answer verses are mixed in, and two students get each batch.</li>
-    </ol>
-    <div class="tscroll"><table class="t">
-      <thead><tr><th>Kind of candidate</th><th>Verses</th><th>How a student meets it</th></tr></thead>
-      <tbody>
-        <tr><td>In a chapter where his circle also appears</td><td class="num">168</td><td>Read in order, as a story</td></tr>
-        <tr><td>In a chapter headed वंश, a genealogy</td><td class="num">22</td><td>Quick check</td></tr>
-        <tr><td>A passing mention elsewhere</td><td class="num">285</td><td>One verse at a time</td></tr>
-        <tr><td>Epithet only, नाहुष</td><td class="num">45</td><td>Read closely: it may not be him</td></tr>
-        <tr><td>A place named after him</td><td class="num">2</td><td>Probably another entry</td></tr>
-        <tr><td>All eighteen Purāṇas</td><td class="num"><b>522</b></td><td>Matsya 121, Padma 103, Skanda 66, Bhāgavata 45, Brahma 39, Brahmāṇḍa 38, the rest fewer</td></tr>
-      </tbody>
-    </table></div>
-    <div class="note">
-      <h3>What the first run got wrong</h3>
-      <ul class="plain">
-        <li><b>The story tier is too loose.</b> Bhāgavata 10.53 and 10.71 landed in it because Yadu and Śukra are named there, but they are Kṛṣṇa chapters, and शुक्र can be the planet. The rule should need two distinct people from the circle, leaving out common words.</li>
-        <li><b>An epithet can name his son.</b> In Bhāgavata 11.7.36, नाहुषात्मज is said to Yadu, as the son of Nāhuṣa, that is of Yayāti. Only reading catches it.</li>
-        <li><b>The name alone misses about 9%.</b> The 45 epithet-only verses would never be found by searching for ययाति.</li>
-      </ul>
-      <p class="small">These rules are a first pass. The Harivaṃśa pilot tunes them: the known-answer verses show whether the story tier really is mostly him.</p>
-    </div>
-  </div>
-</section>
-
-<section id="credit">
-  <div class="intro">
-    <span class="eyebrow">5 · Publishing, and the reader's name</span>
-    <h2>A student sees their name on the verse they read</h2>
-    <p>Credit attaches to decisions. Every signed decision carries who read it and who ruled it, and the nightly build puts those names on the three pages the work lands on: the verse, the character's card, and the readers' page. Today the 308 scholar rulings in the corpus record only a batch, such as <code>READ-KICAKA-P04</code>, and not the people. That is the gap to close. The design note already promises the result: “a reader who signs 200 and stops keeps their name in the apparatus”.</p>
-  </div>
-
-  <div class="mapbox" data-svg="flow-credit.svg" data-alt="Workflow from a student's decision to the published page with their name"><img src="flow-credit.svg" alt="Workflow from a student's decision to the published page with their name"></div>
-  <div class="cr-grid">
-    <div class="cr-flow">
-      <h3>How a decision becomes the published kośa</h3>
-      <ol class="crsteps">
-        <li><b>The student decides</b> on the phone page. Each decision carries the reader and the time, and is saved verse by verse, so a lost session costs nothing.</li>
-        <li><b>The vidvān signs.</b> The signature adds the vidvān and the date. Nothing reaches the kośa without it.</li>
-        <li><b>The publisher appends one ledger line</b> per decision. Nothing is overwritten; a correction is a new line that supersedes the old one.
-<pre class="ledger">{"address":   "BHP:S09:C018:V018",
- "form":      "ययातिर्",
- "entity":    "inm:12607",
- "polarity":  1,
- "kind":      "stands",
- "read_by":   ["r:017", "r:042"],
- "ruled_by":  "v:003",
- "signed":    "2026-11-14",
- "batch":     "READ-YAYATI-BHP09",
- "supersedes": null}</pre>
-          <span class="small">An example line. The ids point to a readers' register that holds names and consent.</span></li>
-        <li><b>The nightly build loads the ledger</b> into the corpus as scholar-adjudicated rulings, the grade that already outranks every printed index, with reader and ruler kept beside each one.</li>
-        <li><b>The sites rebuild:</b> the atlas, the character cards, the readers' page. Publish-and-verify refuses any page whose credit points at an unsigned decision.</li>
-        <li><b>The student is told</b>, on WhatsApp, with a link: "Your decisions on Bhāgavata 9.18 are live. Here is the first verse."</li>
-      </ol>
-    </div>
-
-    <div class="cr-mocks">
-      <span class="eyebrow">Where the name appears · mock-ups with example names</span>
-
-      <div class="mock-v">
-        <span class="mk-l">1 · On the verse · Bhāgavata 9.18.18</span>
-        <p class="deva vs">तस्यां गतायां स्वगृहं <u>ययातिर्</u>मृगयां चरन् ।<br>प्राप्तो यदृच्छया कूपे जलार्थी तां ददर्श ह ॥</p>
-        <div class="pop">
-          <div><b>Yayāti</b>, son of Nahuṣa <span class="chip ok">signed</span></div>
-          <span>Read by <b>Student A</b> and <b>Student B</b> · ruled by <b>Vidvān C</b> · 14 Nov 2026</span>
-          <a>Yayāti's card →</a>
+  <ol class="journey">
+    <li class="j-agent">
+      <div class="mk"><span>1</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>The request is logged</h3>
+        <p>An agent opens one job for Yayāti and his whole family. If someone later asks about Devayānī or Pūru, the request joins this job instead of starting the work again.</p>
+        <div class="out"><b>Result</b>One job covering 27 people.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>2</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Check what we already have</h3>
+        <p>Before anyone reads a verse, an agent looks up what the index already holds about these 27 people. A great deal is there, copied from printed indexes, but no scholar has checked any of it.</p>
+        <div class="out"><b>Result: a checklist in three parts</b><ul>
+          <li><strong>Settled:</strong> nothing yet. No scholar has ruled on anyone in this family.</li>
+          <li><strong>Known but unchecked:</strong> 36 family links from Sørensen's index of the Mahābhārata, and 220 Mahābhārata verses cited for Yayāti.</li>
+          <li><strong>Missing:</strong> about 477 Purāṇa verses that contain his name, none of them linked to him.</li>
+        </ul></div>
+        <div class="out"><b>It also flags what looks wrong</b><ul>
+          <li>Three links join the wrong person of the same name: there are 11 Janamejayas in the index, and a Janamejaya "son of Kuru" was linked to this one.</li>
+          <li>Devayānī is recorded as Vṛṣaparvan's daughter. She is Śukra's.</li>
+          <li>His Purāṇa verses were filed under Yayātipatana, a place named after him.</li>
+          <li>Śantanu is stored under three spellings.</li>
+        </ul></div>
+        <p class="why">Why this step comes first: nobody rereads what is already settled, and nobody trusts a link just because it is there.</p>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>3</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Junior vidvān</span>Check the known links</h3>
+        <p>A junior vidvān goes through the 36 known links as a list, ticking the right ones and striking the wrong ones, such as the links to the wrong Janamejaya and Devayānī's wrong father. That is a short sitting, not a reading of the Mahābhārata.</p>
+        <div class="out"><b>Result</b>The Mahābhārata side of the family is checked and signed. Only the Purāṇa verses still need reading.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>4</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Find the verses and hand them out</h3>
+        <p>An agent searches all eighteen Purāṇas for every form of his name, and for Nāhuṣa ("son of Nahuṣa"), which also refers to him. It sorts what it finds so that students read stories as stories, not as scattered lines. It then sends batches of twenty verses to two students each. A few verses in every batch already have known answers, which checks the reading.</p>
+        <div class="tscroll"><table class="t">
+          <thead><tr><th>What the agent found</th><th>Verses</th><th>How students get it</th></tr></thead>
+          <tbody>
+            <tr><td>In chapters that tell his story</td><td class="num">168</td><td>In order, with the chapter heading</td></tr>
+            <tr><td>In family lists</td><td class="num">22</td><td>A quick check</td></tr>
+            <tr><td>Passing mentions</td><td class="num">285</td><td>One verse at a time</td></tr>
+            <tr><td>"Nāhuṣa" only: may be someone else</td><td class="num">45</td><td>Read closely</td></tr>
+            <tr><td>Place names built on his name</td><td class="num">2</td><td>Set aside</td></tr>
+            <tr><td><b>All eighteen Purāṇas</b></td><td class="num"><b>522</b></td><td>Matsya 121, Padma 103, Skanda 66, Bhāgavata 45, and others</td></tr>
+          </tbody>
+        </table></div>
+        <p class="why">The first trial of this search made mistakes, which is why people read what it finds. It put two Kṛṣṇa chapters among Yayāti's stories because they mention Yadu and Śukra, and शुक्र can also mean the planet. It also counted a verse where "son of Nāhuṣa" means Yadu, Yayāti's son.</p>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>5</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Two students</span>Read each verse, separately</h3>
+        <p>On a phone, each student answers one question per verse: is this our Yayāti? They throw out false matches, such as शिबिका (a palanquin) caught by a search for Śibi, or देवयान (the path of the gods) caught by a search for Devayānī.</p>
+        <p>Meanwhile an agent keeps things moving. If a batch sits untouched, it sends a reminder after three days and passes the batch to another student after seven. When both students are done, it compares their answers.</p>
+        <div class="out"><b>Result</b>Each verse has two independent answers, either in agreement or not.</div>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>6</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Vidvāns</span>Decide and sign</h3>
+        <p>Where the two students agree, a junior vidvān confirms and signs. Where they disagree, or the question is hard, it goes to the senior vidvān, with the evidence laid out on one page by an agent. The senior vidvān sees only these.</p>
+        <div class="out"><b>The kind of question that reaches the senior vidvān</b><ul>
+          <li>The Garuḍa Purāṇa says that by hearing it, Kaśyapa revived a burnt tree. Is that the Kāśyapa of the Mahābhārata who revives the tree Takṣaka burns, on his way to save Parīkṣit? Same person, different person, or cannot tell?</li>
+          <li>The four kings in Virāṭa Parva 56.9: are they Mādhavī's sons?</li>
+          <li>The Bhāgavata tells Parīkṣit's death differently from the Mahābhārata. Both tellings are kept, side by side. Neither is marked "not in the original".</li>
+        </ul></div>
+        <details><summary>Parīkṣit in the two tellings</summary>
+          <div class="tscroll"><table class="twice">
+            <thead><tr><th></th><th>Mahābhārata, told to Janamejaya</th><th>Bhāgavata, told to Parīkṣit</th></tr></thead>
+            <tbody>
+              <tr><th>The curse</th><td>He hangs a dead snake on the silent sage Śamīka; Śamīka's son curses him to die by Takṣaka within seven days.<span class="ref">Ādi 40–44</span></td><td>The same insult and the same curse: <span class="deva">तक्षकः सप्तमेऽहनि दङ्क्ष्यति</span>.<span class="ref">1.18.37</span></td></tr>
+              <tr class="diff"><th>The seven days</th><td>He shuts himself in a palace on a single pillar, guarded by physicians and mantras.<span class="ref">Ādi 40–44</span></td><td>He gives up the kingdom and fasts on the bank of the Gaṅgā; Śuka comes and tells him the Bhāgavata.<span class="ref">1.19.7; 12.6.10</span></td></tr>
+              <tr><th>Kāśyapa</th><td>The healer revives a tree Takṣaka has burnt; Takṣaka pays him to turn back.<span class="ref">Ādi 40–44</span></td><td>Takṣaka meets Kāśyapa on the road and turns him back with wealth.<span class="ref">12.6.11–12</span></td></tr>
+              <tr class="diff"><th>The death</th><td>Takṣaka hides as an insect in fruit brought to the king.<span class="ref">Ādi 40–44</span></td><td>Takṣaka comes disguised as a brāhmaṇa; the king no longer fears death.<span class="ref">12.6.5, 12.6.12–13</span></td></tr>
+              <tr class="diff"><th>The sacrifice stops</th><td>The boy Āstīka asks for a boon and halts it.<span class="ref">Ādi 54–58</span></td><td>Bṛhaspati persuades the king to stop.<span class="ref">12.6.16–28</span></td></tr>
+            </tbody>
+          </table></div>
+          <p class="small">Highlighted rows differ. The Mahābhārata column is from memory and must be checked by a vidvān before it is shown.</p>
+        </details>
+        <div class="out"><b>Result</b>Every verse decided and signed. Nothing goes further without a signature.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>7</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Publish, and say who did the work</h3>
+        <p>Each signed decision is recorded with the names of the students who read it and the vidvān who signed it. Overnight the website is rebuilt from these records. Yayāti's page now lists his verses in each Purāṇa, and the map above becomes the <i>After</i> picture. Each student gets a WhatsApp message: "Your verses on Bhāgavata 9.18 are live." An upanyāsakar is invited to tell the story from the signed verses.</p>
+        <div class="cr-mocks">
+          <span class="eyebrow">Where a student sees their name · mock-ups with example names</span>
+          <div class="mock-v">
+            <span class="mk-l">On the verse · Bhāgavata 9.18.18</span>
+            <p class="deva vs">तस्यां गतायां स्वगृहं <u>ययातिर्</u>मृगयां चरन् ।<br>प्राप्तो यदृच्छया कूपे जलार्थी तां ददर्श ह ॥</p>
+            <div class="pop">
+              <div><b>Yayāti</b>, son of Nahuṣa <span class="chip ok">signed</span></div>
+              <span>Read by <b>Student A</b> and <b>Student B</b> · signed by <b>Vidvān C</b> · 14 Nov 2026</span>
+              <a>Yayāti's page →</a>
+            </div>
+            <p class="small">Tap the name in the verse to see who read it. Nothing is printed in the verse itself.</p>
+          </div>
+          <div class="mock-r">
+            <span class="mk-l">On the readers' page</span>
+            <div class="rd"><b>Student A</b><span>Bhāgavata 9.18–19, Matsya · Yayāti, Devayānī, Śarmiṣṭhā</span></div>
+            <div class="rd"><b>Student B</b><span>Bhāgavata 9.18 · Yayāti, Pūru</span></div>
+            <p class="small">Listed by name, alphabetically, with no ranking.</p>
+          </div>
         </div>
-        <p class="small">Tap the name in the verse. The credit sits in this note, one tap away; nothing is printed on the mūla itself.</p>
       </div>
-
-      <div class="mock-c">
-        <span class="mk-l">2 · On Yayāti's card</span>
-        <table class="ev">
-          <tr><td><span class="chip ok">signed by a vidvān</span></td><td>Purāṇa verses, each with its readers</td></tr>
-          <tr><td>Gītā Press index</td><td class="num">220 verses</td></tr>
-          <tr><td>Sørensen</td><td class="num">67 chapters</td></tr>
-          <tr><td>Dutt's translation</td><td class="num">178 verses</td></tr>
-          <tr><td>Scan, unread</td><td>not shown as his</td></tr>
-        </table>
-        <p class="foot">His Purāṇa verses were read by <b>6 students</b> and ruled by <b>2 vidvāns</b>. <a>See who →</a></p>
-      </div>
-
-      <div class="mock-r">
-        <span class="mk-l">3 · The readers' page</span>
-        <div class="rd"><b>Student A</b><span>Bhāgavata 9.18–19, Matsya · lit Yayāti, Devayānī, Śarmiṣṭhā</span></div>
-        <div class="rd"><b>Student B</b><span>Bhāgavata 9.18 · lit Yayāti, Pūru</span></div>
-        <p class="small">Listed by name, not by count, each with links to every verse they read. Like the readers named in Sørensen's and the OED's prefaces.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="note">
-    <h3>Rules for credit</h3>
-    <ul class="plain">
-      <li><b>Sponsors stay off the verse; readers sit beside it.</b> The funding page promises that no donor's name is printed on a verse. A reader's name lives in the apparatus, one tap from the verse, never in the text.</li>
-      <li><b>Consent first.</b> Many readers will be minors. A name appears only with their consent and their pāṭhaśālā's. Without it, the credit reads as initials or as the pāṭhaśālā.</li>
-      <li><b>Credit for reading, not for agreeing.</b> A reader whose call was overruled is still listed on that verse. Disagreement is how hard verses are found.</li>
-      <li><b>No leaderboards.</b> The workbench note's rule is never to assess by volume, so the readers' page is alphabetical and shows no ranking.</li>
-      <li><b>Credit stays.</b> A student who graduates keeps their name on every verse they read, and a superseded ruling keeps its names in the history.</li>
-      <li><b>Further places:</b> the capsule made from a character names the students who read it, and the nightly report lists each day's signatures.</li>
-    </ul>
-  </div>
+    </li>
+  </ol>
+  <div class="intro"><h3>The same seven steps, as one diagram</h3><p class="small">Each row is who acts. Gold boxes with a diamond are where a person decides.</p></div>
+  <div class="mapbox flowbox" data-svg="flow-request.svg" data-alt="Workflow from a student's request to their name on the verse"><img src="flow-request.svg" alt="Workflow from a student's request to their name on the verse"></div>
 </section>
 
-<section id="agents">
+<section id="control">
   <div class="intro">
-    <span class="eyebrow">6 · The agents</span>
-    <h2>Eight jobs, each with a line it does not cross</h2>
-    <p>Each is a Claude Code run in its own sandbox, started by an event (a pin, a vote, an upload, a signed decision) or by the clock. None of them holds a pen on the index itself. They write to the queue and the report; only signed decisions reach the ledger.</p>
+    <span class="eyebrow">The human stays in control</span>
+    <h2>What the agents are never allowed to do</h2>
   </div>
-  <div class="agents" id="agentlist"></div>
-</section>
-
-<section id="gap">
-  <div class="intro">
-    <span class="eyebrow">What the workbench note left open</span>
-    <h2>The part no software settles is the part agents can carry</h2>
-    <p><a href="https://hvram1.github.io/purana-atlas/docs/purana-scholar-workbench.html" target="_blank" rel="noopener">The scholar-workbench note</a> ends with a list it calls <i>neither software nor solvable by it</i>. Each item is coordination, not judgement. An agent can do the running; a named person still owns the rule.</p>
-  </div>
-  <div class="tscroll"><table class="t">
-    <thead><tr><th>From the note</th><th>What the agent does</th><th>What a person still owns</th></tr></thead>
-    <tbody>
-      <tr><td>Who assigns the work</td><td>Dispatcher hands out batches by calibration score, script and language, keeps two readers per verse, never gives a reader their own earlier verse to re-check.</td><td>The junior vidvān sets who is cleared to read which Purāṇa.</td></tr>
-      <tr><td>What happens when a reader stalls</td><td>Chaser sends a gentle reminder on WhatsApp after three days, and returns the batch to the pool after seven. Nothing is lost: work is saved verse by verse.</td><td>Nobody is dropped by an agent. A stall twice running goes to the junior vidvān as a note.</td></tr>
-      <tr><td>Who chases an unanswered escalation</td><td>Chaser keeps a clock on each escalation and resends it with the dossier on top, then lists it in the nightly report until it is ruled.</td><td>The senior vidvān rules, or says "cannot be determined", which is an answer too.</td></tr>
-      <tr><td>How a reader is calibrated, and checked again</td><td>Every batch carries a few verses with known rulings, hidden among the rest, and a few shown with no suggestion. The agent scores both, every week.</td><td>The junior vidvān reviews the scores and decides who goes live, who pauses, who reads with a partner.</td></tr>
-      <tr><td>The nightly report</td><td>Reporter writes it: decisions signed and by whom, headwords closed, escalations open, agreement between readers, how far the frontier moved.</td><td>The trustees read it. Students see their own names in it.</td></tr>
-    </tbody>
-  </table></div>
+  <ul class="plain">
+    <li><b>Decide who a name refers to.</b> An agent can suggest. Only a student, then a vidvān, can decide.</li>
+    <li><b>Publish anything unsigned.</b> The website is rebuilt only from signed decisions, and the rebuild refuses a page that points to an unsigned one.</li>
+    <li><b>Settle a disagreement,</b> even an obvious one. Disagreements go to a person.</li>
+    <li><b>Call one telling wrong.</b> When two texts tell a story differently, both are kept and shown side by side.</li>
+    <li><b>Overwrite a mistake.</b> A correction is a new signed entry. The old one stays visible, so anyone can see what changed and who changed it.</li>
+    <li><b>Let suggestions do the reading.</b> Some verses in every batch are shown with no suggestion. If students only agree with the agent when they can see its suggestion, the suggestions are switched off.</li>
+    <li><b>Show a student's name without consent.</b> Many readers are minors, so a name appears only with their consent and their pāṭhaśālā's. Students are credited for reading even when they are overruled. There are no leaderboards.</li>
+  </ul>
 </section>
 
 <section id="pilot">
   <div class="intro">
-    <span class="eyebrow">Measure it in the Harivaṃśa pilot</span>
-    <h2>Run half the chapters with agents, half without</h2>
-    <p>The pilot is 16,100 verses and up to 4,034 headwords in 9 months for ₹37.5 lakh, at about 1,800 verses a month. Nearly all of that is reading time. If the loop is worth building for the full 351,225 verses, the pilot will show it in minutes, not opinions.</p>
+    <span class="eyebrow">How we will know it works</span>
+    <h2>Try it on the Harivaṃśa first, half with agents and half without</h2>
+    <p>The Harivaṃśa pilot covers 16,100 verses and up to 4,034 names, over 9 months, for ₹37.5 lakh. Nearly all of that cost is people's reading time. Running half the chapters with agents and half without shows whether the agents save that time, before they are used on all 351,225 verses.</p>
   </div>
   <div class="metrics">
-    <div><span class="eyebrow">the one number</span><span class="big">min / verse</span><span>Reader and vidvān minutes per signed verse, with agents and without. Today's price assumes about ₹205 a verse.</span></div>
-    <div><b>Known-answer accuracy</b><span>How often students match the hidden rulings, with a suggestion shown and without. If they only agree when shown one, the suggestions are doing the reading, and must be withdrawn.</span></div>
-    <div><b>Senior's share</b><span>The fraction of verses that reach the senior vidvān. The loop works if it falls and accuracy holds.</span></div>
-    <div><b>Escalation turnaround</b><span>Days from a disagreement to a ruling. This is where projects of this kind usually stall.</span></div>
-    <div><b>Readers who return</b><span>Students still signing after two months. The note's bet is that seeing their names keeps them.</span></div>
-    <div><b>Units closed</b><span>Headwords and adhyāyas closed per fortnight, so supporters can watch it move.</span></div>
+    <div><b>Minutes per verse: the main measure</b><span>Student and vidvān time for each signed verse, with agents and without. Today's price assumes about ₹205 a verse.</span></div>
+    <div><b>Accuracy</b><span>How often students get the test verses right, with and without a suggestion shown.</span></div>
+    <div><b>Senior vidvān's load</b><span>The share of verses that reach the senior vidvān. It should fall while accuracy holds.</span></div>
+    <div><b>Days to settle a disagreement</b><span>This is where projects like this usually stall.</span></div>
+    <div><b>Students who come back</b><span>Still reading after two months. Seeing their names is meant to keep them.</span></div>
+    <div><b>Progress people can see</b><span>Names and chapters finished every fortnight, shown on the funding page.</span></div>
   </div>
-</section>
-
-<section id="wiring">
-  <div class="intro">
-    <span class="eyebrow">How it is wired</span>
-    <h2>Small parts, most of them already designed</h2>
-  </div>
-  <ul class="plain">
-    <li><b>Already there:</b> the corpus addressed to the verse across the epic and all eighteen Mahāpurāṇas; the name layer with rival claimants kept as sets; the transcripts of 129 episodes; the atlases; the publish-and-verify step that refuses broken data; the alignment pipeline for recordings.</li>
-    <li><b>The log is the spine,</b> as the design note has it: decisions append to the corpus's resolution table, signed, and never travel through git. Testimony (Sørensen, Gītā Press, the scan) is never overwritten; rulings supersede rather than delete. A ruling has three outcomes, not two: stands, displaced, or co-stands.</li>
-    <li><b>Four write surfaces, and everything else is derived:</b> the reading queue on a phone, the senior's gloss, a discussion thread per headword, and code. No published page is edited by hand; if a page is wrong, the decision behind it is wrong.</li>
-    <li><b>Build order.</b> Two things cannot be retrofitted and come first: the append path from a phone with unreliable data, and the nightly build with its report. At about ten readers, the note says assignment can be a spreadsheet and chasing can be somebody noticing. The agents on this page replace those later, and can be swapped without losing a row.</li>
-    <li><b>Readers' identity</b> is a pre-signed link per person, as the note settles for a cohort of about ten. No accounts.</li>
-    <li><b>The readers' side</b> is a phone page that works offline and syncs signed decisions, plus WhatsApp for reminders and voice notes. No reader ever sees GitHub, JSON, or a merge conflict.</li>
-    <li><b>The agents</b> run as Claude Code in sandboxes, in the style of Sandcastle: one batch or one chapter per run, a review run after each, triggered by webhooks or a schedule.</li>
-    <li><b>Each repository's CLAUDE.md</b> carries the rules on this page, so every run starts from them: what an agent may not do, how versions are kept apart, when to stop and ask.</li>
-  </ul>
 </section>
 
 <section id="open">
@@ -439,13 +389,40 @@ ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
     <h2>Questions before building</h2>
   </div>
   <ul class="plain">
-    <li>How is consent for a minor’s name recorded, and by whom: the student, a parent, or the pāṭhaśālā?</li>
-    <li>Which door first? The Bhāgavata holds most of the story and has the most recordings. The Garuḍa Purāṇa already has an atlas, though for its Brahmakāṇḍa, not the Ācārakāṇḍa where the door is.</li>
-    <li>Should two students read every verse, or only the verses an agent marks uncertain? Two readers doubles student cost but gives the agreement figure.</li>
-    <li>When a student is shown a suggestion, how many verses in each batch go blind? A fifth is a starting guess.</li>
+    <li>How is consent for a minor's name recorded, and by whom: the student, a parent, or the pāṭhaśālā?</li>
+    <li>Should two students read every verse, or only the ones the agent is unsure of? Two readers doubles the students' time, but it is the only way to know how often they agree.</li>
+    <li>How many verses in each batch should go without a suggestion? One in five is a starting guess.</li>
     <li>Which senior vidvān signs for the Harivaṃśa, and how many hours a month can they give? That sets the pace more than anything else.</li>
-    <li>Which upanyāsakars would accept a request to expound a figure's verses, and how is that request made and honoured?</li>
+    <li>Which upanyāsakars would take up a request to tell a figure's story from the signed verses, and how is that request made?</li>
   </ul>
+</section>
+
+<section id="build" class="appendix">
+  <div class="intro">
+    <span class="eyebrow">Appendix · for the engineers</span>
+    <h2>How it is built</h2>
+    <p>This follows the Scholar Workbench design from August 2026 (<a href="https://hvram1.github.io/purana-atlas/docs/purana-scholar-workbench.html" target="_blank" rel="noopener">How the index gets made</a>). Where this page and that design differ, the design wins.</p>
+  </div>
+  <h3>The agents</h3>
+  <div class="agents" id="agentlist"></div>
+  <ul class="plain">
+    <li><b>Each agent is a Claude Code run</b> in its own sandbox, started by an event (a request, an upload, a signed decision) or on a schedule. Agents write only to the work queue and the daily report. Only signed decisions reach the index.</li>
+    <li><b>Decisions are a log that only grows.</b> Each signed decision is one record: the verse, the name as written, the person it refers to, who read it, who signed it, when. Printed sources (Sørensen, the Gītā Press index) are never overwritten. A ruling has three possible outcomes: this person, not this person, or both readings stand.</li>
+    <li><b>Pages are never edited by hand.</b> People write in four places only: the reading page on the phone, the senior vidvān's notes, one discussion thread per name, and code. Everything on the website is rebuilt from those. If a page is wrong, the decision behind it is wrong.</li>
+    <li><b>Build order.</b> Two things come first because they cannot be added later: saving decisions from a phone with an unreliable connection, and the nightly rebuild with its report. With about ten readers, a spreadsheet can assign the work and a person can do the chasing. The agents take over from those later.</li>
+    <li><b>No accounts.</b> Each reader gets a private link. Readers use a phone page that works offline, and WhatsApp. They never see GitHub or code.</li>
+  </ul>
+  <details><summary>What one signed decision looks like</summary>
+<pre class="ledger">{"verse":     "Bhāgavata 9.18.18",
+ "as_written": "ययातिर्",
+ "person":    "Yayāti (inm:12607)",
+ "decision":  "this person",
+ "read_by":   ["Student A", "Student B"],
+ "signed_by": "Vidvān C",
+ "signed":    "2026-11-14",
+ "replaces":  null}</pre>
+  </details>
+  <p class="small">Counts on this page are from the corpus database and the Śrī Śāradā Pīṭham Purāṇa texts, 15 October 2026. Purāṇa counts are word matches, before anyone has read them. Mahābhārata chapter numbers are working references still to be checked. Names in the mock-ups are placeholders.</p>
 </section>
 </div>
 
@@ -461,113 +438,34 @@ ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
   }
   document.querySelectorAll('[data-svg]').forEach(b => loadSvg(b, b.dataset.svg, b.dataset.alt));
 
-  const STAGES = ['Arrives','Discover','Prepared','Read','Ruled','Published','Told'];
-  const LANES = {
-    out:    {b:'Outside',        s:'students choosing, voters, upanyāsakars'},
-    agent:  {b:'Agents',         s:'Claude Code runs'},
-    student:{b:'Students',       s:'first-pass readers, on a phone'},
-    junior: {b:'Junior vidvāns', s:'review and resolve'},
-    senior: {b:'Senior vidvān',  s:'rules, writes, signs'}
+  const MAPS = {
+    today: {alt: "Yayāti's family in the index today",
+      cap: 'Today: the index knows all 27 people and 36 links between them, copied from Sørensen\'s index of the Mahābhārata. Faint lines are links nobody has checked. Red marks what is wrong; gold marks what is unknown, or a question only a vidvān can answer. None of his Purāṇa verses are linked to him.'},
+    after: {alt: "Yayāti's family after the work",
+      cap: 'After the work: every person and family link is checked and signed by a vidvān, and the mistakes are fixed. His verses in the Bhāgavata and the Garuḍa Purāṇa are linked, and each verse shows who read it. This is the outcome we expect; the reading will decide the details.'}
   };
-  const ORDER = ['out','agent','student','junior','senior'];
-
-  const FLOWS = {
-    request: {
-      example: 'A student answers "Do you have a character you like?" with Yayāti. He has a Mahābhārata card from Sørensen. What he lacks is the Purāṇas.',
-      steps: [
-        ['out',0,'A student, or a vote','Yayāti is chosen, by a student or by a poll for the next capsule.'],
-        ['agent',0,'Intake','Opens one item for Yayāti\'s whole circle. Later votes for Devayānī or Pūru join it.'],
-        ['agent',1,'Discoverer','Looks up what is already known before anyone reads. All 27 people on the map already exist in the index, Śantanu under another spelling, 36 pairs of them are already linked by a recorded relation, and Yayāti has 220 verse-level citations from the Gītā Press index. Nobody has yet ruled on any of it. In the Purāṇas the scan found him nowhere: his hits were filed under a place, Yayātipatana.'],
-        ['junior',1,'Junior vidvān, from a list','Confirms the known Mahābhārata links in bulk, and strikes the ones that join the wrong person of the same name. Only what is missing goes on to fresh reading.', true],
-        ['agent',2,'Candidate finder','Lights the circle by walking Sørensen\'s relations: that is the map above. Then finds candidate verses for each person, in the Mahābhārata and across the Purāṇas: Yayāti\'s name turns up 106 times in the Matsya, 87 in the Padma, 38 in the Bhāgavata.'],
-        ['agent',2,'Dispatcher','Sends batches of twenty to two calibrated students each, with a few known-answer verses hidden in every batch.'],
-        ['student',3,'Two students, separately','For each verse: is this our Yayāti? They throw out the false matches: शिबिका, a palanquin, for Śibi; देवयान, the path of the gods, for Devayānī.'],
-        ['agent',3,'Chaser and comparer','Reminds after three days, reassigns after seven. Agreement goes to review; disagreement becomes an escalation with a dossier.'],
-        ['junior',4,'Junior vidvān','Confirms the agreed readings. Groups the Purāṇa verses by telling: the Bhāgavata\'s 9.18–19, the Matsya\'s, the Padma\'s, each kept as its own.', true],
-        ['senior',4,'Senior vidvān','Sees only the hard questions. Are the four kings of Virāṭa 56.9 Mādhavī\'s sons? Does the daughter\'s-son story link to the Smṛtimuktāphalam? Rules, or sets aside, and signs.', true],
-        ['agent',5,'Publisher','Appends the signed decisions, with who read and who ruled each one, and rebuilds. Yayāti\'s card now lists each telling, every verse at its address, playing where it is chanted.'],
-        ['agent',6,'Notifier and reporter','Credits the students by name, tells the voters, and checks whether a capsule can be made yet.'],
-        ['out',6,'Upanyāsakars and artists','Invited to make the Yayāti capsule from the signed verses.']
-      ],
-      note: '<h3>Discovery shrinks the work; the circle plans it</h3><p>Nobody has to decide that Kaca or Śarmiṣṭhā should be read next. Lighting Yayāti queues his whole circle, and each person lit becomes a request of their own, in the order the story connects them.</p><p class="small">Counts are string matches before any reading. Most of them will turn out to be other people, or not names at all.</p>'
-    },
-    correction: {
-      example: 'The scan has already made this mistake. It attached the Bhāgavata\'s परीक्षित, in 1.1.13 and eighteen other verses, to Sørensen\'s Parīkṣit the son of Anaśvan, an earlier Kuru king. Sørensen spells Abhimanyu\'s son with a short i, so the long-i spelling matched the other man.',
-      steps: [
-        ['agent',0,'Consistency reviewer','Flags the link. Some of these verses sit in Bhāgavata 1.18, headed तक्षकेण परीक्षिन्मरणकथनम्, but the linked Parīkṣit\'s father is Anaśvan, and Takṣaka killed Abhimanyu\'s son.'],
-        ['agent',1,'Discoverer','Checks for an earlier ruling or an open item on these verses (none), and finds that Abhimanyu\'s son already exists, as Sørensen\'s Parikṣit with 46 verses resolved through Dutt. No new person is needed, only the right link.'],
-        ['agent',2,'Dossier builder','Lays out both claimants with Sørensen\'s entries, the chapter heading, and the neighbouring verses that name Abhimanyu or Uttarā.'],
-        ['student',3,'Students','Read each verse and say which Parīkṣit it is. Most resolve at a glance; a few in genealogies need a closer look.'],
-        ['junior',4,'Junior vidvān','Signs the reassignment. The scan\'s link is superseded, not deleted, so anyone can see what was wrong.', true],
-        ['agent',3,'Consistency reviewer, again','Flags a second conflict: in the Mahābhārata Āstīka stops the sacrifice; in Bhāgavata 12.6 it is Bṛhaspati.'],
-        ['junior',4,'Junior vidvān, again','Closes the flag with nothing to rule. These are two sources\' testimony about the same Parīkṣit, kept as each source\'s own gloss, so both stand on the card side by side. Testimony is never adjudicated.', true],
-        ['agent',5,'Publisher','Appends both rulings. Parīkṣit\'s card gains its Bhāgavata verses and the "told twice" panel.'],
-        ['agent',6,'Reporter','Lists one link corrected and one difference recorded. Proposes the fix the design note already names, NORM-VOWEL-LENGTH-DEVA: परीक्षित् resolves to a set of five Parīkṣits, so every Purāṇic one escalates to a reader instead of being silently assigned. A wrong guess widens a set; it never asserts a name.']
-      ],
-      note: '<h3>Not every conflict is an error</h3><p>The same agent raised both flags. One was a real mistake: the wrong man. The other was the tradition telling the story two ways. Telling them apart is a person\'s job, and the second is kept, never "corrected".</p><p class="small">A correction is a new signed entry pointing at the old one. The index stays checkable because nothing is silently replaced.</p>'
-    },
-    link: {
-      example: 'Garuḍa Purāṇa, Ācārakāṇḍa 3, is headed यच्छ्रवणात् कश्यपो दग्धं वृक्षमजीवयत्: by hearing it, Kaśyapa revived a burnt tree. In the Parīkṣit story, Kāśyapa the healer revives the tree Takṣaka burns.',
-      steps: [
-        ['agent',0,'Candidate finder, reading headings','Reads the chapter headings of all eighteen Purāṇas against the people and episodes on the map. Finds Ācārakāṇḍa 3, and Bhāgavata 12.6.11, where Takṣaka meets Kāśyapa on the road.'],
-        ['agent',1,'Discoverer','Finds ten people named Kāśyapa already in Sørensen\'s index, and 264 Purāṇa hits the scan has filed under one of them, unread. Checks whether any recording of Bhāgavata 1.18–19 or 12.6 is already aligned.'],
-        ['agent',2,'Dossier builder','Sets the three passages side by side: the Mahābhārata episode, Bhāgavata 12.6.11–12, and the Garuḍa heading with its verses.'],
-        ['senior',4,'Senior vidvān','Rules whether the Garuḍa Purāṇa\'s ऋषिकश्यप is Kāśyapa the healer: the same, different, or cannot be determined.', true],
-        ['agent',5,'Publisher','If the same, Kāśyapa\'s card gains the Garuḍa door, and Garuḍa\'s card links to Parīkṣit\'s death.'],
-        ['out',0,'A recording arrives','A Bhāgavata saptāha discourse covering 1.18–19 or 12.6 is uploaded. These are among the most recorded discourses there are.'],
-        ['agent',2,'Aligner','Places each chanted verse on the clock, at about ₹49 an hour of audio.'],
-        ['student',3,'Student, listening','Plays each verse as a read-along and confirms where it starts.'],
-        ['agent',6,'Request builder','Drafts requests for what is still unheard, such as the Garuḍa Purāṇa\'s Ācārakāṇḍa 3.'],
-        ['out',6,'Upanyāsakar','Offered the unheard verses, and told when their talk links to the mūla.']
-      ],
-      note: '<h3>A door is a ruling, not a search hit</h3><p>The agent found the heading in minutes. Whether it is the same Kaśyapa is a question about persons across texts, and only a senior vidvān answers it. Until then the map shows it in gold.</p><p class="small">The Bhāgavata side has no recitation on our sites yet. Aligning a few saptāha recordings would make Door 1 something people can hear.</p>'
-    }
-  };
+  const mapbox = document.getElementById('mapbox'), mapcap = document.getElementById('mapcap');
+  function showMap(k){
+    loadSvg(mapbox, 'map-' + k + '.svg', MAPS[k].alt);
+    mapcap.textContent = MAPS[k].cap;
+    document.querySelectorAll('.switch button').forEach(b => b.setAttribute('aria-pressed', b.dataset.map === k));
+  }
+  document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => showMap(b.dataset.map)));
+  showMap('today');
+  fetch('map-after.svg').then(r => r.ok ? r.text() : null).then(s => { if(s) svgCache['map-after.svg'] = s; }).catch(() => {});
 
   const AGENTS = [
-    ['Discoverer','first, on every item','Looks up what already exists before any reading: the person and their homonyms, recorded relations, citations by grade, earlier rulings, open items, aligned recordings. Sorts it into confirmed, known but unchecked, and missing.','Treat an existing link as signed, or skip a check because the link is already there.'],
-    ['Intake','webhook','Turns pins, votes, WhatsApp voice notes and uploads into one queue item per verse or circle of people, merging duplicates.','Open a correction against a ruling without naming the ruling.'],
-    ['Candidate finder','per request','Lights a circle from Sørensen\'s relations, finds candidate verses across the epic and the Purāṇas, and reads chapter headings for doors.','Mark any candidate, or any door, as confirmed.'],
-    ['Dispatcher','hourly','Assigns batches to calibrated readers, two per verse, with hidden known answers.','Clear a new reader to go live; that is the junior vidvān\'s call.'],
-    ['Chaser','daily','Reminds, reassigns stalled batches, compares readers, opens escalations with their dossiers, and keeps their clocks.','Settle a disagreement, even an obvious one.'],
-    ['Consistency reviewer','after each batch','Flags a person linked against their own lineage, the same name ruled differently in neighbouring verses, and two tellings that disagree.','Change a ruling, or treat a difference between tellings as an error.'],
-    ['Publisher','on signature, nightly','Appends signed decisions to the ledger, rebuilds the cards and atlases, and refuses to ship broken data.','Publish anything unsigned, except the frontier marked as unfinished.'],
-    ['Notifier and reporter','nightly, weekly','Writes the nightly report, credits readers, moves the funding meter, and drafts requests to upanyāsakars.','Speak for a vidvān, send a request no one has approved, or show a reader’s name without consent.']
+    ['Intake','when a request arrives','Turns requests, votes, voice notes and uploads into one job each, joining duplicates.','Change anything already signed.'],
+    ['Checker','first, on every job','Looks up what the index already holds and sorts it into settled, known but unchecked, and missing. Flags what looks wrong.','Treat an unchecked link as settled.'],
+    ['Verse finder','on each job','Searches the epic and all eighteen Purāṇas for every form of a name, and sorts the results.','Mark any verse as confirmed.'],
+    ['Assigner','hourly','Sends batches to two students each, with test verses mixed in.','Decide who is ready to read; a junior vidvān does that.'],
+    ['Follow-up','daily','Sends reminders, passes on stalled batches, compares the two answers, and sends disagreements on with the evidence.','Settle a disagreement, even an obvious one.'],
+    ['Cross-checker','after each batch','Flags a person linked against their own family, or the same name decided differently in neighbouring verses.','Change a decision, or treat two tellings as an error.'],
+    ['Publisher','nightly','Records signed decisions and rebuilds the website. Refuses to publish broken or unsigned data.','Publish anything unsigned.'],
+    ['Reporter','nightly and weekly','Writes the daily report, thanks the students, updates the progress shown on the funding page, and drafts invitations to upanyāsakars.','Speak for a vidvān, send an invitation nobody has approved, or show a name without consent.']
   ];
-
-  const board = document.getElementById('board'), stepsEl = document.getElementById('steps'),
-        noteEl = document.getElementById('note'), exEl = document.getElementById('example');
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const short = t => { const m = t.match(/^[^.?]*[.?]/); return m ? m[0] : t; };
-
-  function frame(){
-    let h = '<div class="stage" style="grid-row:1;grid-column:1"></div>' +
-      STAGES.map((s,i) => `<div class="stage" style="grid-row:1;grid-column:${i+2}">${s}</div>`).join('');
-    ORDER.forEach((k,r) => {
-      h += `<div class="lane L-${k}" style="grid-row:${r+2}"><b>${LANES[k].b}</b><span>${LANES[k].s}</span></div>`;
-      h += `<div class="bandrow" style="grid-row:${r+2}"></div>`;
-    });
-    return h;
-  }
-  function show(id){
-    const f = FLOWS[id];
-    exEl.textContent = f.example;
-    // steps that share a lane and stage stack inside one cell
-    const cells = {};
-    f.steps.forEach(([lane,stage,who,txt,gate],i) => {
-      const key = lane + '|' + stage;
-      (cells[key] = cells[key] || {lane, stage, html:''}).html +=
-        `<div class="step L-${lane}${gate?' gate':''}"><span class="n">${i+1} · ${esc(who)}</span><span class="where">${LANES[lane].b} · ${STAGES[stage]}</span>${esc(short(txt))}</div>`;
-    });
-    loadSvg(board, 'flow-' + id + '.svg', f.example);
-    stepsEl.innerHTML = f.steps.map(([lane,stage,who,txt],i) =>
-      `<li class="L-${lane}"><span class="k">${i+1}</span><div><span class="who">${esc(who)} · ${STAGES[stage]}</span><p>${esc(txt)}</p></div></li>`).join('');
-    noteEl.innerHTML = f.note;
-    document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.flow === id));
-  }
-  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.flow)));
   document.getElementById('agentlist').innerHTML = AGENTS.map(([n,when,does,not]) =>
     `<div class="agent"><h3>${esc(n)} <i>${esc(when)}</i></h3><dl><dt>Does</dt><dd>${esc(does)}</dd><dt>Never</dt><dd class="no">${esc(not)}</dd></dl></div>`).join('');
-  show('request');
 })();
 </script>
