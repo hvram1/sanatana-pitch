@@ -11,12 +11,12 @@ It builds on the Scholar Workbench design
 published as https://hvram1.github.io/purana-atlas/docs/purana-scholar-workbench.html).
 Where the two differ, the design note wins.
 
-Published at https://hvram1.github.io/sanatana-pitch/namakosa/ (`./publish.py --site`
-wraps `index.html` and copies the SVGs into `docs/namakosa/`), and privately as
-the Claude artifact https://claude.ai/artifact/WvdQBUeofUL4t1ZpY55143.
+Internal since 17 October 2026: no longer on GitHub Pages. `python3 publish.py`
+builds it into `dist/namakosa/`, linked from the team map; it is also the private
+Claude artifact https://claude.ai/artifact/WvdQBUeofUL4t1ZpY55143.
 To view it locally:
 
-    cd namakosa && python3 -m http.server 8766      # then open http://localhost:8766
+    python3 publish.py && cd dist && python3 -m http.server 8767   # then open http://localhost:8767/namakosa/
 
 Serve it rather than opening the file: the page fetches its SVGs and inlines
 them so they follow its light and dark themes.

@@ -63,9 +63,9 @@ https://hvram1.github.io/sanatana-pitch/showcase/: `--site` copies its page and
 images (not its notes) into `docs/showcase/`.
 
 The Nāma-Kośa loop (`namakosa/`), the agent workflow for the Purāṇa Nāma-Kośa
-with vidvāns and students in the loop, is served at
-https://hvram1.github.io/sanatana-pitch/namakosa/: `--site` wraps its page and
-copies its SVGs into `docs/namakosa/`.
+with vidvāns and students in the loop, was served on Pages until 17 October 2026.
+It is now internal, like the other loop pages: built into `dist/` for the team map,
+never into `docs/`. The outside story is told by the journey timelines instead.
 
 `./publish.py --site` builds both: `dist/` for the artifacts, `docs/` for Pages
 (served from `main`, folder `/docs`). `docs/` is committed and `dist/` is not.
@@ -85,3 +85,24 @@ the trustees' names to anyone.
 the public github.io pages (the artifact links are private). The price
 breakdowns are printed open. Remake them after any change to the pages, or they
 fall behind.
+
+## The journey timeline
+
+`src/milestones.json` holds the milestones of the work, from "the book, scanned" to
+agents running the loops, each with its date, status and one number, worded twice:
+for Anthropic (the showcase's "The journey" section, `#journey`) and for funders (the
+pitch's Section VIII, `#journey`). `milestones.py` writes both timelines between
+`<!-- milestones:… -->` markers; `publish.py` runs it on every build, and
+`python3 milestones.py --check` says whether a page is stale. Change a status in
+the JSON, never in a page. Keep internal detail out of it: both pages are read
+outside the team, and the loop pages (`trigger/`, `corrections/`, `newbook/`,
+`fixes/`, `namakosa/`) are for the team.
+
+## Seeing everything at once: the team map
+
+`python3 publish.py` also builds `dist/` for local viewing: the team map at the
+root (`team/`, generated from `src/milestones.json` like the two timelines), the
+pitch and funding page as whole documents under `view/`, the showcase, and every
+internal page. Serve it with `cd dist && python3 -m http.server 8767` and open
+http://localhost:8767/. The internal pages (`team/`, `trigger/`, `corrections/`,
+`newbook/`, `fixes/`) are never copied into `docs/`, so `--site` does not publish them.

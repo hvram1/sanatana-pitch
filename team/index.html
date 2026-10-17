@@ -1,0 +1,358 @@
+<title>The Team Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the team's map of the work. The two outside spines first, then the
+   journey milestone by milestone with both wordings side by side and the internal
+   pages behind each, then every page and how to rebuild. Same tokens as the loops. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6;
+  --gold:#a86a00; --gold-soft:#fbf1dc;
+  --leaf:#2f6f55; --leaf-soft:#e2f0e9;
+  --clay:#8a3b2e; --clay-soft:#f6e6e2;
+  --band:#eceef2; --paper:#ffffff;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+code{font-family:var(--f-mono);font-size:.85em;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.deva{font-family:var(--f-deva)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted)}
+section{padding-block:40px 8px;display:grid;gap:18px}
+.intro{display:grid;gap:12px}
+.intro p{max-width:46rem}
+header.hero{padding-block:48px 12px;display:grid;gap:18px}
+.lede{font-size:1.15rem;max-width:46rem}
+.rule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.rule div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.rule b{font-family:var(--f-display);font-size:1.1rem}
+.rule .h{border:2px solid var(--gold);background:var(--gold-soft)}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
+.tscroll{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+.t th,.t td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.t th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.t td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;padding-right:20px;white-space:nowrap}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metrics div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.metrics b{font-family:var(--f-display);font-size:1.05rem}
+.metrics span{font-size:.9rem;color:var(--muted)}
+.ledger{font-family:var(--f-mono);font-size:.78rem;line-height:1.5;background:var(--band);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin:8px 0 4px;overflow-x:auto;white-space:pre}
+.appendix{border-top:2px solid var(--rule);margin-top:24px}
+
+/* the printed page, with its disputed places boxed */
+.folio{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+.scan{position:relative;background:var(--paper);border:1px solid var(--rule);border-radius:6px;box-shadow:var(--shadow);overflow:hidden;max-width:100%}
+.scan img{display:block;width:100%;height:auto}
+.scan .hl{position:absolute;border:2px solid var(--hc);background:color-mix(in srgb,var(--hc) 12%,transparent);border-radius:3px}
+.scan .hl b{position:absolute;left:-2px;top:-20px;font-family:var(--f-mono);font-size:.7rem;font-weight:500;line-height:1;padding:3px 5px;border-radius:3px 3px 0 0;background:var(--hc);color:#fff}
+.hl.k-n{--hc:#2f3a8f} .hl.k-a{--hc:#8a3b2e} .hl.k-c{--hc:#a86a00}
+.cap{font-size:.86rem;color:var(--muted);padding-top:8px}
+.keys{display:grid;gap:12px;align-content:start}
+.key{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem}
+.key i{font-style:normal;font-family:var(--f-mono);font-size:.8rem;text-align:center;border-radius:4px;padding:1px 0;color:#fff;background:var(--kc)}
+.key.k-n{--kc:#2f3a8f} .key.k-a{--kc:#8a3b2e} .key.k-b{--kc:#2f6f55} .key.k-c{--kc:#a86a00} .key.k-d{--kc:#a86a00}
+
+/* the journey: round = agent, diamond = person */
+.journey{list-style:none;margin:0;padding:0;display:grid;max-width:52rem}
+.journey > li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;position:relative;padding-bottom:28px}
+.journey > li::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--rule)}
+.journey > li:last-child::before{display:none}
+.journey .mk{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:500;font-size:1rem;background:var(--accent-soft);color:var(--accent);border:2px solid var(--accent)}
+.journey .j-person .mk{background:var(--gold-soft);color:var(--gold);border-color:var(--gold);border-radius:10px;transform:rotate(45deg)}
+.journey .j-person .mk span{transform:rotate(-45deg)}
+.journey .jb{display:grid;gap:10px;min-width:0;padding-top:4px}
+.journey h3{font-size:1.3rem}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:3px}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.tag.p{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+.state{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:1px 8px;vertical-align:3px;white-space:nowrap}
+.state.live{color:var(--leaf);border-color:var(--leaf);background:var(--leaf-soft)}
+.state.wait{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.out{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.93rem;display:grid;gap:4px}
+.j-person .out{border-left-color:var(--gold)}
+.out b.h{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.out ul{margin:0;padding-left:18px;display:grid;gap:2px}
+.why{font-size:.93rem;color:var(--muted)}
+
+/* the three readings of one word */
+.cases{display:grid;gap:14px}
+.case{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--kc);border-radius:10px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.case.k-a{--kc:var(--clay)} .case.k-b{--kc:var(--leaf)} .case.k-c{--kc:var(--gold)} .case.k-d{--kc:var(--gold)}
+.case h4{margin:0;font-family:var(--f-display);font-size:1.1rem;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.case h4 i{font-style:normal;font-family:var(--f-mono);font-size:.78rem;color:var(--surface);background:var(--kc);border-radius:4px;padding:0 6px}
+.case h4 small{font-family:var(--f-mono);font-size:.72rem;font-weight:400;color:var(--muted)}
+.three{border-collapse:collapse;width:100%;font-size:.93rem}
+.three td{padding:6px 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.three td:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:11rem}
+.three .deva{font-size:1.15rem}
+.three mark{background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.three tr.print td{font-weight:600}
+.ruling{font-size:.93rem;display:grid;gap:2px}
+.ruling b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kc);font-weight:500}
+.crop{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;max-width:560px}
+.crop img{display:block;width:100%;height:auto}
+
+/* mock of the vidvān's review row */
+.mock{background:var(--surface);border:1px dashed var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.mk-l{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mock .row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 12px;font-size:.95rem;align-items:baseline}
+.mock .row span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mock .row .deva{font-size:1.1rem}
+.mock .row u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns span{font-size:.85rem;border:1px solid var(--rule);border-radius:6px;padding:3px 10px;color:var(--ink);background:var(--bg)}
+.btns span.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.bigger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bigger div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:.93rem}
+.bigger b{font-family:var(--f-display);font-size:1.05rem}
+.bigger .ev{font-size:.85rem;color:var(--muted)}
+
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.parts a{display:grid;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 16px}
+.parts a b{font-family:var(--f-display);font-size:1.05rem}
+.parts a span{font-size:.88rem;color:var(--muted)}
+.parts a:hover{border-color:var(--accent)}
+.parthead{padding-block:56px 0;display:grid;gap:10px;border-top:2px solid var(--rule);margin-top:24px}
+.parthead .pn{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.parthead h2{font-size:2.1rem}
+.parthead p{max-width:46rem;font-size:1.05rem}
+.verse{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;max-width:52rem}
+.verse .deva{font-size:1.2rem;line-height:1.9}
+.verse u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 3px}
+.verse .en{font-size:.95rem;color:var(--muted);font-style:italic}
+.three td.ed{font-family:var(--f-body);font-size:.88rem;color:var(--muted);text-transform:none;letter-spacing:0}
+@media (max-width:900px){
+  .parts{grid-template-columns:minmax(0,1fr)}
+  .folio,.rule,.metrics,.bigger{grid-template-columns:minmax(0,1fr)}
+  .three td:first-child{width:7rem}
+  .mock .row{grid-template-columns:minmax(0,1fr)}
+}
+/* the journey: one line of milestones, the past solid, the next ones dashed,
+   "today" a rule between them; each says who starts the work and who decides */
+.j-line{list-style:none;margin:8px 0 0;padding:0;display:grid;max-width:760px}
+.j-m{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 18px;position:relative;padding-bottom:32px}
+.j-m::before{content:"";position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--rule)}
+.j-m:last-child::before{display:none}
+.j-dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.9rem;background:var(--surface);border:2px solid var(--muted);color:var(--muted)}
+.j-m.s-running .j-dot{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.j-m.s-proposed .j-dot{border-style:dashed;border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.j-m.s-proposed::before{background:repeating-linear-gradient(var(--gold) 0 6px,transparent 6px 12px)}
+.j-body{display:grid;gap:10px;min-width:0;padding-top:4px}
+.j-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.j-when{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.j-status{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);border-radius:999px;padding:1px 8px;color:var(--muted)}
+.s-running .j-status{border-color:var(--accent);color:var(--accent)}
+.s-proposed .j-status{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.j-body h3{font-size:1.3rem}
+.j-num{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.j-num b{font-family:var(--f-display);font-size:1.8rem;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}
+.s-proposed .j-num b{color:var(--gold)}
+.j-num span{font-size:.9rem;color:var(--muted);max-width:28rem}
+.j-who{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.j-who div{background:var(--surface);padding:8px 12px;display:grid;gap:2px;align-content:start}
+.j-who dt{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.j-who dd{margin:0;font-size:.9rem;line-height:1.4}
+.j-who div:last-child dd{font-weight:600}
+.j-ask{justify-self:start;font-weight:600;font-size:.95rem}
+.j-more{font-size:.85rem}
+.j-today{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 18px;align-items:center;padding:4px 0 36px}
+.j-today::before{content:"";height:2px;background:var(--gold);grid-column:1 / -1;grid-row:1}
+.j-today span{grid-column:1 / -1;grid-row:1;justify-self:start;margin-left:58px;background:var(--bg);padding:0 10px;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+
+.j-line{max-width:none}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.two > div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.two h3{font-size:1.1rem}
+.two p{font-size:.93rem}
+.two.inside > div{background:transparent;border-style:dashed}
+.two ul{margin:0;padding-left:18px;display:grid;gap:2px;font-size:.93rem}
+.spines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.spine{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--sc);border-radius:10px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.spine.an{--sc:var(--accent)} .spine.fu{--sc:var(--gold)}
+.spine h3{font-size:1.25rem}
+.spine .links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.93rem}
+.pages td:first-child{white-space:nowrap}
+@media (max-width:900px){.two,.spines{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">For the team · not for outside readers</span>
+  <h1>The whole journey, and every page behind it</h1>
+  <p class="lede">Two pages tell the journey outside the team: the showcase to Anthropic, the pitch to funders. Behind each milestone sit the internal pages that show how the work is done, and the projects where it lives. This map shows all of it in one place. It is generated from <code>src/milestones.json</code>, like both timelines, so what it shows is what they say.</p>
+</header>
+
+<section id="spines">
+  <div class="intro">
+    <span class="eyebrow">The two spines</span>
+    <h2>Who reads what</h2>
+    <p>The copies linked here are the local build. The published copies change only when you republish.</p>
+  </div>
+  <div class="spines">
+    <div class="spine an">
+      <span class="mk-l">To Anthropic</span>
+      <h3>A Handful of People</h3>
+      <p>The showcase. Claude Code in the team, seven moments from the sessions, ten months, the handful growing. Its section "The journey" carries the milestones.</p>
+      <div class="links"><a href="../showcase/">Open the page</a><a href="../showcase/#journey">The journey section</a></div>
+      <p class="small">Published: hvram1.github.io/sanatana-pitch/showcase/ · Sent with <code>showcase/note-to-anthropic.md</code></p>
+    </div>
+    <div class="spine fu">
+      <span class="mk-l">To funders</span>
+      <h3>Sanatana Sampatti</h3>
+      <p>The pitch and the funding page. The sites, the open problems, the corpus, and what funding buys. Its Section VIII, "How the work gets done", carries the milestones, and three of them end on a result to fund.</p>
+      <div class="links"><a href="../view/pitch.html">Open the pitch</a><a href="../view/pitch.html#journey">Section VIII</a><a href="../view/ask.html">The funding page</a></div>
+      <p class="small">Published: the pitch and funding artifacts, and hvram1.github.io/sanatana-pitch/</p>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="intro">
+    <span class="eyebrow">The journey, milestone by milestone</span>
+    <h2>What each spine says, and what sits behind it</h2>
+    <p>Each milestone appears once, with its wording for Anthropic on the left and for funders on the right. Below them are the internal pages for that milestone and the projects where its work is. To change a milestone's status or wording, edit <code>src/milestones.json</code> and run <code>python3 milestones.py</code>; all three pages change together.</p>
+  </div>
+  <!-- milestones:team -->
+      <ol class="j-line">
+      <li class="j-m s-done" id="m-scanned">
+        <div class="j-dot"><span>1</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">before</span><span class="j-status">done</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-scanned">in the showcase</a></span><h3>The book, scanned</h3><p>For years, what the digital age gave a tradition was a picture of its book. The words were there; the chant, the commentary beside the verse and the teacher&#x27;s voice were not.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-scanned">in the pitch</a></span><h3>The book, scanned</h3><p>A scan holds the words of a book. It cannot hold the chant, the commentary beside the verse, or the teacher&#x27;s voice. For most of the tradition&#x27;s texts, that is where things stood.</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../showcase/#then">The showcase: the book, scanned, beside the chant</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li class="small">none</li></ul></div></div>
+        </div>
+      </li>
+      <li class="j-m s-done" id="m-asks">
+        <div class="j-dot"><span>2</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">2025 to August 2026</span><span class="j-status">done</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-asks">in the showcase</a></span><h3>One person asks, Claude Code builds</h3><p>The trustee asks, and Claude Code builds: the Jaiminīya Sāmaveda brought out of a proprietary font, then nine sites open to anyone. A pāṭhaśālā proofreads, and someone who lives near it learns the tools and takes the work over.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-asks">in the pitch</a></span><h3>Nine sites, open to anyone</h3><p>The texts with their commentaries and their recitation, to read, search and listen to: the Veda with the text following the chant, 8,391 Purāṇa verses heard at the second a teacher chants them, Śaṅkara&#x27;s commentaries with Tamil and English beside them.</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../showcase/#talk">The showcase: seven moments from the sessions</a></li><li><a href="../showcase/#grows">The showcase: the Jaiminīya Sāmaveda handed over</a></li><li><a href="../view/pitch.html#tour">The pitch: the nine sites</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li><code>the site repositories</code></li></ul></div></div>
+        </div>
+      </li>
+      <li class="j-m s-running" id="m-checks">
+        <div class="j-dot"><span>3</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">September 2026</span><span class="j-status">running now</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-checks">in the showcase</a></span><h3>Claude Code checks its own work</h3><p>One request, then a check that runs on everything. Every Mahābhārata verse is compared with two other editions, and every page of the Yajurveda commentary is read against the printed book. Only the differences go to a person, laid out beside the evidence.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-checks">in the pitch</a></span><h3>Every verse checked against a second witness</h3><p>The typed Mahābhārata is compared verse by verse with two other editions, and the Yajurveda commentary page by page with the printed book. A reviewer or a vidvān sees only where they differ, with the evidence laid out beside it.</p><p class="small">Funds: Clean up and publish the Yajurveda bhāṣyas</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../corrections/#yajurveda">Correction loop, case 1: against the printed page</a></li><li><a href="../corrections/#mahabharata">Correction loop, case 2: against two editions</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li><code>dharmasastra-gcp/complete_pipeline_yajurveda</code></li><li><code>mbh_src/qa/witness_check.py</code></li></ul></div></div>
+        </div>
+      </li>
+      <li class="j-m s-done" id="m-book">
+        <div class="j-dot"><span>4</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">4 to 17 September 2026</span><span class="j-status">done</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-book">in the showcase</a></span><h3>A whole book in thirteen days</h3><p>The Smṛtimuktāphalam, a digest of dharma in a Tamil edition. Claude Code found the scan&#x27;s own faults (leaves upside down, out of order, scanned twice, missing), checked the book&#x27;s contents list against its body, and traced 407 of Kane&#x27;s footnotes to their source.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-book">in the pitch</a></span><h3>A 4,333-page digest, searchable in thirteen days</h3><p>The Smṛtimuktāphalam, Vaidyanātha Dīkṣita&#x27;s digest of dharma, from scans to a searchable edition: every section and quotation indexed, and linked both ways with Kane&#x27;s History of Dharmaśāstra. An out-of-print commentary would be published the same way.</p><p class="small">Funds: Publish one out-of-print smṛti commentary</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../newbook/">New-book loop: the Smṛtimuktāphalam</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li><code>dharmasastra-gcp/smp</code></li></ul></div></div>
+        </div>
+      </li>
+      <li class="j-m s-running" id="m-readers">
+        <div class="j-dot"><span>5</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">21 September to 10 October 2026</span><span class="j-status">running now</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-readers">in the showcase</a></span><h3>Readers start the work</h3><p>A report button on the Mahābhārata site: select a word, tap. 820 reports in three weeks, most from one proofreader working parva by parva. And when a reader said a link did nothing on their phone, one screenshot from that phone settled a fault no test could reproduce.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-readers">in the pitch</a></span><h3>Readers find the mistakes</h3><p>A reader selects a word that looks wrong and taps. Most reports come from one proofreader, working parva by parva. More than half of them already have the other editions&#x27; reading waiting for the reviewer.</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../fixes/">Fix loop: &quot;I click a link and nothing happens&quot;</a></li><li><a href="../trigger/#today">The report button today: 820 reports</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li><code>sriranga/mahabharata (the site)</code></li><li><code>mbh_src/qa/witness_check.py --control</code></li></ul></div></div>
+        </div>
+      </li>
+      <li class="j-today"><span>Today · 17 October 2026</span></li>
+      <li class="j-m s-proposed" id="m-trigger">
+        <div class="j-dot"><span>6</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">next</span><span class="j-status">proposed</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-trigger">in the showcase</a></span><h3>The report button starts the loops</h3><p>Each report says what kind it is: a typing mistake, a name to explain, a page that is not working, an idea. An agent does the first check for that kind and puts it in front of the right person. When the fix lands, the agent closes the report and tells the reader.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-trigger">in the pitch</a></span><h3>Every report reaches the right person</h3><p>Each report says what kind it is: a typing mistake, a name to explain, a page that is not working, an idea. It goes to the person who can decide it, with the first check already done, and the reader hears back when it is fixed.</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../trigger/">The report button: routing reports to the loops</a></li><li><a href="../trigger/keeping-bots-out.md">Keeping bots out (Markdown)</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li><code>sriranga/mahabharata (the site)</code></li><li><code>dharmasastra-gcp/complete_pipeline_yajurveda (the review pages)</code></li></ul></div></div>
+        </div>
+      </li>
+      <li class="j-m s-proposed" id="m-agents">
+        <div class="j-dot"><span>7</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">after that</span><span class="j-status">proposed</span></div>
+          <div class="two">
+            <div><span class="mk-l">To Anthropic · <a href="../showcase/#m-agents">in the showcase</a></span><h3>Agents run the loops; students and vidvāns rule</h3><p>A pāṭhaśālā student is asked, &quot;Do you have a character you like?&quot; Agents find the verses, hand them out, chase, compare and rebuild the site. Students read each verse; a vidvān signs. The pilot measures one thing above all: minutes of people&#x27;s time for each signed verse.</p></div>
+            <div><span class="mk-l">To funders · <a href="../view/pitch.html#m-agents">in the pitch</a></span><h3>The first index of names for a Purāṇa</h3><p>Pāṭhaśālā students read each verse that names a person, and a vidvān signs every entry. Half the chapters are done with software doing the legwork and half without, so the time it saves is measured, not claimed.</p><p class="small">Funds: Index the names of the Harivaṃśa: the Nāma-Kośa pilot</p></div>
+          </div>
+          <div class="two inside"><div><span class="mk-l">Pages behind it</span><ul><li><a href="../namakosa/">Nāma-Kośa loop: a student asks about Yayāti</a></li><li><a href="../view/ask.html#harivamsa">The funding page: the Harivaṃśa pilot</a></li></ul></div><div><span class="mk-l">Where the work lives</span><ul><li><code>dharmasastra-gcp/workbench</code></li></ul></div></div>
+        </div>
+      </li>
+      </ol>
+      <!-- /milestones:team -->
+</section>
+
+<section id="pages">
+  <div class="intro">
+    <span class="eyebrow">Every page</span>
+    <h2>The internal pages</h2>
+    <p>These are for the team, the site's developer and the vidvāns' coordinators. They name people and describe weaknesses, so none of them is linked from either spine.</p>
+  </div>
+  <div class="tscroll"><table class="t pages">
+    <thead><tr><th>Page</th><th>What it shows</th><th>Folder</th></tr></thead>
+    <tbody>
+      <tr><td><a href="../trigger/">The Report Button</a></td><td>What starts the work: the Mahābhārata report button today, the extended button, where each report goes, report 818 end to end. Also the index of the four loops.</td><td><code>trigger/</code></td></tr>
+      <tr><td><a href="../trigger/keeping-bots-out.md">Keeping bots out</a></td><td>A report button for the vidvān in two stages, and the Mahābhārata fixes needed now. Markdown.</td><td><code>trigger/</code></td></tr>
+      <tr><td><a href="../corrections/">The Correction Loop</a></td><td>A typing mistake corrected: against the printed page (Yajurveda, Vol. I p.66) and against two editions (Mahābhārata, the dog episode).</td><td><code>corrections/</code></td></tr>
+      <tr><td><a href="../namakosa/">The Nāma-Kośa Loop</a></td><td>"Who is this?" A student asks about Yayāti; students read, a vidvān signs.</td><td><code>namakosa/</code></td></tr>
+      <tr><td><a href="../fixes/">The Fix Loop</a></td><td>A fault reported from a phone, four fixes, one of them a new feature.</td><td><code>fixes/</code></td></tr>
+      <tr><td><a href="../newbook/">The New-Book Loop</a></td><td>The Smṛtimuktāphalam, from 4,333 scanned pages to an edition linked with Kane.</td><td><code>newbook/</code></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">The Nāma-Kośa loop is also published, at hvram1.github.io/sanatana-pitch/namakosa/, from before these pages were made internal. Whether it stays public is for the team to decide.</p>
+</section>
+
+<section id="rebuild" class="appendix">
+  <div class="intro">
+    <span class="eyebrow">How to see it all locally</span>
+    <h2>Rebuild and serve</h2>
+  </div>
+<pre class="ledger">python3 publish.py                          # rebuilds dist/: timelines, pitch, every page, this map
+cd dist && python3 -m http.server 8767      # then open http://localhost:8767/</pre>
+  <p class="small"><code>dist/</code> is not committed, so building publishes nothing. <code>python3 publish.py --site</code> rebuilds <code>docs/</code> for GitHub Pages, which is public once committed and pushed: the two spines and the Nāma-Kośa page, never the internal pages.</p>
+</section>
+</div>

@@ -1,0 +1,340 @@
+<title>The Fix Loop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sibling of the Nāma-Kośa and correction loops, in the same type and
+   tokens: one real case followed step by step, agent work round, people diamond. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6;
+  --gold:#a86a00; --gold-soft:#fbf1dc;
+  --leaf:#2f6f55; --leaf-soft:#e2f0e9;
+  --clay:#8a3b2e; --clay-soft:#f6e6e2;
+  --band:#eceef2; --paper:#ffffff;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+code{font-family:var(--f-mono);font-size:.85em;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.deva{font-family:var(--f-deva)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted)}
+section{padding-block:40px 8px;display:grid;gap:18px}
+.intro{display:grid;gap:12px}
+.intro p{max-width:46rem}
+header.hero{padding-block:48px 12px;display:grid;gap:18px}
+.lede{font-size:1.15rem;max-width:46rem}
+.rule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.rule div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.rule b{font-family:var(--f-display);font-size:1.1rem}
+.rule .h{border:2px solid var(--gold);background:var(--gold-soft)}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
+.tscroll{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+.t th,.t td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.t th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.t td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;padding-right:20px;white-space:nowrap}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metrics div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.metrics b{font-family:var(--f-display);font-size:1.05rem}
+.metrics span{font-size:.9rem;color:var(--muted)}
+.ledger{font-family:var(--f-mono);font-size:.78rem;line-height:1.5;background:var(--band);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin:8px 0 4px;overflow-x:auto;white-space:pre}
+.appendix{border-top:2px solid var(--rule);margin-top:24px}
+
+/* the printed page, with its disputed places boxed */
+.folio{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+.scan{position:relative;background:var(--paper);border:1px solid var(--rule);border-radius:6px;box-shadow:var(--shadow);overflow:hidden;max-width:100%}
+.scan img{display:block;width:100%;height:auto}
+.scan .hl{position:absolute;border:2px solid var(--hc);background:color-mix(in srgb,var(--hc) 12%,transparent);border-radius:3px}
+.scan .hl b{position:absolute;left:-2px;top:-20px;font-family:var(--f-mono);font-size:.7rem;font-weight:500;line-height:1;padding:3px 5px;border-radius:3px 3px 0 0;background:var(--hc);color:#fff}
+.hl.k-n{--hc:#2f3a8f} .hl.k-a{--hc:#8a3b2e} .hl.k-c{--hc:#a86a00}
+.cap{font-size:.86rem;color:var(--muted);padding-top:8px}
+.keys{display:grid;gap:12px;align-content:start}
+.key{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem}
+.key i{font-style:normal;font-family:var(--f-mono);font-size:.8rem;text-align:center;border-radius:4px;padding:1px 0;color:#fff;background:var(--kc)}
+.key.k-n{--kc:#2f3a8f} .key.k-a{--kc:#8a3b2e} .key.k-b{--kc:#2f6f55} .key.k-c{--kc:#a86a00} .key.k-d{--kc:#a86a00}
+
+/* the journey: round = agent, diamond = person */
+.journey{list-style:none;margin:0;padding:0;display:grid;max-width:52rem}
+.journey > li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;position:relative;padding-bottom:28px}
+.journey > li::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--rule)}
+.journey > li:last-child::before{display:none}
+.journey .mk{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:500;font-size:1rem;background:var(--accent-soft);color:var(--accent);border:2px solid var(--accent)}
+.journey .j-person .mk{background:var(--gold-soft);color:var(--gold);border-color:var(--gold);border-radius:10px;transform:rotate(45deg)}
+.journey .j-person .mk span{transform:rotate(-45deg)}
+.journey .jb{display:grid;gap:10px;min-width:0;padding-top:4px}
+.journey h3{font-size:1.3rem}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:3px}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.tag.p{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+.state{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:1px 8px;vertical-align:3px;white-space:nowrap}
+.state.live{color:var(--leaf);border-color:var(--leaf);background:var(--leaf-soft)}
+.state.wait{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.out{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.93rem;display:grid;gap:4px}
+.j-person .out{border-left-color:var(--gold)}
+.out b.h{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.out ul{margin:0;padding-left:18px;display:grid;gap:2px}
+.why{font-size:.93rem;color:var(--muted)}
+
+/* the three readings of one word */
+.cases{display:grid;gap:14px}
+.case{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--kc);border-radius:10px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.case.k-a{--kc:var(--clay)} .case.k-b{--kc:var(--leaf)} .case.k-c{--kc:var(--gold)} .case.k-d{--kc:var(--gold)}
+.case h4{margin:0;font-family:var(--f-display);font-size:1.1rem;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.case h4 i{font-style:normal;font-family:var(--f-mono);font-size:.78rem;color:var(--surface);background:var(--kc);border-radius:4px;padding:0 6px}
+.case h4 small{font-family:var(--f-mono);font-size:.72rem;font-weight:400;color:var(--muted)}
+.three{border-collapse:collapse;width:100%;font-size:.93rem}
+.three td{padding:6px 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.three td:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:11rem}
+.three .deva{font-size:1.15rem}
+.three mark{background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.three tr.print td{font-weight:600}
+.ruling{font-size:.93rem;display:grid;gap:2px}
+.ruling b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kc);font-weight:500}
+.crop{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;max-width:560px}
+.crop img{display:block;width:100%;height:auto}
+
+/* mock of the vidvān's review row */
+.mock{background:var(--surface);border:1px dashed var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.mk-l{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mock .row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 12px;font-size:.95rem;align-items:baseline}
+.mock .row span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mock .row .deva{font-size:1.1rem}
+.mock .row u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns span{font-size:.85rem;border:1px solid var(--rule);border-radius:6px;padding:3px 10px;color:var(--ink);background:var(--bg)}
+.btns span.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.bigger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bigger div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:.93rem}
+.bigger b{font-family:var(--f-display);font-size:1.05rem}
+.bigger .ev{font-size:.85rem;color:var(--muted)}
+
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.parts a{display:grid;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 16px}
+.parts a b{font-family:var(--f-display);font-size:1.05rem}
+.parts a span{font-size:.88rem;color:var(--muted)}
+.parts a:hover{border-color:var(--accent)}
+.parthead{padding-block:56px 0;display:grid;gap:10px;border-top:2px solid var(--rule);margin-top:24px}
+.parthead .pn{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.parthead h2{font-size:2.1rem}
+.parthead p{max-width:46rem;font-size:1.05rem}
+.verse{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;max-width:52rem}
+.verse .deva{font-size:1.2rem;line-height:1.9}
+.verse u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 3px}
+.verse .en{font-size:.95rem;color:var(--muted);font-style:italic}
+.three td.ed{font-family:var(--f-body);font-size:.88rem;color:var(--muted);text-transform:none;letter-spacing:0}
+@media (max-width:900px){
+  .parts{grid-template-columns:minmax(0,1fr)}
+  .folio,.rule,.metrics,.bigger{grid-template-columns:minmax(0,1fr)}
+  .three td:first-child{width:7rem}
+  .mock .row{grid-template-columns:minmax(0,1fr)}
+}
+
+/* to-scale page-height bar (the fix loop) */
+.scale{display:grid;gap:6px;max-width:52rem}
+.scale .bar{position:relative;height:56px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;margin-top:34px}
+.scale .screen{position:absolute;left:0;top:0;bottom:0;background:var(--accent-soft);border-right:2px solid var(--accent)}
+.scale .pin{position:absolute;top:0;bottom:0;width:0;border-left:2px solid var(--muted)}
+.scale .pin.hot{border-left-color:var(--clay)}
+.scale .pin b{position:absolute;bottom:100%;left:-1px;transform:translateX(-50%);font-family:var(--f-mono);font-size:.75rem;font-weight:500;white-space:nowrap;padding-bottom:4px;color:var(--ink)}
+.scale .pin i{position:absolute;top:100%;left:0;transform:translateX(-50%);font-style:normal;font-family:var(--f-mono);font-size:.72rem;white-space:nowrap;padding-top:4px;color:var(--muted)}
+.scale .pin.hot b,.scale .pin.hot i{color:var(--clay)}
+.scale .axis{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);padding-top:18px}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">How a fault or a request becomes a change · the Smṛtimuktāphalam on a phone</span>
+  <h1>A report is evidence. A fix is measured before it ships.</h1>
+  <p class="lede">The people who use these texts are mostly on phones: purohits, and older readers for whom the phone is the working machine, not a second screen. On 17 September 2026 someone using the new Smṛtimuktāphalam edition reported that links into it did nothing. This page follows that report through four fixes. One of them is a new feature.</p>
+  <div class="rule">
+    <div><b>Agents do</b><span>reproduce the fault at phone width; measure where things are; rule causes out one by one; write the smallest change that removes the fault; check that nothing else moved; look for the same fault elsewhere.</span></div>
+    <div class="h"><b>People decide</b><span>what counts as broken, since the person who reports a fault has seen it; what a real phone shows when the agent's browser does not; whether the change is right for readers; when it ships.</span></div>
+  </div>
+</header>
+
+<section id="fault">
+  <div class="intro">
+    <span class="eyebrow">The report</span>
+    <h2>"I click a link and nothing happens"</h2>
+    <p>The link did work. On a phone the edition stacks its two panes: the list of the kāṇḍa's 193 sections comes first, and the section the link names comes after it. Section 42 was drawn correctly, 15,850 pixels down a page 21,094 pixels long. The reader was left at the top, looking at a list.</p>
+  </div>
+  <figure class="scale" style="margin:0">
+    <div class="bar" role="img" aria-label="A page 21,094 pixels long. The phone screen shows only the first 844 pixels. A quotation link lands at 8,650 pixels, and section 42 at 15,850 pixels.">
+      <span class="screen" style="width:4%"></span>
+      <span class="pin" style="left:41%"><b>#q:मनु</b><i>8,650 px</i></span>
+      <span class="pin hot" style="left:75.1%"><b>§42</b><i>15,850 px</i></span>
+    </div>
+    <div class="axis"><span>0 · top of the page</span><span>21,094 px</span></div>
+    <figcaption class="small">Drawn to scale. The shaded band at the left is one phone screen, 844 pixels tall. Everything a deep link names was somewhere to its right.</figcaption>
+  </figure>
+</section>
+
+<section id="journey">
+  <div class="intro">
+    <span class="eyebrow">What happened next</span>
+    <h2>Seven steps, three of them people's</h2>
+    <p>Round markers are work an agent does by itself. Diamonds are where a person saw, decided or supplied something the agent could not. All seven steps took place on 17 September.</p>
+  </div>
+  <ol class="journey">
+    <li class="j-person">
+      <div class="mk"><span>1</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Reporter</span>Report what they saw <span class="state live">done</span></h3>
+        <p>"I click a link and nothing happens." It is not a technical description, and it does not need to be. It says what the reader did and what they expected.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>2</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Reproduce it at phone width, and measure <span class="state live">done</span></h3>
+        <p>The agent loads the page in a browser 390 pixels wide and reads back where things are drawn. The section is there, 15,850 pixels down. Of the three kinds of address the edition publishes, only quotation links scrolled. That is how the fault survived: whoever had checked a link had checked that kind.</p>
+        <div class="out"><b class="h">Fix 1</b>Scroll to the thing named, and only when it is off screen. On a desktop, where the panes sit side by side, nothing moves. The section and authority links among the anukramaṇikā's 1,117 addresses, dead on a phone until then, now land in the test browser.</div>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>3</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Reporter</span>"It still does nothing" <span class="state live">done</span></h3>
+        <p>On a real phone, the fix had not fixed it. The agent's browser and the reporter's phone disagreed, and the phone was right.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>4</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Rule out causes one by one <span class="state live">done</span></h3>
+        <p>The live page matches the build byte for byte, there are no script errors, the fonts do not move it, and the data loads in 13 ms. So the fault is in something a phone browser does and a test browser does not. There are three such things.</p>
+        <div class="out"><b class="h">Fix 2</b><ul>
+          <li>A smooth scroll of 15,000 pixels takes seconds on a phone, and any touch cancels it. Past one screen the scroll is now instant.</li>
+          <li>On reload or back, the browser puts back its remembered position after the page has landed. When the address names something, the address now wins.</li>
+          <li>A Devanagari font that arrives late reflows a list 15,000 pixels long. The landing is checked again once the fonts are in.</li>
+        </ul></div>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>5</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Reporter</span>Send a screenshot from the phone <span class="state live">done</span></h3>
+        <p>The screenshot showed what the agent's instruments could not. The page had honoured the address exactly: the right row was highlighted, third in the list. The reader was at the top of that list, and the section itself was fifteen thousand pixels further down. The scroll that should have taken them there had been cancelled by their own finger.</p>
+        <p class="why">This is the step no amount of testing replaced. One picture from the device in the reporter's hand settled what the measuring had circled round.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>6</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Stop making the journey, then give the way back <span class="state live">done</span></h3>
+        <p>Making the scroll faster treated the symptom. When the address names something, that thing now comes first, so there is no journey to make. That fixed arriving and broke leaving: to pick another section, the reader now had to scroll past the whole section, 845 passages in the longest, to reach the list below it.</p>
+        <div class="out"><b class="h">Fix 3, which is a feature</b>On a phone the list and the section are two views, and only one is on screen at a time. A button fixed at the bottom switches between them: "☰ All 193 sections of smp1" while reading, "Read this section अध्यापनम्" while browsing. Picking a section from the list is itself the way back. On a desktop nothing changes.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>7</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Check the whole round trip, then publish <span class="state live">done</span></h3>
+        <p>At 390 pixels, with the fonts loading: arrive at §42, switch to the list, pick §8, land on §8. The full test suite passes on all seven kāṇḍas with no overflow. The desktop is checked to be unchanged. Each fix went out as its own change, with the measurements in its description.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="same-day">
+  <div class="intro">
+    <span class="eyebrow">The same loop, the same day</span>
+    <h2>One report, then a search for its relatives</h2>
+    <p>A fault reported once is rarely the only one of its kind. Once the first report was fixed, the agents went looking for the same classes of fault elsewhere, and a suggestion from the maintainer went through the same steps as a fault.</p>
+  </div>
+  <div class="bigger">
+    <div><b>Kane's book had never been opened on a phone</b><span>Loaded at 390 pixels, page type by page type, it showed four faults. Reference tables could not shrink below 828 pixels. A 59-letter Devanagari compound held every chapter 118 pixels too wide. The menu bar did not wrap. One page of three prose columns overflowed. Sixteen pages across every type now measure 0 pixels of overflow.</span><span class="ev">Found by loading each page in a real browser and reading back what stuck out, not by reading the styles.</span></div>
+    <div><b>103 links that all went nowhere</b><span>Every link from the edition's concordance into Kane's book pointed at an address where the book is not published. All 103 shipped dead, and nothing noticed, because nothing checked that a published address leads somewhere. Now a check resolves every such link against the files about to be published.</span><span class="ev">A web status code proves nothing here: both sites answer "found" for any address beneath them.</span></div>
+    <div><b>A suggestion that beat the plan</b><span>"Put the verse's whereabouts on the footnote." The agent had placed sources only where it could parse Kane's citation. Matching the verse in the footnote instead, against every verse we hold, raised the count from 197 references placed to 611 footnotes, with 326 links and a control of 0.</span><span class="ev">A person's idea, measured before it shipped, like a fix.</span></div>
+  </div>
+</section>
+
+<section id="control">
+  <div class="intro">
+    <span class="eyebrow">The human stays in control</span>
+    <h2>What the agents are never allowed to do</h2>
+  </div>
+  <ul class="plain">
+    <li><b>Close a report because they cannot reproduce it.</b> When the agent's browser and a reporter's phone disagree, the phone is right.</li>
+    <li><b>Make a wrong link look right.</b> An old link that built Mahābhārata addresses from verse numbers was retired, not repaired. Repaired, it would have landed on whatever verse carries that number in our recension, which is worse than a dead link.</li>
+    <li><b>Trust a status code as proof.</b> A link is checked against the target site's own index of what it publishes.</li>
+    <li><b>Fix one screen by moving another.</b> Every phone fix is checked to leave the desktop unchanged.</li>
+    <li><b>Ship a change without its measurements,</b> or bundle unrelated work into it. Each fix says what it changed and how that was checked.</li>
+  </ul>
+</section>
+
+<section id="pilot">
+  <div class="intro">
+    <span class="eyebrow">How we will know it works</span>
+    <h2>What to measure from here</h2>
+  </div>
+  <div class="metrics">
+    <div><b>Report to fix, live</b><span>Time from the first report to a fix on the reporter's phone. This one needed three tries, all on 17 September.</span></div>
+    <div><b>Reports that come back</b><span>"It still does nothing." Each time that happens is a fix that was checked in the wrong place.</span></div>
+    <div><b>Faults found before a reader finds them</b><span>Overflow at phone width and dead links, caught by the checks before publishing rather than reported after.</span></div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="intro">
+    <span class="eyebrow">For the team to decide</span>
+    <h2>Questions before building</h2>
+  </div>
+  <ul class="plain">
+    <li>Where do reports come in: a button on every page, WhatsApp, or both? Who reads them first?</li>
+    <li>Should a real phone be part of the check before every publish? The screenshot in step 5 is the argument for one.</li>
+    <li>Who tells the reader that their report is fixed, and how? Nothing in this story records that it was done.</li>
+    <li>Which requests are features for the team to weigh, rather than faults for an agent to fix? The two-view switch began as a fix and changed how the edition works on a phone.</li>
+  </ul>
+</section>
+
+<section id="build" class="appendix">
+  <div class="intro">
+    <span class="eyebrow">Appendix · for the engineers</span>
+    <h2>The commits</h2>
+    <p>All in <code>dharmasastra-gcp</code>, 17 September 2026. Each commit message carries its own measurements.</p>
+  </div>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Commit</th><th>What it did</th></tr></thead>
+    <tbody>
+      <tr><td><code>ea46fe6f</code></td><td>Fix 1: <code>landOn()</code> scrolls only when the node is off screen, conditioned on its rect rather than on a width.</td></tr>
+      <tr><td><code>f313b713</code></td><td>Fix 2: instant past one screen of travel; <code>scrollRestoration = 'manual'</code> when there is a hash; re-assert on render, load and <code>fonts.ready</code>.</td></tr>
+      <tr><td><code>5fb3b5fc</code></td><td>Fix 3a: when addressed, the pane comes first. The class is set by script, not by the media query alone.</td></tr>
+      <tr><td><code>1c659b37</code></td><td>Fix 3b: two views with a fixed switch under 900px. Never rendered on a desktop.</td></tr>
+      <tr><td><code>5d7fa39c</code></td><td>Kane's book at 390px: four faults; <code>overflow-wrap: anywhere</code>, because only <code>anywhere</code> lowers the intrinsic minimum width.</td></tr>
+      <tr><td><code>649abdb7</code></td><td>The 103 concordance links: one base URL variable, an environment override, and <code>historyofdharmasastra/refresh.py</code> resolving every link it publishes.</td></tr>
+      <tr><td><code>48629f71</code></td><td>Kane's references link by the verse's text, never by its number. <code>get_mbta_verse_url</code> retired.</td></tr>
+      <tr><td><code>d37b5701</code></td><td>The suggestion: verse-keyed footnote loci, 611 placed, control 0.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">The quoted report and the screenshot are as the commit messages describe them. Who reported the fault is not recorded there.</p>
+</section>
+</div>

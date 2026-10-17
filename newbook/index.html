@@ -1,0 +1,348 @@
+<title>The New-Book Loop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sibling of the Nāma-Kośa and correction loops, in the same type and
+   tokens: one real case followed step by step, agent work round, people diamond. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6;
+  --gold:#a86a00; --gold-soft:#fbf1dc;
+  --leaf:#2f6f55; --leaf-soft:#e2f0e9;
+  --clay:#8a3b2e; --clay-soft:#f6e6e2;
+  --band:#eceef2; --paper:#ffffff;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+code{font-family:var(--f-mono);font-size:.85em;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.deva{font-family:var(--f-deva)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted)}
+section{padding-block:40px 8px;display:grid;gap:18px}
+.intro{display:grid;gap:12px}
+.intro p{max-width:46rem}
+header.hero{padding-block:48px 12px;display:grid;gap:18px}
+.lede{font-size:1.15rem;max-width:46rem}
+.rule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.rule div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.rule b{font-family:var(--f-display);font-size:1.1rem}
+.rule .h{border:2px solid var(--gold);background:var(--gold-soft)}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
+.tscroll{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+.t th,.t td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.t th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.t td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;padding-right:20px;white-space:nowrap}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metrics div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.metrics b{font-family:var(--f-display);font-size:1.05rem}
+.metrics span{font-size:.9rem;color:var(--muted)}
+.ledger{font-family:var(--f-mono);font-size:.78rem;line-height:1.5;background:var(--band);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin:8px 0 4px;overflow-x:auto;white-space:pre}
+.appendix{border-top:2px solid var(--rule);margin-top:24px}
+
+/* the printed page, with its disputed places boxed */
+.folio{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+.scan{position:relative;background:var(--paper);border:1px solid var(--rule);border-radius:6px;box-shadow:var(--shadow);overflow:hidden;max-width:100%}
+.scan img{display:block;width:100%;height:auto}
+.scan .hl{position:absolute;border:2px solid var(--hc);background:color-mix(in srgb,var(--hc) 12%,transparent);border-radius:3px}
+.scan .hl b{position:absolute;left:-2px;top:-20px;font-family:var(--f-mono);font-size:.7rem;font-weight:500;line-height:1;padding:3px 5px;border-radius:3px 3px 0 0;background:var(--hc);color:#fff}
+.hl.k-n{--hc:#2f3a8f} .hl.k-a{--hc:#8a3b2e} .hl.k-c{--hc:#a86a00}
+.cap{font-size:.86rem;color:var(--muted);padding-top:8px}
+.keys{display:grid;gap:12px;align-content:start}
+.key{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem}
+.key i{font-style:normal;font-family:var(--f-mono);font-size:.8rem;text-align:center;border-radius:4px;padding:1px 0;color:#fff;background:var(--kc)}
+.key.k-n{--kc:#2f3a8f} .key.k-a{--kc:#8a3b2e} .key.k-b{--kc:#2f6f55} .key.k-c{--kc:#a86a00} .key.k-d{--kc:#a86a00}
+
+/* the journey: round = agent, diamond = person */
+.journey{list-style:none;margin:0;padding:0;display:grid;max-width:52rem}
+.journey > li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;position:relative;padding-bottom:28px}
+.journey > li::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--rule)}
+.journey > li:last-child::before{display:none}
+.journey .mk{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:500;font-size:1rem;background:var(--accent-soft);color:var(--accent);border:2px solid var(--accent)}
+.journey .j-person .mk{background:var(--gold-soft);color:var(--gold);border-color:var(--gold);border-radius:10px;transform:rotate(45deg)}
+.journey .j-person .mk span{transform:rotate(-45deg)}
+.journey .jb{display:grid;gap:10px;min-width:0;padding-top:4px}
+.journey h3{font-size:1.3rem}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:3px}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.tag.p{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+.state{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:1px 8px;vertical-align:3px;white-space:nowrap}
+.state.live{color:var(--leaf);border-color:var(--leaf);background:var(--leaf-soft)}
+.state.wait{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.out{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.93rem;display:grid;gap:4px}
+.j-person .out{border-left-color:var(--gold)}
+.out b.h{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.out ul{margin:0;padding-left:18px;display:grid;gap:2px}
+.why{font-size:.93rem;color:var(--muted)}
+
+/* the three readings of one word */
+.cases{display:grid;gap:14px}
+.case{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--kc);border-radius:10px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.case.k-a{--kc:var(--clay)} .case.k-b{--kc:var(--leaf)} .case.k-c{--kc:var(--gold)} .case.k-d{--kc:var(--gold)}
+.case h4{margin:0;font-family:var(--f-display);font-size:1.1rem;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.case h4 i{font-style:normal;font-family:var(--f-mono);font-size:.78rem;color:var(--surface);background:var(--kc);border-radius:4px;padding:0 6px}
+.case h4 small{font-family:var(--f-mono);font-size:.72rem;font-weight:400;color:var(--muted)}
+.three{border-collapse:collapse;width:100%;font-size:.93rem}
+.three td{padding:6px 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.three td:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:11rem}
+.three .deva{font-size:1.15rem}
+.three mark{background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.three tr.print td{font-weight:600}
+.ruling{font-size:.93rem;display:grid;gap:2px}
+.ruling b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kc);font-weight:500}
+.crop{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;max-width:560px}
+.crop img{display:block;width:100%;height:auto}
+
+/* mock of the vidvān's review row */
+.mock{background:var(--surface);border:1px dashed var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.mk-l{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mock .row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 12px;font-size:.95rem;align-items:baseline}
+.mock .row span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mock .row .deva{font-size:1.1rem}
+.mock .row u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns span{font-size:.85rem;border:1px solid var(--rule);border-radius:6px;padding:3px 10px;color:var(--ink);background:var(--bg)}
+.btns span.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.bigger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bigger div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:.93rem}
+.bigger b{font-family:var(--f-display);font-size:1.05rem}
+.bigger .ev{font-size:.85rem;color:var(--muted)}
+
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.parts a{display:grid;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 16px}
+.parts a b{font-family:var(--f-display);font-size:1.05rem}
+.parts a span{font-size:.88rem;color:var(--muted)}
+.parts a:hover{border-color:var(--accent)}
+.parthead{padding-block:56px 0;display:grid;gap:10px;border-top:2px solid var(--rule);margin-top:24px}
+.parthead .pn{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.parthead h2{font-size:2.1rem}
+.parthead p{max-width:46rem;font-size:1.05rem}
+.verse{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;max-width:52rem}
+.verse .deva{font-size:1.2rem;line-height:1.9}
+.verse u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 3px}
+.verse .en{font-size:.95rem;color:var(--muted);font-style:italic}
+.three td.ed{font-family:var(--f-body);font-size:.88rem;color:var(--muted);text-transform:none;letter-spacing:0}
+@media (max-width:900px){
+  .parts{grid-template-columns:minmax(0,1fr)}
+  .folio,.rule,.metrics,.bigger{grid-template-columns:minmax(0,1fr)}
+  .three td:first-child{width:7rem}
+  .mock .row{grid-template-columns:minmax(0,1fr)}
+}
+
+/* to-scale page-height bar (the fix loop) */
+.scale{display:grid;gap:6px;max-width:52rem}
+.scale .bar{position:relative;height:56px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;margin-top:34px}
+.scale .screen{position:absolute;left:0;top:0;bottom:0;background:var(--accent-soft);border-right:2px solid var(--accent)}
+.scale .pin{position:absolute;top:0;bottom:0;width:0;border-left:2px solid var(--muted)}
+.scale .pin.hot{border-left-color:var(--clay)}
+.scale .pin b{position:absolute;bottom:100%;left:-1px;transform:translateX(-50%);font-family:var(--f-mono);font-size:.75rem;font-weight:500;white-space:nowrap;padding-bottom:4px;color:var(--ink)}
+.scale .pin i{position:absolute;top:100%;left:0;transform:translateX(-50%);font-style:normal;font-family:var(--f-mono);font-size:.72rem;white-space:nowrap;padding-top:4px;color:var(--muted)}
+.scale .pin.hot b,.scale .pin.hot i{color:var(--clay)}
+.scale .axis{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);padding-top:18px}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">How a new book reaches sanatana.in · the Smṛtimuktāphalam</span>
+  <h1>Agents do the counting. People look at the pages.</h1>
+  <p class="lede">The Smṛtimuktāphalam is Vaidyanātha Dīkṣita's digest of dharma. We have it in a Tamil edition that sets each Sanskrit passage above its Tamil rendering: seven parts, 4,333 scanned pages. Between 4 and 17 September 2026 it became a searchable edition at hvram1.github.io/smp, linked both ways with Kane's History of Dharmaśāstra. This page follows it from the scans to the site.</p>
+  <div class="rule">
+    <div><b>Agents do</b><span>survey the scans; propose what each page is; read the text in cheap batches and keep a record of what was paid for; find the scan's own faults; check the book against itself; build the edition and link it to what we already hold.</span></div>
+    <div class="h"><b>People decide</b><span>which book and which edition, and on what terms we use the scans; what each doubtful page is; whether the transcribed text can be trusted. A vidvān has not yet read it, and the page says so.</span></div>
+  </div>
+</header>
+
+<section id="arrived">
+  <div class="intro">
+    <span class="eyebrow">The book, as it arrived</span>
+    <h2>Seven scans, and what was wrong with each</h2>
+    <p>No scan of a 4,000-page book is clean. These are the faults the agents found, each one in the scan itself and not in the reading of it. None of them was fixed by renaming or moving a file. Each one is written down where every later step can see it.</p>
+  </div>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Part</th><th>Kāṇḍa</th><th>Pages</th><th>What the scan got wrong</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="deva">वर्णाश्रमधर्मकाण्डः</td><td class="num">876</td><td class="small">nothing beyond the colour plates</td></tr>
+      <tr><td>2</td><td class="deva">आह्निककाण्डः पूर्वभागः</td><td class="num">558</td><td>one leaf upside down; four leaves in reverse order</td></tr>
+      <tr><td>3</td><td class="deva">आह्निककाण्डः उत्तरभागः</td><td class="num">585</td><td>two leaves upside down; two leaves swapped</td></tr>
+      <tr><td>4</td><td class="deva">आशौचकाण्डः</td><td class="num">344</td><td>two leaves scanned twice; a portrait plate that takes the place of a printed page</td></tr>
+      <tr><td>5</td><td class="deva">श्राद्धकाण्डः पूर्वभागः</td><td class="num">726</td><td>one leaf upside down; one ordinary text page scanned in colour</td></tr>
+      <tr><td>6</td><td class="deva">श्राद्धकाण्डः उत्तरभागः</td><td class="num">611</td><td>printed pages 581 and 582 were never scanned</td></tr>
+      <tr><td>7</td><td class="deva">प्रायश्चित्तकाण्डः</td><td class="num">633</td><td class="small">nothing beyond the colour plates</td></tr>
+      <tr><td><b>All seven</b></td><td></td><td class="num"><b>4,333</b></td><td></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="journey">
+  <div class="intro">
+    <span class="eyebrow">What happens</span>
+    <h2>Eight steps, three of them decided by people</h2>
+    <p>Round markers are work an agent does by itself. Diamonds are where the work stops and waits for a person. Each step is marked with where it stands today.</p>
+  </div>
+  <ol class="journey">
+    <li class="j-person">
+      <div class="mk"><span>1</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Team</span>Choose the book, and settle the terms <span class="state live">done</span></h3>
+        <p>The scans come from Musiri's collection and belong to svradhakrishnasastri.in. The decision was to publish the text we read from them and the pages built from that text, and never the scans. The scans are not copied into any repository.</p>
+        <div class="out"><b class="h">Result</b>Seven PDFs on a drive, used where they are, and a clear line on what may be published.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>2</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Look at the scans before writing anything <span class="state live">done</span></h3>
+        <p>The agent asks the PDFs what they hold before building anything on them. Every text page is one black-and-white image at 300 dpi. The colour pages are the portraits of the Ācāryas, the covers, and one ordinary text page that was scanned in colour by accident. The contents pages give themselves away by their dot leaders, as in <span class="deva">दानयोग्यः - தானயோக்யர்கள் ......... 200</span>.</p>
+        <div class="out"><b class="h">Result</b>The contents pages of all seven parts found. Each row gives the section title in Sanskrit and Tamil and the page it starts on: the book's own map of itself.</div>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>3</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Team member</span>Say what each doubtful page is <span class="state live">done</span></h3>
+        <p>The agent proposes a class for every page (text, contents, front matter, picture or blank) and lays all of them out as a sheet of thumbnails. A person goes down the sheet and corrects it. Two pages show why no rule can be trusted alone. Part 5 page 44 is in colour, but it is text. Part 5 page 29 is a contents page whose entries all wrap onto a second line, so it shows too few dot leaders for any rule to catch.</p>
+        <div class="out"><b class="h">Result</b>Every page has a class a person has seen. A correction stays in place even if the agent's rule changes later, and nothing is deleted: a page called "picture" is set aside, because the class is a judgement and the scan is the only copy.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>4</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Read the text: a pilot first, then in bulk <span class="state live">done</span></h3>
+        <p>Eleven pages are read first and checked. Then the agent sends the rest to Gemini in batches of 300 pages, which costs half as much as reading page by page and can take a day or more. Each kind of page has its own prompt, so contents pages, front matter and running text are each read for what they are.</p>
+        <div class="out"><b class="h">Result</b>37 paid batch jobs, each written to a ledger as it is sent. The ledger is what stops a paid batch being sent twice, and it is kept in the repository because nothing can rebuild it.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>5</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Check what came back, and find the scan's own faults <span class="state live">done</span></h3>
+        <p>For every part the agent looks for missing pages, replies that stop short, and printed page numbers that do not go up one at a time. Those checks found the faults in the table above. One leaf of Part 5 was sent back twice, and both times the model replied in plain words that the image was upside down. Now the check reads that reply and stops it from being sent a third time.</p>
+        <div class="out"><b class="h">Result</b>Each fault is declared once, and every later step reads the declaration. Part 4 had no single page offset that fitted until its duplicate leaves and its missing page were declared. After that one offset fitted 320 of its 320 leaves.</div>
+        <p class="why">Why this matters: a citation into this edition is by printed page. If the leaf-to-page map is wrong, every link into the book lands on the wrong page and looks right while doing it.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>6</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Check the book against itself <span class="state live">done</span></h3>
+        <p>The contents list was typeset separately from the text it points to. Where the body prints a heading, that heading is a second witness to where the section starts. The agent puts the two page numbers side by side.</p>
+        <div class="tscroll"><table class="t">
+          <thead><tr><th>Contents entry against the body</th><th>Sections</th></tr></thead>
+          <tbody>
+            <tr><td>Confirmed: the heading stands on the stated page</td><td class="num">162</td></tr>
+            <tr><td>Contradicted: the same title, four or more pages away</td><td class="num">2</td></tr>
+            <tr><td>Could not be checked: the body prints no heading there</td><td class="num">144</td></tr>
+          </tbody>
+        </table></div>
+        <p class="why">One of the two: the contents list puts <span class="deva">शिवपूजाप्रशंसा</span> on page 249, and the body prints that heading on page 242. Nothing is corrected. The contents list is the book's statement about itself, so it stays as printed, and the disagreement is shown beside the section.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>7</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Build the edition, and link it to what we already hold <span class="state live">done</span></h3>
+        <p>The text goes into one database. From it come one page per kāṇḍa and an anukramaṇikā, a register of every section across all seven. Every quotation records whom the digest credits. Then the edition is joined to Kane, in both directions, and every built page is opened in a browser and checked against the database before it is published.</p>
+        <div class="out"><b class="h">Result</b><ul>
+          <li>4,909 quotations, 1,303 of them credited to a work rather than a person.</li>
+          <li>407 of Kane's 9,434 Sanskrit footnotes found in the digest or a Purāṇa, with a control of 1.</li>
+          <li>Kane's 69 mentions of the digest now open the edition, at the kāṇḍa.</li>
+        </ul></div>
+        <p class="why">Why at the kāṇḍa and not the page: Kane cites the pages of the printing he had. He says the digest quotes Ṛgveda I.154.5 at "āhnika p. 390". That verse occurs once in our edition, on page 231. A link built from his page number would land on an unrelated page and look right.</p>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>8</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Vidvān</span>Read a sample against the scans <span class="state">not started</span></h3>
+        <p>The checks so far are about structure: pages, order, sections, links. None of them says whether the Sanskrit and the Tamil were read correctly, letter by letter. That needs a person who reads both, with the scan beside the text, as in the Yajurveda review.</p>
+        <div class="out"><b class="h">Until then</b>The edition is published as a machine reading. Corrections from readers go through the correction loop.</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="control">
+  <div class="intro">
+    <span class="eyebrow">The human stays in control</span>
+    <h2>What the agents are never allowed to do</h2>
+  </div>
+  <ul class="plain">
+    <li><b>Publish or copy the scans.</b> They belong to their owner. Only the text read from them is published.</li>
+    <li><b>Delete a page.</b> A page judged a picture or a blank is set aside, never removed.</li>
+    <li><b>Renumber or move a scanned file.</b> A fault in the scan is declared, so "page 437" always means the 437th image of the PDF.</li>
+    <li><b>Correct the book's account of itself.</b> Where the contents list and the body disagree, both are shown.</li>
+    <li><b>Judge an attribution.</b> Where the digest credits a verse to Yājñavalkya and Kane to the Ṛgveda, both credits are shown as each source gives them.</li>
+    <li><b>Link by a number that belongs to another printing,</b> or publish a link that has not been checked against the target's own index.</li>
+    <li><b>Send a paid batch twice.</b> Every job is in the ledger before it is sent.</li>
+  </ul>
+</section>
+
+<section id="pilot">
+  <div class="intro">
+    <span class="eyebrow">How we will know it works</span>
+    <h2>What to measure on the next book</h2>
+  </div>
+  <div class="metrics">
+    <div><b>Pages a person had to look at</b><span>On the contact sheet, and in the re-run lists. This is the person-time a new book costs before any vidvān is involved.</span></div>
+    <div><b>Letters wrong per page</b><span>From the vidvān's sample in step 8. Until that sample exists, we do not know how good the reading is.</span></div>
+    <div><b>Cost and days, scan to site</b><span>Batch cost per page and calendar days. This book's batches went out on 4 September, and the edition was linked to Kane on 17 September.</span></div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="intro">
+    <span class="eyebrow">For the team to decide</span>
+    <h2>Questions before the next book</h2>
+  </div>
+  <ul class="plain">
+    <li>Who reads the sample in step 8: one vidvān for the Sanskrit and another for the Tamil?</li>
+    <li>Does the agreement with svradhakrishnasastri.in cover the published OCR text, as well as the pages built from it? This should be written down.</li>
+    <li>Which book is next, and does it have a printed contents list? This one had a map of itself, and much of the checking leaned on it.</li>
+    <li>Three items in the edition's work plan are queued: showing how sure each quotation's end is, the 22 quotations given twice, and the 47 sections that cite nobody. Do they come before the next book?</li>
+  </ul>
+</section>
+
+<section id="build" class="appendix">
+  <div class="intro">
+    <span class="eyebrow">Appendix · for the engineers</span>
+    <h2>How it is built</h2>
+    <p>The pipeline is <code>dharmasastra-gcp/smp/</code>: twenty stages from extraction to the site, described in <code>smp/README.md</code>, with the queued work in <code>smp/WORKPLAN.md</code>. Where they and this page differ, they win.</p>
+  </div>
+  <ul class="plain">
+    <li><b>Extract and sort.</b> <code>extract_all.sh</code> renames <code>pdfimages</code> output by page rather than by image, because Paper Capture leaves stencils that shift the numbering by 856 by the end of Part 1. <code>smp_classify.py</code> writes the manifest and the contact sheet, and keeps a person's class over a later proposal. <code>smp_sort.py</code> moves pages into folders by class and records the sha1 of each turned leaf.</li>
+    <li><b>Read.</b> <code>smp_ocr.py</code> sends 300-page batch chunks and writes each job to <code>smp_jobs.tsv</code>. <code>smp_check.py</code> grades the replies and writes the re-run list, keeping a ROTATED page off it.</li>
+    <li><b>Scan faults.</b> <code>SCAN_ROTATE</code>, <code>SCAN_DUPLICATE</code>, <code>SCAN_MISSING</code> and <code>SCAN_ORDER</code> in <code>smp_books.py</code>. <code>reading_order()</code> is what everything downstream orders by.</li>
+    <li><b>Build.</b> <code>smp_build.py</code> runs <code>smp_db</code>, <code>smp_twolists</code>, <code>smp_concord</code>, <code>smp_site</code>, <code>smp_verify</code> and <code>smp_publish</code> in that order, and reruns whatever is stale. The order matters, and a broken order fails silently. <code>smp_verify.py</code> opens every page in a browser and asserts against the database.</li>
+    <li><b>Publish.</b> <code>smp_export.py</code> writes <code>../smp/</code>, its own repository, which GitHub Pages serves. It adds the doctype and <code>&lt;meta charset&gt;</code>; without them a served page decodes as Latin-1 and every letter is garbled.</li>
+  </ul>
+  <p class="small">Figures are from <code>smp/README.md</code>, <code>smp/WORKPLAN.md</code> and the commits of 14 and 17 September 2026 in <code>dharmasastra-gcp</code>. No scan is reproduced on this page.</p>
+</section>
+</div>

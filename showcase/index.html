@@ -172,6 +172,40 @@ section{padding:96px 16px}
 /* 6 · the handful grows */
 #grows{background:var(--bg)}
 #grows .wrap{max-width:52rem;margin:0 auto;display:grid;gap:26px}
+/* 7 · the journey: one line of milestones, the past solid, the next ones dashed,
+   "today" a gold rule between them; each says who starts the work and who decides */
+#journey .wrap{max-width:52rem;margin:0 auto;display:grid;gap:26px}
+.j-line{list-style:none;margin:12px 0 0;padding:0;display:grid}
+.j-m{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 18px;position:relative;padding-bottom:34px}
+.j-m::before{content:"";position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--rule)}
+.j-m:last-child::before{display:none}
+.j-dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.9rem;background:var(--surface);border:2px solid var(--muted);color:var(--muted)}
+.j-m.s-running .j-dot{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.j-m.s-proposed .j-dot{border-style:dashed;border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.j-m.s-proposed::before{background:repeating-linear-gradient(var(--gold) 0 6px,transparent 6px 12px)}
+.j-body{display:grid;gap:10px;min-width:0;padding-top:4px}
+.j-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.j-when{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.j-status{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);border-radius:999px;padding:1px 8px;color:var(--muted)}
+.s-running .j-status{border-color:var(--accent);color:var(--accent)}
+.s-proposed .j-status{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.j-body h3{font-size:1.45rem;font-weight:600}
+.j-body p{max-width:42rem}
+.j-more{font-size:.85rem;white-space:nowrap}
+.j-num{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.j-num b{font-family:var(--f-display);font-size:2rem;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}
+.s-proposed .j-num b{color:var(--gold)}
+.j-num span{font-size:.92rem;color:var(--muted);max-width:28rem}
+.j-who{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.j-who div{background:var(--surface);padding:8px 12px;display:grid;gap:2px;align-content:start}
+.j-who dt{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.j-who dd{margin:0;font-size:.9rem;line-height:1.4}
+.j-who div:last-child dd{font-weight:600}
+.j-today{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 18px;align-items:center;padding:4px 0 38px}
+.j-today::before{content:"";height:2px;background:var(--gold);grid-column:1 / -1;grid-row:1}
+.j-today span{grid-column:1 / -1;grid-row:1;justify-self:start;margin-left:58px;background:var(--bg);padding:0 10px;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+@media (max-width:640px){.j-who{grid-template-columns:minmax(0,1fr)}}
+
 .jsv{margin:6px 0;display:grid;gap:10px}
 .jsv .printed{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
 .jsv .printed img{width:100%;height:auto;display:block}
@@ -473,6 +507,98 @@ footer{background:var(--night);color:var(--night-muted);padding:0 16px 48px;text
       </div>
     </div>
     <p class="quote reveal">That is the effect we hope for most.<small>Not that a tool does the work, but that it makes the work easy enough to learn: someone new joins the handful, and the tradition continues.</small></p>
+  </div>
+</section>
+
+<!-- 7 · The journey -->
+<section id="journey">
+  <div class="wrap">
+    <span class="eyebrow reveal">The journey</span>
+    <p class="big reveal">Who starts the work keeps changing. Who decides does not.</p>
+    <p class="reveal">Everything above is one journey, and it is not finished. Each step moved the start of the work further from the trustee's keyboard: first the trustee's own prompts, then checks that run by themselves, then readers. The next steps hand the legwork to agents. At every step the decision stays with a person who knows the text.</p>
+    <!-- milestones:anthropic -->
+      <ol class="j-line">
+      <li class="j-m s-done" id="m-scanned">
+        <div class="j-dot"><span>1</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">before</span><span class="j-status">done</span></div>
+          <h3>The book, scanned</h3>
+          <p>For years, what the digital age gave a tradition was a picture of its book. The words were there; the chant, the commentary beside the verse and the teacher&#x27;s voice were not. <a class="j-more" href="#then">↑ on this page</a></p>
+          
+          <dl class="j-who"><div><dt>Starts it</dt><dd>nobody</dd></div><div><dt>Claude Code</dt><dd>nothing yet</dd></div><div><dt>Decides</dt><dd>the scholars, as always</dd></div></dl>
+          
+        </div>
+      </li>
+      <li class="j-m s-done" id="m-asks">
+        <div class="j-dot"><span>2</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">2025 to August 2026</span><span class="j-status">done</span></div>
+          <h3>One person asks, Claude Code builds</h3>
+          <p>The trustee asks, and Claude Code builds: the Jaiminīya Sāmaveda brought out of a proprietary font, then nine sites open to anyone. A pāṭhaśālā proofreads, and someone who lives near it learns the tools and takes the work over. <a class="j-more" href="#talk">↑ on this page</a></p>
+          <div class="j-num"><b>42 → 4</b><span>prompts for each published piece of work, April to September</span></div>
+          <dl class="j-who"><div><dt>Starts it</dt><dd>the trustee, prompt by prompt</dd></div><div><dt>Claude Code</dt><dd>engineer, editor, designer, analyst</dd></div><div><dt>Decides</dt><dd>the scholars</dd></div></dl>
+          
+        </div>
+      </li>
+      <li class="j-m s-running" id="m-checks">
+        <div class="j-dot"><span>3</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">September 2026</span><span class="j-status">running now</span></div>
+          <h3>Claude Code checks its own work</h3>
+          <p>One request, then a check that runs on everything. Every Mahābhārata verse is compared with two other editions, and every page of the Yajurveda commentary is read against the printed book. Only the differences go to a person, laid out beside the evidence.</p>
+          <div class="j-num"><b>46 of 48</b><span>flags where the two editions&#x27; reading was exactly the editor&#x27;s own fix</span></div>
+          <dl class="j-who"><div><dt>Starts it</dt><dd>one request from the trustee</dd></div><div><dt>Claude Code</dt><dd>reads, compares, measures itself on mistakes already known</dd></div><div><dt>Decides</dt><dd>reviewers, and a vidvān against the printed page</dd></div></dl>
+          
+        </div>
+      </li>
+      <li class="j-m s-done" id="m-book">
+        <div class="j-dot"><span>4</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">4 to 17 September 2026</span><span class="j-status">done</span></div>
+          <h3>A whole book in thirteen days</h3>
+          <p>The Smṛtimuktāphalam, a digest of dharma in a Tamil edition. Claude Code found the scan&#x27;s own faults (leaves upside down, out of order, scanned twice, missing), checked the book&#x27;s contents list against its body, and traced 407 of Kane&#x27;s footnotes to their source.</p>
+          <div class="j-num"><b>4,333</b><span>scanned pages, from the scans to a searchable edition linked with Kane</span></div>
+          <dl class="j-who"><div><dt>Starts it</dt><dd>the trustee chooses the book</dd></div><div><dt>Claude Code</dt><dd>surveys, reads, checks, builds, links</dd></div><div><dt>Decides</dt><dd>the team; a vidvān&#x27;s reading of the text is still to come</dd></div></dl>
+          
+        </div>
+      </li>
+      <li class="j-m s-running" id="m-readers">
+        <div class="j-dot"><span>5</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">21 September to 10 October 2026</span><span class="j-status">running now</span></div>
+          <h3>Readers start the work</h3>
+          <p>A report button on the Mahābhārata site: select a word, tap. 820 reports in three weeks, most from one proofreader working parva by parva. And when a reader said a link did nothing on their phone, one screenshot from that phone settled a fault no test could reproduce.</p>
+          <div class="j-num"><b>57%</b><span>of the readers&#x27; open reports on verses were already flagged by the check, before anyone opened them</span></div>
+          <dl class="j-who"><div><dt>Starts it</dt><dd>readers</dd></div><div><dt>Claude Code</dt><dd>reproduces, attaches the evidence</dd></div><div><dt>Decides</dt><dd>reviewers and the maintainer</dd></div></dl>
+          
+        </div>
+      </li>
+      <li class="j-today"><span>Today · 17 October 2026</span></li>
+      <li class="j-m s-proposed" id="m-trigger">
+        <div class="j-dot"><span>6</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">next</span><span class="j-status">proposed</span></div>
+          <h3>The report button starts the loops</h3>
+          <p>Each report says what kind it is: a typing mistake, a name to explain, a page that is not working, an idea. An agent does the first check for that kind and puts it in front of the right person. When the fix lands, the agent closes the report and tells the reader.</p>
+          
+          <dl class="j-who"><div><dt>Starts it</dt><dd>any reader, or a vidvān with a private link</dd></div><div><dt>Claude Code</dt><dd>sorts, checks, closes, thanks</dd></div><div><dt>Decides</dt><dd>the same people as before</dd></div></dl>
+          
+        </div>
+      </li>
+      <li class="j-m s-proposed" id="m-agents">
+        <div class="j-dot"><span>7</span></div>
+        <div class="j-body">
+          <div class="j-meta"><span class="j-when">after that</span><span class="j-status">proposed</span></div>
+          <h3>Agents run the loops; students and vidvāns rule</h3>
+          <p>A pāṭhaśālā student is asked, &quot;Do you have a character you like?&quot; Agents find the verses, hand them out, chase, compare and rebuild the site. Students read each verse; a vidvān signs. The pilot measures one thing above all: minutes of people&#x27;s time for each signed verse.</p>
+          <div class="j-num"><b>16,100</b><span>verses of the Harivaṃśa in the first index of names, half with agents and half without</span></div>
+          <dl class="j-who"><div><dt>Starts it</dt><dd>a student&#x27;s question</dd></div><div><dt>Claude Code</dt><dd>every step between the question and the signature</dd></div><div><dt>Decides</dt><dd>students read, a vidvān signs</dd></div></dl>
+          
+        </div>
+      </li>
+      </ol>
+      <!-- /milestones:anthropic -->
+    <p class="mid reveal">The last two steps are what we would build next, and what we would ask for help with.</p>
   </div>
 </section>
 

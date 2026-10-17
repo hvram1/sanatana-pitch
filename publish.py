@@ -318,8 +318,10 @@ def build_site(dist, out):
     show = os.path.join(out, 'showcase')
     shutil.rmtree(show, ignore_errors=True)
     shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
-    build_namakosa(out)
-    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/, namakosa/')
+    # the Nāma-Kośa page, the other loop pages and the team map are internal:
+    # built into dist/ by build_local, never into docs/
+    shutil.rmtree(os.path.join(out, 'namakosa'), ignore_errors=True)
+    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/')
 
 
 def build_namakosa(out):
@@ -332,6 +334,41 @@ def build_namakosa(out):
     for svg in glob.glob(os.path.join(src, '*.svg')):
         shutil.copy(svg, loop)
 
+
+LOOPS = ('team', 'trigger', 'corrections', 'newbook', 'fixes')   # internal, with namakosa/: local build only
+
+
+def build_local(dist):
+    """Everything the team map links to, wrapped and served from dist/ (never committed):
+    view/ holds the pitch and funding page as whole documents, beside the showcase,
+    the Nāma-Kośa page, the internal loop pages and the team map at the root."""
+    view = os.path.join(dist, 'view')
+    os.makedirs(view, exist_ok=True)
+    for name in ('pitch.html', 'ask.html', 'csr.html'):
+        open(os.path.join(view, name), 'w', encoding='utf8').write(skeleton(open(os.path.join(dist, name), encoding='utf8').read()))
+    shutil.copy(os.path.join(dist, 'asks.json'), view)
+    show = os.path.join(dist, 'showcase')
+    shutil.rmtree(show, ignore_errors=True)
+    shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
+    build_namakosa(dist)
+    for name in LOOPS:
+        build_loop(name, dist)
+    for md in glob.glob(os.path.join(HERE, 'trigger', '*.md')):
+        shutil.copy(md, os.path.join(dist, 'trigger'))
+    open(os.path.join(dist, 'index.html'), 'w', encoding='utf8').write(
+        SKELETON + '<title>The Team Map</title><meta http-equiv="refresh" content="0; url=team/">\n</head><body><a href="team/">The Team Map</a></body></html>\n')
+    print(f'built {dist} for local viewing: team/ (the map), view/, showcase/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))
+
+
+def build_loop(name, out):
+    """One of the workflow sketches, served at /<name>/: the page wrapped like the pitch, its images beside it."""
+    loop = os.path.join(out, name)
+    shutil.rmtree(loop, ignore_errors=True)
+    os.makedirs(loop)
+    src = os.path.join(HERE, name)
+    open(os.path.join(loop, 'index.html'), 'w', encoding='utf8').write(skeleton(open(os.path.join(src, 'index.html'), encoding='utf8').read()))
+    for img in glob.glob(os.path.join(src, '*.webp')):
+        shutil.copy(img, loop)
 
 def build(out):
     os.makedirs(out, exist_ok=True)
@@ -362,6 +399,9 @@ def main():
     a = ap.parse_args()
     import coverage_map
     coverage_map.main()
+    import milestones   # the journey timeline, in the pitch and the showcase, from src/milestones.json
+    for page in milestones.run():
+        print(f'milestones: rewrote {os.path.relpath(page, HERE)}')
     print('figures:')
     bad = check()
     if bad:
@@ -369,6 +409,7 @@ def main():
         return 1
     if not a.check:
         build(a.out)
+        build_local(a.out)
         if a.site:
             build_site(a.out, os.path.join(HERE, 'docs'))
     return 0

@@ -34,3 +34,6 @@ Where the figures come from, so they can be refreshed before the page is sent:
 - **The Jaiminīya Sāmaveda**: Sri Sekhar Narayanaswamy's commit count is from his
   fork, github.com/sekharnarayanaswamy-del/jaimineeyasamavedam, across all its
   branches. It is a snapshot (436 on 8 October 2026); refresh it before sending.
+
+"The journey" (`#journey`, before the close) is generated: its milestones come from
+`../src/milestones.json` through `../milestones.py`. Edit the JSON and re-run it.

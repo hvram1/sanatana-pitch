@@ -1,0 +1,295 @@
+{
+  "_about": "The journey, one record per milestone, read by milestones.py to write the timeline into the showcase (for Anthropic) and the pitch (for funders). Facts are shared; each audience has its own words. 'status' is done | running | waiting | proposed. 'today' marks where the past ends. Keep internal detail (reporters' names, the report list's access problems) out of this file: both pages are read outside the team. 'team' lists the internal pages and source projects behind each milestone, for the team map only.",
+  "today": "17 October 2026",
+  "milestones": [
+    {
+      "id": "scanned",
+      "when": "before",
+      "status": "done",
+      "title": "The book, scanned",
+      "number": null,
+      "anthropic": {
+        "line": "For years, what the digital age gave a tradition was a picture of its book. The words were there; the chant, the commentary beside the verse and the teacher's voice were not.",
+        "starts": "nobody",
+        "claude": "nothing yet",
+        "decides": "the scholars, as always",
+        "link": "#then"
+      },
+      "funder": {
+        "title": "The book, scanned",
+        "number": null,
+        "line": "A scan holds the words of a book. It cannot hold the chant, the commentary beside the verse, or the teacher's voice. For most of the tradition's texts, that is where things stood.",
+        "starts": "nobody",
+        "software": "nothing",
+        "decides": "the scholars, as always"
+      },
+      "team": {
+        "pages": [
+          [
+            "showcase/#then",
+            "The showcase: the book, scanned, beside the chant"
+          ]
+        ],
+        "sources": []
+      }
+    },
+    {
+      "id": "asks",
+      "when": "2025 to August 2026",
+      "status": "done",
+      "title": "One person asks, Claude Code builds",
+      "number": {
+        "value": "42 → 4",
+        "label": "prompts for each published piece of work, April to September"
+      },
+      "anthropic": {
+        "line": "The trustee asks, and Claude Code builds: the Jaiminīya Sāmaveda brought out of a proprietary font, then nine sites open to anyone. A pāṭhaśālā proofreads, and someone who lives near it learns the tools and takes the work over.",
+        "starts": "the trustee, prompt by prompt",
+        "claude": "engineer, editor, designer, analyst",
+        "decides": "the scholars",
+        "link": "#talk"
+      },
+      "funder": {
+        "title": "Nine sites, open to anyone",
+        "number": {
+          "value": "513,887",
+          "label": "verses in the one index every site checks against"
+        },
+        "line": "The texts with their commentaries and their recitation, to read, search and listen to: the Veda with the text following the chant, 8,391 Purāṇa verses heard at the second a teacher chants them, Śaṅkara's commentaries with Tamil and English beside them.",
+        "starts": "a handful of people",
+        "software": "builds the sites and keeps them linked",
+        "decides": "the scholars"
+      },
+      "team": {
+        "pages": [
+          [
+            "showcase/#talk",
+            "The showcase: seven moments from the sessions"
+          ],
+          [
+            "showcase/#grows",
+            "The showcase: the Jaiminīya Sāmaveda handed over"
+          ],
+          [
+            "view/pitch.html#tour",
+            "The pitch: the nine sites"
+          ]
+        ],
+        "sources": [
+          "the site repositories"
+        ]
+      }
+    },
+    {
+      "id": "checks",
+      "when": "September 2026",
+      "status": "running",
+      "title": "Claude Code checks its own work",
+      "number": {
+        "value": "46 of 48",
+        "label": "flags where the two editions' reading was exactly the editor's own fix"
+      },
+      "anthropic": {
+        "line": "One request, then a check that runs on everything. Every Mahābhārata verse is compared with two other editions, and every page of the Yajurveda commentary is read against the printed book. Only the differences go to a person, laid out beside the evidence.",
+        "starts": "one request from the trustee",
+        "claude": "reads, compares, measures itself on mistakes already known",
+        "decides": "reviewers, and a vidvān against the printed page",
+        "link": null
+      },
+      "funder": {
+        "title": "Every verse checked against a second witness",
+        "number": {
+          "value": "1,205",
+          "label": "printed pages of the Yajurveda commentary read against its typed text"
+        },
+        "line": "The typed Mahābhārata is compared verse by verse with two other editions, and the Yajurveda commentary page by page with the printed book. A reviewer or a vidvān sees only where they differ, with the evidence laid out beside it.",
+        "starts": "the team",
+        "software": "reads, compares, sets aside what agrees",
+        "decides": "reviewers, and a vidvān against the printed page",
+        "ask": "bhashyas"
+      },
+      "team": {
+        "pages": [
+          [
+            "corrections/#yajurveda",
+            "Correction loop, case 1: against the printed page"
+          ],
+          [
+            "corrections/#mahabharata",
+            "Correction loop, case 2: against two editions"
+          ]
+        ],
+        "sources": [
+          "dharmasastra-gcp/complete_pipeline_yajurveda",
+          "mbh_src/qa/witness_check.py"
+        ]
+      }
+    },
+    {
+      "id": "book",
+      "when": "4 to 17 September 2026",
+      "status": "done",
+      "title": "A whole book in thirteen days",
+      "number": {
+        "value": "4,333",
+        "label": "scanned pages, from the scans to a searchable edition linked with Kane"
+      },
+      "anthropic": {
+        "line": "The Smṛtimuktāphalam, a digest of dharma in a Tamil edition. Claude Code found the scan's own faults (leaves upside down, out of order, scanned twice, missing), checked the book's contents list against its body, and traced 407 of Kane's footnotes to their source.",
+        "starts": "the trustee chooses the book",
+        "claude": "surveys, reads, checks, builds, links",
+        "decides": "the team; a vidvān's reading of the text is still to come",
+        "link": null
+      },
+      "funder": {
+        "title": "A 4,333-page digest, searchable in thirteen days",
+        "number": {
+          "value": "407",
+          "label": "of Kane's footnotes traced to the verse they quote"
+        },
+        "line": "The Smṛtimuktāphalam, Vaidyanātha Dīkṣita's digest of dharma, from scans to a searchable edition: every section and quotation indexed, and linked both ways with Kane's History of Dharmaśāstra. An out-of-print commentary would be published the same way.",
+        "starts": "the team chooses the book",
+        "software": "reads the scans, finds their faults, builds the edition",
+        "decides": "the team; a vidvān's reading of the text is still to come",
+        "ask": "commentary"
+      },
+      "team": {
+        "pages": [
+          [
+            "newbook/",
+            "New-book loop: the Smṛtimuktāphalam"
+          ]
+        ],
+        "sources": [
+          "dharmasastra-gcp/smp"
+        ]
+      }
+    },
+    {
+      "id": "readers",
+      "when": "21 September to 10 October 2026",
+      "status": "running",
+      "title": "Readers start the work",
+      "number": {
+        "value": "57%",
+        "label": "of the readers' open reports on verses were already flagged by the check, before anyone opened them"
+      },
+      "anthropic": {
+        "line": "A report button on the Mahābhārata site: select a word, tap. 820 reports in three weeks, most from one proofreader working parva by parva. And when a reader said a link did nothing on their phone, one screenshot from that phone settled a fault no test could reproduce.",
+        "starts": "readers",
+        "claude": "reproduces, attaches the evidence",
+        "decides": "reviewers and the maintainer",
+        "link": null
+      },
+      "funder": {
+        "title": "Readers find the mistakes",
+        "number": {
+          "value": "820",
+          "label": "reports from readers of the Mahābhārata in three weeks"
+        },
+        "line": "A reader selects a word that looks wrong and taps. Most reports come from one proofreader, working parva by parva. More than half of them already have the other editions' reading waiting for the reviewer.",
+        "starts": "readers",
+        "software": "attaches the evidence",
+        "decides": "reviewers"
+      },
+      "team": {
+        "pages": [
+          [
+            "fixes/",
+            "Fix loop: \"I click a link and nothing happens\""
+          ],
+          [
+            "trigger/#today",
+            "The report button today: 820 reports"
+          ]
+        ],
+        "sources": [
+          "sriranga/mahabharata (the site)",
+          "mbh_src/qa/witness_check.py --control"
+        ]
+      }
+    },
+    {
+      "id": "trigger",
+      "when": "next",
+      "status": "proposed",
+      "title": "The report button starts the loops",
+      "number": null,
+      "anthropic": {
+        "line": "Each report says what kind it is: a typing mistake, a name to explain, a page that is not working, an idea. An agent does the first check for that kind and puts it in front of the right person. When the fix lands, the agent closes the report and tells the reader.",
+        "starts": "any reader, or a vidvān with a private link",
+        "claude": "sorts, checks, closes, thanks",
+        "decides": "the same people as before",
+        "link": null
+      },
+      "funder": {
+        "title": "Every report reaches the right person",
+        "number": null,
+        "line": "Each report says what kind it is: a typing mistake, a name to explain, a page that is not working, an idea. It goes to the person who can decide it, with the first check already done, and the reader hears back when it is fixed.",
+        "starts": "any reader, or a vidvān",
+        "software": "sorts and checks each report",
+        "decides": "the same people as before"
+      },
+      "team": {
+        "pages": [
+          [
+            "trigger/",
+            "The report button: routing reports to the loops"
+          ],
+          [
+            "trigger/keeping-bots-out.md",
+            "Keeping bots out (Markdown)"
+          ]
+        ],
+        "sources": [
+          "sriranga/mahabharata (the site)",
+          "dharmasastra-gcp/complete_pipeline_yajurveda (the review pages)"
+        ]
+      }
+    },
+    {
+      "id": "agents",
+      "when": "after that",
+      "status": "proposed",
+      "title": "Agents run the loops; students and vidvāns rule",
+      "number": {
+        "value": "16,100",
+        "label": "verses of the Harivaṃśa in the first index of names, half with agents and half without"
+      },
+      "anthropic": {
+        "line": "A pāṭhaśālā student is asked, \"Do you have a character you like?\" Agents find the verses, hand them out, chase, compare and rebuild the site. Students read each verse; a vidvān signs. The pilot measures one thing above all: minutes of people's time for each signed verse.",
+        "starts": "a student's question",
+        "claude": "every step between the question and the signature",
+        "decides": "students read, a vidvān signs",
+        "link": null
+      },
+      "funder": {
+        "title": "The first index of names for a Purāṇa",
+        "number": {
+          "value": "₹37.5 lakh",
+          "label": "for the Harivaṃśa pilot: 16,100 verses, up to 4,034 names, nine months"
+        },
+        "line": "Pāṭhaśālā students read each verse that names a person, and a vidvān signs every entry. Half the chapters are done with software doing the legwork and half without, so the time it saves is measured, not claimed.",
+        "starts": "a student's question",
+        "software": "finds the verses, hands them out, keeps the work moving",
+        "decides": "students read, a vidvān signs",
+        "ask": "harivamsa"
+      },
+      "team": {
+        "pages": [
+          [
+            "namakosa/",
+            "Nāma-Kośa loop: a student asks about Yayāti"
+          ],
+          [
+            "view/ask.html#harivamsa",
+            "The funding page: the Harivaṃśa pilot"
+          ]
+        ],
+        "sources": [
+          "dharmasastra-gcp/workbench"
+        ]
+      }
+    }
+  ]
+}
