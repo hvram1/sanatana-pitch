@@ -1,0 +1,289 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ym after" viewBox="0 0 1400 1110" role="img" aria-labelledby="ymt ymd">
+<title id="ymt">Yayāti’s family after the work (expected)</title>
+<desc id="ymd">The same family tree after the reading: every link signed by a vidvān, the mistakes corrected, and badges for the chapters of the Bhāgavata and the Garuḍa Purāṇa that tell the same people.</desc>
+<style>
+  .ym{font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif}
+  .ym .bg{fill:var(--surface,#ffffff)}
+  .ym .nb{fill:var(--band,#eceef2);stroke:var(--rule,#cfd4dd);stroke-width:1.2}
+  .ym .hero .nb{fill:var(--accent,#2f3a8f);stroke:var(--accent,#2f3a8f)}
+  .ym .hero .nm,.ym .hero .rl,.ym .hero .dv{fill:var(--surface,#ffffff)}
+  .ym .line .nb{fill:var(--accent-soft,#e6e8f6);stroke:var(--accent,#2f3a8f)}
+  .ym .meet .nb{fill:var(--gold-soft,#fbf1dc);stroke:var(--gold,#a86a00);stroke-width:2}
+  .ym .nm{font-family:"Spectral",Georgia,serif;font-size:16px;font-weight:600;fill:var(--ink,#1b2130)}
+  .ym .dv{font-family:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;font-size:12.5px;fill:var(--muted,#5b6474)}
+  .ym .rl{font-size:11.5px;fill:var(--muted,#5b6474)}
+  .ym .k{stroke:var(--muted,#5b6474);stroke-width:1.4;fill:none}
+  .ym .tie{stroke:var(--ink,#1b2130);stroke-width:2.2}
+  .ym .st{stroke:var(--accent,#2f3a8f);stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+  .ym .sl{font-size:11.5px;fill:var(--accent,#2f3a8f);font-style:italic}
+  .ym .bh rect{fill:var(--leaf-soft,#e2f0e9);stroke:var(--leaf,#2f6f55)} .ym .bh text{fill:var(--leaf,#2f6f55)}
+  .ym .gp rect{fill:var(--clay-soft,#f6e6e2);stroke:var(--clay,#8a3b2e)} .ym .gp text{fill:var(--clay,#8a3b2e)}
+  .ym .q rect{fill:var(--gold-soft,#fbf1dc);stroke:var(--gold,#a86a00)} .ym .q text{fill:var(--gold,#a86a00)}
+  .ym .x rect{fill:var(--clay-soft,#f6e6e2);stroke:var(--clay,#8a3b2e)} .ym .x text{fill:var(--clay,#8a3b2e)}
+.ym .ok rect{fill:var(--leaf,#2f6f55);stroke:var(--leaf,#2f6f55)} .ym .ok text{fill:var(--surface,#ffffff)}
+.ym.today .k,.ym.today .tie{stroke-dasharray:3 4;opacity:.55}
+.ym.today .nb{fill:var(--surface,#ffffff)}
+.ym.today .hero .nb{fill:var(--accent-soft,#e6e8f6)} .ym.today .hero .nm{fill:var(--ink,#1b2130)} .ym.today .hero .rl,.ym.today .hero .dv{fill:var(--muted,#5b6474)}
+.ym.today .line .nb,.ym.today .meet .nb{fill:var(--surface,#ffffff);stroke:var(--rule,#cfd4dd);stroke-width:1.2}
+.ym .tick circle{fill:var(--leaf,#2f6f55)} .ym .tick path{stroke:#fff;stroke-width:2;fill:none}
+.ym .bdg text{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px}
+  .ym .zone{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;fill:var(--muted,#5b6474)}
+  .ym .door rect.f{stroke-width:1.5}
+  .ym .dt{font-family:"Spectral",Georgia,serif;font-size:17px;font-weight:600}
+  .ym .dl{font-size:12.5px;fill:var(--ink,#1b2130)}
+  .ym .dr{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px}
+  .ym .ttl{font-family:"Spectral",Georgia,serif;font-size:22px;font-weight:700;fill:var(--ink,#1b2130)}
+  @media (prefers-color-scheme:dark){svg.ym:root{--surface:#1a1f2b;--band:#232838;--rule:#39405a;--ink:#e6e8ee;--muted:#9aa3b5;--accent:#9aa6ff;--accent-soft:#232a45;--gold:#f0b44a;--gold-soft:#2e2615;--leaf:#7fcca8;--leaf-soft:#18302a;--clay:#f0a090;--clay-soft:#35201c}}
+  </style>
+<rect class="bg" width="1400" height="1110" rx="14"/>
+<path class="k" d="M110 131.0 L110 177.0"/>
+<path class="k" d="M420 138.0 L420 184.0"/>
+<path class="k" d="M640 131.0 L640 177.0"/>
+<path class="k" d="M860 131.0 L860 184.0"/>
+<path class="k" d="M1050 393.0 L1050 422.0"/>
+<path class="k" d="M1050 498.0 L1050 539.0"/>
+<path class="k" d="M1050 601.0 L1050 649.0"/>
+<path class="k" d="M1170 953.0 L1170 1004.0"/>
+<path class="tie" d="M495.0 211 L542.0 211"/>
+<path class="tie" d="M495.0 219 L542.0 219"/>
+<path class="tie" d="M738.0 211 L785.0 211"/>
+<path class="tie" d="M738.0 219 L785.0 219"/>
+<path class="k" d="M518.5 219 L518.5 280"/>
+<path class="k" d="M380 280 L540 280"/>
+<path class="k" d="M380 280 L380 317.0"/>
+<path class="k" d="M540 280 L540 324.0"/>
+<path class="k" d="M761.5 219 L761.5 292"/>
+<path class="k" d="M720 292 L1050 292"/>
+<path class="k" d="M720 292 L720 324.0"/>
+<path class="k" d="M880 292 L880 324.0"/>
+<path class="k" d="M1050 292 L1050 317.0"/>
+<path class="k" d="M630 253.0 L630 428 L300 428 L300 449.0"/>
+<path class="k" d="M300 511.0 L300 548"/>
+<path class="k" d="M110 548 L590 548"/>
+<path class="k" d="M110 548 L110 594.0"/>
+<path class="k" d="M270 548 L270 594.0"/>
+<path class="k" d="M430 548 L430 594.0"/>
+<path class="k" d="M590 548 L590 587.0"/>
+<path class="k" d="M1050 711.0 L1050 745"/>
+<path class="k" d="M930 745 L1170 745"/>
+<path class="k" d="M930 745 L930 769.0"/>
+<path class="k" d="M1170 745 L1170 769.0"/>
+<path class="k" d="M1170 831.0 L1170 877.0"/>
+<path class="st" d="M185.0 100 L345.0 100"/>
+<text class="sl" x="265" y="92" text-anchor="middle">rival gurus</text>
+<path class="st" d="M185.0 215 L345.0 215"/>
+<text class="sl" x="265" y="207" text-anchor="middle">mutual curses</text>
+<path class="st" d="M185 190 L345 128"/>
+<text class="sl" x="252" y="150" text-anchor="start">his student</text>
+<path class="st" d="M375.0 480 L485.0 480"/>
+<text class="sl" x="430" y="472" text-anchor="middle">given to him</text>
+<path class="st" d="M635.0 480 L705.0 480"/>
+<text class="sl" x="670" y="472" text-anchor="middle">carries</text>
+<path class="st" d="M1009.0 915 L1090.0 915"/>
+<text class="sl" x="1050" y="907" text-anchor="middle">turned back</text>
+<path class="st" d="M1017.0 1035 L1095.0 1035"/>
+<text class="sl" x="1060" y="1027" text-anchor="middle">tells</text>
+<g class="n "><rect class="nb" x="35.0" y="69.0" width="150" height="62" rx="10"/>
+<text class="nm" x="110" y="91.0" text-anchor="middle">Bṛhaspati <tspan class="dv">बृहस्पतिः</tspan></text>
+<text class="rl" x="110" y="109.0" text-anchor="middle">guru of the devas</text>
+</g>
+<g class="n "><rect class="nb" x="345.0" y="62.0" width="150" height="76" rx="10"/>
+<text class="nm" x="420" y="84.0" text-anchor="middle">Śukra <tspan class="dv">शुक्रः</tspan></text>
+<text class="rl" x="420" y="102.0" text-anchor="middle">guru of the asuras</text>
+<text class="rl" x="420" y="116.0" text-anchor="middle">curses Yayāti: old age</text>
+</g>
+<g class="n "><rect class="nb" x="565.0" y="69.0" width="150" height="62" rx="10"/>
+<text class="nm" x="640" y="91.0" text-anchor="middle">Nahuṣa <tspan class="dv">नहुषः</tspan></text>
+<text class="rl" x="640" y="109.0" text-anchor="middle">Yayāti's father</text>
+</g>
+<g class="n "><rect class="nb" x="785.0" y="69.0" width="150" height="62" rx="10"/>
+<text class="nm" x="860" y="91.0" text-anchor="middle">Vṛṣaparvan <tspan class="dv">वृषपर्वा</tspan></text>
+<text class="rl" x="860" y="109.0" text-anchor="middle">king of the asuras</text>
+</g>
+<g class="n "><rect class="nb" x="35.0" y="177.0" width="150" height="76" rx="10"/>
+<text class="nm" x="110" y="199.0" text-anchor="middle">Kaca <tspan class="dv">कचः</tspan></text>
+<text class="rl" x="110" y="217.0" text-anchor="middle">learns the sañjīvanī</text>
+<text class="rl" x="110" y="231.0" text-anchor="middle">refuses Devayānī</text>
+</g>
+<g class="n "><rect class="nb" x="345.0" y="184.0" width="150" height="62" rx="10"/>
+<text class="nm" x="420" y="206.0" text-anchor="middle">Devayānī <tspan class="dv">देवयानी</tspan></text>
+<text class="rl" x="420" y="224.0" text-anchor="middle">Śukra's daughter</text>
+</g>
+<g class="n hero"><rect class="nb" x="542.0" y="177.0" width="196" height="76" rx="10"/>
+<text class="nm" x="640" y="199.0" text-anchor="middle">Yayāti <tspan class="dv">ययातिः</tspan></text>
+<text class="rl" x="640" y="217.0" text-anchor="middle">“desire is never</text>
+<text class="rl" x="640" y="231.0" text-anchor="middle">quenched by indulgence”</text>
+</g>
+<g class="n "><rect class="nb" x="785.0" y="184.0" width="150" height="62" rx="10"/>
+<text class="nm" x="860" y="206.0" text-anchor="middle">Śarmiṣṭhā <tspan class="dv">शर्मिष्ठा</tspan></text>
+<text class="rl" x="860" y="224.0" text-anchor="middle">Vṛṣaparvan's daughter</text>
+</g>
+<g class="n "><rect class="nb" x="305.0" y="317.0" width="150" height="76" rx="10"/>
+<text class="nm" x="380" y="339.0" text-anchor="middle">Yadu <tspan class="dv">यदुः</tspan></text>
+<text class="rl" x="380" y="357.0" text-anchor="middle">refuses the old age</text>
+<text class="rl" x="380" y="371.0" text-anchor="middle">his line: the Yādavas</text>
+</g>
+<g class="n "><rect class="nb" x="465.0" y="324.0" width="150" height="62" rx="10"/>
+<text class="nm" x="540" y="346.0" text-anchor="middle">Turvasu <tspan class="dv">तुर्वसुः</tspan></text>
+<text class="rl" x="540" y="364.0" text-anchor="middle">refuses</text>
+</g>
+<g class="n "><rect class="nb" x="645.0" y="324.0" width="150" height="62" rx="10"/>
+<text class="nm" x="720" y="346.0" text-anchor="middle">Druhyu <tspan class="dv">द्रुह्युः</tspan></text>
+<text class="rl" x="720" y="364.0" text-anchor="middle">refuses</text>
+</g>
+<g class="n "><rect class="nb" x="805.0" y="324.0" width="150" height="62" rx="10"/>
+<text class="nm" x="880" y="346.0" text-anchor="middle">Anu <tspan class="dv">अनुः</tspan></text>
+<text class="rl" x="880" y="364.0" text-anchor="middle">refuses</text>
+</g>
+<g class="n line"><rect class="nb" x="975.0" y="317.0" width="150" height="76" rx="10"/>
+<text class="nm" x="1050" y="339.0" text-anchor="middle">Pūru <tspan class="dv">पूरुः</tspan></text>
+<text class="rl" x="1050" y="357.0" text-anchor="middle">takes the old age</text>
+<text class="rl" x="1050" y="371.0" text-anchor="middle">receives the kingdom</text>
+</g>
+<g class="n "><rect class="nb" x="225.0" y="449.0" width="150" height="62" rx="10"/>
+<text class="nm" x="300" y="471.0" text-anchor="middle">Mādhavī <tspan class="dv">माधवी</tspan></text>
+<text class="rl" x="300" y="489.0" text-anchor="middle">Yayāti's daughter</text>
+</g>
+<g class="n "><rect class="nb" x="485.0" y="442.0" width="150" height="76" rx="10"/>
+<text class="nm" x="560" y="464.0" text-anchor="middle">Gālava <tspan class="dv">गालवः</tspan></text>
+<text class="rl" x="560" y="482.0" text-anchor="middle">owes 800 horses</text>
+<text class="rl" x="560" y="496.0" text-anchor="middle">to Viśvāmitra</text>
+</g>
+<g class="n "><rect class="nb" x="705.0" y="449.0" width="150" height="62" rx="10"/>
+<text class="nm" x="780" y="471.0" text-anchor="middle">Garuḍa <tspan class="dv">गरुडः</tspan></text>
+<text class="rl" x="780" y="489.0" text-anchor="middle">carries Gālava</text>
+</g>
+<g class="n "><rect class="nb" x="35.0" y="594.0" width="150" height="62" rx="10"/>
+<text class="nm" x="110" y="616.0" text-anchor="middle">Vasumanas <tspan class="dv">वसुमनाः</tspan></text>
+<text class="rl" x="110" y="634.0" text-anchor="middle">gives Yayāti his merit</text>
+</g>
+<g class="n "><rect class="nb" x="195.0" y="594.0" width="150" height="62" rx="10"/>
+<text class="nm" x="270" y="616.0" text-anchor="middle">Pratardana <tspan class="dv">प्रतर्दनः</tspan></text>
+<text class="rl" x="270" y="634.0" text-anchor="middle">gives Yayāti his merit</text>
+</g>
+<g class="n "><rect class="nb" x="355.0" y="594.0" width="150" height="62" rx="10"/>
+<text class="nm" x="430" y="616.0" text-anchor="middle">Śibi <tspan class="dv">शिबिः</tspan></text>
+<text class="rl" x="430" y="634.0" text-anchor="middle">gives Yayāti his merit</text>
+</g>
+<g class="n "><rect class="nb" x="515.0" y="587.0" width="150" height="76" rx="10"/>
+<text class="nm" x="590" y="609.0" text-anchor="middle">Aṣṭaka <tspan class="dv">अष्टकः</tspan></text>
+<text class="rl" x="590" y="627.0" text-anchor="middle">dialogue after</text>
+<text class="rl" x="590" y="641.0" text-anchor="middle">Yayāti's fall</text>
+</g>
+<g class="n line"><rect class="nb" x="975.0" y="422.0" width="150" height="76" rx="10"/>
+<text class="nm" x="1050" y="444.0" text-anchor="middle">Bharata <tspan class="dv">भरतः</tspan></text>
+<text class="rl" x="1050" y="462.0" text-anchor="middle">through Duṣyanta</text>
+<text class="rl" x="1050" y="476.0" text-anchor="middle">and Śakuntalā</text>
+</g>
+<g class="n line"><rect class="nb" x="975.0" y="539.0" width="150" height="62" rx="10"/>
+<text class="nm" x="1050" y="561.0" text-anchor="middle">Kuru <tspan class="dv">कुरुः</tspan></text>
+<text class="rl" x="1050" y="579.0" text-anchor="middle">the Kurus' name</text>
+</g>
+<g class="n line"><rect class="nb" x="975.0" y="649.0" width="150" height="62" rx="10"/>
+<text class="nm" x="1050" y="671.0" text-anchor="middle">Śantanu <tspan class="dv">शन्तनुः</tspan></text>
+<text class="rl" x="1050" y="689.0" text-anchor="middle">Bhīṣma's father</text>
+</g>
+<g class="n line"><rect class="nb" x="855.0" y="769.0" width="150" height="62" rx="10"/>
+<text class="nm" x="930" y="791.0" text-anchor="middle">Kauravas <tspan class="dv">कौरवाः</tspan></text>
+<text class="rl" x="930" y="809.0" text-anchor="middle">Dhṛtarāṣṭra's sons</text>
+</g>
+<g class="n line"><rect class="nb" x="1095.0" y="769.0" width="150" height="62" rx="10"/>
+<text class="nm" x="1170" y="791.0" text-anchor="middle">Pāṇḍavas <tspan class="dv">पाण्डवाः</tspan></text>
+<text class="rl" x="1170" y="809.0" text-anchor="middle">Pāṇḍu's sons</text>
+</g>
+<g class="n meet"><rect class="nb" x="1090.0" y="877.0" width="160" height="76" rx="10"/>
+<text class="nm" x="1170" y="899.0" text-anchor="middle">Parīkṣit <tspan class="dv">परीक्षित्</tspan></text>
+<text class="rl" x="1170" y="917.0" text-anchor="middle">dies by Takṣaka</text>
+<text class="rl" x="1170" y="931.0" text-anchor="middle">hears the Bhāgavata</text>
+</g>
+<g class="n meet"><rect class="nb" x="841.0" y="877.0" width="168" height="76" rx="10"/>
+<text class="nm" x="925" y="899.0" text-anchor="middle">Kāśyapa <tspan class="dv">काश्यपः</tspan></text>
+<text class="rl" x="925" y="917.0" text-anchor="middle">the healer, turned back</text>
+<text class="rl" x="925" y="931.0" text-anchor="middle">revives the burnt tree</text>
+</g>
+<g class="n line"><rect class="nb" x="1095.0" y="1004.0" width="150" height="62" rx="10"/>
+<text class="nm" x="1170" y="1026.0" text-anchor="middle">Janamejaya <tspan class="dv">जनमेजयः</tspan></text>
+<text class="rl" x="1170" y="1044.0" text-anchor="middle">holds the snake sacrifice</text>
+</g>
+<g class="n "><rect class="nb" x="833.0" y="1004.0" width="184" height="62" rx="10"/>
+<text class="nm" x="925" y="1026.0" text-anchor="middle">Vaiśampāyana <tspan class="dv">वैशम्पायनः</tspan></text>
+<text class="rl" x="925" y="1044.0" text-anchor="middle">tells him the epic</text>
+</g>
+<g class="tick"><circle cx="181.0" cy="127.0" r="8"/><path d="M177.0 127.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="35.0" y="50.0" width="197" height="17" rx="8.5"/><text x="41.0" y="62.5">Bh 12.6: stops the sacrifice</text></g>
+<g class="tick"><circle cx="491.0" cy="134.0" r="8"/><path d="M487.0 134.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="711.0" cy="127.0" r="8"/><path d="M707.0 127.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="931.0" cy="127.0" r="8"/><path d="M927.0 127.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="181.0" cy="249.0" r="8"/><path d="M177.0 249.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="491.0" cy="242.0" r="8"/><path d="M487.0 242.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="345.0" y="165.0" width="58" height="17" rx="8.5"/><text x="351.0" y="177.5">Bh 9.18</text></g>
+<g class="bdg ok"><rect x="407.2" y="165.0" width="104" height="17" rx="8.5"/><text x="413.2" y="177.5">✓ father fixed</text></g>
+<g class="tick"><circle cx="734.0" cy="249.0" r="8"/><path d="M730.0 249.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="542.0" y="158.0" width="78" height="17" rx="8.5"/><text x="548.0" y="170.5">Bh 9.18–19</text></g>
+<g class="bdg gp"><rect x="624.0" y="158.0" width="65" height="17" rx="8.5"/><text x="630.0" y="170.5">GP Ā.139</text></g>
+<g class="tick"><circle cx="931.0" cy="242.0" r="8"/><path d="M927.0 242.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="785.0" y="165.0" width="58" height="17" rx="8.5"/><text x="791.0" y="177.5">Bh 9.18</text></g>
+<g class="tick"><circle cx="451.0" cy="389.0" r="8"/><path d="M447.0 389.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="611.0" cy="382.0" r="8"/><path d="M607.0 382.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="791.0" cy="382.0" r="8"/><path d="M787.0 382.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="951.0" cy="382.0" r="8"/><path d="M947.0 382.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="1121.0" cy="389.0" r="8"/><path d="M1117.0 389.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="975.0" y="298.0" width="58" height="17" rx="8.5"/><text x="981.0" y="310.5">Bh 9.20</text></g>
+<g class="tick"><circle cx="371.0" cy="507.0" r="8"/><path d="M367.0 507.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="631.0" cy="514.0" r="8"/><path d="M627.0 514.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="851.0" cy="507.0" r="8"/><path d="M847.0 507.0 l3 3 l5 -6"/></g>
+<g class="bdg gp"><rect x="705.0" y="430.0" width="177" height="17" rx="8.5"/><text x="711.0" y="442.5">GP Ā.2: tells this Purāṇa</text></g>
+<g class="tick"><circle cx="181.0" cy="652.0" r="8"/><path d="M177.0 652.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="341.0" cy="652.0" r="8"/><path d="M337.0 652.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="501.0" cy="652.0" r="8"/><path d="M497.0 652.0 l3 3 l5 -6"/></g>
+<g class="bdg ok"><rect x="355.0" y="575.0" width="58" height="17" rx="8.5"/><text x="361.0" y="587.5">✓ ruled</text></g>
+<g class="tick"><circle cx="661.0" cy="659.0" r="8"/><path d="M657.0 659.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="1121.0" cy="494.0" r="8"/><path d="M1117.0 494.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="1121.0" cy="597.0" r="8"/><path d="M1117.0 597.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="1121.0" cy="707.0" r="8"/><path d="M1117.0 707.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="1001.0" cy="827.0" r="8"/><path d="M997.0 827.0 l3 3 l5 -6"/></g>
+<g class="tick"><circle cx="1241.0" cy="827.0" r="8"/><path d="M1237.0 827.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="1095.0" y="750.0" width="58" height="17" rx="8.5"/><text x="1101.0" y="762.5">Bh 9.22</text></g>
+<g class="tick"><circle cx="1246.0" cy="949.0" r="8"/><path d="M1242.0 949.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="1090.0" y="858.0" width="118" height="17" rx="8.5"/><text x="1096.0" y="870.5">Bh 1.18–19, 12.6</text></g>
+<g class="bdg ok"><rect x="1211.6" y="858.0" width="104" height="17" rx="8.5"/><text x="1217.6" y="870.5">✓ verses moved</text></g>
+<g class="tick"><circle cx="1005.0" cy="949.0" r="8"/><path d="M1001.0 949.0 l3 3 l5 -6"/></g>
+<g class="bdg gp"><rect x="841.0" y="858.0" width="52" height="17" rx="8.5"/><text x="847.0" y="870.5">GP Ā.3</text></g>
+<g class="bdg ok"><rect x="896.6" y="858.0" width="58" height="17" rx="8.5"/><text x="902.6" y="870.5">✓ ruled</text></g>
+<g class="tick"><circle cx="1241.0" cy="1062.0" r="8"/><path d="M1237.0 1062.0 l3 3 l5 -6"/></g>
+<g class="bdg bh"><rect x="1095.0" y="985.0" width="58" height="17" rx="8.5"/><text x="1101.0" y="997.5">Bh 12.6</text></g>
+<g class="bdg gp"><rect x="1157.2" y="985.0" width="65" height="17" rx="8.5"/><text x="1163.2" y="997.5">GP Ā.140</text></g>
+<g class="tick"><circle cx="1013.0" cy="1062.0" r="8"/><path d="M1009.0 1062.0 l3 3 l5 -6"/></g>
+<text class="ttl" x="40" y="34">Yayāti’s family after the work (expected)</text>
+<text class="zone" x="1290" y="330" text-anchor="end">PŪRU’S LINE ↓</text>
+<text class="zone" x="1300" y="1088" text-anchor="end">THE MAHĀBHĀRATA IS TOLD TO JANAMEJAYA</text>
+<g class="door bh"><rect class="f" x="40" y="700" width="385" height="180" rx="12" style="fill:var(--leaf-soft,#e2f0e9);stroke:var(--leaf,#2f6f55)"/>
+<text class="dt" x="56" y="728" style="fill:var(--leaf,#2f6f55)">In the Bhāgavata, via Parīkṣit</text>
+<text class="dr" x="56" y="756" style="fill:var(--leaf,#2f6f55)">9.18–19</text>
+<text class="dl" x="148" y="756">Yayāti, Devayānī, Śarmiṣṭhā, Pūru</text>
+<text class="dr" x="56" y="780" style="fill:var(--leaf,#2f6f55)">9.20, 9.22</text>
+<text class="dl" x="148" y="780">Pūru’s line to the Pāṇḍavas</text>
+<text class="dr" x="56" y="804" style="fill:var(--leaf,#2f6f55)">1.18–19</text>
+<text class="dl" x="148" y="804">the curse; Śuka comes to Parīkṣit</text>
+<text class="dr" x="56" y="828" style="fill:var(--leaf,#2f6f55)">12.6.16–28</text>
+<text class="dl" x="148" y="828">the sacrifice; Bṛhaspati stops it</text>
+<text class="dr" x="56" y="852" style="fill:var(--leaf,#2f6f55)">12.6.11</text>
+<text class="dl" x="148" y="852">Takṣaka meets Kāśyapa on the road</text>
+</g>
+<g class="door gp"><rect class="f" x="440" y="700" width="385" height="180" rx="12" style="fill:var(--clay-soft,#f6e6e2);stroke:var(--clay,#8a3b2e)"/>
+<text class="dt" x="456" y="728" style="fill:var(--clay,#8a3b2e)">In the Garuḍa Purāṇa, via Garuḍa</text>
+<text class="dr" x="456" y="756" style="fill:var(--clay,#8a3b2e)">Ā. 2</text>
+<text class="dl" x="548" y="756">Garuḍa tells this Purāṇa</text>
+<text class="dr" x="456" y="780" style="fill:var(--clay,#8a3b2e)">Ā. 3</text>
+<text class="dl" x="548" y="780">hearing it, Kaśyapa revives a burnt tree</text>
+<text class="dr" x="456" y="804" style="fill:var(--clay,#8a3b2e)">Ā. 139–140</text>
+<text class="dl" x="548" y="804">the lunar line, Yayāti to Janamejaya</text>
+<text class="dr" x="456" y="828" style="fill:var(--clay,#8a3b2e)">counts</text>
+<text class="dl" x="548" y="828">Vinatā 34 verses · Kadrū 1 · Āstīka 0</text>
+<text class="dr" x="456" y="852" style="fill:var(--clay,#8a3b2e)"></text>
+<text class="dl" x="548" y="852">no wager, no snake sacrifice</text>
+</g>
+<text class="rl" x="40" y="912">Both Purāṇas meet at Parīkṣit’s death (gold boxes). Badges: <tspan style="fill:var(--leaf,#2f6f55)">Bhāgavata</tspan> · <tspan style="fill:var(--clay,#8a3b2e)">Garuḍa Purāṇa</tspan> · <tspan style="fill:var(--leaf,#2f6f55)">✓ a vidvān’s ruling</tspan>.</text>
+<text class="rl" x="40" y="930">Every box and family line signed by a vidvān; every verse shows who read it. Expected outcome: the reading decides the details.</text>
+<text class="rl" x="40" y="948">Purāṇa chapters from the Śrī Śāradā Pīṭham text; Mahābhārata relations from Sørensen.</text>
+</svg>

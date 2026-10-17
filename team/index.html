@@ -207,7 +207,7 @@ table.t{border-collapse:collapse;width:100%;font-size:.93rem}
 
 <div class="wrap">
 <header class="hero">
-  <span class="eyebrow">For the team · not for outside readers</span>
+  <span class="eyebrow">For the team</span>
   <h1>The whole journey, and every page behind it</h1>
   <p class="lede">Two pages tell the journey outside the team: the showcase to Anthropic, the pitch to funders. Behind each milestone sit the internal pages that show how the work is done, and the projects where it lives. This map shows all of it in one place. It is generated from <code>src/milestones.json</code>, like both timelines, so what it shows is what they say.</p>
 </header>
@@ -216,7 +216,7 @@ table.t{border-collapse:collapse;width:100%;font-size:.93rem}
   <div class="intro">
     <span class="eyebrow">The two spines</span>
     <h2>Who reads what</h2>
-    <p>The copies linked here are the local build. The published copies change only when you republish.</p>
+    <p>Locally, the links open the local build; on GitHub Pages, the published pages. The Claude artifacts change only when they are republished.</p>
   </div>
   <div class="spines">
     <div class="spine an">
@@ -330,7 +330,7 @@ table.t{border-collapse:collapse;width:100%;font-size:.93rem}
   <div class="intro">
     <span class="eyebrow">Every page</span>
     <h2>The internal pages</h2>
-    <p>These are for the team, the site's developer and the vidvāns' coordinators. They name people and describe weaknesses, so none of them is linked from either spine.</p>
+    <p>These are written for the team, the site's developer and the vidvāns' coordinators. They are public, on this map, but neither spine links to them: the outside story is the journey.</p>
   </div>
   <div class="tscroll"><table class="t pages">
     <thead><tr><th>Page</th><th>What it shows</th><th>Folder</th></tr></thead>
@@ -343,7 +343,7 @@ table.t{border-collapse:collapse;width:100%;font-size:.93rem}
       <tr><td><a href="../newbook/">The New-Book Loop</a></td><td>The Smṛtimuktāphalam, from 4,333 scanned pages to an edition linked with Kane.</td><td><code>newbook/</code></td></tr>
     </tbody>
   </table></div>
-  <p class="small">The Nāma-Kośa loop is also published, at hvram1.github.io/sanatana-pitch/namakosa/, from before these pages were made internal. Whether it stays public is for the team to decide.</p>
+  <p class="small">All of them are published with this map, at hvram1.github.io/sanatana-pitch/team/.</p>
 </section>
 
 <section id="rebuild" class="appendix">
@@ -353,6 +353,6 @@ table.t{border-collapse:collapse;width:100%;font-size:.93rem}
   </div>
 <pre class="ledger">python3 publish.py                          # rebuilds dist/: timelines, pitch, every page, this map
 cd dist && python3 -m http.server 8767      # then open http://localhost:8767/</pre>
-  <p class="small"><code>dist/</code> is not committed, so building publishes nothing. <code>python3 publish.py --site</code> rebuilds <code>docs/</code> for GitHub Pages, which is public once committed and pushed: the two spines and the Nāma-Kośa page, never the internal pages.</p>
+  <p class="small"><code>dist/</code> is not committed, so building publishes nothing. <code>python3 publish.py --site</code> rebuilds <code>docs/</code> for GitHub Pages, which is public once committed and pushed: the two spines, and this map with every page behind it.</p>
 </section>
 </div>

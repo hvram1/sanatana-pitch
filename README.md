@@ -63,9 +63,9 @@ https://hvram1.github.io/sanatana-pitch/showcase/: `--site` copies its page and
 images (not its notes) into `docs/showcase/`.
 
 The Nāma-Kośa loop (`namakosa/`), the agent workflow for the Purāṇa Nāma-Kośa
-with vidvāns and students in the loop, was served on Pages until 17 October 2026.
-It is now internal, like the other loop pages: built into `dist/` for the team map,
-never into `docs/`. The outside story is told by the journey timelines instead.
+with vidvāns and students in the loop, is served with the team map, at
+https://hvram1.github.io/sanatana-pitch/namakosa/, reached from the map rather than
+from the pitch or the showcase: the outside story is told by the journey timelines.
 
 `./publish.py --site` builds both: `dist/` for the artifacts, `docs/` for Pages
 (served from `main`, folder `/docs`). `docs/` is committed and `dist/` is not.
@@ -95,8 +95,8 @@ pitch's Section VIII, `#journey`). `milestones.py` writes both timelines between
 `<!-- milestones:… -->` markers; `publish.py` runs it on every build, and
 `python3 milestones.py --check` says whether a page is stale. Change a status in
 the JSON, never in a page. Keep internal detail out of it: both pages are read
-outside the team, and the loop pages (`trigger/`, `corrections/`, `newbook/`,
-`fixes/`, `namakosa/`) are for the team.
+outside the team. The loop pages (`trigger/`, `corrections/`, `newbook/`,
+`fixes/`, `namakosa/`) are written for the team, and published with the team map.
 
 ## Seeing everything at once: the team map
 
@@ -104,5 +104,6 @@ outside the team, and the loop pages (`trigger/`, `corrections/`, `newbook/`,
 root (`team/`, generated from `src/milestones.json` like the two timelines), the
 pitch and funding page as whole documents under `view/`, the showcase, and every
 internal page. Serve it with `cd dist && python3 -m http.server 8767` and open
-http://localhost:8767/. The internal pages (`team/`, `trigger/`, `corrections/`,
-`newbook/`, `fixes/`) are never copied into `docs/`, so `--site` does not publish them.
+http://localhost:8767/. `--site` publishes the same map and its pages at
+https://hvram1.github.io/sanatana-pitch/team/ (public since 17 October 2026), with
+its links to the pitch and funding page pointing at the published copies.

@@ -318,10 +318,9 @@ def build_site(dist, out):
     show = os.path.join(out, 'showcase')
     shutil.rmtree(show, ignore_errors=True)
     shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
-    # the Nāma-Kośa page, the other loop pages and the team map are internal:
-    # built into dist/ by build_local, never into docs/
-    shutil.rmtree(os.path.join(out, 'namakosa'), ignore_errors=True)
-    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/')
+    # the team map at /team/, with the pages it links to; reached from the map, not from the pitch or the showcase
+    build_team(out, pitch='../', ask='../ask.html')
+    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/, team/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))
 
 
 def build_namakosa(out):
@@ -335,7 +334,22 @@ def build_namakosa(out):
         shutil.copy(svg, loop)
 
 
-LOOPS = ('team', 'trigger', 'corrections', 'newbook', 'fixes')   # internal, with namakosa/: local build only
+LOOPS = ('team', 'trigger', 'corrections', 'newbook', 'fixes')   # the team map and the pages behind it
+
+
+def build_team(out, pitch, ask):
+    """The team map and every page it links to, under out/. The map's source links the
+    pitch and the funding page as ../view/pitch.html and ../view/ask.html (the local
+    build); pitch= and ask= say where they are in this build."""
+    build_namakosa(out)
+    for name in LOOPS:
+        build_loop(name, out)
+    for md in glob.glob(os.path.join(HERE, 'trigger', '*.md')):
+        shutil.copy(md, os.path.join(out, 'trigger'))
+    team = os.path.join(out, 'team', 'index.html')
+    body = open(team, encoding='utf8').read()
+    body = body.replace('../view/pitch.html#', pitch + '#').replace('../view/pitch.html', pitch).replace('../view/ask.html', ask)
+    open(team, 'w', encoding='utf8').write(body)
 
 
 def build_local(dist):
@@ -350,11 +364,7 @@ def build_local(dist):
     show = os.path.join(dist, 'showcase')
     shutil.rmtree(show, ignore_errors=True)
     shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
-    build_namakosa(dist)
-    for name in LOOPS:
-        build_loop(name, dist)
-    for md in glob.glob(os.path.join(HERE, 'trigger', '*.md')):
-        shutil.copy(md, os.path.join(dist, 'trigger'))
+    build_team(dist, pitch='../view/pitch.html', ask='../view/ask.html')
     open(os.path.join(dist, 'index.html'), 'w', encoding='utf8').write(
         SKELETON + '<title>The Team Map</title><meta http-equiv="refresh" content="0; url=team/">\n</head><body><a href="team/">The Team Map</a></body></html>\n')
     print(f'built {dist} for local viewing: team/ (the map), view/, showcase/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))

@@ -21,7 +21,7 @@ Yajurveda source: `dharmasastra-gcp/complete_pipeline_yajurveda`, as of
 `data/corrections/TS/{sayana,bhatta}.json`. Where that note and this page differ,
 the note wins. The four readings were checked by eye against the scans.
 
-Local only for now. `./publish.py --site` would serve it at
+Published with the team map (`./publish.py --site`), publicly, at
 https://hvram1.github.io/sanatana-pitch/corrections/ (it wraps `index.html` and copies
 the images into `docs/corrections/`); that copy is public. An earlier draft, Case 1
 only, is the private Claude artifact https://claude.ai/artifact/1Th4egpeJG244ciohXb2i9.

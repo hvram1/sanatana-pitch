@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Report Button</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the trigger for the four loops, in their type and tokens: the button as
+   it is, the button extended, where each report goes, one report end to end. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6;
+  --gold:#a86a00; --gold-soft:#fbf1dc;
+  --leaf:#2f6f55; --leaf-soft:#e2f0e9;
+  --clay:#8a3b2e; --clay-soft:#f6e6e2;
+  --band:#eceef2; --paper:#ffffff;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+code{font-family:var(--f-mono);font-size:.85em;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.deva{font-family:var(--f-deva)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted)}
+section{padding-block:40px 8px;display:grid;gap:18px}
+.intro{display:grid;gap:12px}
+.intro p{max-width:46rem}
+header.hero{padding-block:48px 12px;display:grid;gap:18px}
+.lede{font-size:1.15rem;max-width:46rem}
+.rule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.rule div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.rule b{font-family:var(--f-display);font-size:1.1rem}
+.rule .h{border:2px solid var(--gold);background:var(--gold-soft)}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
+.tscroll{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+.t th,.t td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.t th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.t td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;padding-right:20px;white-space:nowrap}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metrics div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.metrics b{font-family:var(--f-display);font-size:1.05rem}
+.metrics span{font-size:.9rem;color:var(--muted)}
+.ledger{font-family:var(--f-mono);font-size:.78rem;line-height:1.5;background:var(--band);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin:8px 0 4px;overflow-x:auto;white-space:pre}
+.appendix{border-top:2px solid var(--rule);margin-top:24px}
+
+/* the printed page, with its disputed places boxed */
+.folio{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+.scan{position:relative;background:var(--paper);border:1px solid var(--rule);border-radius:6px;box-shadow:var(--shadow);overflow:hidden;max-width:100%}
+.scan img{display:block;width:100%;height:auto}
+.scan .hl{position:absolute;border:2px solid var(--hc);background:color-mix(in srgb,var(--hc) 12%,transparent);border-radius:3px}
+.scan .hl b{position:absolute;left:-2px;top:-20px;font-family:var(--f-mono);font-size:.7rem;font-weight:500;line-height:1;padding:3px 5px;border-radius:3px 3px 0 0;background:var(--hc);color:#fff}
+.hl.k-n{--hc:#2f3a8f} .hl.k-a{--hc:#8a3b2e} .hl.k-c{--hc:#a86a00}
+.cap{font-size:.86rem;color:var(--muted);padding-top:8px}
+.keys{display:grid;gap:12px;align-content:start}
+.key{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem}
+.key i{font-style:normal;font-family:var(--f-mono);font-size:.8rem;text-align:center;border-radius:4px;padding:1px 0;color:#fff;background:var(--kc)}
+.key.k-n{--kc:#2f3a8f} .key.k-a{--kc:#8a3b2e} .key.k-b{--kc:#2f6f55} .key.k-c{--kc:#a86a00} .key.k-d{--kc:#a86a00}
+
+/* the journey: round = agent, diamond = person */
+.journey{list-style:none;margin:0;padding:0;display:grid;max-width:52rem}
+.journey > li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;position:relative;padding-bottom:28px}
+.journey > li::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--rule)}
+.journey > li:last-child::before{display:none}
+.journey .mk{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:500;font-size:1rem;background:var(--accent-soft);color:var(--accent);border:2px solid var(--accent)}
+.journey .j-person .mk{background:var(--gold-soft);color:var(--gold);border-color:var(--gold);border-radius:10px;transform:rotate(45deg)}
+.journey .j-person .mk span{transform:rotate(-45deg)}
+.journey .jb{display:grid;gap:10px;min-width:0;padding-top:4px}
+.journey h3{font-size:1.3rem}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:3px}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.tag.p{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+.state{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:1px 8px;vertical-align:3px;white-space:nowrap}
+.state.live{color:var(--leaf);border-color:var(--leaf);background:var(--leaf-soft)}
+.state.wait{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.out{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.93rem;display:grid;gap:4px}
+.j-person .out{border-left-color:var(--gold)}
+.out b.h{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.out ul{margin:0;padding-left:18px;display:grid;gap:2px}
+.why{font-size:.93rem;color:var(--muted)}
+
+/* the three readings of one word */
+.cases{display:grid;gap:14px}
+.case{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--kc);border-radius:10px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.case.k-a{--kc:var(--clay)} .case.k-b{--kc:var(--leaf)} .case.k-c{--kc:var(--gold)} .case.k-d{--kc:var(--gold)}
+.case h4{margin:0;font-family:var(--f-display);font-size:1.1rem;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.case h4 i{font-style:normal;font-family:var(--f-mono);font-size:.78rem;color:var(--surface);background:var(--kc);border-radius:4px;padding:0 6px}
+.case h4 small{font-family:var(--f-mono);font-size:.72rem;font-weight:400;color:var(--muted)}
+.three{border-collapse:collapse;width:100%;font-size:.93rem}
+.three td{padding:6px 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.three td:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:11rem}
+.three .deva{font-size:1.15rem}
+.three mark{background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.three tr.print td{font-weight:600}
+.ruling{font-size:.93rem;display:grid;gap:2px}
+.ruling b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kc);font-weight:500}
+.crop{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;max-width:560px}
+.crop img{display:block;width:100%;height:auto}
+
+/* mock of the vidvān's review row */
+.mock{background:var(--surface);border:1px dashed var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.mk-l{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mock .row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 12px;font-size:.95rem;align-items:baseline}
+.mock .row span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mock .row .deva{font-size:1.1rem}
+.mock .row u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns span{font-size:.85rem;border:1px solid var(--rule);border-radius:6px;padding:3px 10px;color:var(--ink);background:var(--bg)}
+.btns span.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.bigger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bigger div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:.93rem}
+.bigger b{font-family:var(--f-display);font-size:1.05rem}
+.bigger .ev{font-size:.85rem;color:var(--muted)}
+
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.parts a{display:grid;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 16px}
+.parts a b{font-family:var(--f-display);font-size:1.05rem}
+.parts a span{font-size:.88rem;color:var(--muted)}
+.parts a:hover{border-color:var(--accent)}
+.parthead{padding-block:56px 0;display:grid;gap:10px;border-top:2px solid var(--rule);margin-top:24px}
+.parthead .pn{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.parthead h2{font-size:2.1rem}
+.parthead p{max-width:46rem;font-size:1.05rem}
+.verse{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;max-width:52rem}
+.verse .deva{font-size:1.2rem;line-height:1.9}
+.verse u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 3px}
+.verse .en{font-size:.95rem;color:var(--muted);font-style:italic}
+.three td.ed{font-family:var(--f-body);font-size:.88rem;color:var(--muted);text-transform:none;letter-spacing:0}
+@media (max-width:900px){
+  .parts{grid-template-columns:minmax(0,1fr)}
+  .folio,.rule,.metrics,.bigger{grid-template-columns:minmax(0,1fr)}
+  .three td:first-child{width:7rem}
+  .mock .row{grid-template-columns:minmax(0,1fr)}
+}
+
+.metrics .big,.big{font-family:var(--f-display);font-size:1.9rem;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}
+.note{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--clay);border-radius:10px;padding:16px 18px;display:grid;gap:10px;font-size:.95rem;max-width:52rem}
+.note h3{font-size:1.05rem;color:var(--clay)}
+.mock .row span[style]{padding-bottom:2px}
+</style>
+</head><body>
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">What starts the work · the report button on sanatana.in/mahabharata</span>
+  <h1>One button starts every loop.</h1>
+  <p class="lede">The Mahābhārata site already has the trigger. A signed-in reader selects words on a verse and taps a button; the report is saved, and an email to errors@sanatanasampatti.in opens. Since 21 September readers have sent 820 reports this way. Today each report is a word and a verse number, and a person works down the list by hand. This proposal extends the button a little, so an agent can send each report to the right loop and tell the reader what became of it.</p>
+  <div class="rule">
+    <div><b>Agents do</b><span>read new reports every hour; join duplicates; run the first check for each kind; put the report in the right queue with its evidence; close it when the fix lands; tell the reader.</span></div>
+    <div class="h"><b>People decide</b><span>what the report is about, since the reader picks the kind; whether it is a mistake; what the text should say; which ideas the team takes up.</span></div>
+  </div>
+</header>
+
+<section id="today">
+  <div class="intro">
+    <span class="eyebrow">The button today</span>
+    <h2>820 reports in three weeks, and almost all of them one word</h2>
+    <p>Read from the live report list on 17 October 2026. The reports are good: most of them name a real typing mistake in a specific verse. What they cannot say is what kind of problem it is, what the word should be, or whether anyone acted on it.</p>
+  </div>
+  <div class="metrics">
+    <div><span class="big">820</span><b>reports, 21 Sep to 10 Oct</b><span>778 of them from one proofreader, working parva by parva. The button is already a proofreading tool.</span></div>
+    <div><span class="big">711</span><b>are a single word</b><span>793 name a verse. None says what kind of problem it is, or what the word should be.</span></div>
+    <div><span class="big">583</span><b>still open</b><span>237 marked done, by hand. The "reviewed" status in the table has never been used, and no reader has been told about a fix.</span></div>
+  </div>
+  <div class="note">
+    <h3>Two things to fix first</h3>
+    <ul class="plain">
+      <li><b>The report list is public.</b> sanatana.in/mahabharata/mail/report opens without signing in and shows every reporter's name, and their email address too wherever one is stored.</li>
+      <li><b>"Mark as done" is a plain link that anyone can follow.</b> It needs no sign-in. A search engine crawling the list would follow all 583 links and mark every open report done. Both should sit behind an editor's sign-in, and marking should be a form submission, not a link.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="button">
+  <div class="intro">
+    <span class="eyebrow">The extended button</span>
+    <h2>One more tap: what kind of problem is it?</h2>
+    <p>The reader still selects words and taps. The popup now asks one question, with the last answer already chosen, so a proofreader working down a parva loses nothing. Every other field is optional.</p>
+  </div>
+  <div class="folio">
+    <div class="mock">
+      <span class="mk-l">Sabhā Parva · P02_U10_A079_S005 · words selected</span>
+      <p class="deva" style="font-size:1.15rem;line-height:1.9">न त्वां <u>संदेष्टुमहमि</u> भर्तॄन्प्रति शुचिस्मिते।</p>
+      <div class="btns"><span class="pri">Typing mistake</span><span>Who is this?</span><span>The page isn't working</span><span>Something else, or an idea</span></div>
+      <div class="row"><span>It should read</span><span class="deva" style="border-bottom:1px solid var(--rule)">संदेष्टुमर्हामि</span></div>
+      <div class="row"><span>Comment</span><span class="small">optional</span></div>
+      <div class="btns"><span class="pri">Send</span><span>Also email the team</span></div>
+      <p class="small">A mock-up. "It should read" is optional: a reader who only knows the word is wrong still taps Send.</p>
+    </div>
+    <div class="keys">
+      <div class="key k-a"><i>1</i><span><b>Typing mistake.</b> The default. The reader may add what it should read.</span></div>
+      <div class="key k-c"><i>2</i><span><b>Who is this?</b> A name in the verse the reader wants explained or linked. This is the student's question that starts the Nāma-Kośa loop.</span></div>
+      <div class="key k-n"><i>3</i><span><b>The page isn't working.</b> The button sends the screen width and the browser with the report, so the fault can be reproduced as the reader saw it.</span></div>
+      <div class="key k-b"><i>4</i><span><b>Something else, or an idea.</b> A comment box. A feature, a missing book, a question about the meaning.</span></div>
+      <p class="cap">The email still opens if the reader wants it to, but the saved report is what starts the work. Emails are a copy, not the record.</p>
+    </div>
+  </div>
+</section>
+
+<section id="routes">
+  <div class="intro">
+    <span class="eyebrow">Where each report goes</span>
+    <h2>Each kind of report has a first check, and then a loop</h2>
+    <p>The agent never decides a report. It does the first piece of legwork, so the person who decides starts with the evidence in front of them.</p>
+  </div>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>The reader says</th><th>The agent's first check</th><th>Then</th><th>Who decides</th></tr></thead>
+    <tbody>
+      <tr><td>Typing mistake, in a verse</td><td>Run the witness check on that verse. Attach what the Critical Edition and Dutt read. Join any flag already open on the verse.</td><td><a href="../corrections/#mahabharata">the correction loop</a></td><td>reviewer, then typist</td></tr>
+      <tr><td>Typing mistake, in the Bhāvadīpa</td><td>No edition carries the Bhāvadīpa, so there is no witness. Attach the reader's proposed reading and the verse it comments on.</td><td><a href="../corrections/#mahabharata">the correction loop</a></td><td>reviewer</td></tr>
+      <tr><td>Who is this?</td><td>Find the name in the index. Join the open job for that person, or open one.</td><td><a href="../namakosa/">the Nāma-Kośa loop</a></td><td>students, then a vidvān</td></tr>
+      <tr><td>The page isn't working</td><td>Open the same address at the reader's screen width, and measure where things are drawn.</td><td><a href="../fixes/">the fix loop</a></td><td>maintainer</td></tr>
+      <tr><td>Something else, or an idea</td><td>Summarise it, group it with similar ones, and add it to the weekly list.</td><td><a href="../newbook/">the new-book loop</a>, or a feature</td><td>the team</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="journey">
+  <div class="intro">
+    <span class="eyebrow">One report, end to end</span>
+    <h2>Report 818: <span class="deva">संदेष्टुमहमि</span></h2>
+    <p>A real open report, sent on 10 October from Sabhā Parva. Here is what would happen to it with the extended button. Steps 1 and 3 happen today. The rest is the proposal.</p>
+  </div>
+  <ol class="journey">
+    <li class="j-person">
+      <div class="mk"><span>1</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Reader</span>Select the word, tap, send <span class="state live">happens today</span></h3>
+        <p>The reader selects <span class="deva">संदेष्टुमहमि</span> in "न त्वां संदेष्टुमहमि भर्तॄन्प्रति शुचिस्मिते". With the extended button they leave "Typing mistake" chosen, and may type what it should read.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>2</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Pick up new reports every hour <span class="state">to build</span></h3>
+        <p>The intake agent reads the reports added since its last run, through a private feed the site provides. It joins duplicates: the same word in the same verse, from two readers, is one item with two reporters. It also records the verse as it stood when reported, so it can tell later whether the verse has changed.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>3</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Run the first check: the witness check <span class="state live">exists today</span></h3>
+        <p>The check already flags this word. Both editions disagree with ours, and they also disagree with each other, which is why a person has to choose.</p>
+        <div class="cases">
+          <div class="case k-a">
+            <h4><i>818</i>Both editions agree we are wrong, and differ on the fix</h4>
+            <table class="three"><tbody>
+              <tr><td>Our text</td><td class="deva">संदेष्टुम<mark>हमि</mark></td></tr>
+              <tr class="print"><td>Critical Edition</td><td class="deva">संदेष्टुमर्हामि</td></tr>
+              <tr class="print"><td>Dutt</td><td class="deva">संदेष्टुमर्हासि</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>What the reviewer sees</b>The report, the reader's proposed reading if they gave one, both editions' readings, and a link to the verse. The verse says "I need not instruct you about your husbands", and that needs the first person, अर्हामि. That is the reviewer's call to make, not the agent's.</div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>4</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Put it in the right queue, marked "reviewed" <span class="state">to build</span></h3>
+        <p>The report's status moves from "new" to "reviewed", meaning the first check is done. It joins the reviewers' queue for Sabhā Parva with its evidence attached. A report the witness check cannot help with, such as report 820, <span class="deva">ददानि</span>, which no edition contradicts, goes into the same queue marked "no witness".</p>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>5</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Reviewer, then typist</span>Decide, and correct the text <span class="state live">happens today, by hand</span></h3>
+        <p>The reviewer rules: fix, not a mistake, or leave open. The typist corrects the verse in the text, as they do today.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>6</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Close the report when the fix lands <span class="state">to build</span></h3>
+        <p>When a commit to the text changes that verse, the agent marks the report resolved, with the commit and the new reading. A "not a mistake" ruling closes it too, with the reviewer's reason. Nobody has to click "Mark as done", and no report is closed without a reason.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>7</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Tell the reader <span class="state">to build</span></h3>
+        <p>A "My reports" page shows each of the reader's reports and what became of it. Once a week the reader gets one email: "12 of your reports on Sabhā Parva were corrected this week. Thank you." It is one email a week and not one per report: a single proofreader sent 778.</p>
+        <div class="out"><b class="h">Result</b>The reader sees their work land. The reports become the test set for the agents' own checks, as the 104 September corrections already are.</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="change">
+  <div class="intro">
+    <span class="eyebrow">What has to change</span>
+    <h2>Four changes on the site, one new agent</h2>
+    <p>The site is a PHP application, in the repository <code>Sriraghunandana92/mahabharata</code> on GitHub. Its developer would make the site changes. The agent lives beside the text, in <code>mbh_src</code>.</p>
+  </div>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Where</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>The popup <code>views/listing/parva.php</code></td><td>Add the four kinds, remembering the last one chosen, plus "It should read" and a comment. For "The page isn't working", send the screen width and the browser.</td></tr>
+      <tr><td>The table <code>passage_reports</code></td><td>New columns: <code>kind</code>, <code>proposed_text</code>, <code>comment</code>, <code>site</code>, <code>screen</code>, <code>verse_hash</code>, <code>resolved_note</code>, <code>resolved_commit</code>, <code>notified_at</code>. The existing status values stay: new, reviewed, resolved.</td></tr>
+      <tr><td>A private feed <code>controllers/mail.php</code></td><td><code>GET mail/reports.json?since=ID</code> and <code>POST mail/updateReport</code>, both requiring a token. This is the agent's only way in.</td></tr>
+      <tr><td>The list <code>mail/report</code></td><td>Behind an editor's sign-in. "Mark as done" becomes a form submission. Add "My reports" for signed-in readers.</td></tr>
+      <tr><td>The intake agent <code>mbh_src/qa/intake.py</code></td><td>Runs hourly. It reads the feed, joins duplicates, runs the witness check on the reported verses, sorts by kind, updates the status, and closes reports whose verse a commit has changed.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="why">The <code>site</code> column is there so the same table can take reports from the other sites. The Yajurveda and the Smṛtimuktāphalam are static pages on GitHub Pages, with no sign-in of their own. Their button would post to this same endpoint.</p>
+</section>
+
+<section id="control">
+  <div class="intro">
+    <span class="eyebrow">The human stays in control</span>
+    <h2>What the intake agent is never allowed to do</h2>
+  </div>
+  <ul class="plain">
+    <li><b>Change the text.</b> It writes only to the report table, and only through the feed.</li>
+    <li><b>Close a report without a reason.</b> Resolved means a commit changed the verse, or a person ruled "not a mistake".</li>
+    <li><b>Re-classify what the reader said.</b> It may add "this looks like the Bhāvadīpa", but the reader's kind stays on the record.</li>
+    <li><b>Show a reader's name or email publicly,</b> or credit them anywhere without their consent.</li>
+    <li><b>Email a reader more than once a week.</b></li>
+  </ul>
+</section>
+
+<section id="pilot">
+  <div class="intro">
+    <span class="eyebrow">How we will know it works</span>
+    <h2>What to measure</h2>
+  </div>
+  <div class="metrics" id="measures">
+    <div><b>Reports that arrive with evidence</b><span>The share of typing-mistake reports where the witness check already has the editions' reading when the reviewer opens them. Measured on the open reports: see below.</span></div>
+    <div><b>Days from report to resolved</b><span>Today nothing records it. The status changes, but not when.</span></div>
+    <div><b>Readers who hear back</b><span>Today none. Every resolved report should reach its reader within a week.</span></div>
+  </div>
+  <div class="tscroll"><table class="t" style="max-width:52rem">
+    <thead><tr><th>Open reports on 17 October, where the reported word is still in the verse</th><th>Reports</th></tr></thead>
+    <tbody>
+      <tr><td>Already flagged, both editions agreeing against our text</td><td class="num">158</td></tr>
+      <tr><td>Already flagged, by one edition</td><td class="num">37</td></tr>
+      <tr><td>No flag: the reviewer starts from the reader's report alone</td><td class="num">150</td></tr>
+      <tr><td><b>All</b></td><td class="num"><b>345</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">From <code>mbh_src/qa/witness_check.py --control</code>, run against the live report list. Of the 583 open reports, the check sets aside the other 238: their word is in the Bhāvadīpa or the Harivaṃśa, which no edition covers, or it has already changed in the text. So today 195 of the 345, 57%, would reach the reviewer with the editions' reading already attached.</p>
+</section>
+
+<section id="open">
+  <div class="intro">
+    <span class="eyebrow">For the team to decide</span>
+    <h2>Questions before building</h2>
+  </div>
+  <ul class="plain">
+    <li>Who has the editor role on the report list, and who reviews the Mahābhārata queue each week?</li>
+    <li>Do readers want to be credited by name for their reports, as the Nāma-Kośa students are? The answer should come from them.</li>
+    <li>Should the email keep opening by default, or only when the reader asks for it? Today it opens on every report, and 778 reports means 778 drafts in one reader's mail client.</li>
+    <li>Which site gets the button next: the Yajurveda review, or the Smṛtimuktāphalam?</li>
+  </ul>
+</section>
+
+<section id="loops" class="appendix">
+  <div class="intro">
+    <span class="eyebrow">The four loops this button starts</span>
+    <h2>Each one follows one real case</h2>
+  </div>
+  <nav class="parts" aria-label="The four loops" style="max-width:none;grid-template-columns:repeat(2,minmax(0,1fr))">
+    <a href="../corrections/"><b>The correction loop</b><span>A typing mistake, checked against the printed page (Yajurveda) or against two other editions (Mahābhārata).</span></a>
+    <a href="../namakosa/"><b>The Nāma-Kośa loop</b><span>"Who is this?" A student asks about Yayāti; students read, and a vidvān signs.</span></a>
+    <a href="../fixes/"><b>The fix loop</b><span>"I click a link and nothing happens." Four fixes, one of them a new feature.</span></a>
+    <a href="../newbook/"><b>The new-book loop</b><span>The Smṛtimuktāphalam, from 4,333 scanned pages to an edition linked with Kane.</span></a>
+  </nav>
+  <p class="small">Report figures are from sanatana.in/mahabharata/mail/report, read on 17 October 2026. The site's code is from the <code>main</code> branch of the site's repository as fetched that day. Report 818's readings are from <code>mbh_src/qa/findings/witness/02.jsonl</code>.</p>
+</section>
+</div>
+</body></html>

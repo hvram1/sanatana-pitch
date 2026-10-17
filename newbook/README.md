@@ -7,7 +7,7 @@ round markers for agent work, diamonds for people's decisions, the engineering i
 an appendix. Figures come from `dharmasastra-gcp/smp/README.md`, `smp/WORKPLAN.md`, and the commits of 14 and 17 September 2026. No scan is reproduced: the scans belong to svradhakrishnasastri.in.
 
 `index.html` is in artifact form (no doctype or charset; `publish.py` adds them).
-Local only for now; `./publish.py --site` would serve it, publicly, at
+Published with the team map (`./publish.py --site`), publicly, at
 https://hvram1.github.io/sanatana-pitch/newbook/. To view locally:
 
     python3 -c "import publish; [publish.build_loop(n, 'dist') for n in publish.LOOPS]"

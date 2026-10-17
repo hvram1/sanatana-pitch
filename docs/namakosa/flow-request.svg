@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="fd" viewBox="0 0 1490 692" role="img" aria-label="One request, from a student’s question to their name on the verse">
+<title>One request, from a student’s question to their name on the verse</title>
+<style>
+.fd{font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif}
+.fd .bg{fill:var(--surface,#fff)}
+.fd .band{fill:var(--band,#eceef2)}
+.fd .lane{font-family:"Spectral",Georgia,serif;font-size:15px;font-weight:600;fill:var(--ink,#1b2130)}
+.fd .stg{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;fill:var(--muted,#5b6474)}
+.fd .grid{stroke:var(--rule,#d9dde5);stroke-width:1;stroke-dasharray:2 4}
+.fd .nb{fill:var(--surface,#fff);stroke:var(--rule,#cfd4dd);stroke-width:1.2}
+.fd .L-agent .nb{stroke:var(--accent,#2f3a8f);stroke-width:1.6}
+.fd .L-student .nb{stroke:var(--leaf,#2f6f55);stroke-width:1.6}
+.fd .L-out .nb{stroke:var(--muted,#5b6474);stroke-dasharray:4 3}
+.fd .gate .nb{fill:var(--gold-soft,#fbf1dc);stroke:var(--gold,#a86a00);stroke-width:2}
+.fd .num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;font-weight:500;fill:var(--accent,#2f3a8f)}
+.fd .L-student .num{fill:var(--leaf,#2f6f55)} .fd .gate .num{fill:var(--gold,#a86a00)} .fd .L-out .num{fill:var(--muted,#5b6474)}
+.fd .who{font-size:12px;font-weight:700;fill:var(--ink,#1b2130)}
+.fd .tx{font-size:11.5px;fill:var(--muted,#5b6474)}
+.fd .ed{stroke:var(--muted,#5b6474);stroke-width:1.5;fill:none;stroke-linejoin:round}
+.fd .ed.hum{stroke:var(--gold,#a86a00)}
+.fd .ah{fill:var(--muted,#5b6474)} .fd .ah.hum{fill:var(--gold,#a86a00)}
+.fd .el{font-size:11px;font-style:italic;fill:var(--ink,#1b2130);paint-order:stroke;stroke:var(--surface,#fff);stroke-width:5px;stroke-linejoin:round}
+.fd .gm{fill:var(--gold,#a86a00)}
+@media (prefers-color-scheme:dark){svg.fd:root{--surface:#1a1f2b;--band:#202535;--rule:#39405a;--ink:#e6e8ee;--muted:#9aa3b5;--accent:#9aa6ff;--leaf:#7fcca8;--gold:#f0b44a;--gold-soft:#2e2615}}
+</style>
+<defs><marker id="a-request" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0 0 L10 5 L0 10 z"/></marker>
+<marker id="h-request" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah hum" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+<rect class="bg" width="1490" height="692" rx="12"/>
+<text class="stg" x="213.0" y="36" text-anchor="middle">REQUEST</text>
+<text class="stg" x="407.0" y="36" text-anchor="middle">CHECK</text>
+<line class="grid" x1="310" y1="46" x2="310" y2="684"/>
+<text class="stg" x="601.0" y="36" text-anchor="middle">PREPARE</text>
+<line class="grid" x1="504" y1="46" x2="504" y2="684"/>
+<text class="stg" x="795.0" y="36" text-anchor="middle">READ</text>
+<line class="grid" x1="698" y1="46" x2="698" y2="684"/>
+<text class="stg" x="989.0" y="36" text-anchor="middle">DECIDE</text>
+<line class="grid" x1="892" y1="46" x2="892" y2="684"/>
+<text class="stg" x="1183.0" y="36" text-anchor="middle">PUBLISH</text>
+<line class="grid" x1="1086" y1="46" x2="1086" y2="684"/>
+<text class="stg" x="1377.0" y="36" text-anchor="middle">THANK</text>
+<line class="grid" x1="1280" y1="46" x2="1280" y2="684"/>
+<rect class="band" x="10" y="58" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="113.0">Others</text>
+<rect class="band" x="10" y="166" width="1470" height="186" rx="8"/>
+<text class="lane" x="22" y="264.0">Agents</text>
+<rect class="band" x="10" y="360" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="415.0">Students</text>
+<rect class="band" x="10" y="468" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="523.0">Junior vidvāns</text>
+<rect class="band" x="10" y="576" width="1470" height="100" rx="8"/>
+<text class="lane" x="22" y="631.0">Senior vidvān</text>
+<path class="ed" d="M213 144 L213 223" marker-end="url(#a-request)"/>
+<path class="ed" d="M282 259 L338 259" marker-end="url(#a-request)"/>
+<path class="ed" d="M407 295 L407 482" marker-end="url(#a-request)"/>
+<text class="el" x="413" y="392" text-anchor="start">known</text>
+<path class="ed" d="M476 259 L504 259 L504 216 L532 216" marker-end="url(#a-request)"/>
+<text class="el" x="504" y="242" text-anchor="middle">missing</text>
+<path class="ed" d="M601 252 L601 266" marker-end="url(#a-request)"/>
+<path class="ed" d="M670 302 L698 302 L698 410 L726 410" marker-end="url(#a-request)"/>
+<path class="ed hum" d="M795 374 L795 295" marker-end="url(#h-request)"/>
+<path class="ed" d="M864 259 L892 259 L892 518 L920 518" marker-end="url(#a-request)"/>
+<text class="el" x="892" y="392" text-anchor="middle">agree</text>
+<path class="ed" d="M864 259 L892 259 L892 626 L920 626" marker-end="url(#a-request)"/>
+<text class="el" x="892" y="446" text-anchor="middle">differ</text>
+<path class="ed hum" d="M476 518 L920 518" marker-end="url(#h-request)"/>
+<text class="el" x="684" y="512" text-anchor="middle">checked</text>
+<path class="ed hum" d="M1058 518 L1086 518 L1086 259 L1114 259" marker-end="url(#h-request)"/>
+<path class="ed hum" d="M1058 626 L1086 626 L1086 259 L1114 259" marker-end="url(#h-request)"/>
+<path class="ed" d="M1252 259 L1308 259" marker-end="url(#a-request)"/>
+<path class="ed" d="M1377 223 L1377 144" marker-end="url(#a-request)"/>
+<g class="L-out"><rect class="nb" x="144.0" y="72.0" width="138" height="72" rx="9"/>
+<text class="num" x="153.0" y="88.0">1</text><text class="who" x="166.0" y="88.0">Student</text>
+<text class="tx" x="153.0" y="105.0">asks about Yayāti</text>
+</g>
+<g class="L-agent"><rect class="nb" x="144.0" y="223.0" width="138" height="72" rx="9"/>
+<text class="num" x="153.0" y="239.0">2</text><text class="who" x="166.0" y="239.0">Agent</text>
+<text class="tx" x="153.0" y="256.0">opens one job for</text>
+<text class="tx" x="153.0" y="270.0">his family</text>
+</g>
+<g class="L-agent"><rect class="nb" x="338.0" y="223.0" width="138" height="72" rx="9"/>
+<text class="num" x="347.0" y="239.0">3</text><text class="who" x="360.0" y="239.0">Agent</text>
+<text class="tx" x="347.0" y="256.0">checks what the</text>
+<text class="tx" x="347.0" y="270.0">index already has</text>
+</g>
+<g class="L-junior gate"><rect class="nb" x="338.0" y="482.0" width="138" height="72" rx="9"/>
+<path class="gm" d="M464.0 536.0 l6 6 l-6 6 l-6 -6 z"/>
+<text class="num" x="347.0" y="498.0">4</text><text class="who" x="360.0" y="498.0">Junior vidvān</text>
+<text class="tx" x="347.0" y="515.0">ticks or strikes the</text>
+<text class="tx" x="347.0" y="529.0">36 known links</text>
+</g>
+<g class="L-agent"><rect class="nb" x="532.0" y="180.0" width="138" height="72" rx="9"/>
+<text class="num" x="541.0" y="196.0">5</text><text class="who" x="554.0" y="196.0">Agent</text>
+<text class="tx" x="541.0" y="213.0">finds 522 Purāṇa</text>
+<text class="tx" x="541.0" y="227.0">verses and sorts</text>
+<text class="tx" x="541.0" y="241.0">them</text>
+</g>
+<g class="L-agent"><rect class="nb" x="532.0" y="266.0" width="138" height="72" rx="9"/>
+<text class="num" x="541.0" y="282.0">6</text><text class="who" x="554.0" y="282.0">Agent</text>
+<text class="tx" x="541.0" y="299.0">makes batches, two</text>
+<text class="tx" x="541.0" y="313.0">readers each</text>
+</g>
+<g class="L-student gate"><rect class="nb" x="726.0" y="374.0" width="138" height="72" rx="9"/>
+<path class="gm" d="M852.0 428.0 l6 6 l-6 6 l-6 -6 z"/>
+<text class="num" x="735.0" y="390.0">7</text><text class="who" x="748.0" y="390.0">Two students</text>
+<text class="tx" x="735.0" y="407.0">is this our Yayāti?</text>
+<text class="tx" x="735.0" y="421.0">verse by verse</text>
+</g>
+<g class="L-agent"><rect class="nb" x="726.0" y="223.0" width="138" height="72" rx="9"/>
+<text class="num" x="735.0" y="239.0">8</text><text class="who" x="748.0" y="239.0">Agent</text>
+<text class="tx" x="735.0" y="256.0">reminds, then</text>
+<text class="tx" x="735.0" y="270.0">compares the answers</text>
+</g>
+<g class="L-junior gate"><rect class="nb" x="920.0" y="482.0" width="138" height="72" rx="9"/>
+<path class="gm" d="M1046.0 536.0 l6 6 l-6 6 l-6 -6 z"/>
+<text class="num" x="929.0" y="498.0">9</text><text class="who" x="942.0" y="498.0">Junior vidvān</text>
+<text class="tx" x="929.0" y="515.0">confirms where they</text>
+<text class="tx" x="929.0" y="529.0">agree; signs</text>
+</g>
+<g class="L-senior gate"><rect class="nb" x="920.0" y="590.0" width="138" height="72" rx="9"/>
+<path class="gm" d="M1046.0 644.0 l6 6 l-6 6 l-6 -6 z"/>
+<text class="num" x="929.0" y="606.0">10</text><text class="who" x="950.0" y="606.0">Senior vidvān</text>
+<text class="tx" x="929.0" y="623.0">decides the hard</text>
+<text class="tx" x="929.0" y="637.0">ones; signs</text>
+</g>
+<g class="L-agent"><rect class="nb" x="1114.0" y="223.0" width="138" height="72" rx="9"/>
+<text class="num" x="1123.0" y="239.0">11</text><text class="who" x="1144.0" y="239.0">Agent</text>
+<text class="tx" x="1123.0" y="256.0">records who read and</text>
+<text class="tx" x="1123.0" y="270.0">who signed; rebuilds</text>
+<text class="tx" x="1123.0" y="284.0">the site</text>
+</g>
+<g class="L-agent"><rect class="nb" x="1308.0" y="223.0" width="138" height="72" rx="9"/>
+<text class="num" x="1317.0" y="239.0">12</text><text class="who" x="1338.0" y="239.0">Agent</text>
+<text class="tx" x="1317.0" y="256.0">tells each student</text>
+<text class="tx" x="1317.0" y="270.0">their verses are</text>
+<text class="tx" x="1317.0" y="284.0">live</text>
+</g>
+<g class="L-out"><rect class="nb" x="1308.0" y="72.0" width="138" height="72" rx="9"/>
+<text class="num" x="1317.0" y="88.0">13</text><text class="who" x="1338.0" y="88.0">Upanyāsakar</text>
+<text class="tx" x="1317.0" y="105.0">invited to tell the</text>
+<text class="tx" x="1317.0" y="119.0">story</text>
+</g>
+</svg>

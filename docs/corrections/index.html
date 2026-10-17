@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Correction Loop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the Nāma-Kośa loop's sibling, in the same type and tokens. One printed
+   page sits at the centre, its disputed words boxed; the seven steps follow it. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --ink:#1b2130; --muted:#5b6474; --rule:#d9dde5;
+  --accent:#2f3a8f; --accent-soft:#e6e8f6;
+  --gold:#a86a00; --gold-soft:#fbf1dc;
+  --leaf:#2f6f55; --leaf-soft:#e2f0e9;
+  --clay:#8a3b2e; --clay-soft:#f6e6e2;
+  --band:#eceef2; --paper:#ffffff;
+  --shadow:0 1px 2px rgba(27,33,48,.06),0 8px 24px rgba(27,33,48,.07);
+  --f-display:"Spectral",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-deva:"Tiro Devanagari Sanskrit","Noto Serif Devanagari","Nirmala UI",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151d; --surface:#1a1f2b; --ink:#e6e8ee; --muted:#9aa3b5; --rule:#2c3343;
+  --accent:#9aa6ff; --accent-soft:#232a45; --gold:#f0b44a; --gold-soft:#2e2615;
+  --leaf:#7fcca8; --leaf-soft:#18302a; --clay:#f0a090; --clay-soft:#35201c; --band:#161a24; --paper:#e9e6df;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+code{font-family:var(--f-mono);font-size:.85em;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.7rem;font-weight:600}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.deva{font-family:var(--f-deva)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted)}
+section{padding-block:40px 8px;display:grid;gap:18px}
+.intro{display:grid;gap:12px}
+.intro p{max-width:46rem}
+header.hero{padding-block:48px 12px;display:grid;gap:18px}
+.lede{font-size:1.15rem;max-width:46rem}
+.rule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.rule div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.rule b{font-family:var(--f-display);font-size:1.1rem}
+.rule .h{border:2px solid var(--gold);background:var(--gold-soft)}
+ul.plain{margin:0;padding-left:18px;display:grid;gap:6px;max-width:52rem}
+.tscroll{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+.t th,.t td{text-align:left;padding:9px 12px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.t th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.t td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;padding-right:20px;white-space:nowrap}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metrics div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.metrics b{font-family:var(--f-display);font-size:1.05rem}
+.metrics span{font-size:.9rem;color:var(--muted)}
+.ledger{font-family:var(--f-mono);font-size:.78rem;line-height:1.5;background:var(--band);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin:8px 0 4px;overflow-x:auto;white-space:pre}
+.appendix{border-top:2px solid var(--rule);margin-top:24px}
+
+/* the printed page, with its disputed places boxed */
+.folio{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+.scan{position:relative;background:var(--paper);border:1px solid var(--rule);border-radius:6px;box-shadow:var(--shadow);overflow:hidden;max-width:100%}
+.scan img{display:block;width:100%;height:auto}
+.scan .hl{position:absolute;border:2px solid var(--hc);background:color-mix(in srgb,var(--hc) 12%,transparent);border-radius:3px}
+.scan .hl b{position:absolute;left:-2px;top:-20px;font-family:var(--f-mono);font-size:.7rem;font-weight:500;line-height:1;padding:3px 5px;border-radius:3px 3px 0 0;background:var(--hc);color:#fff}
+.hl.k-n{--hc:#2f3a8f} .hl.k-a{--hc:#8a3b2e} .hl.k-c{--hc:#a86a00}
+.cap{font-size:.86rem;color:var(--muted);padding-top:8px}
+.keys{display:grid;gap:12px;align-content:start}
+.key{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem}
+.key i{font-style:normal;font-family:var(--f-mono);font-size:.8rem;text-align:center;border-radius:4px;padding:1px 0;color:#fff;background:var(--kc)}
+.key.k-n{--kc:#2f3a8f} .key.k-a{--kc:#8a3b2e} .key.k-b{--kc:#2f6f55} .key.k-c{--kc:#a86a00} .key.k-d{--kc:#a86a00}
+
+/* the journey: round = agent, diamond = person */
+.journey{list-style:none;margin:0;padding:0;display:grid;max-width:52rem}
+.journey > li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 16px;position:relative;padding-bottom:28px}
+.journey > li::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--rule)}
+.journey > li:last-child::before{display:none}
+.journey .mk{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-weight:500;font-size:1rem;background:var(--accent-soft);color:var(--accent);border:2px solid var(--accent)}
+.journey .j-person .mk{background:var(--gold-soft);color:var(--gold);border-color:var(--gold);border-radius:10px;transform:rotate(45deg)}
+.journey .j-person .mk span{transform:rotate(-45deg)}
+.journey .jb{display:grid;gap:10px;min-width:0;padding-top:4px}
+.journey h3{font-size:1.3rem}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:3px}
+.tag.a{background:var(--accent-soft);color:var(--accent)}
+.tag.p{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+.state{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:999px;padding:1px 8px;vertical-align:3px;white-space:nowrap}
+.state.live{color:var(--leaf);border-color:var(--leaf);background:var(--leaf-soft)}
+.state.wait{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+.out{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:8px;padding:10px 14px;font-size:.93rem;display:grid;gap:4px}
+.j-person .out{border-left-color:var(--gold)}
+.out b.h{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.out ul{margin:0;padding-left:18px;display:grid;gap:2px}
+.why{font-size:.93rem;color:var(--muted)}
+
+/* the three readings of one word */
+.cases{display:grid;gap:14px}
+.case{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--kc);border-radius:10px;padding:14px 16px;display:grid;gap:10px;min-width:0}
+.case.k-a{--kc:var(--clay)} .case.k-b{--kc:var(--leaf)} .case.k-c{--kc:var(--gold)} .case.k-d{--kc:var(--gold)}
+.case h4{margin:0;font-family:var(--f-display);font-size:1.1rem;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.case h4 i{font-style:normal;font-family:var(--f-mono);font-size:.78rem;color:var(--surface);background:var(--kc);border-radius:4px;padding:0 6px}
+.case h4 small{font-family:var(--f-mono);font-size:.72rem;font-weight:400;color:var(--muted)}
+.three{border-collapse:collapse;width:100%;font-size:.93rem}
+.three td{padding:6px 12px 6px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.three td:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:11rem}
+.three .deva{font-size:1.15rem}
+.three mark{background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.three tr.print td{font-weight:600}
+.ruling{font-size:.93rem;display:grid;gap:2px}
+.ruling b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kc);font-weight:500}
+.crop{background:var(--paper);border:1px solid var(--rule);border-radius:4px;overflow:hidden;max-width:560px}
+.crop img{display:block;width:100%;height:auto}
+
+/* mock of the vidvān's review row */
+.mock{background:var(--surface);border:1px dashed var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:10px}
+.mk-l{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mock .row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 12px;font-size:.95rem;align-items:baseline}
+.mock .row span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mock .row .deva{font-size:1.1rem}
+.mock .row u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 2px}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns span{font-size:.85rem;border:1px solid var(--rule);border-radius:6px;padding:3px 10px;color:var(--ink);background:var(--bg)}
+.btns span.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+
+.bigger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.bigger div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start;font-size:.93rem}
+.bigger b{font-family:var(--f-display);font-size:1.05rem}
+.bigger .ev{font-size:.85rem;color:var(--muted)}
+
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:52rem}
+.parts a{display:grid;gap:4px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px 16px}
+.parts a b{font-family:var(--f-display);font-size:1.05rem}
+.parts a span{font-size:.88rem;color:var(--muted)}
+.parts a:hover{border-color:var(--accent)}
+.parthead{padding-block:56px 0;display:grid;gap:10px;border-top:2px solid var(--rule);margin-top:24px}
+.parthead .pn{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.parthead h2{font-size:2.1rem}
+.parthead p{max-width:46rem;font-size:1.05rem}
+.verse{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;max-width:52rem}
+.verse .deva{font-size:1.2rem;line-height:1.9}
+.verse u{text-decoration:none;background:var(--clay-soft);color:var(--clay);border-radius:3px;padding:0 3px}
+.verse .en{font-size:.95rem;color:var(--muted);font-style:italic}
+.three td.ed{font-family:var(--f-body);font-size:.88rem;color:var(--muted);text-transform:none;letter-spacing:0}
+@media (max-width:900px){
+  .parts{grid-template-columns:minmax(0,1fr)}
+  .folio,.rule,.metrics,.bigger{grid-template-columns:minmax(0,1fr)}
+  .three td:first-child{width:7rem}
+  .mock .row{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head><body>
+<div class="wrap">
+<header class="hero">
+  <span class="eyebrow">How a text on sanatana.in gets corrected · two cases</span>
+  <h1>Agents find the differences. People rule on them.</h1>
+  <p class="lede">Every text on the site was typed in by someone, and typing brings mistakes. Agents can find where a text disagrees with something it should match. They cannot tell a typing mistake from a reading the tradition really has. This page follows two real corrections from start to finish, to show where that line falls.</p>
+  <div class="rule">
+    <div><b>Agents do</b><span>read the printed pages; find the same verse in other editions; compare; set aside what agrees; lay the rest out for a person; measure how often they were right; apply the rulings and rebuild.</span></div>
+    <div class="h"><b>People decide</b><span>whether a difference is a mistake or a real reading; which reading goes into the text; what is noted beside it. Nothing on the site changes before that.</span></div>
+  </div>
+  <nav class="parts" aria-label="The two cases">
+    <a href="#yajurveda"><b>1 · Against the printed page</b><span>Taittirīya Saṃhitā with Bhaṭṭabhāskara's bhāṣya. We have the scans, so the book itself is the witness.</span></a>
+    <a href="#mahabharata"><b>2 · Against other editions</b><span>Mahābhārata, Mahāprasthānika Parva. We have no scans, so two other editions are the witnesses.</span></a>
+  </nav>
+</header>
+
+<div class="parthead" id="yajurveda">
+  <span class="pn">Case 1 · Yajurveda</span>
+  <h2>The printed page is the authority. A vidvān reads it.</h2>
+  <p>The bhāṣya on yajurveda.sanatana.in was built from a typed file, a Word document someone keyed in from the Mysore edition. Nobody has checked that file against the book. This case follows one printed page, Volume I page 66, through the checking. The page shows four kinds of mistake, and each one needs a different fix. One of them must not be "fixed" at all.</p>
+</div>
+
+<section id="page">
+  <div class="intro">
+    <span class="eyebrow">Where it starts</span>
+    <h2>A bare number, and a file nobody has checked</h2>
+    <p>The printed book puts a small raised number on a word of the mantra, and the same number at the head of the bhāṣya paragraph that explains it. The typed file kept the paragraph's number and lost the mantra's. So a reader on the site sees a paragraph opening with "1" and nothing in the mantra that it points to.</p>
+    <p>Fixing that means going back to the print. Once someone is checking the print anyway, every other difference between the print and the typed file comes to light too. Here is the page.</p>
+  </div>
+  <div class="folio">
+    <figure class="scan" style="margin:0">
+      <img src="page-66.webp" width="1000" height="1608" alt="Taittirīya Saṃhitā with Bhaṭṭabhāskara's bhāṣya, Mysore edition, Volume I page 66: three lines of mantra, four bhāṣya paragraphs, and two footnotes">
+      <span class="hl k-n" style="left:15%;top:13.8%;width:20%;height:3.7%"><b>¹</b></span>
+      <span class="hl k-c" style="left:26.2%;top:27.1%;width:14%;height:3%"><b>c</b></span>
+      <span class="hl k-a" style="left:16%;top:53.4%;width:11.5%;height:2.9%"><b>a</b></span>
+      <span class="hl k-c" style="left:17.8%;top:88.6%;width:25%;height:2.6%"><b>c</b></span>
+    </figure>
+    <div class="keys">
+      <div class="key k-n"><i>¹</i><span><b>The numbers on the mantra.</b> ¹ sits on भुवनमसि, ² on जुह्वेहि, ³ on उपभृदेहि, ⁴ on अग्नाविष्णू. Each one points to the bhāṣya paragraph with the same number. The typed file has lost all four.</span></div>
+      <div class="key k-a"><i>a</i><span><b>The typed file has a typo.</b> The print reads दक्षिणेन. The typed file has दक्षिणणेन.</span></div>
+      <div class="key k-b"><i>b</i><span><b>The reading agent misread a letter.</b> This is on the next page, p.67: the print reads आघार, and the agent read ध for घ.</span></div>
+      <div class="key k-c"><i>c</i><span><b>The book records another reading.</b> The print reads जुहूप्रभृतौ, marked with a star. The footnote below says two manuscripts, ख and ग, read जुहूमुपभृतं वा. The reading agent wrote जुहूपभृतौ, the form a reader might expect, and so quietly "corrected" the book.</span></div>
+      <div class="key k-d"><i>d</i><span><b>A footnote read wrongly.</b> On p.67, a footnote gives a manuscript reading and, beside it, the editor's own guess. The agent read both as the same word, and the difference vanished.</span></div>
+      <p class="cap">Mysore edition, Vol. I pp.66–67, TS 1.1.12. The boxes are drawn by us. The page is shown here as the vidvān sees it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="intro">
+    <span class="eyebrow">What happens next</span>
+    <h2>Seven steps, two of them decided by people</h2>
+    <p>Round markers are work an agent does by itself. Diamonds are where the work stops and waits for a person. Each step is marked with where it stands today.</p>
+  </div>
+  <ol class="journey">
+    <li class="j-agent">
+      <div class="mk"><span>1</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Take on the whole volume, not one paragraph <span class="state live">done</span></h3>
+        <p>The bare "1" is not a one-off. Every anuvāka the typed file covers has the same problem. So the agent opens one job for the printed volumes the typed file came from: Volumes I to III, Kāṇḍa 1 to 2.2. It first reads the running head of every page, "[का. १. प्र. १." and "अनु. १२.]", so it knows which anuvāka each page belongs to.</p>
+        <div class="out"><b class="h">Result</b>1,205 pages, each tied to its kāṇḍa, praśna and anuvāka. On the way it found 13 places where the praśna changes mid-volume, and 38 pages that were six anuvākas out, because the book prints two numbers on them.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>2</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Read every page, asking only narrow questions <span class="state live">done</span></h3>
+        <p>The reading agent sees the page together with the clean mantra text, and is asked only three things. Which number sits on which word? What do the footnotes say? What are the first few words of each bhāṣya paragraph? It is not asked to retype the page, so it has less room to invent.</p>
+        <div class="out"><b class="h">Result</b>For page 66: four numbers on four mantra words, two footnotes, four paragraph openings. Across the three volumes: 1,763 numbers, 1,392 footnotes, 1,501 paragraph openings.</div>
+        <p class="why">Why read every page, and not only where something looks wrong: most of what the typed file says is right, and the only way to show that is to check it against the print. Reading everything lets the vidvān skip what is confirmed and look only at the rest.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>3</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Compare three witnesses, and sort <span class="state live">done</span></h3>
+        <p>For each item there are up to three witnesses: what the reading agent saw on the page, what the typed file says, and what the bhāṣya says about itself (a paragraph names the words it explains, so ¹ "…भुवनमिति" must belong on भुवनमसि). Where they agree, or the agent's checks leave no doubt, the item is settled. Where they do not, it goes to the vidvān. The agent does not pick a winner.</p>
+        <div class="tscroll"><table class="t">
+          <thead><tr><th>What was compared</th><th>Settled without the vidvān</th><th>To the vidvān</th><th>Set aside for now</th></tr></thead>
+          <tbody>
+            <tr><td>Numbers on mantra words</td><td class="num">1,310</td><td class="num">392 + 61 sample</td><td></td></tr>
+            <tr><td>Paragraph openings, print against typed file</td><td class="num">1,059</td><td class="num">368</td><td>74 that match no paragraph</td></tr>
+            <tr><td>Footnotes</td><td></td><td class="num">434</td><td>958 source references, such as "ब्रा. ३-३-७", to be linked later</td></tr>
+          </tbody>
+        </table></div>
+        <p class="why">The sample: one in twenty of the items that agree is shown to the vidvān anyway, so we learn whether "all agree" can be trusted.</p>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>4</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Team member</span>Check a sample by eye before the vidvān sees anything <span class="state live">done</span></h3>
+        <p>A vidvān's hours are the scarcest thing in the project. Before any of them are spent, a member of the team goes through 50 pages by eye against the print, to see whether the agent's sorting holds up.</p>
+        <div class="out"><b class="h">Result</b>Of 40 numbers the agent placed from the page alone, 39 were right. The check also found 54 pages that had been read with the wrong anuvāka's text alongside. Their items go to the vidvān marked "read again", and those pages go into the next reading.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>5</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Lay each question out beside the print <span class="state live">done</span></h3>
+        <p>The agent builds three review pages for each praśna: numbers, footnotes and openings. Each item shows the printed page itself, with the footnote band cut out and enlarged where that helps, so the vidvān checks against the book rather than against us. The differing letters are marked in both readings.</p>
+        <div class="mock">
+          <span class="mk-l">The vidvān's openings page · Vol. I p.66, paragraph 2</span>
+          <div class="row"><span>Printed page</span><span class="deva"><u>दक्षिणेन</u> जुहूमादत्ते—जुह्विति ॥ हे</span></div>
+          <div class="row"><span>Typed file</span><span class="deva"><u>दक्षिणणेन</u> जुहूमादत्ते—जुह्विति ॥ हे</span></div>
+          <div class="btns"><span class="pri">Docx is right</span><span>The print differs from the docx</span><span>Numbered differently</span><span>Can't tell</span></div>
+          <p class="small">The buttons are the ones on the live review page. "Docx" is the typed file.</p>
+        </div>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>6</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Vidvān</span>Rule on each difference, against the print <span class="state wait">waiting on the vidvān</span></h3>
+        <p>This is the step that cannot be handed to an agent. The four cases on pages 66 and 67 each call for a different ruling.</p>
+        <div class="cases">
+          <div class="case k-a">
+            <h4><i>a</i>The typed file is wrong <small>p.66 ¶2</small></h4>
+            <table class="three"><tbody>
+              <tr class="print"><td>Printed page</td><td class="deva">दक्षिणेन</td></tr>
+              <tr><td>Typed file</td><td class="deva">दक्षि<mark>णणे</mark>न</td></tr>
+              <tr><td>Reading agent</td><td class="deva">दक्षिणेन</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>Ruling</b>"The print differs from the docx." The site takes the printed reading. The typed file is not edited: the correction is a separate entry that says what changed, why, and who ruled.</div>
+          </div>
+          <div class="case k-b">
+            <h4><i>b</i>The reading agent is wrong <small>p.67 ¶6</small></h4>
+            <div class="crop"><img src="page-67-para6.webp" width="900" height="74" alt="The opening of paragraph 6 on page 67: आघारमाघारयति—इत इति"></div>
+            <table class="three"><tbody>
+              <tr class="print"><td>Printed page</td><td class="deva">आघारमाघारयति</td></tr>
+              <tr><td>Typed file</td><td class="deva">आघारमाघारयति</td></tr>
+              <tr><td>Reading agent</td><td class="deva">आ<mark>धा</mark>रमाघारयति</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>Ruling</b>"Docx is right." Nothing changes on the site. The agent's misreading is counted, which tells us how far to trust it next time.</div>
+          </div>
+          <div class="case k-c">
+            <h4><i>c</i>The book records another reading <small>p.66 ¶1 and its footnote</small></h4>
+            <table class="three"><tbody>
+              <tr class="print"><td>Printed page</td><td class="deva">जुहूप्रभृतौ *</td></tr>
+              <tr><td>Footnote</td><td class="deva">* ख. ग—जुहूमुपभृतं वा.</td></tr>
+              <tr><td>Typed file</td><td class="deva">जुहूप्रभृतौ <span class="small">(no footnote)</span></td></tr>
+              <tr><td>Reading agent</td><td class="deva">जुहू<mark>प</mark>भृतौ</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>What the vidvān is asked</b>The print and the typed file agree. The agent wrote what the word "ought" to be (the two ladles, juhū and upabhṛt) and the editor recorded that two manuscripts read it another way. The vidvān decides whether प्र is a misprint. Either way, the edition's reading stays as printed, a misprint is recorded as the vidvān's note, and the manuscript reading is shown with the word. An agent's guess is never written into the text.</div>
+          </div>
+          <div class="case k-d">
+            <h4><i>d</i>A variant reading, misread <small>p.67 footnote *</small></h4>
+            <div class="crop"><img src="page-67-footnote.webp" width="1600" height="97" alt="Footnote band on page 67: *ग—अध्वकर्तृकः. [an editor's conjecture in brackets with a question mark] and †ब्रा. ३-३-७."></div>
+            <table class="three"><tbody>
+              <tr class="print"><td>Printed page</td><td class="deva">* ग—अध्वकर्तृकः. [ … ? ]</td></tr>
+              <tr><td>Typed file</td><td><span class="small">The footnote is not there at all</span></td></tr>
+              <tr><td>Reading agent</td><td class="deva">ग—अध्व<mark>र्त</mark>कः. [अध्वर्तकः ?]</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>Ruling</b>"Correct the reading," typed in as printed. Manuscript ग reads one word, and the editor adds his own guess in brackets. The agent read both as the same word, so the variant disappeared. The vidvān restores it, and it is shown on the site as the book prints it.</div>
+          </div>
+        </div>
+        <div class="out"><b class="h">Where this stands</b>The review of Kāṇḍa 1 to 2.2 is live for the vidvān. The rulings come back as one file, which is saved with the corrections.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>7</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Apply the rulings and rebuild the site <span class="state">built for Sāyaṇa; next for these</span></h3>
+        <p>The agent turns each ruling into a correction entry, rebuilds the bhāṣya from the typed file plus the corrections, and republishes the site. On TS 1.1.12, the word भुवनमसि becomes a link to paragraph ¹, paragraph ² reads दक्षिणेन, and जुहूप्रभृतौ carries a small mark that opens the manuscript reading.</p>
+        <p>The rebuild refuses a correction that does not fit. If the words it quotes are not found exactly once, or the place it moves text to is not empty, it stops and says why.</p>
+        <div class="out"><b class="h">Result</b>The typed file stays as received. Anyone can see the text as it came in, every change made to it, the evidence for each change, and who ruled.</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="bigger">
+  <div class="intro">
+    <span class="eyebrow">The same loop catches bigger faults</span>
+    <h2>When whole commentaries look missing</h2>
+    <p>The same steps fixed the other bhāṣya on the site, Sāyaṇa's, which has no scans. There the agent compares the typed file with Sāyaṇa's own headings and closing lines, and with the mantras each block quotes. Some anuvākas looked empty. Most of them were not.</p>
+  </div>
+  <div class="bigger">
+    <div><b>Twelve commented as one</b><span>TS 2.2.2 to 2.2.12 had no commentary. Sāyaṇa's heading says "तत्र प्रथमादिद्वादशान्ता अनुवाकाः": one commentary for the 1st to the 12th. Now each of the twelve points to that one block, instead of showing as missing.</span><span class="ev">Evidence cited in the entry: his heading and his closing line, प्रथमादिद्वादशान्ता अनुवाकाः ।। १-१२ ।।</span></div>
+    <div><b>One anuvāka hidden inside another</b><span>6.4.3 was empty, and 6.4.2 was twice the usual length. Partway through, the passages it quotes switch from 6.4.2's mantras to 6.4.3's, and its references change from अ. २ to अ. ३. The block is cut there, and the rest goes to 6.4.3.</span><span class="ev">Cut at अत्रोपावहरेदिति विधिं सूचयन्, his lead-in to the first 6.4.3 quotation.</span></div>
+    <div><b>"Not in our materials" against "not commented"</b><span>An empty place is never simply called missing. Either our materials lack text the commentator wrote, or the commentator says he does not comment there, as the Mysore print's footnote says of Bhaṭṭabhāskara on 1.4.32–36. The site says which.</span><span class="ev">Two separate labels in the data, so neither is mistaken for the other.</span></div>
+  </div>
+</section>
+
+<div class="parthead" id="mahabharata">
+  <span class="pn">Case 2 · Mahābhārata</span>
+  <h2>No scan to check against. Two editions stand in for it.</h2>
+  <p>The Mahābhārata on sanatana.in is typed from the text Nīlakaṇṭha commented on, with his Bhāvadīpa, and there are no page scans to check it against. Two other editions are available: the Critical Edition from the Bhandarkar Oriental Research Institute in Pune, and M.N. Dutt's text and translation. Neither one is our text, so a difference is not proof of a mistake. This case follows one chapter, Mahāprasthānika Parva 3, where Yudhiṣṭhira will not enter heaven without the dog.</p>
+</div>
+
+<section id="mbh-verse">
+  <div class="intro">
+    <span class="eyebrow">Where it starts</span>
+    <h2>"To eat" where the verse means "to abandon"</h2>
+    <p>Indra tells Yudhiṣṭhira to leave the dog behind. Yudhiṣṭhira answers that he will never abandon one who is frightened and devoted to him: that is his vow. This is the verse as the site had it until 27 September 2026.</p>
+  </div>
+  <div class="verse">
+    <span class="mk-l">Mahāprasthānika Parva 3.12 · as it was typed</span>
+    <p class="deva">भीतं भक्तं नान्यदस्तीति <u>चार्त</u> प्राप्तं क्षीणं रक्षणे प्राणलिप्सुम्।<br>प्राणत्यागादप्यहं नैव <u>भोक्तुं</u> यतेयं वै नित्यमेतद्<u>ब्रुतं</u> मे॥१२॥</p>
+    <p class="en">"…even at the cost of my life I will never try to eat him: this is my constant vow."</p>
+    <p class="small">भोक्तुं means "to eat". The sense needs मोक्तुं, "to abandon". ब्रुतं should be व्रतं, "vow", and चार्त should be चार्तं. These three slips were among the errors sent in to the typing team, who corrected them by hand.</p>
+  </div>
+</section>
+
+<section id="mbh-journey">
+  <div class="intro">
+    <span class="eyebrow">What happens next</span>
+    <h2>Seven steps, two of them decided by people</h2>
+    <p>Here the agent's job is to find mistakes like this one before a reader has to, and to point the typing team at them.</p>
+  </div>
+  <ol class="journey">
+    <li class="j-person">
+      <div class="mk"><span>1</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Readers and typists</span>Errors are reported and corrected by hand <span class="state live">running today</span></h3>
+        <p>Readers on sanatana.in report a verse that looks wrong. The typing team checks it and corrects the text. Between July and September 2026 they made 104 corrections to the verses, mostly from errors sent in, verse 3.12 among them.</p>
+        <div class="out"><b class="h">Result</b>104 corrections, each one now a known mistake. They also become a test for the agent: a good check would have caught them before anyone reported them.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>2</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Find the same verse in two other editions <span class="state live">done</span></h3>
+        <p>The three texts number their verses differently, so the agent finds each verse by its words, never by its number. Our 3.12 is Dutt's 310.11. The Critical Edition has no such verse at all: it goes from Yudhiṣṭhira's verse 11 straight to Indra's reply.</p>
+        <div class="out"><b class="h">Result</b>Verse 3.12 has one witness, Dutt. The Critical Edition leaves it out, which is a fact about that edition, not a fault in ours.</div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>3</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Flag only where both editions agree against us <span class="state live">done</span></h3>
+        <p>The Critical Edition differs from our recension on thousands of words, and those are real variant readings. So one edition differing proves nothing. The agent raises a firm flag only when both editions read the same word, they differ from ours by a letter or two, and the difference is not a spelling convention. Conventions such as सन्निधौ for संनिधौ, कर्म्म for कर्म, or दत्त्वा for दत्वा are never flagged.</p>
+        <div class="tscroll"><table class="t">
+          <thead><tr><th>Flag</th><th>When</th><th>Raised across the 18 parvas</th></tr></thead>
+          <tbody>
+            <tr><td>Both editions</td><td>Both read the same word, against ours</td><td class="num">5,468</td></tr>
+            <tr><td>One edition</td><td>One differs, and the other has no matching verse</td><td class="num">5,466</td></tr>
+            <tr><td>Not flagged</td><td>One edition reads as ours. That is a variant, not a typo</td><td></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>4</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Test itself on mistakes we already know <span class="state live">done</span></h3>
+        <p>Before anyone's time is spent, the agent runs its check on the text as it stood in July and compares the result with the 104 corrections the typists made since.</p>
+        <div class="tscroll"><table class="t">
+          <thead><tr><th>Of the 104 known corrections</th><th>Verses</th></tr></thead>
+          <tbody>
+            <tr><td>Caught, both editions agreeing</td><td class="num">48</td></tr>
+            <tr><td class="small">…with the editions' reading exactly the typist's fix</td><td class="num">46</td></tr>
+            <tr><td>Caught, one edition only (verse 3.12 is one of these)</td><td class="num">14</td></tr>
+            <tr><td>Missed</td><td class="num">42</td></tr>
+          </tbody>
+        </table></div>
+        <p class="why">So the check finds about six in ten of the mistakes readers find, and it does not replace them. The misses include plain typos such as भामसेनो for भीमसेनो, so the check still has room to improve.</p>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>5</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Lay each flag out for a reviewer <span class="state live">done</span></h3>
+        <p>The agent builds a review page: our text, the editions' reading, and which edition says what. There is one shared online page, and one file per parva for reviewers who work offline on a phone. An offline reviewer's decisions are sent back as a file through the phone's share menu.</p>
+        <div class="mock">
+          <span class="mk-l">The review page · Mahāprasthānika Parva 3.11 · open today</span>
+          <div class="row"><span>Our text</span><span class="deva">नाद्य<u>त्यक्ष्यामेनं</u></span></div>
+          <div class="row"><span>Both editions</span><span class="deva">नाद्य<u>त्यक्ष्याम्येनं</u></span></div>
+          <div class="btns"><span class="pri">Fix</span><span>Not a mistake</span><span>Leave open</span></div>
+          <p class="small">A real open flag, from the verse just before 3.12. The buttons stand for the three decisions the page records.</p>
+        </div>
+      </div>
+    </li>
+    <li class="j-person">
+      <div class="mk"><span>6</span></div>
+      <div class="jb">
+        <h3><span class="tag p">Reviewer</span>Decide each flag, one verse at a time <span class="state wait">waiting on reviewers</span></h3>
+        <p>The two flags in this chapter show why a person still has to read.</p>
+        <div class="cases">
+          <div class="case k-a">
+            <h4><i>3.11</i>Both editions agree against us</h4>
+            <table class="three"><tbody>
+              <tr><td>Our text</td><td class="deva">त्यक्ष्या<mark>मे</mark>नं</td></tr>
+              <tr class="print"><td>Critical Edition</td><td class="deva">त्यक्ष्याम्येनं</td></tr>
+              <tr class="print"><td>Dutt</td><td class="deva">त्यक्ष्याम्येनं</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>What the reviewer decides</b>त्यक्ष्याम्येनं, "I will abandon him", is the form the grammar needs. Two editions that share a reading against ours are rarely both wrong. This one is probably a fix, but a reviewer confirms it before anything changes.</div>
+          </div>
+          <div class="case k-c">
+            <h4><i>3.12</i>Only one witness, and it has its own slip <small>fixed by hand on 27 September</small></h4>
+            <table class="three"><tbody>
+              <tr><td>Our text, before</td><td class="deva"><mark>चार्त</mark> … <mark>भो</mark>क्तुं … <mark>ब्रु</mark>तं</td></tr>
+              <tr><td>Critical Edition</td><td class="ed">has no such verse</td></tr>
+              <tr class="print"><td>Dutt</td><td class="deva"><mark>चात</mark> … मोक्तुं … व्रतं</td></tr>
+            </tbody></table>
+            <div class="ruling"><b>What the reviewer decides</b>Dutt is right on two words and has a slip of its own on the third: चात for चार्तं. A single edition can be wrong, so the agent marks this kind of flag as weaker and leaves the reading to a person. The fix that went in reads चार्तं, मोक्तुं and व्रतं: two words as Dutt has them, and one where Dutt is wrong too.</div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="j-agent">
+      <div class="mk"><span>7</span></div>
+      <div class="jb">
+        <h3><span class="tag a">Agent</span>Apply the decisions, one parva at a time <span class="state">next to build</span></h3>
+        <p>Today the typists apply corrections by hand. The next piece gathers the reviewers' decisions and shows where two reviewers disagree, so a person can settle it. It then applies the agreed fixes to the text, one commit for each parva, so every change can be traced to who decided it.</p>
+        <div class="out"><b class="h">Result</b>A finding stays settled once decided. It comes back only if the verse it was about is changed again.</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="control">
+  <div class="intro">
+    <span class="eyebrow">The human stays in control</span>
+    <h2>What the agents are never allowed to do</h2>
+  </div>
+  <p class="small">For both texts.</p>
+  <ul class="plain">
+    <li><b>Treat another edition as the original.</b> The Critical Edition leaves out verses our recension has, and differs on thousands of words. Those are readings of the tradition, not errors in ours. A verse it lacks is never marked "not in the original".</li>
+    <li><b>Change the text to what it "should" say.</b> The printed edition is the authority. A suspected misprint becomes the vidvān's note, never a silent change.</li>
+    <li><b>Treat a variant reading as a mistake.</b> When the editor records what the manuscripts read, that reading is kept and shown with the word.</li>
+    <li><b>Choose between two readings.</b> Every opening where the print and the typed file differ goes to the vidvān: 368 of 368. Every Mahābhārata flag goes to a reviewer, even when both editions agree.</li>
+    <li><b>Correct silently.</b> In the Yajurveda, corrections are separate entries, each with its evidence, and the typed file stays as received. In the Mahābhārata, every fix is a commit that says who decided it.</li>
+    <li><b>Call something missing without saying why.</b> Lost from our materials, commented together with its neighbours, or never commented on are three different things.</li>
+    <li><b>Spend the vidvān's time on an unchecked batch.</b> A person checks a sample by eye first.</li>
+  </ul>
+</section>
+
+<section id="pilot">
+  <div class="intro">
+    <span class="eyebrow">How we will know it works</span>
+    <h2>What to measure as the rulings come back</h2>
+  </div>
+  <div class="metrics">
+    <div><b>Vidvān minutes per printed page</b><span>The main measure. It sets the pace for the remaining volumes, and for the Brāhmaṇa and Āraṇyaka after them.</span></div>
+    <div><b>Who was right when they differed</b><span>The print against the typed file, and the reading agent against both. This tells us which differences could later be settled with less of the vidvān's time.</span></div>
+    <div><b>Whether "all agree" holds</b><span>How often the vidvān overturns an item from the one-in-twenty sample. If that ever happens, the sample grows.</span></div>
+    <div><b>Mahābhārata: caught before a reader</b><span>Of the mistakes readers report, the share the check had already flagged. Six in ten so far, on 104 known corrections.</span></div>
+    <div><b>Mahābhārata: flags that were wrong</b><span>How often a reviewer says "not a mistake", for both-edition flags and one-edition flags separately. This shows which kind deserves a reviewer's time first.</span></div>
+    <div><b>Reviewers who agree</b><span>Where two reviewers decide the same flag, how often they agree. Disagreements go to a person to settle.</span></div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="intro">
+    <span class="eyebrow">For the team to decide</span>
+    <h2>Questions before going further</h2>
+  </div>
+  <ul class="plain">
+    <li>The vidvān's rulings are kept in one browser until they are downloaded. Should they be saved somewhere shared instead, so they follow the vidvān to another device and nothing is lost?</li>
+    <li>Only the opening words of each paragraph have been compared, 7.9% of the bhāṣya's letters. A full comparison needs a paid full-text reading of every page. Is it worth it once we know how often the openings differ?</li>
+    <li>The Brāhmaṇa and the Āraṇyaka have no typed file, so the comparison there would be between two separate readings of the same pages. Who checks those, and how many items will that put in front of the vidvān?</li>
+    <li>How is the vidvān credited on the site for each ruling, and do they want to be named?</li>
+    <li>Mahābhārata: there are 10,934 open flags across the 18 parvas. Should reviewers start with the both-edition flags, or with the parvas readers report most?</li>
+    <li>Mahābhārata: the check sees nothing in the Bhāvadīpa, which neither edition carries, or in the Harivaṃśa, which neither covers. What stands in for a witness there?</li>
+  </ul>
+</section>
+
+<section id="build" class="appendix">
+  <div class="intro">
+    <span class="eyebrow">Appendix · for the engineers</span>
+    <h2>How it is built</h2>
+    <h3>Yajurveda</h3>
+    <p>The pipeline lives in <code>dharmasastra-gcp/complete_pipeline_yajurveda</code>. Where it stood on 15 October 2026 is in <code>docs/TS_review_handoff_2026-10-15.md</code>, and that note wins where it and this page differ.</p>
+  </div>
+  <ul class="plain">
+    <li><b>Page map.</b> <code>stage1_ocr/scan_headers.py</code> reads the running head of every page, 25 heads to a call, and carries the anuvāka forward. It covers 3,869 text pages across ten volumes. Kāṇḍa 4 (Vols. VI–VII) has no scans.</li>
+    <li><b>Reading.</b> <code>stage1_ocr/scan_marks.py</code> sends each page with its anuvāka's clean text to gemini-3.5-flash in Gemini Batch mode, one job per volume. Batch mode is half the price, has no rate limits, and every page is read once. Each answer is checked: the word must exist in the clean text, numbers must run in order, and each number may occur once per anuvāka.</li>
+    <li><b>The bhāṣya's own words.</b> <code>stage2_analysis/pratika_anchor.py</code> places a number from the words its paragraph names. It placed 90% of them; by chance alone it would place 7%. Grades: firm, ordered, weak. A short pratīka that occurs twice is graded ordered, never firm, because in the pilot the scan was right both times the two disagreed.</li>
+    <li><b>Review pages.</b> <code>review_queue</code>, <code>review_page</code>, <code>review_footnotes</code> and <code>review_openings</code> build a static site for each praśna, about 250 KB each. It is served on GitHub Pages under <code>yajurveda.sanatana.in/review/TS/</code>. Decisions are kept in the browser under one key and downloaded as <code>decisions_TS_&lt;date&gt;.json</code>.</li>
+    <li><b>Corrections.</b> <code>stage4_integration/ts_bhashya.py</code> regenerates the site's bhāṣya fields from the typed file and <code>data/corrections/TS/&lt;commentator&gt;.json</code>. The entry types are <code>joint</code>, <code>drop_text</code>, <code>move_text</code> and <code>split_text</code>, and each one carries <code>evidence</code>. Regenerating with no new corrections changes nothing.</li>
+  </ul>
+  <h3>Mahābhārata</h3>
+  <ul class="plain">
+    <li><b>The witness check.</b> <code>mbh_src/qa/witness_check.py</code> joins each verse of <code>xml/NN.xml</code> to the Critical Edition (BORI, in <code>dharmasastra-gcp/workbench/critical-edition</code>) and to Dutt (<code>mahabharata/mn_dutt_processed.json</code>) by shared words, never by number. It compares word by word and keeps a difference only when it is typo-sized (similarity of 0.75 or more). <code>canon()</code> collapses spelling conventions first.</li>
+    <li><b>Findings.</b> One record per flag in <code>qa/findings/witness/NN.jsonl</code>, in the shape <code>QA_PROPOSAL.md</code> §3.3 sets out. A both-edition flag has severity <code>review</code>, a one-edition flag <code>info</code>. <code>review.tsv</code> lists them all.</li>
+    <li><b>Measuring.</b> <code>--score 228512a</code> runs the check on the text as it was at that commit and counts the corrections made since. <code>--control</code> measures the catch on the site's open verse reports: on 29 September, 111 of 258.</li>
+    <li><b>Review.</b> <code>qa/witness_report.py</code> builds the shared review page and per-parva offline files. Each decision is fix, no or open, with the reviewer and the time.</li>
+  </ul>
+  <details><summary>One Yajurveda correction entry, as it is stored</summary>
+<pre class="ledger">{"from": "6.4.2",
+ "to":   "6.4.3",
+ "at":   "अत्रोपावहरेदिति विधिं सूचयन्",
+ "evidence": "docx has no text at marker 6.4.3; its commentary runs on
+   inside 6.4.2's block (9,100 chars, about twice the norm). Quotations
+   before this line match 6.4.2's saṃhitā and cite सं. का. ६ प्र. ४ अ. २;
+   from the next paragraph they match 6.4.3 and cite अ. ३."}</pre>
+  </details>
+  <p class="small">Yajurveda counts are from the TS review build of 15 October 2026 (Vols. I–III). Mahābhārata counts are from <code>witness_check.py</code> run on 17 October 2026 against <code>xml/</code> at HEAD (findings) and since commit 228512a, 4 July (the 104 corrections). Readings in the four cases were checked by eye against the scans of pp.66–67. The editor's bracketed conjecture in the p.67 footnote is left for the vidvān to read.</p>
+</section>
+</div>
+</body></html>
