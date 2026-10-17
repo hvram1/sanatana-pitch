@@ -345,7 +345,8 @@ def build_team(out, pitch, ask):
     for name in LOOPS:
         build_loop(name, out)
     for md in glob.glob(os.path.join(HERE, 'trigger', '*.md')):
-        shutil.copy(md, os.path.join(out, 'trigger'))
+        if os.path.basename(md) != 'README.md':   # the notes the map links to, not the folder's readme
+            shutil.copy(md, os.path.join(out, 'trigger'))
     team = os.path.join(out, 'team', 'index.html')
     body = open(team, encoding='utf8').read()
     body = body.replace('../view/pitch.html#', pitch + '#').replace('../view/pitch.html', pitch).replace('../view/ask.html', ask)
