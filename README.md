@@ -52,12 +52,17 @@ Rāmāyaṇa was added (6 October 2026); it is not checked against the index now
 
 ## Two copies: the artifacts and github.io
 
-The same two pages are served in two places, and both are kept for now:
+The same pages are served in two places, and both are kept for now:
 
-| | pitch | funding page | who can see it |
-|---|---|---|---|
-| Claude artifacts | J3XQ… | RHAx… | only the people each link is shared with |
-| GitHub Pages | https://hvram1.github.io/sanatana-pitch/ | …/sanatana-pitch/ask.html | anyone; the pages are public and can be indexed |
+| | short version | pitch | funding page | who can see it |
+|---|---|---|---|---|
+| Claude artifacts | KVxX… | J3XQ… | RHAx… | only the people each link is shared with |
+| GitHub Pages | https://hvram1.github.io/sanatana-pitch/ | …/pitch.html | …/ask.html | anyone; the pages are public and can be indexed |
+
+The site opens on the short version, with the pitch one click behind it. Until
+19 October 2026 the front page was the pitch, so the front page sends an old
+section link (`/#journey`) on to `pitch.html#journey`, and `brief.html`, the
+short version's address for a day, redirects to the front page.
 
 The showcase for Anthropic (`showcase/`) is served there too, at
 https://hvram1.github.io/sanatana-pitch/showcase/: `--site` copies its page and

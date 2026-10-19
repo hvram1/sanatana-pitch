@@ -321,6 +321,12 @@ SKELETON = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
 
 
+# Until 19 October 2026 the front page was the pitch, so a shared link such as
+# /#journey names a section of the pitch: send it there.
+OLD_ANCHORS = ('<script>(function(){var h=location.hash.slice(1);'
+               'if(h&&!document.getElementById(h))location.replace("pitch.html#"+h)})()</script>\n')
+
+
 def skeleton(body):
     """An artifact page (<title>, font links, <style>, body) as a whole HTML document."""
     head, sep, rest = body.partition('<style>')
@@ -341,10 +347,15 @@ def build_site(dist, out):
             body = body.replace(url, local)
         return skeleton(body)
 
-    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html'), (CSR_URL, 'csr.html'), (BRIEF_URL, 'brief.html')]))
-    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './'), (CSR_URL, 'csr.html')]))
-    open(os.path.join(out, 'csr.html'), 'w', encoding='utf8').write(page('csr.html', [(ASK_URL, 'ask.html'), (PITCH_URL, './')]))
-    open(os.path.join(out, 'brief.html'), 'w', encoding='utf8').write(page('brief.html', [(PITCH_URL, './'), (ASK_URL, 'ask.html'), (CSR_URL, 'csr.html')]))
+    # the short version is the front door; the full pitch sits one click behind it
+    brief = page('brief.html', [(PITCH_URL, 'pitch.html'), (ASK_URL, 'ask.html'), (CSR_URL, 'csr.html')])
+    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(brief.replace('</body>', OLD_ANCHORS + '</body>'))
+    open(os.path.join(out, 'pitch.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html'), (CSR_URL, 'csr.html'), (BRIEF_URL, './')]))
+    open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, 'pitch.html'), (CSR_URL, 'csr.html')]))
+    open(os.path.join(out, 'csr.html'), 'w', encoding='utf8').write(page('csr.html', [(ASK_URL, 'ask.html'), (PITCH_URL, 'pitch.html')]))
+    # brief.html was the short version's address for a day (19 October 2026)
+    open(os.path.join(out, 'brief.html'), 'w', encoding='utf8').write(
+        SKELETON + '<title>Sanatana Sampatti in Brief</title><meta http-equiv="refresh" content="0; url=./">\n</head><body><a href="./">Sanatana Sampatti in Brief</a></body></html>\n')
     open(os.path.join(out, 'asks.json'), 'w', encoding='utf8').write(open(os.path.join(dist, 'asks.json'), encoding='utf8').read())
     open(os.path.join(out, '.nojekyll'), 'w').close()
     # the showcase for Anthropic, served at /showcase/: the page and its images only, not its notes
@@ -352,8 +363,8 @@ def build_site(dist, out):
     shutil.rmtree(show, ignore_errors=True)
     shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
     # the team map at /team/, with the pages it links to; reached from the map, not from the pitch or the showcase
-    build_team(out, pitch='../', ask='../ask.html')
-    print(f'built {out}: index.html (the pitch), brief.html, ask.html, csr.html, asks.json, .nojekyll, showcase/, team/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))
+    build_team(out, pitch='../pitch.html', ask='../ask.html')
+    print(f'built {out}: index.html (the short version), pitch.html, brief.html (a redirect), ask.html, csr.html, asks.json, .nojekyll, showcase/, team/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))
 
 
 def build_namakosa(out):

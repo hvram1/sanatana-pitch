@@ -30,8 +30,8 @@ from playwright.sync_api import sync_playwright
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, 'docs')
 SITE = 'https://hvram1.github.io/sanatana-pitch/'
-PAGES = [('brief.html', 'sanatana-sampatti-brief.pdf'),
-         ('index.html', 'sanatana-sampatti-pitch.pdf'),
+PAGES = [('index.html', 'sanatana-sampatti-brief.pdf'),
+         ('pitch.html', 'sanatana-sampatti-pitch.pdf'),
          ('ask.html', 'sanatana-sampatti-funding.pdf'),
          ('csr.html', 'sanatana-sampatti-csr.pdf')]
 PRINT_CSS = """
@@ -60,7 +60,7 @@ def main():
     os.makedirs(out, exist_ok=True)
     tmp = tempfile.mkdtemp()
     try:
-        for name in ('brief.html', 'index.html', 'ask.html', 'csr.html', 'asks.json'):
+        for name in ('index.html', 'pitch.html', 'ask.html', 'csr.html', 'asks.json'):
             body = open(os.path.join(DOCS, name), encoding='utf-8').read()
             open(os.path.join(tmp, name), 'w', encoding='utf-8').write(absolute(body) if name.endswith('.html') else body)
         handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=tmp)
