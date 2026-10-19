@@ -5,6 +5,7 @@ CSR officers. Both are published as private Claude artifacts and shared by link.
 
 | page | source | published at |
 |---|---|---|
+| The short version (send this first) | `src/brief.html` | https://claude.ai/artifact/KVxXrEwDXTVkVC28G4TegA |
 | The pitch | `src/pitch.html` + `src/images/` | https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE |
 | The funding page | `src/ask.html` + `src/asks.json` | https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx |
 | For heads of CSR | `src/csr.html` + `src/asks.json` | https://claude.ai/artifact/BYGH7ZaAMHHuFrhFU7WrJ7 |

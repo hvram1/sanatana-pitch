@@ -199,6 +199,30 @@ def ab_bhashyas():
     return len(files)
 
 
+def coverage_lit():
+    import coverage_map
+    return coverage_map.counts()[0]
+
+
+def coverage_total():
+    import coverage_map
+    return coverage_map.counts()[2]
+
+
+def rate(rate_id):
+    rates = {r['id']: r for r in json.load(open(os.path.join(SRC, 'asks.json'), encoding='utf8'))['rates']}
+    return lambda: rates[rate_id]['rupees']
+
+
+def program_hosting_lakh():
+    basis = json.load(open(os.path.join(SRC, 'asks.json'), encoding='utf8'))['program']['basis']
+    return next(b['rupees'] for b in basis if b['say'].startswith('Hosting')) / 100_000
+
+
+def program_lakh():
+    return prices.published(os.path.join(SRC, 'asks.json'))['program']['cost_lakh']
+
+
 def asks_meter(ask_id):
     asks = json.load(open(os.path.join(SRC, 'asks.json'), encoding='utf8'))['asks']
     return next(a for a in asks if a['id'] == ask_id)['meter']['now']
@@ -233,6 +257,13 @@ CHECKS = [
     ('pitch.html', 'Āraṇyaka (<span class="mono">{}</span>)', 'yajurveda.sanatana.in ta units with text', yv_panchasats('ta')),
     ('pitch.html', '<span class="mono">{}</span> bhāṣyas: eleven on the Upaniṣads', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
     ('pitch.html', 'Beta</a>: {} bhāṣyas with Tamil', 'advaitabharati.sanatanasampatti.in data files, one per work', ab_bhashyas),
+    ('brief.html', '<span class="num">{}</span> verses sit in one index', 'sharadapeetham index.db, occurrence rows', index_occurrences),
+    ('brief.html', '<span class="num">{}</span> of the <span', 'coverage_map.py, lit branches', coverage_lit),
+    ('brief.html', 'of the <span class="num">{}</span> branches', 'coverage_map.py, all branches', coverage_total),
+    ('brief.html', '<span class="num">₹{}</span> turns an hour', 'asks.json rate edition_audio_hour', rate('edition_audio_hour')),
+    ('brief.html', '<span class="num">₹{}</span> pays a pāṭhaśālā student', 'asks.json rate student_hour', rate('student_hour')),
+    ('brief.html', '<span class="num">₹{} lakh</span> a year. Carrying', 'asks.json programme, hosting line', program_hosting_lakh),
+    ('brief.html', '<span class="num">₹{} lakh</span>. Each funded', 'asks.json programme, priced', program_lakh),
     ('ask.html', '<span>{} verses on the clock', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:audio', '{}', 'purana-atlas stats.json, sum of reached', atlas_reached),
     ('asks.json:bhashyas', '{}', 'yajurveda.sanatana.in anuvākas with both bhāṣyas, kāṇḍas 1, 2, 3, 6', yv_anuvakas_with_both_bhashyas),
@@ -249,11 +280,11 @@ UNCHECKED = [
 
 
 def fmt(n):
-    return f'{n:,}'
+    return f'{n:g}' if isinstance(n, float) else f'{n:,}'
 
 
 def check():
-    pages = {name: open(os.path.join(SRC, name), encoding='utf8').read() for name in ('pitch.html', 'ask.html')}
+    pages = {name: open(os.path.join(SRC, name), encoding='utf8').read() for name in ('pitch.html', 'ask.html', 'brief.html')}
     bad = 0
     for page, pattern, label, fn in CHECKS:
         try:
@@ -285,6 +316,7 @@ def _printed(text, pattern):
 PITCH_URL = 'https://claude.ai/artifact/J3XQCuGh4AhhZp3f8ZfUzE'
 ASK_URL = 'https://claude.ai/artifact/RHAxouvYiRFwdCxdjFGxzx'
 CSR_URL = 'https://claude.ai/artifact/BYGH7ZaAMHHuFrhFU7WrJ7'
+BRIEF_URL = 'https://claude.ai/artifact/KVxXrEwDXTVkVC28G4TegA'
 SKELETON = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n')
 
@@ -309,9 +341,10 @@ def build_site(dist, out):
             body = body.replace(url, local)
         return skeleton(body)
 
-    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html'), (CSR_URL, 'csr.html')]))
+    open(os.path.join(out, 'index.html'), 'w', encoding='utf8').write(page('pitch.html', [(ASK_URL, 'ask.html'), (CSR_URL, 'csr.html'), (BRIEF_URL, 'brief.html')]))
     open(os.path.join(out, 'ask.html'), 'w', encoding='utf8').write(page('ask.html', [(PITCH_URL, './'), (CSR_URL, 'csr.html')]))
     open(os.path.join(out, 'csr.html'), 'w', encoding='utf8').write(page('csr.html', [(ASK_URL, 'ask.html'), (PITCH_URL, './')]))
+    open(os.path.join(out, 'brief.html'), 'w', encoding='utf8').write(page('brief.html', [(PITCH_URL, './'), (ASK_URL, 'ask.html'), (CSR_URL, 'csr.html')]))
     open(os.path.join(out, 'asks.json'), 'w', encoding='utf8').write(open(os.path.join(dist, 'asks.json'), encoding='utf8').read())
     open(os.path.join(out, '.nojekyll'), 'w').close()
     # the showcase for Anthropic, served at /showcase/: the page and its images only, not its notes
@@ -320,7 +353,7 @@ def build_site(dist, out):
     shutil.copytree(os.path.join(HERE, 'showcase'), show, ignore=shutil.ignore_patterns('*.md'))
     # the team map at /team/, with the pages it links to; reached from the map, not from the pitch or the showcase
     build_team(out, pitch='../', ask='../ask.html')
-    print(f'built {out}: index.html (the pitch), ask.html, csr.html, asks.json, .nojekyll, showcase/, team/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))
+    print(f'built {out}: index.html (the pitch), brief.html, ask.html, csr.html, asks.json, .nojekyll, showcase/, team/, namakosa/, ' + ', '.join(n + '/' for n in LOOPS[1:]))
 
 
 def build_namakosa(out):
@@ -359,7 +392,7 @@ def build_local(dist):
     the Nāma-Kośa page, the internal loop pages and the team map at the root."""
     view = os.path.join(dist, 'view')
     os.makedirs(view, exist_ok=True)
-    for name in ('pitch.html', 'ask.html', 'csr.html'):
+    for name in ('pitch.html', 'brief.html', 'ask.html', 'csr.html'):
         open(os.path.join(view, name), 'w', encoding='utf8').write(skeleton(open(os.path.join(dist, name), encoding='utf8').read()))
     shutil.copy(os.path.join(dist, 'asks.json'), view)
     show = os.path.join(dist, 'showcase')
@@ -392,14 +425,14 @@ def build(out):
 
     html, n = re.subn(r'src="(images/[^"]+\.jpg)"', inline, html)
     open(os.path.join(out, 'pitch.html'), 'w', encoding='utf8').write(html)
-    for name in ('ask.html', 'csr.html'):
+    for name in ('brief.html', 'ask.html', 'csr.html'):
         open(os.path.join(out, name), 'w', encoding='utf8').write(open(os.path.join(SRC, name), encoding='utf8').read())
     # src/asks.json holds quantities and rates; the page reads the priced version
     pub = prices.published(os.path.join(SRC, 'asks.json'))
     json.dump(pub, open(os.path.join(out, 'asks.json'), 'w', encoding='utf8'), ensure_ascii=False, indent=2)
     total = sum(a['cost_lakh'] for a in pub['asks'])
     print('prices: ' + ', '.join(f"{a['id']} {a['cost_lakh']:g}" for a in pub['asks']) + f'; total {total:g} lakh; programme {pub["program"]["cost_lakh"]:g} lakh a year')
-    print(f'built {out}: pitch.html ({n} images inlined, {os.path.getsize(os.path.join(out, "pitch.html")):,} bytes), ask.html, csr.html, asks.json')
+    print(f'built {out}: pitch.html ({n} images inlined, {os.path.getsize(os.path.join(out, "pitch.html")):,} bytes), brief.html, ask.html, csr.html, asks.json')
 
 
 def main():
