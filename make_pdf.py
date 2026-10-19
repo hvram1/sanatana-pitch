@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PDFs of the three pages, with their links live, for sending as files.
+"""PDFs of the four pages, with their links live, for sending as files.
 
     ~/projects/audio-ingest/myenv/bin/python make_pdf.py      (needs playwright + chromium)
 
@@ -14,7 +14,7 @@ every link clickable in the PDF. Five changes for print:
 - a card, an ask or a table row is not split across a page break;
 - the sticky nav is static, so it does not sit over the top of every page.
 
-Writes docs/pdf/sanatana-sampatti-{pitch,funding,csr}.pdf, which GitHub Pages
+Writes docs/pdf/sanatana-sampatti-{brief,pitch,funding,csr}.pdf, which GitHub Pages
 also serves.
 """
 import functools
@@ -30,12 +30,13 @@ from playwright.sync_api import sync_playwright
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(HERE, 'docs')
 SITE = 'https://hvram1.github.io/sanatana-pitch/'
-PAGES = [('index.html', 'sanatana-sampatti-pitch.pdf'),
+PAGES = [('brief.html', 'sanatana-sampatti-brief.pdf'),
+         ('index.html', 'sanatana-sampatti-pitch.pdf'),
          ('ask.html', 'sanatana-sampatti-funding.pdf'),
          ('csr.html', 'sanatana-sampatti-csr.pdf')]
 PRINT_CSS = """
 nav.top{position:static!important}
-article,.ask,.prob,.card,.tier,.doc,.person,.node,.site,.reason,.thanks div,.letter,tr,figure{break-inside:avoid}
+article,.ask,.prob,.card,.tier,.doc,.person,.node,.site,.reason,.thanks div,.letter,.isnot,.layer,.q,tr,figure{break-inside:avoid}
 h2,h3{break-after:avoid}
 section{padding-block:24px 4px!important}
 body{padding-block-end:0!important;background:#fff!important}
@@ -59,7 +60,7 @@ def main():
     os.makedirs(out, exist_ok=True)
     tmp = tempfile.mkdtemp()
     try:
-        for name in ('index.html', 'ask.html', 'csr.html', 'asks.json'):
+        for name in ('brief.html', 'index.html', 'ask.html', 'csr.html', 'asks.json'):
             body = open(os.path.join(DOCS, name), encoding='utf-8').read()
             open(os.path.join(tmp, name), 'w', encoding='utf-8').write(absolute(body) if name.endswith('.html') else body)
         handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=tmp)

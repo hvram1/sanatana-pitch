@@ -72,6 +72,12 @@ section{padding-block:36px 0;display:grid;gap:16px}
 .btn:hover{filter:brightness(1.08)}
 .contact{font-family:var(--f-mono);user-select:all}
 footer{padding-top:40px;display:grid;gap:8px}
+@media print{
+  /* each layer its own box, so a page break falls between them, not through one */
+  .layers{border:0;background:none;gap:12px;overflow:visible}
+  .layer{border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+  .layer + .layer{border-top:1px solid var(--rule)}
+}
 @media (max-width:600px){
   body{font-size:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
   .layer{grid-template-columns:minmax(0,1fr);gap:4px}

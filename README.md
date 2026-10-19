@@ -82,7 +82,7 @@ the trustees' names to anyone.
     ./publish.py --site
     ~/projects/audio-ingest/myenv/bin/python make_pdf.py      # needs playwright + chromium
 
-`docs/pdf/sanatana-sampatti-{pitch,funding,csr}.pdf`, each link live and pointing at
+`docs/pdf/sanatana-sampatti-{brief,pitch,funding,csr}.pdf`, each link live and pointing at
 the public github.io pages (the artifact links are private). The price
 breakdowns are printed open. Remake them after any change to the pages, or they
 fall behind.
